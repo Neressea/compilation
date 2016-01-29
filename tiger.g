@@ -8,6 +8,10 @@ import java.util.HashMap;
 /** Map variable name to Integer object holding value */
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
+tiger 	:	expr;
+expr	:	ID;
+
+
 arrayexp	:	'array'	; 
 breakexp	:	'break'	;
 doexp 	:	'do'		;
@@ -29,7 +33,7 @@ whileexp	:	'while'	;
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
 STRING 	:	('"')('a'..'z'|'A'..'Z'|'1'..'9')+('"');
-WS 	:	(' '|'\t')+ {$channel=HIDDEN};
+WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
 NEWLINE	:	('\r'? '\n') | '\r';
 COMMENT	: 	'/*'.* '*/';
 
