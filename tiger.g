@@ -1,4 +1,4 @@
-grammar BaBek;
+grammar tiger;
 
 @header {
 import java.util.HashMap;
