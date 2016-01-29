@@ -8,6 +8,10 @@ import java.util.HashMap;
 /** Map variable name to Integer object holding value */
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
+tiger 	:	expr;
+expr	:	ID;
+
+
 arrayexp	:	'array'	; 
 breakexp	:	'break'	;
 doexp 	:	'do'		;
