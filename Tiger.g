@@ -1,4 +1,4 @@
-grammar tiger;
+grammar Tiger;
 
 @header {
 import java.util.HashMap;
@@ -29,6 +29,7 @@ toexp	:	'to'		;
 typeexp	:	'type'	;
 varexp	:	'var'		;
 whileexp	:	'while'	;
+typedefexp  :	'typedef' ; 
 
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
