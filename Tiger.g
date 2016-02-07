@@ -13,7 +13,7 @@ expr	:	STRING expr2
 	|	INT expr2
 	|	nilexp expr2
 	|	lvalue affect_ou_pas_affect expr2
-	|	- expr expr2
+	|	'-' expr expr2
 	|	ID '(' expr_list? ')' expr2
 	|	'(' expr_seq? ')' expr2
 	|	type_id '{' field_list? '}' expr2
@@ -30,6 +30,7 @@ else_ou_pas_else
 	:	elseexp expr 
 	|
 ;
+
 affect_ou_pas_affect 
 	:	':=' expr
 	|
@@ -101,7 +102,7 @@ type_ou_pas_type
 ;
 
 binary_operator
-	:	'coucou'
+	:	'dcoucou'
 ;
 type_id	:	'coucou'
 ;
