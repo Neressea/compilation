@@ -1,0 +1,76 @@
+tiger->	
+	expr
+expr->	
+	string-constant expr'
+	integer-constant expr'
+	nil expr'
+	lvalue affect-ou-pas-affect expr'
+	- expr expr'
+	id (expr-listopt) expr'
+	(expr-seqopt) expr'
+	type-id {filed-listopt} expr'
+	if expr then expr else-ou-pas-else expr'
+	while expr do expr expr'
+	for id := expr to expr do expr expr'
+	break expr'
+	let declaration-list in expr-seqopt end expr'
+
+expr' -> binary-operator expr expr' | mot-vide
+
+else-ou-pas-else ->  else expr | mot-vide
+
+affect-ou-pas-affect -> := expr | mot-vide
+
+expr-seq->
+	expr expr-seq'
+
+expr-seq' -> ; expr expr-seq' | mot-vide
+
+expr-list->
+	expr expr-list'
+
+expr-list' -> , expr expr-list' | mot-vide
+
+field-list->
+	id=expr field-list'
+
+field-list' -> , id=expr field-list' | mot-vide
+
+lvalue->
+	id lvalue'
+
+lvalue' -> id-ou-expr lvalue' | mot-vide
+
+id-ou-expr -> . id | [expr]
+
+declaration-list->
+	 declaration declaration-list | mot-vide
+
+declaration->
+	type-declaration
+	variable-declaration
+	function-declaration
+
+type-declaration->
+	type type-id = type
+
+type->
+	type-id
+	{type-fieldsopt}
+	array of type-id
+
+type-fields->
+	type-field type-fields'
+
+type-fields'-> , type-field type-fields' | mot-vide
+
+type-field->
+	id:type-id
+
+variable-declaration->
+	var id type-ou-pas-type := expr
+
+function-declaration-> 
+	function id (type-fieldsopt) type-ou-pas-type = expr
+
+type-ou-pas-type ->  : type-id | mot-vide
