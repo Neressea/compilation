@@ -1,5 +1,9 @@
 grammar Tiger;
 
+options{
+k=1;
+}
+
 @header {
 import java.util.HashMap;
 }
@@ -8,24 +12,32 @@ import java.util.HashMap;
 /** Map variable name to Integer object holding value */
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
+
 tiger	:	expr;
+
 expr	:	STRING expr2
 	|	INT expr2
 	|	nilexp expr2
 	|	lvalue affect_ou_pas_affect expr2
 	|	'-' expr expr2
-	|	ID '(' expr_list? ')' expr2
+	|	ID parenthese_ou_accolade
 	|	'(' expr_seq? ')' expr2
-	|	type_id '{' field_list? '}' expr2
 	|	ifexp expr thenexp expr else_ou_pas_else expr2
 	|	whileexp expr doexp expr expr2
 	|	forexp ID ':=' expr toexp expr doexp expr expr2
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 ;
+
 expr2	:  	binary_operator expr expr2
 	|
 ;
+
+parenthese_ou_accolade 
+	:	 '(' expr_list? ')' expr2
+	|	'{' field_list? '}' expr2
+;
+	
 else_ou_pas_else 
 	:	elseexp expr 
 	|
@@ -57,6 +69,7 @@ field_list2
 ;
 lvalue	:	ID lvalue2
 ;
+
 lvalue2	:	id_ou_expr lvalue2
 	|	
 ;
@@ -102,9 +115,9 @@ type_ou_pas_type
 ;
 
 binary_operator
-	:	'dcoucou'
+	:	'<'|'+'|'<='|'>'|'>='|'<>'|'!='|'-'|'&'|':='|'*'|'/'|'|'
 ;
-type_id	:	'coucou'
+type_id	:	ID
 ;
 
 arrayexp	:	'array'	; 
@@ -128,7 +141,7 @@ typedefexp  :	'typedef' ;
 
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
-STRING 	:	('"')('a'..'z'|'A'..'Z'|'1'..'9')+('"');
+STRING 	:	'"'('a'..'z'|'A'..'Z'|'1'..'9')+'"';
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
 NEWLINE	:	('\r'? '\n') | '\r';
 COMMENT	: 	'/*'.* '*/';
