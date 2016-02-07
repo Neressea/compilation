@@ -18,9 +18,8 @@ tiger	:	expr;
 expr	:	STRING expr2
 	|	INT expr2
 	|	nilexp expr2
-	|	lvalue affect_ou_pas_affect expr2
 	|	'-' expr expr2
-	|	ID parenthese_ou_accolade
+	|	ID lvalue
 	|	'(' expr_seq? ')' expr2
 	|	ifexp expr thenexp expr else_ou_pas_else expr2
 	|	whileexp expr doexp expr expr2
@@ -67,7 +66,8 @@ field_list2
 	:	',' field_list
 	|
 ;
-lvalue	:	ID lvalue2
+lvalue	:	lvalue2 affect_ou_pas_affect expr2
+	|	parenthese_ou_accolade
 ;
 
 lvalue2	:	id_ou_expr lvalue2
@@ -141,7 +141,7 @@ typedefexp  :	'typedef' ;
 
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
-STRING 	:	'"'('a'..'z'|'A'..'Z'|'1'..'9')+'"';
+STRING 	:	'"'.+'"'; /* . correspond à n'importe quel caractère ou n'importe quel caractère affichable ?*/
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
 NEWLINE	:	('\r'? '\n') | '\r';
 COMMENT	: 	'/*'.* '*/';
