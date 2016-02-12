@@ -26,11 +26,14 @@ expr	:	STRING expr2
 	|	forexp ID ':=' expr toexp expr doexp expr expr2
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
-;
+	|	declaration expr2
+	;
 
 expr2	:  	binary_operator expr expr2
+	|	NEWLINE expr
 	|
 ;
+
 
 parenthese_ou_accolade 
 	:	 '(' expr_list? ')' expr2
