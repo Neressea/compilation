@@ -28,12 +28,13 @@ expr	:	STRING expr2
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 	|	declaration expr2
+	|	NEWLINE expr
+
 	;
 
 expr2	:  	binary_operator expr expr2
-	|	NEWLINE expr
 	|
-;
+	;
 
 
 parenthese_ou_accolade 
