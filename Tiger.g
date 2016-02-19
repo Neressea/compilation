@@ -17,24 +17,25 @@ HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 
 tiger	:	expr;
 
+
+expr2	:  	binary_operator expr expr2
+	|
+	;
 expr	:	STRING expr2
 	|	INT expr2
 	|	nilexp expr2
 	|	'-' expr expr2
 	|	ID lvalue
 	|	'(' expr_seq? ')' expr2
-	|	ifexp expr thenexp expr else_ou_pas_else expr2
+	|	ifexp COND=expr thenexp DO=expr ELSE=else_ou_pas_else expr2 -> ^(ifexp ^($COND) ^($DO) ^($ELSE))
 	|	whileexp expr doexp expr expr2
-	|	forexp ID ':=' expr toexp expr doexp expr expr2
+	|	forexp ID ':=' INIT=expr toexp DEST = expr doexp NEWLINE boucle = expr SUITE = expr2 -> ^(forexp ^(ID $INIT $DEST)  ^(doexp $boucle))
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 	|	declaration expr2
 	|	NEWLINE expr
 	;
 
-expr2	:  	binary_operator expr expr2
-	|
-	;
 
 
 parenthese_ou_accolade 
@@ -163,8 +164,8 @@ forexp 	:	'for'		;
 functionexp	:	'function'	;
 ifexp	:	'if'		;
 inexp	:	'in'		;
-letexp	:	'let'		;
 nilexp	:	'nil'		;
+letexp	:	'let'		;
 ofexp	:	'of'		;
 thenexp	:	'then'	;
 toexp	:	'to'		;
@@ -172,6 +173,7 @@ typeexp	:	'type'	;
 varexp	:	'var'		;
 whileexp	:	'while'	;
 typedefexp  :	'typedef' ; 
+blockexp 	:	'block' ;
 
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
