@@ -132,7 +132,7 @@ condition_and
 ;
 
 comparateur
-	:	'<' r1 | '>' r2 | '!=' | '='|addsous
+	:	'<' r1 | '>' r2  | '='|addsous
 ;
 
 r1 	
