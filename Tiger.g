@@ -146,8 +146,11 @@ addsous
 ;
 
 multidiv
-	:	'*'|'/'
+	:	'*'|div
 ;
+
+div	:	'/';
+
 type_id	:	ID
 ;
 
