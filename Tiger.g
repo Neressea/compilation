@@ -28,7 +28,6 @@ expr	:	STRING expr2
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 	|	declaration expr2
-	|	NEWLINE expr
 
 	;
 
@@ -132,7 +131,7 @@ condition_and
 ;
 
 comparateur
-	:	'<' r1 | '>' r2  | '='|addsous
+	:	'<' r1 | '>' r2 | '='|addsous
 ;
 
 r1 	
@@ -174,5 +173,5 @@ ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
 STRING 	:	'"'.+'"'; /* . correspond à n'importe quel caractère ou n'importe quel caractère affichable ?*/
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
-NEWLINE	:	('\r'? '\n') | '\r';
-COMMENT	: 	'/*'.* '*/';
+NEWLINE	:	('\r'? '\n') | '\r' {$channel=HIDDEN;};
+COMMENT	: 	'/*'.* '*/' {$channel=HIDDEN;};
