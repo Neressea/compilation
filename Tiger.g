@@ -3,6 +3,7 @@ grammar Tiger;
 options{
 k=1;
 backtrack=false;
+output=AST;
 }
 
 @header {
@@ -28,7 +29,7 @@ expr	:	STRING expr2
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 	|	declaration expr2
-
+	|	NEWLINE expr
 	;
 
 expr2	:  	binary_operator expr expr2
