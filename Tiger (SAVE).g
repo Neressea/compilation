@@ -18,22 +18,22 @@ HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 tiger	:	expr;
 
 
-expr2	:  	a expr expr2
+expr2	:  	binary_operator expr expr2
 	|
 	;
 expr	:	STRING expr2
-	//|	INT expr2
+	|	INT expr2
 	|	nilexp expr2
-	//|	ID lvalue
+	|	'-' expr expr2
+	|	ID lvalue
 	|	'(' expr_seq? ')' expr2
-	|	ifexp COND=expr thenexp DO=expr ELSE=else_ou_pas_else expr2 -> ^(ifexp ^($COND) ^(thenexp $DO) ^($ELSE))
+	|	ifexp COND=expr thenexp DO=expr ELSE=else_ou_pas_else expr2 -> ^(ifexp ^($COND) ^($DO) ^($ELSE))
 	|	whileexp expr doexp expr expr2
 	|	forexp ID ':=' INIT=expr toexp DEST = expr doexp NEWLINE boucle = expr SUITE = expr2  -> ^(forexp ^(ID $INIT $DEST)  ^(doexp $boucle))
 	|	breakexp expr2
 	|	letexp declaration_list inexp expr_seq* endexp expr2 
 	|	declaration expr2
 	|	NEWLINE expr
-	| 	a
 	;
 
 
@@ -120,54 +120,37 @@ type_ou_pas_type
 	|
 ;
 
-a	:	 c a2
-	;
+binary_operator
+	:	':='| condition_or
+;
 
-a2	:	'|' c a2
-	|;
+condition_or
+	:	'|' | condition_and
+;
 
+condition_and	
+	:	'&'| comparateur
+;
 
-b	:	c b2
-	;
+comparateur
+	:	'<' r1 | '>' r2 | '='|addsous
+;
 
-b2	:	'&' c b2
-	|;
+r1 	
+	: 	'>'| '=' |;
 
-c	:	e c2
-	;
+r2	
+	:	'='|;
+	
+addsous
+	:	'+'|'-'|multidiv
+;
 
-c2	:	'<' c3
-	|	'>' c4
-	|	'=' e c2
-	|;
+multidiv
+	:	'*'|div
+;
 
-c3	:	'>' e c2
-	|	'=' e c3
-	|	e c2
-	;
-
-c4	:	e c2
-	|	'=' e c2
-	;	
-
-e	:	t e2
-	;
-
-e2	:	'+' t e2	
-	|	'-' t e2
-	|;
-
-t	:	f t2
-	;
-
-t2	: 	'*' f t2
-	|	'/' f t2
-	|;
-
-f	:	'('a')'
-	|	INT	
-	|	ID
-	;
+div	:	'/';
 
 type_id	:	ID
 ;
