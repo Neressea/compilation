@@ -1,0 +1,1 @@
+function dtc(c:string):int = x := (3 + 2) / 5 + 6

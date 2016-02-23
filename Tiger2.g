@@ -19,6 +19,8 @@ tiger2	:	expr
 	;
 
 expr	:	declaration (NEWLINE declaration)?
+	| 	affect
+	| 	binary
 	;
 
 declaration	:	variable
@@ -42,11 +44,9 @@ forop	: 	forexp ID ':=' expr toexp expr doexp expr
 	
 ifop	:	ifexp binary thenexp NEWLINE expr (elseexp expr)?
 	;
-	
-ifop2	:	elseexp expr
-	|
-	;
-	
+
+affect	:	ID ':=' expr;
+
 binary	:	a
 	;
 
@@ -91,16 +91,16 @@ addmin	:	'+' t addmin
 	|
 	;
 
-t	:	parenth muldiv
+t	:	atom muldiv
 	;
 
-muldiv	: 	'*' parenth muldiv
-	|	'/' parenth muldiv
+muldiv	: 	'*' atom muldiv
+	|	'/' atom muldiv
 	|
 	;
 
-parenth	:	'('a')'
-	|	INT	
+atom	:	'('a')'
+	|	INT
 	|	ID
 	;
 
