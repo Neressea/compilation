@@ -27,33 +27,34 @@ declaration	:	variable
 	|	fonction
 	;
 	
-variable	:	varexp ID (':' type_id)?  ':=' expr
+variable	:	varexp ID (':' type_id)?  ':=' EXPR=expr -> ^(varexp ID type_id ^(':=' $EXPR))
 	;
 	
-fonction	:	functionexp ID '('(formalParam (',' formalParam)*)?')' ':' type_id '=' expr
+fonction	:	functionexp ID '('(PARAM=formalParam (',' formalParam)*)?')' ':' type_id '=' EXPR=expr -> ^(functionexp ID type_id ^($PARAM) $EXPR)
 	| 	forop
 	| 	ifop
 	;
 	
 formalParam
-	:	ID ':' type_id 
+	:	ID ':' type_id
 	;
 	
-forop	: 	forexp ID ':=' expr toexp expr doexp expr
+forop	: 	forexp ID ':=' EXPR_FROM=expr toexp EXPR_TO=expr doexp EXPR_DO=expr -> ^(forexp ^(ID $EXPR_FROM $EXPR_TO) ^(doexp $EXPR_DO))
 	;
 	
-ifop	:	ifexp binary thenexp NEWLINE expr (elseexp expr)?
+ifop	:	ifexp binary thenexp NEWLINE EXPR1=expr (elseexp EXPR2=expr)? -> ^(ifexp ^(thenexp $EXPR1) ^(elseexp $EXPR2))
 	;
 
-affect	:	ID ':=' expr;
-
+affect	:	ID ':=' E=expr -> ^(':='  ID $E)
+	;
+	
 binary	:	a
 	;
 
 a	:	 b orop
 	;
 
-orop	:	'|' b orop
+orop	:	'|' B=b OR=orop -> ^('|' $B $OR)
 	|
 	;
 
@@ -61,41 +62,42 @@ orop	:	'|' b orop
 b	:	c andop
 	;
 
-andop	:	'&' c andop
+andop	:	'&' C=c AND=andop -> ^('&' $C $AND)
 	|
 	;
 
 c	:	e comp
 	;
 
-comp	:	'<' comp_inf
-	|	'>' comp_sup
-	|	'=' e comp
+comp	:	'<' COMP=comp_inf -> ^('<' $COMP)
+	|	'>' COMP=comp_sup -> ^('>' $COMP)
+	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
 	|
 	;
 
-comp_inf	:	'>' e comp
-	|	'=' e comp_inf
-	|	e comp
+comp_inf	:	'>' E=e COMP=comp -> ^('>' $E $ COMP)
+	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
+	|	E=e COMP=comp
 	;
 
-comp_sup	:	e comp
-	|	'=' e comp
+comp_sup	:	E=e COMP=comp
+	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
 	;	
 
 e	:	t addmin
 	;
 
-addmin	:	'+' t addmin
-	|	'-' t addmin
-	|
-	;
 
 t	:	atom muldiv
 	;
+addmin	:	'+' T=t ADD=addmin -> ^('+' $T $ADD)
+	|	'-' T=t ADD=addmin -> ^('-' $T $ADD)
+	|
+	;
 
-muldiv	: 	'*' atom muldiv
-	|	'/' atom muldiv
+
+muldiv	: 	'*' ATOM=atom MUL=muldiv -> ^('*' $ATOM $MUL)
+	|	'/' ATOM=atom MUL=muldiv -> ^('/' $ATOM $MUL)
 	|
 	;
 
