@@ -50,56 +50,56 @@ ifop2	:	elseexp expr
 binary	:	a
 	;
 
-a	:	 b a2
+a	:	 b orop
 	;
 
-a2	:	'|' b a2
+orop	:	'|' b orop
 	|
 	;
 
 
-b	:	c b2
+b	:	c andop
 	;
 
-b2	:	'&' c b2
+andop	:	'&' c andop
 	|
 	;
 
-c	:	e c2
+c	:	e comp
 	;
 
-c2	:	'<' c3
-	|	'>' c4
-	|	'=' e c2
+comp	:	'<' comp_inf
+	|	'>' comp_sup
+	|	'=' e comp
 	|
 	;
 
-c3	:	'>' e c2
-	|	'=' e c3
-	|	e c2
+comp_inf	:	'>' e comp
+	|	'=' e comp_inf
+	|	e comp
 	;
 
-c4	:	e c2
-	|	'=' e c2
+comp_sup	:	e comp
+	|	'=' e comp
 	;	
 
-e	:	t e2
+e	:	t addmin
 	;
 
-e2	:	'+' t e2	
-	|	'-' t e2
+addmin	:	'+' t addmin
+	|	'-' t addmin
 	|
 	;
 
-t	:	f t2
+t	:	parenth muldiv
 	;
 
-t2	: 	'*' f t2
-	|	'/' f t2
+muldiv	: 	'*' parenth muldiv
+	|	'/' parenth muldiv
 	|
 	;
 
-f	:	'('a')'
+parenth	:	'('a')'
 	|	INT	
 	|	ID
 	;
