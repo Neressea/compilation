@@ -19,42 +19,45 @@ tiger2	:	expr
 	;
 
 expr	:	declaration (NEWLINE declaration)?
-	| 	affect
 	| 	binary
+	|	ifop
+	| 	forop
+	| 	NEWLINE expr
 	;
 
 declaration	:	variable
 	|	fonction
 	;
 	
-variable	:	varexp ID (':' type_id)?  ':=' EXPR=expr -> ^(varexp ID type_id ^(':=' $EXPR))
+variable	:	varexp ID (':' type_id)?  ':=' array_or_var
+	;
+
+array_or_var:	EXPR=expr | type_id '[' binary ']' ofexp binary
 	;
 	
-fonction	:	functionexp ID '('(PARAM=formalParam (',' formalParam)*)?')' ':' type_id '=' EXPR=expr -> ^(functionexp ID type_id ^($PARAM) $EXPR)
-	| 	forop
-	| 	ifop
+fonction	:	functionexp ID '('(PARAM=formalParam (',' formalParam)*)?')' ':' type_id '=' EXPR=expr //-> ^(functionexp ID type_id ^($PARAM) $EXPR)
 	;
 	
 formalParam
 	:	ID ':' type_id
 	;
 	
-forop	: 	forexp ID ':=' EXPR_FROM=expr toexp EXPR_TO=expr doexp EXPR_DO=expr -> ^(forexp ^(ID $EXPR_FROM $EXPR_TO) ^(doexp $EXPR_DO))
+forop	: 	forexp ID ':=' expr 'to' EXPR_TO=expr doexp EXPR_DO=expr //-> ^(forexp ^(ID $EXPR_FROM $EXPR_TO) ^(doexp $EXPR_DO))
 	;
 	
-ifop	:	ifexp binary thenexp NEWLINE EXPR1=expr (elseexp EXPR2=expr)? -> ^(ifexp ^(thenexp $EXPR1) ^(elseexp $EXPR2))
-	;
-
-affect	:	ID ':=' E=expr -> ^(':='  ID $E)
+ifop	:	ifexp binary thenexp NEWLINE EXPR1=expr+ (elseexp EXPR2=expr)? //-> ^(ifexp ^(thenexp $EXPR1) ^(elseexp $EXPR2))
 	;
 	
-binary	:	a
+binary	:	a z?
+	;
+	
+z	:	':=' expr
 	;
 
 a	:	 b orop
 	;
 
-orop	:	'|' B=b OR=orop -> ^('|' $B $OR)
+orop	:	'|' B=b OR=orop //-> ^('|' $B $OR)
 	|
 	;
 
@@ -62,48 +65,52 @@ orop	:	'|' B=b OR=orop -> ^('|' $B $OR)
 b	:	c andop
 	;
 
-andop	:	'&' C=c AND=andop -> ^('&' $C $AND)
+andop	:	'&' C=c AND=andop //-> ^('&' $C $AND)
 	|
 	;
 
 c	:	e comp
 	;
 
-comp	:	'<' COMP=comp_inf -> ^('<' $COMP)
-	|	'>' COMP=comp_sup -> ^('>' $COMP)
-	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
+comp	:	'<' COMP=comp_inf //-> ^('<' $COMP)
+	|	'>' COMP=comp_sup //-> ^('>' $COMP)
+	|	'=' E=e COMP=comp //-> ^('=' $E $COMP)
 	|
 	;
 
-comp_inf	:	'>' E=e COMP=comp -> ^('>' $E $ COMP)
-	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
+comp_inf	:	'>' E=e COMP=comp //-> ^('>' $E $ COMP)
+	|	'=' E=e COMP=comp //-> ^('=' $E $COMP)
 	|	E=e COMP=comp
 	;
 
 comp_sup	:	E=e COMP=comp
-	|	'=' E=e COMP=comp -> ^('=' $E $COMP)
+	|	'=' E=e COMP=comp //-> ^('=' $E $COMP)
 	;	
 
 e	:	t addmin
 	;
 
 
-t	:	atom muldiv
+t	:	neg muldiv
 	;
-addmin	:	'+' T=t ADD=addmin -> ^('+' $T $ADD)
-	|	'-' T=t ADD=addmin -> ^('-' $T $ADD)
+addmin	:	'+' T=t ADD=addmin //-> ^('+' $T $ADD)
+	|	'-' T=t ADD=addmin //-> ^('-' $T $ADD)
 	|
 	;
 
 
-muldiv	: 	'*' ATOM=atom MUL=muldiv -> ^('*' $ATOM $MUL)
-	|	'/' ATOM=atom MUL=muldiv -> ^('/' $ATOM $MUL)
+muldiv	: 	'*' ATOM=neg MUL=muldiv //-> ^('*' $ATOM $MUL)
+	|	'/' ATOM=neg MUL=muldiv //-> ^('/' $ATOM $MUL)
 	|
+	;
+
+neg	:	'-' atom | atom	
 	;
 
 atom	:	'('a')'
 	|	INT
 	|	ID
+	| 	STRING
 	;
 
 type_id	:	intexp | stringexp;
