@@ -1,4 +1,4 @@
-grammar Tiger2;
+grammar Tiger;
 
 options{
 k=1;
@@ -15,7 +15,10 @@ import java.util.HashMap;
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
 
-tiger2	:	declaration NEWLINE declaration
+tiger	:	augm
+	;
+
+augm	:	declaration NEWLINE declaration
 	|
 	;
 
