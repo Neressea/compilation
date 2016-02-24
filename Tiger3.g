@@ -53,10 +53,10 @@ whileop	:	whileexp expr doexp expr
 affect	:	orop
 	;
 
-orop	:	andop ('|' andop)*
+orop	:	a1=andop (ortoken='|' a2=andop)* -> {$ortoken != null}? ^($ortoken $a1 $a2) -> $a1
 	;
 	
-andop	:	comp ('&' comp)*
+andop	:	c1=comp (andtoken='&' c2=comp)* -> {$andtoken != null}? ^($andtoken $c1 $c2) -> $c1
 	;
 
 comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=binary)* -> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 $b2)+
