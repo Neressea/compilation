@@ -119,7 +119,10 @@ type	:	type_id
 	;
 	
 variable_declaration
-	:	varexp ID ( ':' (ID | type_id))? ':=' expr
+	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr 
+				-> {$depoi != null && $typenew.text!=null}? ^($vava $nom $typenew ^(BLOCK $e))
+				-> {$depoi != null && $typebase.text!=null}? ^($vava $nom $typebase ^(BLOCK $e))
+				-> ^($vava $nom ^(BLOCK $e))
 	;
 
 function_declaration
