@@ -15,7 +15,7 @@ import java.util.HashMap;
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
 
-tiger3	:	expr (NEWLINE expr)?;
+tiger3	:	expr NEWLINE* (expr)?;
 
 expr	:	nilexp
 	|	orop (':=' expr)?
@@ -36,7 +36,7 @@ expr_seq	:	expr ';'?
 field_list	:	ID ':=' expr | ',' ID ':=' expr
 	;		
 
-ifop	:	ifexp expr NEWLINE* thenexp NEWLINE* expr NEWLINE* (elseexp expr)?
+ifop	:	ifexp expr NEWLINE* thenexp NEWLINE* expr NEWLINE* (elseexp NEWLINE* expr)?
 	;
 	
 forop	:	forexp ID ':=' expr toexp expr NEWLINE? doexp NEWLINE? expr
