@@ -1,0 +1,9 @@
+let
+
+function a() : kebab =
+x := 3
+
+function b(y:int, w:dimension) : string =
+y := x + "coucou"
+
+in a() end
