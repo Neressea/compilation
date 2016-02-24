@@ -9,6 +9,10 @@ output=AST;
 tokens{
 TAIGA;
 COMP;
+COND;
+BLOCK;
+BEGIN;
+END;
 }
 
 @header {
@@ -23,7 +27,7 @@ HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 tiger3	:	e1=expr NEWLINE* (e2=expr)? -> ^(TAIGA $e1 $e2?);
 
 expr	:	nilexp
-	|	orop (':=' expr)?
+	|	affect
 	|	type_id ( '{' field_list* '}')?
 	|	ifop
 	|	forop
@@ -41,16 +45,20 @@ expr_seq	:	expr ';'?
 field_list	:	ID ':=' expr | ',' ID ':=' expr
 	;		
 
-ifop	:	ifexp expr NEWLINE* thenexp NEWLINE* expr NEWLINE* (elseexp NEWLINE* expr)?
+ifop	:	fi=ifexp e1=expr NEWLINE* th=thenexp NEWLINE* e2=expr NEWLINE* (els=elseexp NEWLINE* e3=expr)? 
+				-> {$els.text != null}? ^($fi ^(COND $e1) ^($th $e2) ^($els $e3))
+				-> ^($fi ^(COND $e1) ^($th $e2))				 
 	;
 	
-forop	:	forexp ID ':=' expr toexp expr NEWLINE? doexp NEWLINE? expr
+forop	:	fo=forexp dd=ID ':=' e1=expr toexp e2=expr NEWLINE* doexp NEWLINE* e3=expr 
+				-> ^($fo ^($dd ^(BEGIN $e1) ^(END $e2)) ^(BLOCK $e3)) 
 	;
 	
-whileop	:	whileexp expr doexp expr
+whileop	:	whi=whileexp e1=expr NEWLINE* doexp NEWLINE* e2=expr -> ^($whi ^(COND $e1) ^(BLOCK $e2))
 	;
 
-affect	:	orop
+affect	:	o=orop (af=':=' e1=expr)? -> {$af != null}? ^($af $o $e1)
+					-> $o
 	;
 
 orop	:	a1=andop (ortoken='|' a2=andop)* -> {$ortoken != null}? ^($ortoken $a1 $a2) -> $a1
