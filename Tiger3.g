@@ -6,6 +6,10 @@ backtrack=false;
 output=AST;
 }
 
+tokens{
+ROOT;
+}
+
 @header {
 import java.util.HashMap;
 }
@@ -15,7 +19,7 @@ import java.util.HashMap;
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
 
-tiger3	:	expr NEWLINE* (expr)?;
+tiger3	:	e1=expr NEWLINE* (e2=expr)? -> ^(ROOT $e1 $e2?);
 
 expr	:	nilexp
 	|	orop (':=' expr)?
@@ -63,7 +67,7 @@ binary	:	binary2 (('+'|'-') binary2)*
 binary2	:	neg (('*'|'/') neg)*
 	;
 	
-neg	:	'-'? atom
+neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
 	;
 	
 atom	:	'(' (NEWLINE? expr_seq NEWLINE?)* ')'
