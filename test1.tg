@@ -6,6 +6,8 @@ let
 	var col := intArray [ N ] of 0
 	var diag1 := intArray [ N+N-1 ] of 0
 	var diag2 := intArray [ N+N-1 ] of 0
+	
+	var x : kebab := "sugoiiiiiii"
 
 	/*Ceci est un commentaire */
 

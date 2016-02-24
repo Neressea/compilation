@@ -99,7 +99,7 @@ type	:	type_id
 	;
 	
 variable_declaration
-	:	varexp ID ( ':' type_id)? ':=' expr
+	:	varexp ID ( ':' ID)? ':=' expr
 	;
 
 function_declaration
