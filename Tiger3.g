@@ -127,9 +127,11 @@ variable_declaration
 
 function_declaration
 	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '=' NEWLINE* (e=expr NEWLINE*)+
-			-> {$par.text != null && $ty != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $ty) ^(BLOCK $e))
+			-> {$par.text != null && $ty.text != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $ty) ^(BLOCK $e))
+			-> {$par.text != null && $i != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $i) ^(BLOCK $e))
 			-> {$par.text != null}? ^($fun ID ^(PARAMS $par) ^(BLOCK $e))
-			-> {$ty != null || $ty.text != null}? ^($fun ID ^(TYPE $ty) ^(BLOCK $e))
+			-> {$ty.text != null}? ^($fun ID ^(TYPE $ty) ^(BLOCK $e))
+			-> {$i != null}? ^($fun ID ^(TYPE $i) ^(BLOCK $e))
 			-> ^($fun ID ^(BLOCK $e))
 	;
 	
