@@ -1,6 +1,6 @@
 let
 
-var x : int := 10
+var x : fromage := 10
 var tab := string [ x ] of "coucou"
 
 function dtc(c:string):int = 

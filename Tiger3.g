@@ -117,7 +117,7 @@ type	:	type_id
 	;
 	
 variable_declaration
-	:	varexp ID ( ':' ID)? ':=' expr
+	:	varexp ID ( ':' (ID | type_id))? ':=' expr
 	;
 
 function_declaration
