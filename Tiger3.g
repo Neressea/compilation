@@ -17,60 +17,80 @@ HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 
 tiger3	:	expr (NEWLINE expr)?;
 
-
 expr	:	nilexp
-	|	'-' expr
-	|	binary (':=' expr)?
-	|	type_id 
+	|	orop (':=' expr)?
+	|	type_id ( '{' field_list* '}')?
 	|	ifop
 	|	forop
 	|	whileop
 	|	breakexp
-	|	letexp declaration_list inexp expr endexp 
+	|	letexp declaration_list NEWLINE? inexp expr NEWLINE? endexp 
+	;
+
+expr_list 	:	expr | ',' expr
+	;	
+	
+expr_seq	:	expr ';'?
 	;
 	
-ifop	:	ifexp expr thenexp expr (elseexp expr)? 
+field_list	:	ID ':=' expr | ',' ID ':=' expr
+	;		
+
+ifop	:	ifexp expr NEWLINE* thenexp NEWLINE* expr NEWLINE* (elseexp expr)?
 	;
 	
-forop	:	forexp ID ':=' expr toexp expr doexp NEWLINE expr
+forop	:	forexp ID ':=' expr toexp expr NEWLINE? doexp NEWLINE? expr
 	;
 	
 whileop	:	whileexp expr doexp expr
 	;
 
-binary	:	binary2 ('+' binary2)*
+affect	:	orop
+	;
+
+orop	:	andop ('|' andop)*
 	;
 	
-binary2	:	atom ('*' atom)*
+andop	:	comp ('&' comp)*
+	;
+
+comp	:	binary (('>'('=')? | '<' ('>' | '=')? | '=') binary)*
+	;
+
+binary	:	binary2 (('+'|'-') binary2)* 
 	;
 	
-atom	:	'(' expr ')'
+binary2	:	neg (('*'|'/') neg)*
+	;
+	
+neg	:	'-'? atom
+	;
+	
+atom	:	'(' (NEWLINE? expr_seq NEWLINE?)* ')'
 	| 	lvalue
 	|	INT
 	|	STRING	
 	;
 	
-lvalue	:	ID lvalue2
+lvalue	:	ID (lvalue2 | '(' expr_list* ')')?
 	;
 	
 lvalue2 	:	'.' ID lvalue2
-	|	'[' expr ']' lvalue2
-	|
+	|	'[' expr ']' (lvalue2 | ofexp expr)?
 	;
 	
-declaration_list 
-	:	(declaration NEWLINE)+
+	declaration_list 
+	:	(NEWLINE* declaration NEWLINE*)+
 	|	
 	;
 	
-declaration	:
-	|	type_declaration
+declaration	:	type_declaration
 	|	variable_declaration
 	|	function_declaration
 	;
 	
 type_declaration
-	:	typeexp type_id '=' type 
+	:	typeexp ID '=' type 
 	;
 	
 type	:	type_id
@@ -83,7 +103,7 @@ variable_declaration
 	;
 
 function_declaration
-	:	functionexp ID '(' (type_fields)? ')' (':' type_id)?  '=' expr
+	:	functionexp ID '(' (type_fields)? ')' (':' type_id)?  '=' NEWLINE* (expr NEWLINE*)+
 	;
 	
 type_fields	:	type_field type_fields2
@@ -96,7 +116,7 @@ type_fields2	:	',' type_field type_fields2
 type_field	:	ID ':' type_id
 	;
 
-type_id	:	'int' | 'string'
+type_id	:	('int' | 'string') lvalue2*
 	;
 
 arrayexp	:	'array'	; 
@@ -123,5 +143,5 @@ ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
 STRING 	:	'"'.+'"'; /* . correspond à n'importe quel caractère ou n'importe quel caractère affichable ?*/
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
-NEWLINE	:	('\r'? '\n') | '\r' {$channel=HIDDEN;};
+NEWLINE	:	'\r'? '\n' | '\r' {$channel=HIDDEN;};
 COMMENT	: 	'/*'.* '*/' {$channel=HIDDEN;};
