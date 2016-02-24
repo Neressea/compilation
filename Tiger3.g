@@ -13,6 +13,8 @@ COND;
 BLOCK;
 BEGIN;
 END;
+PARAMS;
+TYPE;
 }
 
 @header {
@@ -121,7 +123,11 @@ variable_declaration
 	;
 
 function_declaration
-	:	functionexp ID '(' (type_fields)? ')' (':' type_id)?  '=' NEWLINE* (expr NEWLINE*)+
+	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '=' NEWLINE* (e=expr NEWLINE*)+
+			-> {$par.text != null && $ty != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $ty) ^(BLOCK $e))
+			-> {$par.text != null}? ^($fun ID ^(PARAMS $par) ^(BLOCK $e))
+			-> {$ty != null || $ty.text != null}? ^($fun ID ^(TYPE $ty) ^(BLOCK $e))
+			-> ^($fun ID ^(BLOCK $e))
 	;
 	
 type_fields	:	type_field type_fields2
@@ -131,7 +137,7 @@ type_fields2	:	',' type_field type_fields2
 	|
 	;
 	
-type_field	:	ID ':' type_id
+type_field	:	ID ':' (type_id|ID)
 	;
 
 type_id	:	('int' | 'string') lvalue2*
