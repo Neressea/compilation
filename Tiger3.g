@@ -7,7 +7,8 @@ output=AST;
 }
 
 tokens{
-ROOT;
+TAIGA;
+COMP;
 }
 
 @header {
@@ -19,7 +20,7 @@ import java.util.HashMap;
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
 
-tiger3	:	e1=expr NEWLINE* (e2=expr)? -> ^(ROOT $e1 $e2?);
+tiger3	:	e1=expr NEWLINE* (e2=expr)? -> ^(TAIGA $e1 $e2?);
 
 expr	:	nilexp
 	|	orop (':=' expr)?
@@ -58,19 +59,24 @@ orop	:	andop ('|' andop)*
 andop	:	comp ('&' comp)*
 	;
 
-comp	:	binary (('>'('=')? | '<' ('>' | '=')? | '=') binary)*
+comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=binary)* -> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 $b2)+
+							-> {$inf1 != null && $eg2 != null}? ^(COMP["<="] $b1 $b2)+
+							-> {$inf1 != null && $sup2 != null}? ^(COMP["<>"] $b1 $b2)+
+							-> {$sup1 != null }? ^($sup1 $b1 $b2)+
+							-> {$inf1 != null }? ^($inf1 $b1 $b2)+
+							-> {$eg3 != null}? ^($eg3 $b1 $b2)+
+							-> $b1
 	;
-
-binary	:	binary2 (('+'|'-') binary2)* 
+binary	:	b1=binary2 ((add='+'|minus='-') b2=binary2)* -> {$add != null}? ^($add $b1 $b2)+-> {$minus !=null}? ^($minus $b1 $b2)+ -> $b1
 	;
 	
-binary2	:	neg (('*'|'/') neg)*
+binary2	:	n1=neg ((mul='*'|div='/') n2=neg)* -> {$mul != null}? ^($mul $n1 $n2)+-> {$div !=null}? ^($div $n1 $n2)+ -> $n1
 	;
 	
 neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
 	;
 	
-atom	:	'(' (NEWLINE? expr_seq NEWLINE?)* ')'
+atom	:	'(' (NEWLINE? e=expr_seq NEWLINE?)* ')' -> $e*
 	| 	lvalue
 	|	INT
 	|	STRING	
