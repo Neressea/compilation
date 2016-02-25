@@ -7,7 +7,7 @@ var nom_tableau := string [ x ] of "coucou"
 function dtc(c:string, a:int, k:fromage):int = 
 (x := (3 + 2) / 5 + 6;
 for i := 2 + 3 to 10 do (
-	if i <= 8 then
+	if i <= 8 | b <> 3 & c = 100 then
 		(x := a-1+1;
 		y := 3 * (a + x) - 2;
 		nom_tableau[y+x] := 50);
