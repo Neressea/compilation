@@ -79,12 +79,12 @@ affect	:	o=orop (af=':=' e1=expr)?
 			-> $o
 	;
 
-orop	:	a1=andop (ortoken='|' a2=orop)
+orop	:	a1=andop (ortoken='|' a2=orop)?
 			-> {$ortoken != null}? ^($ortoken $a1 $a2) 
 			-> $a1
 	;
 	
-andop	:	c1=comp (andtoken='&' c2=andop)
+andop	:	c1=comp (andtoken='&' c2=andop)?
 			-> {$andtoken != null}? ^($andtoken $c1 $c2) 
 			-> $c1
 	;
