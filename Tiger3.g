@@ -135,7 +135,7 @@ type_declaration
 	
 type	:	type_id
 	|	'{' (type_fields)? '}'
-	|	'array of' type_id
+	|	'array of' (type_id | ID)
 	;
 	
 variable_declaration
