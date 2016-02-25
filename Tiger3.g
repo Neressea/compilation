@@ -139,8 +139,8 @@ type_declaration
 	
 type	:	type_id
 	|	'{' t=type_fields? '}' 
-			-> {$t.tree != null}? STRUCT
-			-> ^(STRUCT $t)
+			-> {$t.tree != null}? ^(STRUCT $t) 
+			-> ^(STRUCT PARAM["rien"])
 	|	'array of' (t=type_id | i=ID)
 			-> {$t.text != null}? ^(TAB $t)
 			-> ^(TAB $i)
