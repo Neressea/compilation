@@ -55,8 +55,7 @@ F	:	'('A')'
 	;
 
 	
-pourquoi le parse tree pencherait à gauche?
-Mais ça dépend de l'expression?! ex : x:= 9*9+9*9
+pourquoi l'arbre pencherait à gauche? 
 
 						
 						a | b

@@ -1,0 +1,7 @@
+let
+	type simple = string
+	type tableauint = array of int
+	type tableausimple = array of simple
+	type personne = {nom:string, age:int}
+	type etudiant = {info:personne, notes:tableauint}
+in print() end
