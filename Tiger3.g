@@ -79,35 +79,39 @@ affect	:	o=orop (af=':=' e1=expr)?
 			-> $o
 	;
 
-orop	:	a1=andop (ortoken='|' a2=orop)?
-			-> {$ortoken != null}? ^($ortoken $a1 $a2) 
-			-> $a1
+orop	:	a1=andop (ortoken='|' andop)*
+			//-> {$ortoken != null}? ^($ortoken $a1 ^($a2)) 
+			//-> $a1
 	;
 	
-andop	:	c1=comp (andtoken='&' c2=andop)?
-			-> {$andtoken != null}? ^($andtoken $c1 $c2) 
-			-> $c1
+andop	:	c1=comp (andtoken='&' comp)*
+			//-> {$andtoken != null}? ^($andtoken $c1 ^($c2)) 
+			//-> $c1
 	;
 
-comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=comp)? 
-			-> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 $b2)
-			-> {$inf1 != null && $eg2 != null}? ^(COMP["<="] $b1 $b2)
-			-> {$inf1 != null && $sup2 != null}? ^(COMP["<>"] $b1 $b2)
-			-> {$sup1 != null }? ^($sup1 $b1 $b2)
-			-> {$inf1 != null }? ^($inf1 $b1 $b2)
-			-> {$eg3 != null}? ^($eg3 $b1 $b2)
-			-> $b1
+comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') binary)*
+			//-> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 ^($b2))
+			//-> {$inf1 != null && $eg2 != null}? ^(COMP["<="] $b1 ^($b2))
+			//-> {$inf1 != null && $sup2 != null}? ^(COMP["<>"] $b1 ^($b2))
+			//-> {$sup1 != null }? ^($sup1 $b1 ^($b2))
+			//-> {$inf1 != null }? ^($inf1 $b1 ^($b2))
+			//-> {$eg3 != null}? ^($eg3 $b1 ^($b2))
+			//-> $b1
 	;
-binary	:	b1=binary2 ((add='+'|minus='-') b2=binary)?
-			-> {$add != null}? ^($add $b1 $b2)
-			-> {$minus !=null}? ^($minus $b1 $b2) 
-			-> $b1
+binary	:	b1=binary2 b3=binary3?
+			//-> {$b3.tree != null}? ^($b3 $b1)
+			//-> $b1
 	;
 	
-binary2	:	n1=neg ((mul='*'|div='/') n2=binary2)? 
-			-> {$mul != null}? ^($mul $n1 $n2)
-			-> {$div !=null}? ^($div $n1 $n2) 
-			-> $n1
+binary3	:	op=('+'|'-') b2=binary2 b3=binary3?	
+			-> {$b3.tree != null}? ^($op $b3 $b2)
+			-> ^($op $b2)
+	;
+	
+binary2	:	n1=neg ((mul='*'|div='/') neg)*
+			//-> {$mul != null}? ^($mul $n1 ^($n2))
+			//-> {$div !=null}? ^($div $n1 ^($n2)) 
+			//-> $n1
 	;
 
 neg	:	minus='-'? a=atom 
