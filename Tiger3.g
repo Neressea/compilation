@@ -13,7 +13,9 @@ COND;
 BLOCK;
 BEGIN;
 END;
-PARAMS;
+PARAMSFORM;
+PARAMSEFF;
+PARAM;
 TYPE;
 }
 
@@ -38,10 +40,14 @@ expr	:	nilexp
 	|	letexp declaration_list NEWLINE? inexp expr_seq NEWLINE? endexp 
 	;
 
-expr_list 	:	expr | ',' expr
+expr_list 	:	e1=expr | v=',' e2=expr
+			-> {$v.text != null}? $e2
+			-> $e1
 	;	
 	
-expr_seq	:	expr NEWLINE*  (';' NEWLINE* expr_seq)?
+expr_seq	:	e1=expr NEWLINE*  (pv=';' NEWLINE* e2=expr_seq)?
+			-> {$pv.text != null}? $e1 $e2
+			-> $e1
 	;
 	
 field_list	:	ID ':=' expr | ',' ID ':=' expr
@@ -92,7 +98,7 @@ atom	:	'(' (NEWLINE? e=expr_seq NEWLINE?)* ')' -> $e*
 	|	STRING	
 	;
 	
-lvalue	:	ID (lvalue2 | '(' expr_list* ')')?
+lvalue	:	i=ID (v=lvalue2 | '(' par=(expr_list*) ')')?
 	;
 	
 lvalue2 	:	'.' ID lvalue2
@@ -127,22 +133,27 @@ variable_declaration
 
 function_declaration
 	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '=' NEWLINE* (e=expr NEWLINE*)+
-			-> {$par.text != null && $ty.text != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $ty) ^(BLOCK $e))
-			-> {$par.text != null && $i != null}? ^($fun ID ^(PARAMS $par) ^(TYPE $i) ^(BLOCK $e))
-			-> {$par.text != null}? ^($fun ID ^(PARAMS $par) ^(BLOCK $e))
+			-> {$par.text != null && $ty.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $ty) ^(BLOCK $e))
+			-> {$par.text != null && $i != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $i) ^(BLOCK $e))
+			-> {$par.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(BLOCK $e))
 			-> {$ty.text != null}? ^($fun ID ^(TYPE $ty) ^(BLOCK $e))
 			-> {$i != null}? ^($fun ID ^(TYPE $i) ^(BLOCK $e))
 			-> ^($fun ID ^(BLOCK $e))
 	;
 	
-type_fields	:	type_field type_fields2
+type_fields	:	t1=type_field t2=type_fields2?
+			-> {$t2.tree != null}? $t1 $t2
+			-> $t1
 	;
 	
-type_fields2	:	',' type_field type_fields2
-	|
+type_fields2	:	',' t1=type_field t2=type_fields2?
+			-> {$t2.tree != null}? $t1 $t2
+			-> $t1
 	;
 	
-type_field	:	ID ':' (type_id|ID)
+type_field	:	i1=ID ':' (t=type_id|i2=ID)
+			-> {$i2.text != null}? ^(PARAM["p"] $i1 $i2)
+			-> ^(PARAM["p"]$i1 $t)
 	;
 
 type_id	:	('int' | 'string') lvalue2*
