@@ -99,7 +99,7 @@ binary2	:	n1=neg ((mul='*'|div='/') n2=neg)* -> {$mul != null}? ^($mul $n1 $n2)+
 neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
 	;
 	
-atom	:	'(' NEWLINE? e=expr_seq NEWLINE? ')' -> $e*
+atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')' -> $e*
 	| 	lvalue
 	|	INT
 	|	STRING	
@@ -130,13 +130,14 @@ declaration	:	type_declaration
 	;
 	
 type_declaration
-	:	typeexp ID '=' type 
+	:	t1=typeexp i=ID '=' t2=type 
+			-> ^($t1 $i $t2)
 	;
 	
 type	:	type_id
 	|	'{' (type_fields)? '}'
 	|	'array of' (type_id | ID)
-	;
+;
 	
 variable_declaration
 	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr 
