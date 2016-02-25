@@ -102,7 +102,7 @@ atom	:	'(' NEWLINE? e=expr_seq NEWLINE? ')' -> $e*
 	|	STRING	
 	;
 	
-lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list ')')?
+lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list? ')')?
 			-> {$par.text != null && $e.tree != null}? ^(TYPE["function"] $i ^(PARAMSEFF $e)) //Appel de fonction avec params
 			-> {$par.text != null}? ^(TYPE["function"] $i) //Appel de fonction sans params
 			-> {$v.tree != null}? ^(TAB $i $v)  //Accès tableau ou truc chelou
