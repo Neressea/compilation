@@ -19,6 +19,7 @@ PARAMSEFF;
 PARAM;
 TYPE;
 TAB;
+STRUCT;
 CELL;
 SIZE;
 INIT;
@@ -99,7 +100,9 @@ binary2	:	n1=neg ((mul='*'|div='/') n2=neg)* -> {$mul != null}? ^($mul $n1 $n2)+
 neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
 	;
 	
-atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')' -> $e*
+atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')'
+			-> {$e.tree != null}? $e
+			-> '('')'
 	| 	lvalue
 	|	INT
 	|	STRING	
@@ -131,12 +134,16 @@ declaration	:	type_declaration
 	
 type_declaration
 	:	t1=typeexp i=ID '=' t2=type 
-			-> ^($t1 $i $t2)
+			//-> ^($t1 $i $t2)
 	;
 	
 type	:	type_id
-	|	'{' (type_fields)? '}'
-	|	'array of' (type_id | ID)
+	|	'{' t=type_fields? '}' 
+			//-> {$t.tree != null}? STRUCT
+			//-> ^(STRUCT $t)
+	|	'array of' (t=type_id | i=ID)
+			//-> {$t.text != null}? ^(TAB $t)
+			//-> ^(TAB $i)
 ;
 	
 variable_declaration
