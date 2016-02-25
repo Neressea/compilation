@@ -35,7 +35,7 @@ expr	:	nilexp
 	|	forop
 	|	whileop
 	|	breakexp
-	|	letexp declaration_list NEWLINE? inexp expr NEWLINE? endexp 
+	|	letexp declaration_list NEWLINE? inexp expr_seq NEWLINE? endexp 
 	;
 
 expr_list 	:	expr | ',' expr

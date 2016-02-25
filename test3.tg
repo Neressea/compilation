@@ -3,13 +3,13 @@ let
 var x : fromage := 10
 var tab := string [ x ] of "coucou"
 
-function dtc(c:string):int = 
+function dtc(c:string, a:int, k:int):int = 
 x := (3 + 2) / 5 + 6
-for i := 2 + 3 to 10 do
+for i := 2 + 3 to 10 do (
 	if i <= 8 then
-		x := a-1+1
-		y := 3 * (a + x) - 2
+		(x := a-1+1;
+		y := 3 * (a + x) - 2);
 
-	b := -y/x
+	b := -y/x)
 
-in dtc("coucou", 8) end
+in dtc("coucou", 8, 20) ; x:=3 ; w:="dimension" end
