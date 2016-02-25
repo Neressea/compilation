@@ -23,6 +23,7 @@ STRUCT;
 CELL;
 SIZE;
 INIT;
+PRIMITIF;
 }
 
 @header {
@@ -146,7 +147,7 @@ type_declaration
 			-> ^($t1 $i $t2)
 	;
 	
-type	:	type_id
+type	:	t=type_id -> ^(PRIMITIF $t)
 	|	'{' t=type_fields? '}' 
 			-> {$t.tree != null}? ^(STRUCT $t) 
 			-> ^(STRUCT PARAM["rien"])
