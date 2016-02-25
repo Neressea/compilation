@@ -62,42 +62,57 @@ field_list	:	ID ':=' expr | ',' ID ':=' expr
 	;		
 
 ifop	:	fi=ifexp e1=expr NEWLINE* th=thenexp NEWLINE* e2=expr NEWLINE* (els=elseexp NEWLINE* e3=expr)? 
-				-> {$els.text != null}? ^($fi ^(COND $e1) ^($th $e2) ^($els $e3))
-				-> ^($fi ^(COND $e1) ^($th $e2))				 
+			-> {$els.text != null}? ^($fi ^(COND $e1) ^($th $e2) ^($els $e3))
+			-> ^($fi ^(COND $e1) ^($th $e2))				 
 	;
 	
 forop	:	fo=forexp dd=ID ':=' e1=expr toexp e2=expr NEWLINE* doexp NEWLINE* e3=expr 
-				-> ^($fo ^($dd ^(BEGIN $e1) ^(END $e2)) ^(BLOCK $e3)) 
+			-> ^($fo ^($dd ^(BEGIN $e1) ^(END $e2)) ^(BLOCK $e3)) 
 	;
 	
-whileop	:	whi=whileexp e1=expr NEWLINE* doexp NEWLINE* e2=expr -> ^($whi ^(COND $e1) ^(BLOCK $e2))
+whileop	:	whi=whileexp e1=expr NEWLINE* doexp NEWLINE* e2=expr 
+			-> ^($whi ^(COND $e1) ^(BLOCK $e2))
 	;
 
-affect	:	o=orop (af=':=' e1=expr)? -> {$af != null}? ^($af $o $e1)
-					-> $o
+affect	:	o=orop (af=':=' e1=expr)?
+			-> {$af != null}? ^($af $o $e1)
+			-> $o
 	;
 
-orop	:	a1=andop (ortoken='|' a2=andop)* -> {$ortoken != null}? ^($ortoken $a1 $a2) -> $a1
+orop	:	a1=andop (ortoken='|' a2=orop)
+			-> {$ortoken != null}? ^($ortoken $a1 $a2) 
+			-> $a1
 	;
 	
-andop	:	c1=comp (andtoken='&' c2=comp)* -> {$andtoken != null}? ^($andtoken $c1 $c2) -> $c1
+andop	:	c1=comp (andtoken='&' c2=andop)
+			-> {$andtoken != null}? ^($andtoken $c1 $c2) 
+			-> $c1
 	;
 
-comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=binary)* -> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 $b2)+
-							-> {$inf1 != null && $eg2 != null}? ^(COMP["<="] $b1 $b2)+
-							-> {$inf1 != null && $sup2 != null}? ^(COMP["<>"] $b1 $b2)+
-							-> {$sup1 != null }? ^($sup1 $b1 $b2)+
-							-> {$inf1 != null }? ^($inf1 $b1 $b2)+
-							-> {$eg3 != null}? ^($eg3 $b1 $b2)+
-							-> $b1
+comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=comp)? 
+			-> {$sup1 != null && $eg1 != null}? ^(COMP[">="] $b1 $b2)
+			-> {$inf1 != null && $eg2 != null}? ^(COMP["<="] $b1 $b2)
+			-> {$inf1 != null && $sup2 != null}? ^(COMP["<>"] $b1 $b2)
+			-> {$sup1 != null }? ^($sup1 $b1 $b2)
+			-> {$inf1 != null }? ^($inf1 $b1 $b2)
+			-> {$eg3 != null}? ^($eg3 $b1 $b2)
+			-> $b1
 	;
-binary	:	b1=binary2 ((add='+'|minus='-') b2=binary2)* -> {$add != null}? ^($add $b1 $b2)+-> {$minus !=null}? ^($minus $b1 $b2)+ -> $b1
+binary	:	b1=binary2 ((add='+'|minus='-') b2=binary)?
+			-> {$add != null}? ^($add $b1 $b2)
+			-> {$minus !=null}? ^($minus $b1 $b2) 
+			-> $b1
 	;
 	
-binary2	:	n1=neg ((mul='*'|div='/') n2=neg)* -> {$mul != null}? ^($mul $n1 $n2)+-> {$div !=null}? ^($div $n1 $n2)+ -> $n1
+binary2	:	n1=neg ((mul='*'|div='/') n2=binary2)? 
+			-> {$mul != null}? ^($mul $n1 $n2)
+			-> {$div !=null}? ^($div $n1 $n2) 
+			-> $n1
 	;
-	
-neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
+
+neg	:	minus='-'? a=atom 
+			-> {$minus != null}? ^('-' $a) 
+			-> $a
 	;
 	
 atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')'
