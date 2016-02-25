@@ -1,0 +1,4 @@
+while t<10
+	do	m_mana:=m_mana + 5
+		m_vie:=m_vie + 4
+		

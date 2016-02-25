@@ -1,1 +1,3 @@
-let type jeSuisUnTypeSimple = int in () end
+let 
+	type jeSuisUnTypeSimple = int 
+in () end
