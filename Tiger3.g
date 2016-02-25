@@ -8,9 +8,10 @@ output=AST;
 
 tokens{
 TAIGA;
+DECLARATIONS;
+BLOCK;
 COMP;
 COND;
-BLOCK;
 BEGIN;
 END;
 PARAMSFORM;
@@ -41,7 +42,9 @@ expr	:	nilexp
 	|	forop
 	|	whileop
 	|	breakexp
-	|	letexp declaration_list NEWLINE? inexp expr_seq NEWLINE? endexp 
+	|	l=letexp decl=declaration_list NEWLINE? inexp e=expr_seq? NEWLINE? endexp
+			-> {$e.tree != null}? ^($l ^(DECLARATIONS $decl) ^(BLOCK $e))
+			-> ^($l ^(DECLARATIONS $decl))
 	;
 
 expr_list 	:	e1=expr (v=',' e2=expr_list)?
@@ -116,9 +119,9 @@ lvalue2 	:	'.' ID lvalue2
 			-> ^(CELL $e1) //Accès tableau
 	;
 	
-declaration_list 
-:	(NEWLINE* declaration NEWLINE*)+
-|	
+declaration_list :	NEWLINE* d1=declaration (d2=declaration_list)? NEWLINE*
+			-> {$d2.tree != null}? $d1 $d2
+			-> $d1
 ;
 	
 declaration	:	type_declaration
