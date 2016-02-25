@@ -17,6 +17,10 @@ PARAMSFORM;
 PARAMSEFF;
 PARAM;
 TYPE;
+TAB;
+CELL;
+SIZE;
+INIT;
 }
 
 @header {
@@ -40,8 +44,8 @@ expr	:	nilexp
 	|	letexp declaration_list NEWLINE? inexp expr_seq NEWLINE? endexp 
 	;
 
-expr_list 	:	e1=expr | v=',' e2=expr
-			-> {$v.text != null}? $e2
+expr_list 	:	e1=expr (v=',' e2=expr_list)?
+			-> {$v.text != null}? $e1 $e2
 			-> $e1
 	;	
 	
@@ -92,17 +96,24 @@ binary2	:	n1=neg ((mul='*'|div='/') n2=neg)* -> {$mul != null}? ^($mul $n1 $n2)+
 neg	:	minus='-'? a=atom -> {$minus != null}? ^('-' $a) -> $a
 	;
 	
-atom	:	'(' (NEWLINE? e=expr_seq NEWLINE?)* ')' -> $e*
+atom	:	'(' NEWLINE? e=expr_seq NEWLINE? ')' -> $e*
 	| 	lvalue
 	|	INT
 	|	STRING	
 	;
 	
-lvalue	:	i=ID (v=lvalue2 | '(' par=(expr_list*) ')')?
+lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list ')')?
+			-> {$par.text != null && $e.tree != null}? ^(TYPE["function"] $i ^(PARAMSEFF $e)) //Appel de fonction avec params
+			-> {$par.text != null}? ^(TYPE["function"] $i) //Appel de fonction sans params
+			-> {$v.tree != null}? ^(TAB $i $v)  //Accès tableau ou truc chelou
+			-> $i
 	;
 	
 lvalue2 	:	'.' ID lvalue2
-	|	'[' expr ']' (lvalue2 | ofexp expr)?
+	|	'[' e1=expr ']' (val=lvalue2 | o=ofexp e2=expr)?
+			->  {$o.text != null}? ^(SIZE $e1) ^(INIT $e2)  //Initialisation de tableau
+			-> {$val.tree != null}? ^(CELL $e1) $val //Successio de lval
+			-> ^(CELL $e1) //Accès tableau
 	;
 	
 declaration_list 
@@ -126,9 +137,9 @@ type	:	type_id
 	
 variable_declaration
 	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr 
-				-> {$depoi != null && $typenew.text!=null}? ^($vava $nom $typenew ^(BLOCK $e))
-				-> {$depoi != null && $typebase.text!=null}? ^($vava $nom $typebase ^(BLOCK $e))
-				-> ^($vava $nom ^(BLOCK $e))
+				-> {$depoi != null && $typenew.text!=null}? ^($vava $nom $typenew $e)
+				-> {$depoi != null && $typebase.text!=null}? ^($vava $nom $typebase $e)
+				-> ^($vava $nom $e)
 	;
 
 function_declaration
