@@ -133,21 +133,21 @@ declaration	:	type_declaration
 	;
 	
 type_declaration
-	:	t1=typeexp i=ID '=' t2=type 
-			//-> ^($t1 $i $t2)
+	:	t1=typeexp i=ID '=' t2=type NEWLINE*
+			-> ^($t1 $i $t2)
 	;
 	
 type	:	type_id
 	|	'{' t=type_fields? '}' 
-			//-> {$t.tree != null}? STRUCT
-			//-> ^(STRUCT $t)
+			-> {$t.tree != null}? STRUCT
+			-> ^(STRUCT $t)
 	|	'array of' (t=type_id | i=ID)
-			//-> {$t.text != null}? ^(TAB $t)
-			//-> ^(TAB $i)
+			-> {$t.text != null}? ^(TAB $t)
+			-> ^(TAB $i)
 ;
 	
 variable_declaration
-	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr 
+	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr NEWLINE*
 				-> {$depoi != null && $typenew.text!=null}? ^($vava $nom $typenew $e)
 				-> {$depoi != null && $typebase.text!=null}? ^($vava $nom $typebase $e)
 				-> ^($vava $nom $e)
