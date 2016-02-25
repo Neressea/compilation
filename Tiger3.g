@@ -41,7 +41,7 @@ expr	:	nilexp
 expr_list 	:	expr | ',' expr
 	;	
 	
-expr_seq	:	expr ';'?
+expr_seq	:	expr NEWLINE*  (';' NEWLINE* expr_seq)?
 	;
 	
 field_list	:	ID ':=' expr | ',' ID ':=' expr
@@ -99,10 +99,10 @@ lvalue2 	:	'.' ID lvalue2
 	|	'[' expr ']' (lvalue2 | ofexp expr)?
 	;
 	
-	declaration_list 
-	:	(NEWLINE* declaration NEWLINE*)+
-	|	
-	;
+declaration_list 
+:	(NEWLINE* declaration NEWLINE*)+
+|	
+;
 	
 declaration	:	type_declaration
 	|	variable_declaration
