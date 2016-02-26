@@ -19,6 +19,7 @@ PARAMSEFF;
 PARAM;
 TYPE;
 TAB;
+FIELD;
 STRUCT;
 CELL;
 SIZE;
@@ -35,7 +36,7 @@ import java.util.HashMap;
 HashMap<String,Integer>  memory = new HashMap<String,Integer>();
 }
 
-tiger3	:	e1=expr NEWLINE* (e2=expr)? -> ^(TAIGA $e1 $e2?);
+tiger3	:	e1=expr -> ^(TAIGA $e1);
 
 expr	:	nilexp
 	|	affect
@@ -44,34 +45,31 @@ expr	:	nilexp
 	|	forop
 	|	whileop
 	|	breakexp
-	|	l=letexp decl=declaration_list NEWLINE? inexp e=expr_seq? NEWLINE? endexp
-			-> {$e.tree != null}? ^($l ^(DECLARATIONS $decl) ^(BLOCK $e))
-			-> ^($l ^(DECLARATIONS $decl))
+	|	l=letexp  decl=declaration_list?  inexp e=expr_seq?  endexp
+			-> ^($l ^(DECLARATIONS $decl)? ^(BLOCK $e)?)
 	;
 
-expr_list 	:	e1=expr (v=',' e2=expr_list)?
-			-> {$v.text != null}? $e1 $e2
-			-> $e1
+expr_list 	:	e1=expr (',' e2=expr_list)?
+			-> $e1 $e2?
 	;	
 	
-expr_seq	:	e1=expr NEWLINE*  (pv=';' NEWLINE* e2=expr_seq)?
-			-> {$pv.text != null}? $e1 $e2
-			-> $e1
+expr_seq	:	e1=expr  (pv=';'   e2=expr_seq)?
+			-> $e1 $e2?
 	;
 	
 field_list	:	ID ':=' expr | ',' ID ':=' expr
 	;		
 
-ifop	:	fi=ifexp e1=expr NEWLINE* th=thenexp NEWLINE* e2=expr NEWLINE* (els=elseexp NEWLINE* e3=expr)? 
-			-> {$els.text != null}? ^($fi ^(COND $e1) ^($th $e2) ^($els $e3))
-			-> ^($fi ^(COND $e1) ^($th $e2))				 
+ifop	:	fi=ifexp e1=expr   th=thenexp   e2=expr   (els=elseexp   e3=expr)? 
+			-> ^($fi ^(COND $e1) ^($th $e2) ^($els $e3)?)
+			 
 	;
 	
-forop	:	fo=forexp dd=ID ':=' e1=expr toexp e2=expr NEWLINE* doexp NEWLINE* e3=expr 
+forop	:	fo=forexp dd=ID ':=' e1=expr toexp e2=expr   doexp   e3=expr 
 			-> ^($fo ^($dd ^(BEGIN $e1) ^(END $e2)) ^(BLOCK $e3)) 
 	;
 	
-whileop	:	whi=whileexp e1=expr NEWLINE* doexp NEWLINE* e2=expr 
+whileop	:	whi=whileexp e1=expr   doexp   e2=expr 
 			-> ^($whi ^(COND $e1) ^(BLOCK $e2))
 	;
 
@@ -81,13 +79,9 @@ affect	:	o=orop (af=':=' e1=expr)?
 	;
 
 orop	:	a1=andop (ortoken='|'^ andop)*
-			//-> {$ortoken != null}? ^($ortoken $a1 ^($a2)) 
-			//-> $a1
 	;
 	
 andop	:	c1=comp (andtoken='&'^ comp)*
-			//-> {$andtoken != null}? ^($andtoken $c1 ^($c2)) 
-			//-> $c1
 	;
 
 comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='=') b2=binary)?
@@ -99,7 +93,7 @@ comp	:	b1=binary ((sup1='>'(eg1='=')? | inf1='<' (sup2='>' | eg2='=')? | eg3='='
 			-> {$eg3 != null}? ^($eg3 $b1 ^($b2))
 			-> $b1
 	;
-binary	:	b2=binary2 ((op1='+'^|op2='-'^) b21=binary2)*
+binary	:	b2=binary2 (addminexp^ b21=binary2)*
 	;
 	
 binary2	:	n1=neg ((mul='*'^|div='/'^) neg)*
@@ -110,7 +104,7 @@ neg	:	minus='-'? a=atom
 			-> $a
 	;
 	
-atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')'
+atom	:	'(' e=expr_seq? ')'
 			-> {$e.tree != null}? $e
 			-> '('')'
 	| 	lvalue
@@ -121,21 +115,20 @@ atom	:	'(' NEWLINE? e=expr_seq? NEWLINE? ')'
 lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list? ')')?
 			-> {$par.text != null && $e.tree != null}? ^(TYPE["function"] $i ^(PARAMSEFF $e)) //Appel de fonction avec params
 			-> {$par.text != null}? ^(TYPE["function"] $i) //Appel de fonction sans params
-			-> {$v.tree != null}? ^(TAB $i $v)  //Accès tableau ou truc chelou
+			-> {$v.tree != null}? ^($i $v)  //Accès tableau ou champ de structure
 			-> $i
 	;
 	
-lvalue2 	:	'.' ID lvalue2
+lvalue2 	:	'.' ID v=lvalue2? -> ^(FIELD ID $v?)
 	|	'[' e1=expr ']' (val=lvalue2 | o=ofexp e2=expr)?
 			->  {$o.text != null}? ^(SIZE $e1) ^(INIT $e2)  //Initialisation de tableau
 			-> {$val.tree != null}? ^(CELL $e1) $val //Successio de lval
 			-> ^(CELL $e1) //Accès tableau
 	;
 	
-declaration_list :	NEWLINE* d1=declaration (d2=declaration_list)? NEWLINE*
-			-> {$d2.tree != null}? $d1 $d2
-			-> $d1
-;
+declaration_list :	d1=declaration (d2=declaration_list)?  
+			-> $d1 $d2?
+	;
 	
 declaration	:	type_declaration
 	|	variable_declaration
@@ -143,28 +136,28 @@ declaration	:	type_declaration
 	;
 	
 type_declaration
-	:	t1=typeexp i=ID '=' t2=type NEWLINE*
+	:	t1=typeexp i=ID '=' t2=type
 			-> ^($t1 $i $t2)
 	;
 	
 type	:	t=type_id -> ^(PRIMITIF $t)
 	|	'{' t=type_fields? '}' 
 			-> {$t.tree != null}? ^(STRUCT $t) 
-			-> ^(STRUCT PARAM["rien"])
+			-> ^(STRUCT)
 	|	'array of' (t=type_id | i=ID)
 			-> {$t.text != null}? ^(TAB $t)
 			-> ^(TAB $i)
 ;
 	
 variable_declaration
-	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr NEWLINE*
+	:	vava=varexp nom=ID ( depoi=':' (typenew=ID | typebase=type_id))? ':=' e=expr  
 				-> {$depoi != null && $typenew.text!=null}? ^($vava $nom $typenew $e)
 				-> {$depoi != null && $typebase.text!=null}? ^($vava $nom $typebase $e)
 				-> ^($vava $nom $e)
 	;
 
 function_declaration
-	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '=' NEWLINE* (e=expr NEWLINE*)+
+	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '='   (e=expr  )+
 			-> {$par.text != null && $ty.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $ty) ^(BLOCK $e))
 			-> {$par.text != null && $i != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $i) ^(BLOCK $e))
 			-> {$par.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(BLOCK $e))
@@ -174,13 +167,11 @@ function_declaration
 	;
 	
 type_fields	:	t1=type_field t2=type_fields2?
-			-> {$t2.tree != null}? $t1 $t2
-			-> $t1
+			-> $t1 $t2?
 	;
 	
 type_fields2	:	',' t1=type_field t2=type_fields2?
-			-> {$t2.tree != null}? $t1 $t2
-			-> $t1
+			-> $t1 $t2?
 	;
 	
 type_field	:	i1=ID ':' (t=type_id|i2=ID)
@@ -210,10 +201,11 @@ varexp	:	'var'		;
 whileexp	:	'while'	;
 typedefexp  :	'typedef' ; 
 blockexp 	:	'block' ;
+addminexp	:	'+' | '-';
 
 ID 	:	('a'..'z'|'A'..'Z')(('a'..'z'|'A'..'Z'|'0'..'9'|'_')*);
 INT	:	'0'..'9'+;	
 STRING 	:	'"'.+'"'; /* . correspond à n'importe quel caractère ou n'importe quel caractère affichable ?*/
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
-NEWLINE	:	'\r'? '\n' | '\r' {$channel=HIDDEN;};
+NEWLINE	:	'\r'? '\n' {$channel=HIDDEN;};
 COMMENT	: 	'/*'.* '*/' {$channel=HIDDEN;};
