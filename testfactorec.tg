@@ -1,0 +1,5 @@
+let 
+	function factorielle(c:int) =
+		c*factorielle(c-1)
+	var x:=factorielle(8)
+in print(x) end
