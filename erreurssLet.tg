@@ -1,0 +1,6 @@
+var a : int :=42
+var b : int :=1
+
+function test()
+	a:=b
+in end

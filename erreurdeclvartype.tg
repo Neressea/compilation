@@ -1,0 +1,3 @@
+let var machin = 3
+	type fromage := (a:string,b:int)
+in end
