@@ -1,4 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 albert22u/Tiger3.g 2016-02-26 09:40:11
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Tiger3.g 2016-02-26 15:12:22
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -7,9 +7,6 @@ import java.util.ArrayList;
 
 public class Tiger3Lexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__27=27;
-    public static final int T__28=28;
-    public static final int T__29=29;
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
@@ -49,6 +46,9 @@ public class Tiger3Lexer extends Lexer {
     public static final int T__66=66;
     public static final int T__67=67;
     public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__70=70;
+    public static final int T__71=71;
     public static final int TAIGA=4;
     public static final int DECLARATIONS=5;
     public static final int BLOCK=6;
@@ -61,17 +61,20 @@ public class Tiger3Lexer extends Lexer {
     public static final int PARAM=13;
     public static final int TYPE=14;
     public static final int TAB=15;
-    public static final int STRUCT=16;
-    public static final int CELL=17;
-    public static final int SIZE=18;
-    public static final int INIT=19;
-    public static final int PRIMITIF=20;
-    public static final int NEWLINE=21;
-    public static final int ID=22;
-    public static final int INT=23;
-    public static final int STRING=24;
-    public static final int WS=25;
-    public static final int COMMENT=26;
+    public static final int FIELD=16;
+    public static final int STRUCT=17;
+    public static final int CELL=18;
+    public static final int SIZE=19;
+    public static final int INIT=20;
+    public static final int PRIMITIF=21;
+    public static final int IDF=22;
+    public static final int CONST=23;
+    public static final int ID=24;
+    public static final int INT=25;
+    public static final int STRING=26;
+    public static final int WS=27;
+    public static final int NEWLINE=28;
+    public static final int COMMENT=29;
 
     // delegates
     // delegators
@@ -84,77 +87,17 @@ public class Tiger3Lexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "albert22u/Tiger3.g"; }
-
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
-        try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:3:7: ( '{' )
-            // albert22u/Tiger3.g:3:9: '{'
-            {
-            match('{'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__27"
-
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
-        try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:4:7: ( '}' )
-            // albert22u/Tiger3.g:4:9: '}'
-            {
-            match('}'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__28"
-
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
-        try {
-            int _type = T__29;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:5:7: ( ',' )
-            // albert22u/Tiger3.g:5:9: ','
-            {
-            match(','); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__29"
+    public String getGrammarFileName() { return "Tiger3.g"; }
 
     // $ANTLR start "T__30"
     public final void mT__30() throws RecognitionException {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:6:7: ( ';' )
-            // albert22u/Tiger3.g:6:9: ';'
+            // Tiger3.g:3:7: ( '{' )
+            // Tiger3.g:3:9: '{'
             {
-            match(';'); 
+            match('{'); 
 
             }
 
@@ -171,11 +114,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:7:7: ( ':=' )
-            // albert22u/Tiger3.g:7:9: ':='
+            // Tiger3.g:4:7: ( '}' )
+            // Tiger3.g:4:9: '}'
             {
-            match(":="); 
-
+            match('}'); 
 
             }
 
@@ -192,10 +134,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:8:7: ( '|' )
-            // albert22u/Tiger3.g:8:9: '|'
+            // Tiger3.g:5:7: ( ',' )
+            // Tiger3.g:5:9: ','
             {
-            match('|'); 
+            match(','); 
 
             }
 
@@ -212,10 +154,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:9:7: ( '&' )
-            // albert22u/Tiger3.g:9:9: '&'
+            // Tiger3.g:6:7: ( ';' )
+            // Tiger3.g:6:9: ';'
             {
-            match('&'); 
+            match(';'); 
 
             }
 
@@ -232,10 +174,11 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:10:7: ( '>' )
-            // albert22u/Tiger3.g:10:9: '>'
+            // Tiger3.g:7:7: ( ':=' )
+            // Tiger3.g:7:9: ':='
             {
-            match('>'); 
+            match(":="); 
+
 
             }
 
@@ -252,10 +195,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:11:7: ( '=' )
-            // albert22u/Tiger3.g:11:9: '='
+            // Tiger3.g:8:7: ( '|' )
+            // Tiger3.g:8:9: '|'
             {
-            match('='); 
+            match('|'); 
 
             }
 
@@ -272,10 +215,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:12:7: ( '<' )
-            // albert22u/Tiger3.g:12:9: '<'
+            // Tiger3.g:9:7: ( '&' )
+            // Tiger3.g:9:9: '&'
             {
-            match('<'); 
+            match('&'); 
 
             }
 
@@ -292,10 +235,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:13:7: ( '+' )
-            // albert22u/Tiger3.g:13:9: '+'
+            // Tiger3.g:10:7: ( '>' )
+            // Tiger3.g:10:9: '>'
             {
-            match('+'); 
+            match('>'); 
 
             }
 
@@ -312,10 +255,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:14:7: ( '-' )
-            // albert22u/Tiger3.g:14:9: '-'
+            // Tiger3.g:11:7: ( '=' )
+            // Tiger3.g:11:9: '='
             {
-            match('-'); 
+            match('='); 
 
             }
 
@@ -332,10 +275,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:15:7: ( '*' )
-            // albert22u/Tiger3.g:15:9: '*'
+            // Tiger3.g:12:7: ( '<' )
+            // Tiger3.g:12:9: '<'
             {
-            match('*'); 
+            match('<'); 
 
             }
 
@@ -352,10 +295,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:16:7: ( '/' )
-            // albert22u/Tiger3.g:16:9: '/'
+            // Tiger3.g:13:7: ( '*' )
+            // Tiger3.g:13:9: '*'
             {
-            match('/'); 
+            match('*'); 
 
             }
 
@@ -372,10 +315,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:17:7: ( '(' )
-            // albert22u/Tiger3.g:17:9: '('
+            // Tiger3.g:14:7: ( '/' )
+            // Tiger3.g:14:9: '/'
             {
-            match('('); 
+            match('/'); 
 
             }
 
@@ -392,10 +335,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:18:7: ( ')' )
-            // albert22u/Tiger3.g:18:9: ')'
+            // Tiger3.g:15:7: ( '-' )
+            // Tiger3.g:15:9: '-'
             {
-            match(')'); 
+            match('-'); 
 
             }
 
@@ -412,10 +355,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:19:7: ( '.' )
-            // albert22u/Tiger3.g:19:9: '.'
+            // Tiger3.g:16:7: ( '(' )
+            // Tiger3.g:16:9: '('
             {
-            match('.'); 
+            match('('); 
 
             }
 
@@ -432,10 +375,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:20:7: ( '[' )
-            // albert22u/Tiger3.g:20:9: '['
+            // Tiger3.g:17:7: ( ')' )
+            // Tiger3.g:17:9: ')'
             {
-            match('['); 
+            match(')'); 
 
             }
 
@@ -452,10 +395,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:21:7: ( ']' )
-            // albert22u/Tiger3.g:21:9: ']'
+            // Tiger3.g:18:7: ( '.' )
+            // Tiger3.g:18:9: '.'
             {
-            match(']'); 
+            match('.'); 
 
             }
 
@@ -472,11 +415,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:22:7: ( 'array of' )
-            // albert22u/Tiger3.g:22:9: 'array of'
+            // Tiger3.g:19:7: ( '[' )
+            // Tiger3.g:19:9: '['
             {
-            match("array of"); 
-
+            match('['); 
 
             }
 
@@ -493,10 +435,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:23:7: ( ':' )
-            // albert22u/Tiger3.g:23:9: ':'
+            // Tiger3.g:20:7: ( ']' )
+            // Tiger3.g:20:9: ']'
             {
-            match(':'); 
+            match(']'); 
 
             }
 
@@ -513,10 +455,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:24:7: ( 'int' )
-            // albert22u/Tiger3.g:24:9: 'int'
+            // Tiger3.g:21:7: ( 'array of' )
+            // Tiger3.g:21:9: 'array of'
             {
-            match("int"); 
+            match("array of"); 
 
 
             }
@@ -534,11 +476,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:25:7: ( 'string' )
-            // albert22u/Tiger3.g:25:9: 'string'
+            // Tiger3.g:22:7: ( ':' )
+            // Tiger3.g:22:9: ':'
             {
-            match("string"); 
-
+            match(':'); 
 
             }
 
@@ -555,10 +496,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:26:7: ( 'array' )
-            // albert22u/Tiger3.g:26:9: 'array'
+            // Tiger3.g:23:7: ( 'int' )
+            // Tiger3.g:23:9: 'int'
             {
-            match("array"); 
+            match("int"); 
 
 
             }
@@ -576,10 +517,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:27:7: ( 'break' )
-            // albert22u/Tiger3.g:27:9: 'break'
+            // Tiger3.g:24:7: ( 'string' )
+            // Tiger3.g:24:9: 'string'
             {
-            match("break"); 
+            match("string"); 
 
 
             }
@@ -597,10 +538,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:28:7: ( 'do' )
-            // albert22u/Tiger3.g:28:9: 'do'
+            // Tiger3.g:25:7: ( 'array' )
+            // Tiger3.g:25:9: 'array'
             {
-            match("do"); 
+            match("array"); 
 
 
             }
@@ -618,10 +559,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:29:7: ( 'else' )
-            // albert22u/Tiger3.g:29:9: 'else'
+            // Tiger3.g:26:7: ( 'break' )
+            // Tiger3.g:26:9: 'break'
             {
-            match("else"); 
+            match("break"); 
 
 
             }
@@ -639,10 +580,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:30:7: ( 'end' )
-            // albert22u/Tiger3.g:30:9: 'end'
+            // Tiger3.g:27:7: ( 'do' )
+            // Tiger3.g:27:9: 'do'
             {
-            match("end"); 
+            match("do"); 
 
 
             }
@@ -660,10 +601,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:31:7: ( 'for' )
-            // albert22u/Tiger3.g:31:9: 'for'
+            // Tiger3.g:28:7: ( 'else' )
+            // Tiger3.g:28:9: 'else'
             {
-            match("for"); 
+            match("else"); 
 
 
             }
@@ -681,10 +622,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:32:7: ( 'function' )
-            // albert22u/Tiger3.g:32:9: 'function'
+            // Tiger3.g:29:7: ( 'end' )
+            // Tiger3.g:29:9: 'end'
             {
-            match("function"); 
+            match("end"); 
 
 
             }
@@ -702,10 +643,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:33:7: ( 'if' )
-            // albert22u/Tiger3.g:33:9: 'if'
+            // Tiger3.g:30:7: ( 'for' )
+            // Tiger3.g:30:9: 'for'
             {
-            match("if"); 
+            match("for"); 
 
 
             }
@@ -723,10 +664,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:34:7: ( 'in' )
-            // albert22u/Tiger3.g:34:9: 'in'
+            // Tiger3.g:31:7: ( 'function' )
+            // Tiger3.g:31:9: 'function'
             {
-            match("in"); 
+            match("function"); 
 
 
             }
@@ -744,10 +685,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:35:7: ( 'nil' )
-            // albert22u/Tiger3.g:35:9: 'nil'
+            // Tiger3.g:32:7: ( 'if' )
+            // Tiger3.g:32:9: 'if'
             {
-            match("nil"); 
+            match("if"); 
 
 
             }
@@ -765,10 +706,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:36:7: ( 'let' )
-            // albert22u/Tiger3.g:36:9: 'let'
+            // Tiger3.g:33:7: ( 'in' )
+            // Tiger3.g:33:9: 'in'
             {
-            match("let"); 
+            match("in"); 
 
 
             }
@@ -786,10 +727,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:37:7: ( 'of' )
-            // albert22u/Tiger3.g:37:9: 'of'
+            // Tiger3.g:34:7: ( 'nil' )
+            // Tiger3.g:34:9: 'nil'
             {
-            match("of"); 
+            match("nil"); 
 
 
             }
@@ -807,10 +748,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:38:7: ( 'then' )
-            // albert22u/Tiger3.g:38:9: 'then'
+            // Tiger3.g:35:7: ( 'let' )
+            // Tiger3.g:35:9: 'let'
             {
-            match("then"); 
+            match("let"); 
 
 
             }
@@ -828,10 +769,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:39:7: ( 'to' )
-            // albert22u/Tiger3.g:39:9: 'to'
+            // Tiger3.g:36:7: ( 'of' )
+            // Tiger3.g:36:9: 'of'
             {
-            match("to"); 
+            match("of"); 
 
 
             }
@@ -849,10 +790,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:40:7: ( 'type' )
-            // albert22u/Tiger3.g:40:9: 'type'
+            // Tiger3.g:37:7: ( 'then' )
+            // Tiger3.g:37:9: 'then'
             {
-            match("type"); 
+            match("then"); 
 
 
             }
@@ -870,10 +811,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:41:7: ( 'var' )
-            // albert22u/Tiger3.g:41:9: 'var'
+            // Tiger3.g:38:7: ( 'to' )
+            // Tiger3.g:38:9: 'to'
             {
-            match("var"); 
+            match("to"); 
 
 
             }
@@ -891,10 +832,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:42:7: ( 'while' )
-            // albert22u/Tiger3.g:42:9: 'while'
+            // Tiger3.g:39:7: ( 'type' )
+            // Tiger3.g:39:9: 'type'
             {
-            match("while"); 
+            match("type"); 
 
 
             }
@@ -912,10 +853,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:43:7: ( 'typedef' )
-            // albert22u/Tiger3.g:43:9: 'typedef'
+            // Tiger3.g:40:7: ( 'var' )
+            // Tiger3.g:40:9: 'var'
             {
-            match("typedef"); 
+            match("var"); 
 
 
             }
@@ -933,10 +874,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:44:7: ( 'block' )
-            // albert22u/Tiger3.g:44:9: 'block'
+            // Tiger3.g:41:7: ( 'while' )
+            // Tiger3.g:41:9: 'while'
             {
-            match("block"); 
+            match("while"); 
 
 
             }
@@ -949,13 +890,75 @@ public class Tiger3Lexer extends Lexer {
     }
     // $ANTLR end "T__68"
 
+    // $ANTLR start "T__69"
+    public final void mT__69() throws RecognitionException {
+        try {
+            int _type = T__69;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Tiger3.g:42:7: ( 'typedef' )
+            // Tiger3.g:42:9: 'typedef'
+            {
+            match("typedef"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__69"
+
+    // $ANTLR start "T__70"
+    public final void mT__70() throws RecognitionException {
+        try {
+            int _type = T__70;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Tiger3.g:43:7: ( 'block' )
+            // Tiger3.g:43:9: 'block'
+            {
+            match("block"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__70"
+
+    // $ANTLR start "T__71"
+    public final void mT__71() throws RecognitionException {
+        try {
+            int _type = T__71;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Tiger3.g:44:7: ( '+' )
+            // Tiger3.g:44:9: '+'
+            {
+            match('+'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__71"
+
     // $ANTLR start "ID"
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:214:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* ) )
-            // albert22u/Tiger3.g:214:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Tiger3.g:208:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* ) )
+            // Tiger3.g:208:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -966,10 +969,10 @@ public class Tiger3Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // albert22u/Tiger3.g:214:26: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // albert22u/Tiger3.g:214:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Tiger3.g:208:26: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Tiger3.g:208:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
-            // albert22u/Tiger3.g:214:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Tiger3.g:208:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop1:
             do {
                 int alt1=2;
@@ -982,7 +985,7 @@ public class Tiger3Lexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // albert22u/Tiger3.g:
+            	    // Tiger3.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -1021,10 +1024,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:215:5: ( ( '0' .. '9' )+ )
-            // albert22u/Tiger3.g:215:7: ( '0' .. '9' )+
+            // Tiger3.g:209:5: ( ( '0' .. '9' )+ )
+            // Tiger3.g:209:7: ( '0' .. '9' )+
             {
-            // albert22u/Tiger3.g:215:7: ( '0' .. '9' )+
+            // Tiger3.g:209:7: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -1038,7 +1041,7 @@ public class Tiger3Lexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // albert22u/Tiger3.g:215:7: '0' .. '9'
+            	    // Tiger3.g:209:7: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1070,11 +1073,11 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:216:9: ( '\"' ( . )+ '\"' )
-            // albert22u/Tiger3.g:216:11: '\"' ( . )+ '\"'
+            // Tiger3.g:210:9: ( '\"' ( . )+ '\"' )
+            // Tiger3.g:210:11: '\"' ( . )+ '\"'
             {
             match('\"'); 
-            // albert22u/Tiger3.g:216:14: ( . )+
+            // Tiger3.g:210:14: ( . )+
             int cnt3=0;
             loop3:
             do {
@@ -1091,7 +1094,7 @@ public class Tiger3Lexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // albert22u/Tiger3.g:216:14: .
+            	    // Tiger3.g:210:14: .
             	    {
             	    matchAny(); 
 
@@ -1124,10 +1127,10 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:217:5: ( ( ' ' | '\\t' )+ )
-            // albert22u/Tiger3.g:217:7: ( ' ' | '\\t' )+
+            // Tiger3.g:211:5: ( ( ' ' | '\\t' )+ )
+            // Tiger3.g:211:7: ( ' ' | '\\t' )+
             {
-            // albert22u/Tiger3.g:217:7: ( ' ' | '\\t' )+
+            // Tiger3.g:211:7: ( ' ' | '\\t' )+
             int cnt4=0;
             loop4:
             do {
@@ -1141,7 +1144,7 @@ public class Tiger3Lexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // albert22u/Tiger3.g:
+            	    // Tiger3.g:
             	    {
             	    if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1182,64 +1185,32 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = NEWLINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:218:9: ( ( '\\r' )? '\\n' | '\\r' )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // Tiger3.g:212:9: ( ( '\\r' )? '\\n' )
+            // Tiger3.g:212:11: ( '\\r' )? '\\n'
+            {
+            // Tiger3.g:212:11: ( '\\r' )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA6_0=='\r') ) {
-                int LA6_1 = input.LA(2);
-
-                if ( (LA6_1=='\n') ) {
-                    alt6=1;
-                }
-                else {
-                    alt6=2;}
+            if ( (LA5_0=='\r') ) {
+                alt5=1;
             }
-            else if ( (LA6_0=='\n') ) {
-                alt6=1;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
-
-                throw nvae;
-            }
-            switch (alt6) {
+            switch (alt5) {
                 case 1 :
-                    // albert22u/Tiger3.g:218:11: ( '\\r' )? '\\n'
-                    {
-                    // albert22u/Tiger3.g:218:11: ( '\\r' )?
-                    int alt5=2;
-                    int LA5_0 = input.LA(1);
-
-                    if ( (LA5_0=='\r') ) {
-                        alt5=1;
-                    }
-                    switch (alt5) {
-                        case 1 :
-                            // albert22u/Tiger3.g:218:11: '\\r'
-                            {
-                            match('\r'); 
-
-                            }
-                            break;
-
-                    }
-
-                    match('\n'); 
-
-                    }
-                    break;
-                case 2 :
-                    // albert22u/Tiger3.g:218:24: '\\r'
+                    // Tiger3.g:212:11: '\\r'
                     {
                     match('\r'); 
-                    _channel=HIDDEN;
 
                     }
                     break;
 
             }
+
+            match('\n'); 
+            _channel=HIDDEN;
+
+            }
+
             state.type = _type;
             state.channel = _channel;
         }
@@ -1253,37 +1224,37 @@ public class Tiger3Lexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // albert22u/Tiger3.g:219:9: ( '/*' ( . )* '*/' )
-            // albert22u/Tiger3.g:219:12: '/*' ( . )* '*/'
+            // Tiger3.g:213:9: ( '/*' ( . )* '*/' )
+            // Tiger3.g:213:12: '/*' ( . )* '*/'
             {
             match("/*"); 
 
-            // albert22u/Tiger3.g:219:16: ( . )*
-            loop7:
+            // Tiger3.g:213:16: ( . )*
+            loop6:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-                if ( (LA7_0=='*') ) {
-                    int LA7_1 = input.LA(2);
+                if ( (LA6_0=='*') ) {
+                    int LA6_1 = input.LA(2);
 
-                    if ( (LA7_1=='/') ) {
-                        alt7=2;
+                    if ( (LA6_1=='/') ) {
+                        alt6=2;
                     }
-                    else if ( ((LA7_1>='\u0000' && LA7_1<='.')||(LA7_1>='0' && LA7_1<='\uFFFF')) ) {
-                        alt7=1;
+                    else if ( ((LA6_1>='\u0000' && LA6_1<='.')||(LA6_1>='0' && LA6_1<='\uFFFF')) ) {
+                        alt6=1;
                     }
 
 
                 }
-                else if ( ((LA7_0>='\u0000' && LA7_0<=')')||(LA7_0>='+' && LA7_0<='\uFFFF')) ) {
-                    alt7=1;
+                else if ( ((LA6_0>='\u0000' && LA6_0<=')')||(LA6_0>='+' && LA6_0<='\uFFFF')) ) {
+                    alt6=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt6) {
             	case 1 :
-            	    // albert22u/Tiger3.g:219:16: .
+            	    // Tiger3.g:213:16: .
             	    {
             	    matchAny(); 
 
@@ -1291,7 +1262,7 @@ public class Tiger3Lexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop6;
                 }
             } while (true);
 
@@ -1310,341 +1281,341 @@ public class Tiger3Lexer extends Lexer {
     // $ANTLR end "COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // albert22u/Tiger3.g:1:8: ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | ID | INT | STRING | WS | NEWLINE | COMMENT )
-        int alt8=48;
-        alt8 = dfa8.predict(input);
-        switch (alt8) {
+        // Tiger3.g:1:8: ( T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | ID | INT | STRING | WS | NEWLINE | COMMENT )
+        int alt7=48;
+        alt7 = dfa7.predict(input);
+        switch (alt7) {
             case 1 :
-                // albert22u/Tiger3.g:1:10: T__27
-                {
-                mT__27(); 
-
-                }
-                break;
-            case 2 :
-                // albert22u/Tiger3.g:1:16: T__28
-                {
-                mT__28(); 
-
-                }
-                break;
-            case 3 :
-                // albert22u/Tiger3.g:1:22: T__29
-                {
-                mT__29(); 
-
-                }
-                break;
-            case 4 :
-                // albert22u/Tiger3.g:1:28: T__30
+                // Tiger3.g:1:10: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 5 :
-                // albert22u/Tiger3.g:1:34: T__31
+            case 2 :
+                // Tiger3.g:1:16: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 6 :
-                // albert22u/Tiger3.g:1:40: T__32
+            case 3 :
+                // Tiger3.g:1:22: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 7 :
-                // albert22u/Tiger3.g:1:46: T__33
+            case 4 :
+                // Tiger3.g:1:28: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 8 :
-                // albert22u/Tiger3.g:1:52: T__34
+            case 5 :
+                // Tiger3.g:1:34: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 9 :
-                // albert22u/Tiger3.g:1:58: T__35
+            case 6 :
+                // Tiger3.g:1:40: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 10 :
-                // albert22u/Tiger3.g:1:64: T__36
+            case 7 :
+                // Tiger3.g:1:46: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 11 :
-                // albert22u/Tiger3.g:1:70: T__37
+            case 8 :
+                // Tiger3.g:1:52: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
-            case 12 :
-                // albert22u/Tiger3.g:1:76: T__38
+            case 9 :
+                // Tiger3.g:1:58: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
-            case 13 :
-                // albert22u/Tiger3.g:1:82: T__39
+            case 10 :
+                // Tiger3.g:1:64: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
-            case 14 :
-                // albert22u/Tiger3.g:1:88: T__40
+            case 11 :
+                // Tiger3.g:1:70: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
-            case 15 :
-                // albert22u/Tiger3.g:1:94: T__41
+            case 12 :
+                // Tiger3.g:1:76: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
-            case 16 :
-                // albert22u/Tiger3.g:1:100: T__42
+            case 13 :
+                // Tiger3.g:1:82: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
-            case 17 :
-                // albert22u/Tiger3.g:1:106: T__43
+            case 14 :
+                // Tiger3.g:1:88: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
-            case 18 :
-                // albert22u/Tiger3.g:1:112: T__44
+            case 15 :
+                // Tiger3.g:1:94: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
-            case 19 :
-                // albert22u/Tiger3.g:1:118: T__45
+            case 16 :
+                // Tiger3.g:1:100: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 20 :
-                // albert22u/Tiger3.g:1:124: T__46
+            case 17 :
+                // Tiger3.g:1:106: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 21 :
-                // albert22u/Tiger3.g:1:130: T__47
+            case 18 :
+                // Tiger3.g:1:112: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
-            case 22 :
-                // albert22u/Tiger3.g:1:136: T__48
+            case 19 :
+                // Tiger3.g:1:118: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
-            case 23 :
-                // albert22u/Tiger3.g:1:142: T__49
+            case 20 :
+                // Tiger3.g:1:124: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
-            case 24 :
-                // albert22u/Tiger3.g:1:148: T__50
+            case 21 :
+                // Tiger3.g:1:130: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
-            case 25 :
-                // albert22u/Tiger3.g:1:154: T__51
+            case 22 :
+                // Tiger3.g:1:136: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
-            case 26 :
-                // albert22u/Tiger3.g:1:160: T__52
+            case 23 :
+                // Tiger3.g:1:142: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
-            case 27 :
-                // albert22u/Tiger3.g:1:166: T__53
+            case 24 :
+                // Tiger3.g:1:148: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
-            case 28 :
-                // albert22u/Tiger3.g:1:172: T__54
+            case 25 :
+                // Tiger3.g:1:154: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
-            case 29 :
-                // albert22u/Tiger3.g:1:178: T__55
+            case 26 :
+                // Tiger3.g:1:160: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
-            case 30 :
-                // albert22u/Tiger3.g:1:184: T__56
+            case 27 :
+                // Tiger3.g:1:166: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
-            case 31 :
-                // albert22u/Tiger3.g:1:190: T__57
+            case 28 :
+                // Tiger3.g:1:172: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
-            case 32 :
-                // albert22u/Tiger3.g:1:196: T__58
+            case 29 :
+                // Tiger3.g:1:178: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
-            case 33 :
-                // albert22u/Tiger3.g:1:202: T__59
+            case 30 :
+                // Tiger3.g:1:184: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
-            case 34 :
-                // albert22u/Tiger3.g:1:208: T__60
+            case 31 :
+                // Tiger3.g:1:190: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
-            case 35 :
-                // albert22u/Tiger3.g:1:214: T__61
+            case 32 :
+                // Tiger3.g:1:196: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
-            case 36 :
-                // albert22u/Tiger3.g:1:220: T__62
+            case 33 :
+                // Tiger3.g:1:202: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
-            case 37 :
-                // albert22u/Tiger3.g:1:226: T__63
+            case 34 :
+                // Tiger3.g:1:208: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
-            case 38 :
-                // albert22u/Tiger3.g:1:232: T__64
+            case 35 :
+                // Tiger3.g:1:214: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
-            case 39 :
-                // albert22u/Tiger3.g:1:238: T__65
+            case 36 :
+                // Tiger3.g:1:220: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
-            case 40 :
-                // albert22u/Tiger3.g:1:244: T__66
+            case 37 :
+                // Tiger3.g:1:226: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
-            case 41 :
-                // albert22u/Tiger3.g:1:250: T__67
+            case 38 :
+                // Tiger3.g:1:232: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
-            case 42 :
-                // albert22u/Tiger3.g:1:256: T__68
+            case 39 :
+                // Tiger3.g:1:238: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
+            case 40 :
+                // Tiger3.g:1:244: T__69
+                {
+                mT__69(); 
+
+                }
+                break;
+            case 41 :
+                // Tiger3.g:1:250: T__70
+                {
+                mT__70(); 
+
+                }
+                break;
+            case 42 :
+                // Tiger3.g:1:256: T__71
+                {
+                mT__71(); 
+
+                }
+                break;
             case 43 :
-                // albert22u/Tiger3.g:1:262: ID
+                // Tiger3.g:1:262: ID
                 {
                 mID(); 
 
                 }
                 break;
             case 44 :
-                // albert22u/Tiger3.g:1:265: INT
+                // Tiger3.g:1:265: INT
                 {
                 mINT(); 
 
                 }
                 break;
             case 45 :
-                // albert22u/Tiger3.g:1:269: STRING
+                // Tiger3.g:1:269: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 46 :
-                // albert22u/Tiger3.g:1:276: WS
+                // Tiger3.g:1:276: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 47 :
-                // albert22u/Tiger3.g:1:279: NEWLINE
+                // Tiger3.g:1:279: NEWLINE
                 {
                 mNEWLINE(); 
 
                 }
                 break;
             case 48 :
-                // albert22u/Tiger3.g:1:287: COMMENT
+                // Tiger3.g:1:287: COMMENT
                 {
                 mCOMMENT(); 
 
@@ -1656,19 +1627,19 @@ public class Tiger3Lexer extends Lexer {
     }
 
 
-    protected DFA8 dfa8 = new DFA8(this);
-    static final String DFA8_eotS =
-        "\5\uffff\1\47\10\uffff\1\51\5\uffff\15\41\11\uffff\1\41\1\77\1\100"+
+    protected DFA7 dfa7 = new DFA7(this);
+    static final String DFA7_eotS =
+        "\5\uffff\1\47\6\uffff\1\51\6\uffff\15\41\12\uffff\1\41\1\77\1\100"+
         "\3\41\1\104\6\41\1\113\1\41\1\115\4\41\1\122\2\uffff\3\41\1\uffff"+
         "\1\41\1\127\1\130\1\41\1\132\1\133\1\uffff\1\41\1\uffff\1\41\1\136"+
         "\2\41\1\uffff\3\41\1\144\2\uffff\1\41\2\uffff\1\146\1\150\1\uffff"+
         "\1\41\1\153\1\41\1\155\1\156\1\uffff\1\41\1\uffff\1\41\1\uffff\1"+
         "\161\2\uffff\1\162\2\uffff\2\41\2\uffff\1\41\1\166\1\167\2\uffff";
-    static final String DFA8_eofS =
+    static final String DFA7_eofS =
         "\170\uffff";
-    static final String DFA8_minS =
-        "\1\11\4\uffff\1\75\10\uffff\1\52\5\uffff\1\162\1\146\1\164\1\154"+
-        "\1\157\1\154\1\157\1\151\1\145\1\146\1\150\1\141\1\150\11\uffff"+
+    static final String DFA7_minS =
+        "\1\11\4\uffff\1\75\6\uffff\1\52\6\uffff\1\162\1\146\1\164\1\154"+
+        "\1\157\1\154\1\157\1\151\1\145\1\146\1\150\1\141\1\150\12\uffff"+
         "\1\162\2\60\1\162\1\145\1\157\1\60\1\163\1\144\1\162\1\156\1\154"+
         "\1\164\1\60\1\145\1\60\1\160\1\162\1\151\1\141\1\60\2\uffff\1\151"+
         "\1\141\1\143\1\uffff\1\145\2\60\1\143\2\60\1\uffff\1\156\1\uffff"+
@@ -1676,9 +1647,9 @@ public class Tiger3Lexer extends Lexer {
         "\uffff\2\60\1\uffff\1\145\1\40\1\147\2\60\1\uffff\1\151\1\uffff"+
         "\1\145\1\uffff\1\60\2\uffff\1\60\2\uffff\1\157\1\146\2\uffff\1\156"+
         "\2\60\2\uffff";
-    static final String DFA8_maxS =
-        "\1\175\4\uffff\1\75\10\uffff\1\52\5\uffff\1\162\1\156\1\164\1\162"+
-        "\1\157\1\156\1\165\1\151\1\145\1\146\1\171\1\141\1\150\11\uffff"+
+    static final String DFA7_maxS =
+        "\1\175\4\uffff\1\75\6\uffff\1\52\6\uffff\1\162\1\156\1\164\1\162"+
+        "\1\157\1\156\1\165\1\151\1\145\1\146\1\171\1\141\1\150\12\uffff"+
         "\1\162\2\172\1\162\1\145\1\157\1\172\1\163\1\144\1\162\1\156\1\154"+
         "\1\164\1\172\1\145\1\172\1\160\1\162\1\151\1\141\1\172\2\uffff\1"+
         "\151\1\141\1\143\1\uffff\1\145\2\172\1\143\2\172\1\uffff\1\156\1"+
@@ -1686,21 +1657,21 @@ public class Tiger3Lexer extends Lexer {
         "\1\164\2\uffff\2\172\1\uffff\1\145\1\172\1\147\2\172\1\uffff\1\151"+
         "\1\uffff\1\145\1\uffff\1\172\2\uffff\1\172\2\uffff\1\157\1\146\2"+
         "\uffff\1\156\2\172\2\uffff";
-    static final String DFA8_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14"+
-        "\1\15\1\uffff\1\17\1\20\1\21\1\22\1\23\15\uffff\1\53\1\54\1\55\1"+
-        "\56\1\57\1\5\1\25\1\60\1\16\25\uffff\1\40\1\37\3\uffff\1\32\6\uffff"+
-        "\1\43\1\uffff\1\45\4\uffff\1\26\4\uffff\1\34\1\35\1\uffff\1\41\1"+
-        "\42\2\uffff\1\47\5\uffff\1\33\1\uffff\1\44\1\uffff\1\46\1\uffff"+
-        "\1\24\1\30\1\uffff\1\31\1\52\2\uffff\1\50\1\27\3\uffff\1\51\1\36";
-    static final String DFA8_specialS =
+    static final String DFA7_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\uffff"+
+        "\1\15\1\16\1\17\1\20\1\21\1\22\15\uffff\1\52\1\53\1\54\1\55\1\56"+
+        "\1\57\1\5\1\24\1\60\1\14\25\uffff\1\37\1\36\3\uffff\1\31\6\uffff"+
+        "\1\42\1\uffff\1\44\4\uffff\1\25\4\uffff\1\33\1\34\1\uffff\1\40\1"+
+        "\41\2\uffff\1\46\5\uffff\1\32\1\uffff\1\43\1\uffff\1\45\1\uffff"+
+        "\1\23\1\27\1\uffff\1\30\1\51\2\uffff\1\47\1\26\3\uffff\1\50\1\35";
+    static final String DFA7_specialS =
         "\170\uffff}>";
-    static final String[] DFA8_transitionS = {
+    static final String[] DFA7_transitionS = {
             "\1\44\1\45\2\uffff\1\45\22\uffff\1\44\1\uffff\1\43\3\uffff\1"+
-            "\7\1\uffff\1\17\1\20\1\15\1\13\1\3\1\14\1\21\1\16\12\42\1\5"+
-            "\1\4\1\12\1\11\1\10\2\uffff\32\41\1\22\1\uffff\1\23\3\uffff"+
-            "\1\24\1\27\1\41\1\30\1\31\1\32\2\41\1\25\2\41\1\34\1\41\1\33"+
-            "\1\35\3\41\1\26\1\36\1\41\1\37\1\40\3\41\1\1\1\6\1\2",
+            "\7\1\uffff\1\16\1\17\1\13\1\40\1\3\1\15\1\20\1\14\12\42\1\5"+
+            "\1\4\1\12\1\11\1\10\2\uffff\32\41\1\21\1\uffff\1\22\3\uffff"+
+            "\1\23\1\26\1\41\1\27\1\30\1\31\2\41\1\24\2\41\1\33\1\41\1\32"+
+            "\1\34\3\41\1\25\1\35\1\41\1\36\1\37\3\41\1\1\1\6\1\2",
             "",
             "",
             "",
@@ -1712,9 +1683,8 @@ public class Tiger3Lexer extends Lexer {
             "",
             "",
             "",
-            "",
-            "",
             "\1\50",
+            "",
             "",
             "",
             "",
@@ -1733,6 +1703,7 @@ public class Tiger3Lexer extends Lexer {
             "\1\70\6\uffff\1\71\11\uffff\1\72",
             "\1\73",
             "\1\74",
+            "",
             "",
             "",
             "",
@@ -1823,37 +1794,37 @@ public class Tiger3Lexer extends Lexer {
             ""
     };
 
-    static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
-    static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
-    static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
-    static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
-    static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
-    static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
-    static final short[][] DFA8_transition;
+    static final short[] DFA7_eot = DFA.unpackEncodedString(DFA7_eotS);
+    static final short[] DFA7_eof = DFA.unpackEncodedString(DFA7_eofS);
+    static final char[] DFA7_min = DFA.unpackEncodedStringToUnsignedChars(DFA7_minS);
+    static final char[] DFA7_max = DFA.unpackEncodedStringToUnsignedChars(DFA7_maxS);
+    static final short[] DFA7_accept = DFA.unpackEncodedString(DFA7_acceptS);
+    static final short[] DFA7_special = DFA.unpackEncodedString(DFA7_specialS);
+    static final short[][] DFA7_transition;
 
     static {
-        int numStates = DFA8_transitionS.length;
-        DFA8_transition = new short[numStates][];
+        int numStates = DFA7_transitionS.length;
+        DFA7_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
+            DFA7_transition[i] = DFA.unpackEncodedString(DFA7_transitionS[i]);
         }
     }
 
-    class DFA8 extends DFA {
+    class DFA7 extends DFA {
 
-        public DFA8(BaseRecognizer recognizer) {
+        public DFA7(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 8;
-            this.eot = DFA8_eot;
-            this.eof = DFA8_eof;
-            this.min = DFA8_min;
-            this.max = DFA8_max;
-            this.accept = DFA8_accept;
-            this.special = DFA8_special;
-            this.transition = DFA8_transition;
+            this.decisionNumber = 7;
+            this.eot = DFA7_eot;
+            this.eof = DFA7_eof;
+            this.min = DFA7_min;
+            this.max = DFA7_max;
+            this.accept = DFA7_accept;
+            this.special = DFA7_special;
+            this.transition = DFA7_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | ID | INT | STRING | WS | NEWLINE | COMMENT );";
+            return "1:1: Tokens : ( T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | ID | INT | STRING | WS | NEWLINE | COMMENT );";
         }
     }
  

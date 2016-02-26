@@ -1,0 +1,12 @@
+let
+	function t (a:int, b string) = ( /* Manque un ":"*/
+		/* Manque "do" */
+		for i := 0 to N 
+
+			(x:=b /* Manque ";" */
+			y := x);
+		bg := 9 + + 3
+	)
+
+/* Manque une expression et une "," */
+in t(a b) ; end 

@@ -25,6 +25,11 @@ CELL;
 SIZE;
 INIT;
 PRIMITIF;
+IDF;
+CONST;
+FUNC_DECL;
+FUNC_CALL;
+EMPTY_SEQ;
 }
 
 @header {
@@ -106,15 +111,15 @@ neg	:	minus='-'? a=atom
 	
 atom	:	'(' e=expr_seq? ')'
 			-> {$e.tree != null}? $e
-			-> '('')'
+			-> EMPTY_SEQ
 	| 	lvalue
 	|	INT
 	|	STRING	
 	;
 	
 lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list? ')')?
-			-> {$par.text != null && $e.tree != null}? ^(TYPE["function"] $i ^(PARAMSEFF $e)) //Appel de fonction avec params
-			-> {$par.text != null}? ^(TYPE["function"] $i) //Appel de fonction sans params
+			-> {$par.text != null && $e.tree != null}? ^(FUNC_CALL $i ^(PARAMSEFF $e)) //Appel de fonction avec params
+			-> {$par.text != null}? ^(FUNC_CALL $i) //Appel de fonction sans params
 			-> {$v.tree != null}? ^($i $v)  //Accès tableau ou champ de structure
 			-> $i
 	;
@@ -157,13 +162,13 @@ variable_declaration
 	;
 
 function_declaration
-	:	fun=functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '='   (e=expr  )+
-			-> {$par.text != null && $ty.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $ty) ^(BLOCK $e))
-			-> {$par.text != null && $i != null}? ^($fun ID ^(PARAMSFORM $par) ^(TYPE $i) ^(BLOCK $e))
-			-> {$par.text != null}? ^($fun ID ^(PARAMSFORM $par) ^(BLOCK $e))
-			-> {$ty.text != null}? ^($fun ID ^(TYPE $ty) ^(BLOCK $e))
-			-> {$i != null}? ^($fun ID ^(TYPE $i) ^(BLOCK $e))
-			-> ^($fun ID ^(BLOCK $e))
+	:	functionexp ID '(' par=type_fields? ')' (':' (ty=type_id|i=ID))?  '='   (e=expr  )+
+			-> {$par.text != null && $ty.text != null}? ^(FUNC_DECL ID ^(PARAMSFORM $par) ^(TYPE $ty) ^(BLOCK $e))
+			-> {$par.text != null && $i != null}? ^(FUNC_DECL ID ^(PARAMSFORM $par) ^(TYPE $i) ^(BLOCK $e))
+			-> {$par.text != null}? ^(FUNC_DECL ID ^(PARAMSFORM $par) ^(BLOCK $e))
+			-> {$ty.text != null}? ^(FUNC_DECL ID ^(TYPE $ty) ^(BLOCK $e))
+			-> {$i != null}? ^(FUNC_DECL ID ^(TYPE $i) ^(BLOCK $e))
+			-> ^(FUNC_DECL ID ^(BLOCK $e))
 	;
 	
 type_fields	:	t1=type_field t2=type_fields2?
@@ -179,7 +184,7 @@ type_field	:	i1=ID ':' (t=type_id|i2=ID)
 			-> ^(PARAM["p"]$i1 $t)
 	;
 
-type_id	:	('int' | 'string') lvalue2*
+type_id	:	(i='int' | s='string') lvalue2*
 	;
 
 arrayexp	:	'array'	; 
