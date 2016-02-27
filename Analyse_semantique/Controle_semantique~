@@ -1,6 +1,7 @@
 - typage -> affectation
          -> calculs 
-	 -> pagge de params
+	 -> passage de params
+	 -> retour fct incorrect
 
 - Il existe ID -> variable
 	       -> fonction
@@ -8,5 +9,18 @@
 	       -> type defini
 
 - nb param appel fonction
-- multiples declarations
+- multiples declarations -> var, type, struct
+			 -> fonctions
+			 -> types
 
+- depassement de tab statique pas crte
+- booleen ds condition
+- for (int): begin & end
+- taille de tabeau < 0
+- taille de tableau non int
+- pas de retour dans fonction typé
+
+
+
+
+En retour : const/var;
