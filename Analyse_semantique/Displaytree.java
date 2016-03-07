@@ -18,5 +18,6 @@ public class Displaytree {
 		Tiger3Parser.tiger3_return r = parser.tiger3();
 		CommonTree t = (CommonTree)r.getTree();
 		System.out.println(t.toStringTree());
+		System.out.println(((CommonTree)t.getChild(0)).getToken().getText());
 	}
 }
