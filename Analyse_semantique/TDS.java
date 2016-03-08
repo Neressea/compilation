@@ -25,8 +25,4 @@ public class TDS {
 		NB_TDS++;
 		fields = new ArrayList<Field>();
 	}
-	
-	public void check(CommonTree tree) throws ErreurSemantique{
-		
-	}
 }

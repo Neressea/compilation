@@ -1,0 +1,6 @@
+let
+
+	type arrayInt = array of int 
+	var tab := arrayInt [-5] of 0
+
+in end

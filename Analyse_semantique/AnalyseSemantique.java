@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -18,6 +19,8 @@ public class AnalyseSemantique {
 	private CommonTree tree;
 	private boolean is_ok;
 	private String err_messages;
+	private ArrayList<TDS> TDSs;
+	private ControleSemantique taille_tableau;
 	
 	public AnalyseSemantique(String file_path) throws IOException, RecognitionException{
 		tree = null;
@@ -29,13 +32,17 @@ public class AnalyseSemantique {
 		tree = (CommonTree)r.getTree();
 		is_ok = true;
 		err_messages = "";
+		TDSs = new ArrayList<TDS>();
+		
+		taille_tableau = new ControleTableau();
 	}
 	
 	/**
 	 * Méthode pour lancer la récursion
 	 */
 	public void analyze(){
-		CommonTree current = tree;	
+		CommonTree current = tree;
+		loop(tree);
 	}
 	
 	/**
@@ -104,6 +111,7 @@ public class AnalyseSemantique {
 			
 			//Définition dela taille d'un tableau
 			case "SIZE":
+					taille_tableau.check(node, TDSs);
 				break;
 		}
 	}
@@ -131,7 +139,7 @@ public class AnalyseSemantique {
 				System.err.println("Erreur lors de la lecture de l'AST : "+e.getMessage());
 				System.exit(2);
 			}
-			
+						
 			analyzer.analyze();
 			
 			if(analyzer.isOK()){
