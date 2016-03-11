@@ -4,7 +4,7 @@ import org.antlr.runtime.tree.CommonTree;
 
 /**
  * 
- * Représente la fonction principale qui doit-être implémentée par toute TDS.
+ * Reprï¿½sente la fonction principale qui doit-ï¿½tre implï¿½mentï¿½e par toute TDS.
  *
  */
 public class TDS {
@@ -12,10 +12,10 @@ public class TDS {
 	//Compteur du nombre de TDS dans le programme.
 	private static int NB_TDS = 0;
 	
-	//Numéro d'imbrication du bloc
+	//Numï¿½ro d'imbrication du bloc
 	private int nb_imbrication;
 	
-	//Numéro du bloc (identifiant unique)
+	//Numï¿½ro du bloc (identifiant unique)
 	private int nb_bloc;
 	
 	private ArrayList<Field> fields;
@@ -24,5 +24,25 @@ public class TDS {
 		nb_bloc = NB_TDS;
 		NB_TDS++;
 		fields = new ArrayList<Field>();
+	}
+	
+	public int getImbrication(){
+		return nb_imbrication;
+	}
+	
+	public int getBloc(){
+		return nb_bloc;
+	}
+	
+	public boolean existIn(String ID, String nature){
+		
+		for (Field f : this.fields){
+			if (f.getNature().equals(nature)){
+				if (f.getID().equals(ID)) return true;
+			}
+		}
+		
+		return false;
+		
 	}
 }

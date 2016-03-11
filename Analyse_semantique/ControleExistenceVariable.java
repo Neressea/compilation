@@ -13,8 +13,9 @@ public class ControleExistenceVariable implements ControleSemantique{
 		
 		// En attente de modification de la classe TDS
 		
+		TDS currentTDS = new TDS();
 		
-		//if (!n.exits(TDSs))throw new ErreurSemantique(node.getLine(), "Variable non déclarée");
+		if (!currentTDS.existIn(n.getText(), "Variable"))throw new ErreurSemantique(tree.getLine(), "Variable non déclarée");
 		
 	}
 
