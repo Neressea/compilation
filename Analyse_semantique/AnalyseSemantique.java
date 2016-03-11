@@ -37,11 +37,15 @@ public class AnalyseSemantique {
 		taille_tableau = new ControleTableau();
 	}
 	
+	public void analyze(){
+		loop(tree);
+	}
+	
 	/**
 	 * Mï¿½thode rï¿½cursive pour l'analyse d'un arbre
 	 * @param tree AST ï¿½ analyser
 	 */
-	public void analyze(CommonTree current){
+	public void loop(CommonTree current){
 		try {
 			checkNode(current);
 		} catch (ErreurSemantique e) {
@@ -50,7 +54,7 @@ public class AnalyseSemantique {
 		}
 		
 		for(int i = 0; i<current.getChildCount(); i++){
-			analyze((CommonTree) current.getChild(i));
+			loop((CommonTree) current.getChild(i));
 		}
 	}
 	
@@ -74,8 +78,6 @@ public class AnalyseSemantique {
 				
 			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
-				//On incrémente le numéro d'imbrication
-				TDS.NB_IMBR++;
 				break;
 				
 			//Appel d'une fonction
@@ -136,7 +138,7 @@ public class AnalyseSemantique {
 				System.exit(2);
 			}
 						
-			analyzer.analyze(analyzer.tree);
+			analyzer.analyze();
 			
 			if(analyzer.isOK()){
 				System.out.println("L'analyse sï¿½mantique n'a dï¿½tectï¿½ aucun problï¿½me !");
