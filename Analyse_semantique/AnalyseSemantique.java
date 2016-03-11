@@ -38,27 +38,19 @@ public class AnalyseSemantique {
 	}
 	
 	/**
-	 * Mï¿½thode pour lancer la rï¿½cursion
-	 */
-	public void analyze(){
-		CommonTree current = tree;
-		loop(tree);
-	}
-	
-	/**
 	 * Mï¿½thode rï¿½cursive pour l'analyse d'un arbre
 	 * @param tree AST ï¿½ analyser
 	 */
-	public void loop(CommonTree current){
+	public void analyze(CommonTree current){
 		try {
 			checkNode(current);
 		} catch (ErreurSemantique e) {
-			err_messages+=e.getMessage();;
+			err_messages+=e.getMessage()+"\n";
 			is_ok = false;
 		}
 		
 		for(int i = 0; i<current.getChildCount(); i++){
-			loop((CommonTree) current.getChild(i));
+			analyze((CommonTree) current.getChild(i));
 		}
 	}
 	
@@ -70,7 +62,7 @@ public class AnalyseSemantique {
 	public void checkNode(CommonTree node) throws ErreurSemantique{
 		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
 		switch(node.getToken().getText()){
-			//Dï¿½claration d'une variable
+			//Déclaration d'une variable
 			case "var":
 				//alimenter la TDS
 				Field newfield = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
@@ -82,6 +74,8 @@ public class AnalyseSemantique {
 				
 			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
+				//On incrémente le numéro d'imbrication
+				TDS.NB_IMBR++;
 				break;
 				
 			//Appel d'une fonction
@@ -142,7 +136,7 @@ public class AnalyseSemantique {
 				System.exit(2);
 			}
 						
-			analyzer.analyze();
+			analyzer.analyze(analyzer.tree);
 			
 			if(analyzer.isOK()){
 				System.out.println("L'analyse sï¿½mantique n'a dï¿½tectï¿½ aucun problï¿½me !");

@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g 2016-02-26 17:36:16
+// $ANTLR 3.5.1 D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g 2016-03-11 16:20:42
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class Tiger3Lexer extends Lexer {
 	public static final int EOF=-1;
-	public static final int T__33=33;
 	public static final int T__34=34;
 	public static final int T__35=35;
 	public static final int T__36=36;
@@ -50,6 +49,7 @@ public class Tiger3Lexer extends Lexer {
 	public static final int T__72=72;
 	public static final int T__73=73;
 	public static final int T__74=74;
+	public static final int T__75=75;
 	public static final int BEGIN=4;
 	public static final int BLOCK=5;
 	public static final int CELL=6;
@@ -67,18 +67,19 @@ public class Tiger3Lexer extends Lexer {
 	public static final int IDF=18;
 	public static final int INIT=19;
 	public static final int INT=20;
-	public static final int NEWLINE=21;
-	public static final int PARAM=22;
-	public static final int PARAMSEFF=23;
-	public static final int PARAMSFORM=24;
-	public static final int PRIMITIF=25;
-	public static final int SIZE=26;
-	public static final int STRING=27;
-	public static final int STRUCT=28;
-	public static final int TAB=29;
-	public static final int TAIGA=30;
-	public static final int TYPE=31;
-	public static final int WS=32;
+	public static final int NEG=21;
+	public static final int NEWLINE=22;
+	public static final int PARAM=23;
+	public static final int PARAMSEFF=24;
+	public static final int PARAMSFORM=25;
+	public static final int PRIMITIF=26;
+	public static final int SIZE=27;
+	public static final int STRING=28;
+	public static final int STRUCT=29;
+	public static final int TAB=30;
+	public static final int TAIGA=31;
+	public static final int TYPE=32;
+	public static final int WS=33;
 
 	// delegates
 	// delegators
@@ -93,37 +94,17 @@ public class Tiger3Lexer extends Lexer {
 	public Tiger3Lexer(CharStream input, RecognizerSharedState state) {
 		super(input,state);
 	}
-	@Override public String getGrammarFileName() { return "/home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g"; }
-
-	// $ANTLR start "T__33"
-	public final void mT__33() throws RecognitionException {
-		try {
-			int _type = T__33;
-			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:2:7: ( '&' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:2:9: '&'
-			{
-			match('&'); 
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally {
-			// do for sure before leaving
-		}
-	}
-	// $ANTLR end "T__33"
+	@Override public String getGrammarFileName() { return "D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g"; }
 
 	// $ANTLR start "T__34"
 	public final void mT__34() throws RecognitionException {
 		try {
 			int _type = T__34;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:3:7: ( '(' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:3:9: '('
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:2:7: ( '&' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:2:9: '&'
 			{
-			match('('); 
+			match('&'); 
 			}
 
 			state.type = _type;
@@ -140,10 +121,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__35;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:4:7: ( ')' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:4:9: ')'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:3:7: ( '(' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:3:9: '('
 			{
-			match(')'); 
+			match('('); 
 			}
 
 			state.type = _type;
@@ -160,10 +141,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__36;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:5:7: ( '*' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:5:9: '*'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:4:7: ( ')' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:4:9: ')'
 			{
-			match('*'); 
+			match(')'); 
 			}
 
 			state.type = _type;
@@ -180,10 +161,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__37;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:6:7: ( '+' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:6:9: '+'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:5:7: ( '*' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:5:9: '*'
 			{
-			match('+'); 
+			match('*'); 
 			}
 
 			state.type = _type;
@@ -200,10 +181,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__38;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:7:7: ( ',' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:7:9: ','
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:6:7: ( '+' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:6:9: '+'
 			{
-			match(','); 
+			match('+'); 
 			}
 
 			state.type = _type;
@@ -220,10 +201,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__39;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:8:7: ( '-' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:8:9: '-'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:7:7: ( ',' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:7:9: ','
 			{
-			match('-'); 
+			match(','); 
 			}
 
 			state.type = _type;
@@ -240,10 +221,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__40;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:9:7: ( '.' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:9:9: '.'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:8:7: ( '-' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:8:9: '-'
 			{
-			match('.'); 
+			match('-'); 
 			}
 
 			state.type = _type;
@@ -260,10 +241,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__41;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:10:7: ( '/' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:10:9: '/'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:9:7: ( '.' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:9:9: '.'
 			{
-			match('/'); 
+			match('.'); 
 			}
 
 			state.type = _type;
@@ -280,10 +261,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__42;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:11:7: ( ':' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:11:9: ':'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:10:7: ( '/' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:10:9: '/'
 			{
-			match(':'); 
+			match('/'); 
 			}
 
 			state.type = _type;
@@ -300,11 +281,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__43;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:12:7: ( ':=' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:12:9: ':='
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:11:7: ( ':' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:11:9: ':'
 			{
-			match(":="); 
-
+			match(':'); 
 			}
 
 			state.type = _type;
@@ -321,10 +301,11 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__44;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:13:7: ( ';' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:13:9: ';'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:12:7: ( ':=' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:12:9: ':='
 			{
-			match(';'); 
+			match(":="); 
+
 			}
 
 			state.type = _type;
@@ -341,10 +322,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__45;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:14:7: ( '<' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:14:9: '<'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:13:7: ( ';' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:13:9: ';'
 			{
-			match('<'); 
+			match(';'); 
 			}
 
 			state.type = _type;
@@ -361,10 +342,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__46;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:15:7: ( '=' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:15:9: '='
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:14:7: ( '<' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:14:9: '<'
 			{
-			match('='); 
+			match('<'); 
 			}
 
 			state.type = _type;
@@ -381,10 +362,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__47;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:16:7: ( '>' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:16:9: '>'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:15:7: ( '=' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:15:9: '='
 			{
-			match('>'); 
+			match('='); 
 			}
 
 			state.type = _type;
@@ -401,10 +382,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__48;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:17:7: ( '[' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:17:9: '['
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:16:7: ( '>' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:16:9: '>'
 			{
-			match('['); 
+			match('>'); 
 			}
 
 			state.type = _type;
@@ -421,10 +402,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__49;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:18:7: ( ']' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:18:9: ']'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:17:7: ( '[' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:17:9: '['
 			{
-			match(']'); 
+			match('['); 
 			}
 
 			state.type = _type;
@@ -441,11 +422,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__50;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:19:7: ( 'array of' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:19:9: 'array of'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:18:7: ( ']' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:18:9: ']'
 			{
-			match("array of"); 
-
+			match(']'); 
 			}
 
 			state.type = _type;
@@ -462,10 +442,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__51;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:20:7: ( 'array' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:20:9: 'array'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:19:7: ( 'array of' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:19:9: 'array of'
 			{
-			match("array"); 
+			match("array of"); 
 
 			}
 
@@ -483,10 +463,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__52;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:21:7: ( 'block' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:21:9: 'block'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:20:7: ( 'array' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:20:9: 'array'
 			{
-			match("block"); 
+			match("array"); 
 
 			}
 
@@ -504,10 +484,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__53;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:22:7: ( 'break' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:22:9: 'break'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:21:7: ( 'block' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:21:9: 'block'
 			{
-			match("break"); 
+			match("block"); 
 
 			}
 
@@ -525,10 +505,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__54;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:23:7: ( 'do' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:23:9: 'do'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:22:7: ( 'break' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:22:9: 'break'
 			{
-			match("do"); 
+			match("break"); 
 
 			}
 
@@ -546,10 +526,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__55;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:24:7: ( 'else' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:24:9: 'else'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:23:7: ( 'do' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:23:9: 'do'
 			{
-			match("else"); 
+			match("do"); 
 
 			}
 
@@ -567,10 +547,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__56;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:25:7: ( 'end' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:25:9: 'end'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:24:7: ( 'else' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:24:9: 'else'
 			{
-			match("end"); 
+			match("else"); 
 
 			}
 
@@ -588,10 +568,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__57;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:26:7: ( 'for' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:26:9: 'for'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:25:7: ( 'end' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:25:9: 'end'
 			{
-			match("for"); 
+			match("end"); 
 
 			}
 
@@ -609,10 +589,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__58;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:27:7: ( 'function' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:27:9: 'function'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:26:7: ( 'for' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:26:9: 'for'
 			{
-			match("function"); 
+			match("for"); 
 
 			}
 
@@ -630,10 +610,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__59;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:28:7: ( 'if' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:28:9: 'if'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:27:7: ( 'function' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:27:9: 'function'
 			{
-			match("if"); 
+			match("function"); 
 
 			}
 
@@ -651,10 +631,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__60;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:29:7: ( 'in' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:29:9: 'in'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:28:7: ( 'if' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:28:9: 'if'
 			{
-			match("in"); 
+			match("if"); 
 
 			}
 
@@ -672,10 +652,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__61;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:30:7: ( 'int' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:30:9: 'int'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:29:7: ( 'in' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:29:9: 'in'
 			{
-			match("int"); 
+			match("in"); 
 
 			}
 
@@ -693,10 +673,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__62;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:31:7: ( 'let' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:31:9: 'let'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:30:7: ( 'int' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:30:9: 'int'
 			{
-			match("let"); 
+			match("int"); 
 
 			}
 
@@ -714,10 +694,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__63;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:32:7: ( 'nil' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:32:9: 'nil'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:31:7: ( 'let' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:31:9: 'let'
 			{
-			match("nil"); 
+			match("let"); 
 
 			}
 
@@ -735,10 +715,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__64;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:33:7: ( 'of' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:33:9: 'of'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:32:7: ( 'nil' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:32:9: 'nil'
 			{
-			match("of"); 
+			match("nil"); 
 
 			}
 
@@ -756,10 +736,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__65;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:34:7: ( 'string' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:34:9: 'string'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:33:7: ( 'of' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:33:9: 'of'
 			{
-			match("string"); 
+			match("of"); 
 
 			}
 
@@ -777,10 +757,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__66;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:35:7: ( 'then' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:35:9: 'then'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:34:7: ( 'string' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:34:9: 'string'
 			{
-			match("then"); 
+			match("string"); 
 
 			}
 
@@ -798,10 +778,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__67;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:36:7: ( 'to' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:36:9: 'to'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:35:7: ( 'then' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:35:9: 'then'
 			{
-			match("to"); 
+			match("then"); 
 
 			}
 
@@ -819,10 +799,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__68;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:37:7: ( 'type' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:37:9: 'type'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:36:7: ( 'to' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:36:9: 'to'
 			{
-			match("type"); 
+			match("to"); 
 
 			}
 
@@ -840,10 +820,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__69;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:38:7: ( 'typedef' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:38:9: 'typedef'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:37:7: ( 'type' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:37:9: 'type'
 			{
-			match("typedef"); 
+			match("type"); 
 
 			}
 
@@ -861,10 +841,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__70;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:39:7: ( 'var' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:39:9: 'var'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:38:7: ( 'typedef' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:38:9: 'typedef'
 			{
-			match("var"); 
+			match("typedef"); 
 
 			}
 
@@ -882,10 +862,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__71;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:40:7: ( 'while' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:40:9: 'while'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:39:7: ( 'var' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:39:9: 'var'
 			{
-			match("while"); 
+			match("var"); 
 
 			}
 
@@ -903,10 +883,11 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__72;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:41:7: ( '{' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:41:9: '{'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:40:7: ( 'while' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:40:9: 'while'
 			{
-			match('{'); 
+			match("while"); 
+
 			}
 
 			state.type = _type;
@@ -923,10 +904,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__73;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:42:7: ( '|' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:42:9: '|'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:41:7: ( '{' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:41:9: '{'
 			{
-			match('|'); 
+			match('{'); 
 			}
 
 			state.type = _type;
@@ -943,10 +924,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = T__74;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:43:7: ( '}' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:43:9: '}'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:42:7: ( '|' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:42:9: '|'
 			{
-			match('}'); 
+			match('|'); 
 			}
 
 			state.type = _type;
@@ -958,13 +939,33 @@ public class Tiger3Lexer extends Lexer {
 	}
 	// $ANTLR end "T__74"
 
+	// $ANTLR start "T__75"
+	public final void mT__75() throws RecognitionException {
+		try {
+			int _type = T__75;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:43:7: ( '}' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:43:9: '}'
+			{
+			match('}'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__75"
+
 	// $ANTLR start "ID"
 	public final void mID() throws RecognitionException {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:212:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* ) )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:212:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:213:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* ) )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:213:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -974,10 +975,10 @@ public class Tiger3Lexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:212:26: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:212:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:213:26: ( ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:213:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:212:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:213:27: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -988,7 +989,7 @@ public class Tiger3Lexer extends Lexer {
 
 				switch (alt1) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
@@ -1024,10 +1025,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:213:5: ( ( '0' .. '9' )+ )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:213:7: ( '0' .. '9' )+
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:214:5: ( ( '0' .. '9' )+ )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:214:7: ( '0' .. '9' )+
 			{
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:213:7: ( '0' .. '9' )+
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:214:7: ( '0' .. '9' )+
 			int cnt2=0;
 			loop2:
 			while (true) {
@@ -1039,7 +1040,7 @@ public class Tiger3Lexer extends Lexer {
 
 				switch (alt2) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:
 					{
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -1076,11 +1077,11 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:214:9: ( '\"' ( . )+ '\"' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:214:11: '\"' ( . )+ '\"'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:215:9: ( '\"' ( . )+ '\"' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:215:11: '\"' ( . )+ '\"'
 			{
 			match('\"'); 
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:214:14: ( . )+
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:215:14: ( . )+
 			int cnt3=0;
 			loop3:
 			while (true) {
@@ -1095,7 +1096,7 @@ public class Tiger3Lexer extends Lexer {
 
 				switch (alt3) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:214:14: .
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:215:14: .
 					{
 					matchAny(); 
 					}
@@ -1126,10 +1127,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:215:5: ( ( ' ' | '\\t' )+ )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:215:7: ( ' ' | '\\t' )+
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:216:5: ( ( ' ' | '\\t' )+ )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:216:7: ( ' ' | '\\t' )+
 			{
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:215:7: ( ' ' | '\\t' )+
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:216:7: ( ' ' | '\\t' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -1141,7 +1142,7 @@ public class Tiger3Lexer extends Lexer {
 
 				switch (alt4) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:
 					{
 					if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
 						input.consume();
@@ -1179,10 +1180,10 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:216:9: ( ( '\\r' )? '\\n' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:216:11: ( '\\r' )? '\\n'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:217:9: ( ( '\\r' )? '\\n' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:217:11: ( '\\r' )? '\\n'
 			{
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:216:11: ( '\\r' )?
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:217:11: ( '\\r' )?
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='\r') ) {
@@ -1190,7 +1191,7 @@ public class Tiger3Lexer extends Lexer {
 			}
 			switch (alt5) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:216:11: '\\r'
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:217:11: '\\r'
 					{
 					match('\r'); 
 					}
@@ -1216,12 +1217,12 @@ public class Tiger3Lexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:217:9: ( '/*' ( . )* '*/' )
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:217:12: '/*' ( . )* '*/'
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:218:9: ( '/*' ( . )* '*/' )
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:218:12: '/*' ( . )* '*/'
 			{
 			match("/*"); 
 
-			// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:217:16: ( . )*
+			// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:218:16: ( . )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -1242,7 +1243,7 @@ public class Tiger3Lexer extends Lexer {
 
 				switch (alt6) {
 				case 1 :
-					// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:217:16: .
+					// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:218:16: .
 					{
 					matchAny(); 
 					}
@@ -1269,341 +1270,341 @@ public class Tiger3Lexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:8: ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | ID | INT | STRING | WS | NEWLINE | COMMENT )
+		// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:8: ( T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | ID | INT | STRING | WS | NEWLINE | COMMENT )
 		int alt7=48;
 		alt7 = dfa7.predict(input);
 		switch (alt7) {
 			case 1 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:10: T__33
-				{
-				mT__33(); 
-
-				}
-				break;
-			case 2 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:16: T__34
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:10: T__34
 				{
 				mT__34(); 
 
 				}
 				break;
-			case 3 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:22: T__35
+			case 2 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:16: T__35
 				{
 				mT__35(); 
 
 				}
 				break;
-			case 4 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:28: T__36
+			case 3 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:22: T__36
 				{
 				mT__36(); 
 
 				}
 				break;
-			case 5 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:34: T__37
+			case 4 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:28: T__37
 				{
 				mT__37(); 
 
 				}
 				break;
-			case 6 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:40: T__38
+			case 5 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:34: T__38
 				{
 				mT__38(); 
 
 				}
 				break;
-			case 7 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:46: T__39
+			case 6 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:40: T__39
 				{
 				mT__39(); 
 
 				}
 				break;
-			case 8 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:52: T__40
+			case 7 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:46: T__40
 				{
 				mT__40(); 
 
 				}
 				break;
-			case 9 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:58: T__41
+			case 8 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:52: T__41
 				{
 				mT__41(); 
 
 				}
 				break;
-			case 10 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:64: T__42
+			case 9 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:58: T__42
 				{
 				mT__42(); 
 
 				}
 				break;
-			case 11 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:70: T__43
+			case 10 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:64: T__43
 				{
 				mT__43(); 
 
 				}
 				break;
-			case 12 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:76: T__44
+			case 11 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:70: T__44
 				{
 				mT__44(); 
 
 				}
 				break;
-			case 13 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:82: T__45
+			case 12 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:76: T__45
 				{
 				mT__45(); 
 
 				}
 				break;
-			case 14 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:88: T__46
+			case 13 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:82: T__46
 				{
 				mT__46(); 
 
 				}
 				break;
-			case 15 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:94: T__47
+			case 14 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:88: T__47
 				{
 				mT__47(); 
 
 				}
 				break;
-			case 16 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:100: T__48
+			case 15 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:94: T__48
 				{
 				mT__48(); 
 
 				}
 				break;
-			case 17 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:106: T__49
+			case 16 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:100: T__49
 				{
 				mT__49(); 
 
 				}
 				break;
-			case 18 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:112: T__50
+			case 17 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:106: T__50
 				{
 				mT__50(); 
 
 				}
 				break;
-			case 19 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:118: T__51
+			case 18 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:112: T__51
 				{
 				mT__51(); 
 
 				}
 				break;
-			case 20 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:124: T__52
+			case 19 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:118: T__52
 				{
 				mT__52(); 
 
 				}
 				break;
-			case 21 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:130: T__53
+			case 20 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:124: T__53
 				{
 				mT__53(); 
 
 				}
 				break;
-			case 22 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:136: T__54
+			case 21 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:130: T__54
 				{
 				mT__54(); 
 
 				}
 				break;
-			case 23 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:142: T__55
+			case 22 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:136: T__55
 				{
 				mT__55(); 
 
 				}
 				break;
-			case 24 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:148: T__56
+			case 23 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:142: T__56
 				{
 				mT__56(); 
 
 				}
 				break;
-			case 25 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:154: T__57
+			case 24 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:148: T__57
 				{
 				mT__57(); 
 
 				}
 				break;
-			case 26 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:160: T__58
+			case 25 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:154: T__58
 				{
 				mT__58(); 
 
 				}
 				break;
-			case 27 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:166: T__59
+			case 26 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:160: T__59
 				{
 				mT__59(); 
 
 				}
 				break;
-			case 28 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:172: T__60
+			case 27 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:166: T__60
 				{
 				mT__60(); 
 
 				}
 				break;
-			case 29 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:178: T__61
+			case 28 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:172: T__61
 				{
 				mT__61(); 
 
 				}
 				break;
-			case 30 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:184: T__62
+			case 29 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:178: T__62
 				{
 				mT__62(); 
 
 				}
 				break;
-			case 31 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:190: T__63
+			case 30 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:184: T__63
 				{
 				mT__63(); 
 
 				}
 				break;
-			case 32 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:196: T__64
+			case 31 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:190: T__64
 				{
 				mT__64(); 
 
 				}
 				break;
-			case 33 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:202: T__65
+			case 32 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:196: T__65
 				{
 				mT__65(); 
 
 				}
 				break;
-			case 34 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:208: T__66
+			case 33 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:202: T__66
 				{
 				mT__66(); 
 
 				}
 				break;
-			case 35 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:214: T__67
+			case 34 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:208: T__67
 				{
 				mT__67(); 
 
 				}
 				break;
-			case 36 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:220: T__68
+			case 35 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:214: T__68
 				{
 				mT__68(); 
 
 				}
 				break;
-			case 37 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:226: T__69
+			case 36 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:220: T__69
 				{
 				mT__69(); 
 
 				}
 				break;
-			case 38 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:232: T__70
+			case 37 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:226: T__70
 				{
 				mT__70(); 
 
 				}
 				break;
-			case 39 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:238: T__71
+			case 38 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:232: T__71
 				{
 				mT__71(); 
 
 				}
 				break;
-			case 40 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:244: T__72
+			case 39 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:238: T__72
 				{
 				mT__72(); 
 
 				}
 				break;
-			case 41 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:250: T__73
+			case 40 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:244: T__73
 				{
 				mT__73(); 
 
 				}
 				break;
-			case 42 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:256: T__74
+			case 41 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:250: T__74
 				{
 				mT__74(); 
 
 				}
 				break;
+			case 42 :
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:256: T__75
+				{
+				mT__75(); 
+
+				}
+				break;
 			case 43 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:262: ID
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:262: ID
 				{
 				mID(); 
 
 				}
 				break;
 			case 44 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:265: INT
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:265: INT
 				{
 				mINT(); 
 
 				}
 				break;
 			case 45 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:269: STRING
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:269: STRING
 				{
 				mSTRING(); 
 
 				}
 				break;
 			case 46 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:276: WS
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:276: WS
 				{
 				mWS(); 
 
 				}
 				break;
 			case 47 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:279: NEWLINE
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:279: NEWLINE
 				{
 				mNEWLINE(); 
 
 				}
 				break;
 			case 48 :
-				// /home/nicolas/Documents/Compilation/albert22u/Analyse_lexicale_et_syntaxique/Tiger3.g:1:287: COMMENT
+				// D:\\Programmation\\albert22u\\Analyse_lexicale_et_syntaxique\\Tiger3.g:1:287: COMMENT
 				{
 				mCOMMENT(); 
 
@@ -1809,7 +1810,7 @@ public class Tiger3Lexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | ID | INT | STRING | WS | NEWLINE | COMMENT );";
+			return "1:1: Tokens : ( T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | ID | INT | STRING | WS | NEWLINE | COMMENT );";
 		}
 	}
 

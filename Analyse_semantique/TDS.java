@@ -12,6 +12,8 @@ public class TDS {
 	//Compteur du nombre de TDS dans le programme.
 	private static int NB_TDS = 0;
 	
+	public static int NB_IMBR = 0;
+	
 	//Num�ro d'imbrication du bloc
 	private int nb_imbrication;
 	

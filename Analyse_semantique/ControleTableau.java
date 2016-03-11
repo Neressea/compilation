@@ -15,7 +15,7 @@ public class ControleTableau implements ControleSemantique{
 		/*On essaie de caster en entier. Sinon ce n'est pas une constante entière et on ne peut
 		  donc vérifier si la valeur est négative */
 
-		if(n.getText().matches("-")) throw new ErreurSemantique(node.getLine(), "Taille de tableau < 0");
+		if(n.getText().matches("NEG")) throw new ErreurSemantique(node.getLine(), "Taille de tableau < 0");
 			
 	}
 

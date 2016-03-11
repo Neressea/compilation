@@ -31,6 +31,7 @@ CONST;
 FUNC_DECL;
 FUNC_CALL;
 EMPTY_SEQ;
+NEG;
 }
 
 @header {
@@ -106,7 +107,7 @@ binary2	:	n1=neg ((mul='*'^|div='/'^) neg)*
 	;
 
 neg	:	minus='-'? a=atom 
-			-> {$minus != null}? ^('-' $a) 
+			-> {$minus != null}? ^(NEG $a) 
 			-> $a
 	;
 	
