@@ -80,6 +80,11 @@ public class AnalyseSemantique {
 			case "FUNC_DECL":
 				break;
 				
+			case "BLOCK":
+				//Quand on entre dans un bloc on augmente l'imbrication
+				TDS.NB_IMBR++;
+				break;
+				
 			//Appel d'une fonction
 			case "FUNC_CALL":
 				break;
@@ -94,6 +99,26 @@ public class AnalyseSemantique {
 				
 			// Boucle for
 			case "for":
+				//on incrémente le for en plus de son bloc (les vars déclarées dans le for sont dans un
+				//bloc supérieur au bloc lui-même
+				TDS.NB_IMBR++;
+				break;
+				
+			case "if":
+				TDS.NB_IMBR++;
+				break;
+			
+			case "then":
+				//Les vars du if sont accessibles depuis le then et le else
+				TDS.NB_IMBR++;
+				break;
+				
+			case "else":
+				TDS.NB_IMBR++;
+				break;
+				
+			case "while":
+				TDS.NB_IMBR++;
 				break;
 			
 			//L'une des quatre opï¿½rations binaires
