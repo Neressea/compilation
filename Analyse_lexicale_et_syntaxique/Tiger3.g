@@ -64,7 +64,9 @@ expr_seq	:	e1=expr  (pv=';'   e2=expr_seq)?
 			-> $e1 $e2?
 	;
 	
-field_list	:	ID ':=' expr | ',' ID ':=' expr
+field_list	:	i1=ID ':=' e1=expr (v=',' f=field_list)?
+				-> {$v.text != null}? ^($i1 $e1) $f
+				->  ^($i1 $e1)
 	;		
 
 ifop	:	fi=ifexp e1=expr   th=thenexp   e2=expr   (els=elseexp   e3=expr)? 
@@ -119,10 +121,11 @@ atom	:	'(' e=expr_seq? ')'
 	|	STRING	
 	;
 	
-lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list? ')')?
+lvalue	:	i=ID (v=lvalue2 | par='(' e=expr_list? ')' | acc='{' l=field_list? '}')?
 			-> {$par.text != null && $e.tree != null}? ^(FUNC_CALL $i ^(PARAMSEFF $e)) //Appel de fonction avec params
 			-> {$par.text != null}? ^(FUNC_CALL $i) //Appel de fonction sans params
 			-> {$v.tree != null}? ^($i $v)  //Accès tableau ou champ de structure
+			-> {$acc.text != null}? ^($i $l) //Instanciation d'une structure
 			-> $i
 	;
 	
