@@ -9,9 +9,9 @@ import org.antlr.runtime.tree.CommonTree;
 
 /**
  * 
- * Cette classe va créer et parcourir l'AST du code source. 
- * Il enverra les noeuds aux contrôles sémantiques correspondants.
- * Les TDS sont crées et enrichies dans les contrôles sémantiques.
+ * Cette classe va crï¿½er et parcourir l'AST du code source. 
+ * Il enverra les noeuds aux contrï¿½les sï¿½mantiques correspondants.
+ * Les TDS sont crï¿½es et enrichies dans les contrï¿½les sï¿½mantiques.
  *
  */
 public class AnalyseSemantique {
@@ -38,7 +38,7 @@ public class AnalyseSemantique {
 	}
 	
 	/**
-	 * Méthode pour lancer la récursion
+	 * Mï¿½thode pour lancer la rï¿½cursion
 	 */
 	public void analyze(){
 		CommonTree current = tree;
@@ -46,8 +46,8 @@ public class AnalyseSemantique {
 	}
 	
 	/**
-	 * Méthode récursive pour l'analyse d'un arbre
-	 * @param tree AST à analyser
+	 * Mï¿½thode rï¿½cursive pour l'analyse d'un arbre
+	 * @param tree AST ï¿½ analyser
 	 */
 	public void loop(CommonTree current){
 		try {
@@ -63,22 +63,24 @@ public class AnalyseSemantique {
 	}
 	
 	/**
-	 * Appelle les contrôles sémantiques pour le noeud en cours d'analyse
-	 * @param node Noeud à vérifier
+	 * Appelle les contrï¿½les sï¿½mantiques pour le noeud en cours d'analyse
+	 * @param node Noeud ï¿½ vï¿½rifier
 	 * @throws ErreurSemantique
 	 */
 	public void checkNode(CommonTree node) throws ErreurSemantique{
-		//En fonction du type du noeud, on appelle différents contrôles sémantiques
+		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
 		switch(node.getToken().getText()){
-			//Déclaration d'une variable
+			//Dï¿½claration d'une variable
 			case "var":
+				//alimenter la TDS
+				Field newfield = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
 				break;
 				
-			//Déclaration d'un type
+			//Dï¿½claration d'un type
 			case "type":
 				break;
 				
-			//Déclaration d'une fonction
+			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
 				break;
 				
@@ -98,18 +100,18 @@ public class AnalyseSemantique {
 			case "for":
 				break;
 			
-			//L'une des quatre opérations binaires
+			//L'une des quatre opï¿½rations binaires
 			case "+":
 			case "-":
 			case "*":
 			case "/":
 				break;
 				
-			//Accès à une case d'un tableau
+			//Accï¿½s ï¿½ une case d'un tableau
 			case "CELL":
 				break;
 			
-			//Définition dela taille d'un tableau
+			//Dï¿½finition dela taille d'un tableau
 			case "SIZE":
 					taille_tableau.check(node, TDSs);
 				break;
@@ -126,7 +128,7 @@ public class AnalyseSemantique {
 	
 	public static void main(String[] args){
 			
-			//On vérifie qu'on a bien le chemin du fichier en paramètre
+			//On vï¿½rifie qu'on a bien le chemin du fichier en paramï¿½tre
 			if(args.length != 1){
 				System.err.println("Usage : java -cp ./Analyse_lexicale_et_syntaxique/antlr-3.3-complete.jar AnalyseAnalyseSemantique file_name");
 				System.exit(1);
@@ -143,7 +145,7 @@ public class AnalyseSemantique {
 			analyzer.analyze();
 			
 			if(analyzer.isOK()){
-				System.out.println("L'analyse sémantique n'a détecté aucun problème !");
+				System.out.println("L'analyse sï¿½mantique n'a dï¿½tectï¿½ aucun problï¿½me !");
 			}else{
 				System.err.println(analyzer.getErrors());
 			}
