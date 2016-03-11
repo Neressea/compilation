@@ -24,7 +24,6 @@ public class ControleExistenceVariable implements ControleSemantique{
 		
 		CommonTree n = (CommonTree) tree.getChild(0);
 		
-		
 		if (!currentTDS.existIn(n.getText(), "Variable"))throw new ErreurSemantique(tree.getLine(), "Variable non déclarée");
 		
 	}
