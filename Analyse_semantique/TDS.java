@@ -10,7 +10,7 @@ import org.antlr.runtime.tree.CommonTree;
 public class TDS {
 	
 	//Compteur du nombre de TDS dans le programme.
-	private static int NB_TDS = 0;
+	public static int NB_TDS = 0;
 	
 	public static int NB_IMBR = 0;
 	
