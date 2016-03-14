@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 
-import org.antlr.runtime.tree.CommonTree;
-
 /**
  * 
  * Reprï¿½sente la fonction principale qui doit-ï¿½tre implï¿½mentï¿½e par toute TDS.
  *
  */
-public class TDS {
+public abstract class TDS {
 	
 	//Compteur du nombre de TDS dans le programme.
 	public static int NB_TDS = 0;
@@ -17,12 +15,14 @@ public class TDS {
 	public static TDS CURRENT_TDS = null;
 	
 	//Numï¿½ro d'imbrication du bloc
-	private int nb_imbrication;
+	protected int nb_imbrication;
 	
 	//Numï¿½ro du bloc (identifiant unique)
-	private int nb_bloc;
+	protected int nb_bloc;
 	
-	private ArrayList<Field> fields;
+	protected ArrayList<Field> fields;
+	
+	protected ArrayList<TDS> TDSs;
 	
 	public TDS(){
 		nb_bloc = NB_TDS;
@@ -39,7 +39,7 @@ public class TDS {
 	}
 	
 	/**
-	 * Met à jour le curseur sur le bloc parent du bloc courant.
+	 * Met a jour le curseur sur le bloc parent du bloc courant.
 	 * @return
 	 */
 	public TDS sgetParent(ArrayList<TDS> list){
@@ -55,6 +55,8 @@ public class TDS {
 		return null;
 	}
 	
+	/*
+	
 	public TDS createParent(ArrayList<TDS> list){
 		TDS new_tds = new TDS();
 		
@@ -65,35 +67,10 @@ public class TDS {
 		return new_tds;
 	}
 	
-	public boolean existIn(String ID, String nature){
-		
-		for (Field f : this.fields){
-			if (f.getNature().equals(nature)){
-				if (f.getID().equals(ID)) return true;
-			}
-		}
-		
-		return false;
-		
-	}
+	*/
 	
-	static void addTDSVar(CommonTree node){
-		Field newField = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
-	}
 	
-	static void addTDSType(CommonTree node){
-		for (int i = 0; i < node.getChildCount() ; i++){
-			if (node.getChild(i).getText().equals("TYPE")){
-				
-			}
-		}
-		
-		Field newField = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
-	}
-	
-	static void addTDSFunction(CommonTree node){
-		
-	}
+
 	
 	
 }

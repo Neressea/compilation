@@ -65,22 +65,18 @@ public class AnalyseSemantique {
 	 */
 	public void checkNode(CommonTree node) throws ErreurSemantique{
 		//En fonction du type du noeud, on appelle diff�rents contr�les s�mantiques
-		Field newfield;
 		switch(node.getToken().getText()){
 			//D�claration d'une variable
 			case "var":
 				//alimenter la TDS
-				TDS.addTDSVar(node);
 				break;
 				
 			//D�claration d'un type
 			case "type":
-				TDS.addTDSType(node);
 				break;
 				
 			//D�claration d'une fonction
 			case "FUNC_DECL":
-				TDS.addTDSFunction(node);
 				break;
 				
 			case "BLOCK":
