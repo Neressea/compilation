@@ -65,19 +65,22 @@ public class AnalyseSemantique {
 	 */
 	public void checkNode(CommonTree node) throws ErreurSemantique{
 		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
+		Field newfield;
 		switch(node.getToken().getText()){
-			//Déclaration d'une variable
+			//Dï¿½claration d'une variable
 			case "var":
 				//alimenter la TDS
-				Field newfield = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
+				TDS.addTDSVar(node);
 				break;
 				
 			//Dï¿½claration d'un type
 			case "type":
+				TDS.addTDSType(node);
 				break;
 				
 			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
+				TDS.addTDSFunction(node);
 				break;
 				
 			case "BLOCK":
@@ -99,8 +102,8 @@ public class AnalyseSemantique {
 				
 			// Boucle for
 			case "for":
-				//on incrémente le for en plus de son bloc (les vars déclarées dans le for sont dans un
-				//bloc supérieur au bloc lui-même
+				//on incrï¿½mente le for en plus de son bloc (les vars dï¿½clarï¿½es dans le for sont dans un
+				//bloc supï¿½rieur au bloc lui-mï¿½me
 				TDS.NB_IMBR++;
 				break;
 				

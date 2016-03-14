@@ -47,4 +47,18 @@ public class TDS {
 		return false;
 		
 	}
+	
+	static void addTDSVar(CommonTree node){
+		Field newField = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
+	}
+	
+	static void addTDSType(CommonTree node){
+		
+	}
+	
+	static void addTDSFunction(CommonTree node){
+		
+	}
+	
+	
 }
