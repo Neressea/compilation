@@ -55,6 +55,16 @@ public class TDS {
 		return null;
 	}
 	
+	public TDS createParent(ArrayList<TDS> list){
+		TDS new_tds = new TDS();
+		
+		list.add(new_tds);
+		NB_IMBR++;
+		CURRENT_TDS = new_tds;
+		
+		return new_tds;
+	}
+	
 	public boolean existIn(String ID, String nature){
 		
 		for (Field f : this.fields){
