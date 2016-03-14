@@ -14,6 +14,8 @@ public class TDS {
 	
 	public static int NB_IMBR = 0;
 	
+	public static int CURRENT_TDS = 0;
+	
 	//Num�ro d'imbrication du bloc
 	private int nb_imbrication;
 	
@@ -53,7 +55,13 @@ public class TDS {
 	}
 	
 	static void addTDSType(CommonTree node){
+		for (int i = 0; i < node.getChildCount() ; i++){
+			if (node.getChild(i).getText().equals("TYPE")){
+				
+			}
+		}
 		
+		Field newField = new Field(node.getChild(0).getText(), "Variable", null, null, 0, 0, 0);
 	}
 	
 	static void addTDSFunction(CommonTree node){
