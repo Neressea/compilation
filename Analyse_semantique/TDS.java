@@ -14,7 +14,7 @@ public class TDS {
 	
 	public static int NB_IMBR = 0;
 	
-	public static int CURRENT_TDS = 0;
+	public static TDS CURRENT_TDS = null;
 	
 	//Numï¿½ro d'imbrication du bloc
 	private int nb_imbrication;
@@ -36,6 +36,23 @@ public class TDS {
 	
 	public int getBloc(){
 		return nb_bloc;
+	}
+	
+	/**
+	 * Met à jour le curseur sur le bloc parent du bloc courant.
+	 * @return
+	 */
+	public TDS sgetParent(ArrayList<TDS> list){
+		TDS current;
+		for (int i = list.size()-1; i >=0 ; i--) {
+			current = list.get(i);
+			if(current.getImbrication() == TDS.NB_IMBR-1){
+				TDS.CURRENT_TDS = current;
+				TDS.NB_IMBR--;
+				return TDS.CURRENT_TDS;
+			}
+		}
+		return null;
 	}
 	
 	public boolean existIn(String ID, String nature){
