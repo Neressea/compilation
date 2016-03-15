@@ -55,9 +55,6 @@ public class AnalyseSemantique {
 			is_ok = false;
 		}
 		
-		for(int i = 0; i<current.getChildCount(); i++){
-			loop((CommonTree) current.getChild(i));
-		}
 	}
 	
 	/**
@@ -81,10 +78,13 @@ public class AnalyseSemantique {
 			case "FUNC_DECL":
 				createTDSFunc(node);
 				break;
-				
+			
 			case "BLOCK":
 				//Quand on entre dans un bloc on augmente l'imbrication
+				analyseChild(node);
+				fermetureTDS();
 				break;
+			
 				
 			//Appel d'une fonction
 			case "FUNC_CALL":
@@ -137,6 +137,18 @@ public class AnalyseSemantique {
 			case "SIZE":
 					taille_tableau.check(node, TDSs);
 				break;
+				
+			case "PARAMSFORM":
+				break;
+		}
+		
+		analyseChild(node);
+		
+	}
+	
+	private void analyseChild(CommonTree node){
+		for(int i = 0; i<node.getChildCount(); i++){
+			loop((CommonTree) node.getChild(i));
 		}
 	}
 	
@@ -158,10 +170,12 @@ public class AnalyseSemantique {
 	private void openTDS(TDS tds){
 		this.TDSs.add(tds);
 		this.pile.add(tds);
+		TDS.NB_IMBR++;
 	}
 	
 	private void fermetureTDS(){
 		this.pile.remove(this.pile.size()-1);
+		TDS.NB_IMBR--;
 	}
 	
 	public boolean isOK(){

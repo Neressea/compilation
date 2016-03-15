@@ -12,8 +12,6 @@ public abstract class TDS {
 	
 	public static int NB_IMBR = 0;
 	
-	public static TDS CURRENT_TDS = null;
-	
 	//Num�ro d'imbrication du bloc
 	protected int nb_imbrication;
 	
@@ -42,6 +40,8 @@ public abstract class TDS {
 	 * Met a jour le curseur sur le bloc parent du bloc courant.
 	 * @return
 	 */
+	
+	/*
 	public TDS sgetParent(ArrayList<TDS> list){
 		TDS current;
 		for (int i = list.size()-1; i >=0 ; i--) {
@@ -58,8 +58,6 @@ public abstract class TDS {
 	public void addField(Field newField){
 		this.fields.add(newField);
 	}
-	
-	/*
 	
 	public TDS createParent(ArrayList<TDS> list){
 		TDS new_tds = new TDS();
