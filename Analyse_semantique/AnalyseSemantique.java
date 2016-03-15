@@ -143,7 +143,7 @@ public class AnalyseSemantique {
 		}
 		
 		analyseChild(node);
-		
+		// provisoire! A enlever par la suite et ajouter a certains cas superieurs
 	}
 	
 	private void analyseChild(CommonTree node){
