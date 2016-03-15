@@ -79,11 +79,11 @@ public class AnalyseSemantique {
 				
 			//D�claration d'une fonction
 			case "FUNC_DECL":
+				createTDSFunc(node);
 				break;
 				
 			case "BLOCK":
 				//Quand on entre dans un bloc on augmente l'imbrication
-				TDS.NB_IMBR++;
 				break;
 				
 			//Appel d'une fonction
@@ -98,28 +98,28 @@ public class AnalyseSemantique {
 			case "COND":
 				break;
 				
+			case "let":
+				createTDSLet(node);
+				break;
+				
 			// Boucle for
 			case "for":
 				//on incr�mente le for en plus de son bloc (les vars d�clar�es dans le for sont dans un
 				//bloc sup�rieur au bloc lui-m�me
-				TDS.NB_IMBR++;
+				createTDSFor(node);
 				break;
 				
 			case "if":
-				TDS.NB_IMBR++;
 				break;
 			
 			case "then":
 				//Les vars du if sont accessibles depuis le then et le else
-				TDS.NB_IMBR++;
 				break;
 				
 			case "else":
-				TDS.NB_IMBR++;
 				break;
 				
 			case "while":
-				TDS.NB_IMBR++;
 				break;
 			
 			//L'une des quatre op�rations binaires
@@ -138,6 +138,30 @@ public class AnalyseSemantique {
 					taille_tableau.check(node, TDSs);
 				break;
 		}
+	}
+	
+	private void createTDSFor(CommonTree node){
+		TDS newTDS = new TDSFor();
+		openTDS(newTDS);
+	}
+	
+	private void createTDSFunc(CommonTree node){
+		TDS newTDS = new TDSFunc();
+		openTDS(newTDS);
+	}
+	
+	private void createTDSLet(CommonTree node){
+		TDS newTDS = new TDSLet();
+		openTDS(newTDS);
+	}
+	
+	private void openTDS(TDS tds){
+		this.TDSs.add(tds);
+		this.pile.add(tds);
+	}
+	
+	private void fermetureTDS(){
+		this.pile.remove(this.pile.size()-1);
 	}
 	
 	public boolean isOK(){

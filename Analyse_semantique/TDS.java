@@ -22,7 +22,7 @@ public abstract class TDS {
 	
 	protected ArrayList<Field> fields;
 	
-	protected ArrayList<TDS> TDSs;
+	//protected ArrayList<TDS> TDSs;
 	
 	public TDS(){
 		nb_bloc = NB_BLOC;
@@ -53,6 +53,10 @@ public abstract class TDS {
 			}
 		}
 		return null;
+	}
+	
+	public void addField(Field newField){
+		this.fields.add(newField);
 	}
 	
 	/*
