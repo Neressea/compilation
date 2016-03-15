@@ -135,10 +135,11 @@ public class AnalyseSemantique {
 			
 			//D�finition dela taille d'un tableau
 			case "SIZE":
-					taille_tableau.check(node, TDSs);
+					taille_tableau.check(node, pile);
 				break;
 				
 			case "PARAMSFORM":
+				
 				break;
 		}
 		
