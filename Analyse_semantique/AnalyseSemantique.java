@@ -20,6 +20,7 @@ public class AnalyseSemantique {
 	private boolean is_ok;
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
+	private ArrayList<TDS> pile;
 	private ControleSemantique taille_tableau;
 	
 	public AnalyseSemantique(String file_path) throws IOException, RecognitionException{
@@ -33,6 +34,7 @@ public class AnalyseSemantique {
 		is_ok = true;
 		err_messages = "";
 		TDSs = new ArrayList<TDS>();
+		pile = new ArrayList<TDS>();
 		
 		taille_tableau = new ControleTableau();
 	}

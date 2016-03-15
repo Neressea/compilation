@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class TDS {
 	
 	//Compteur du nombre de TDS dans le programme.
-	public static int NB_TDS = 0;
+	public static int NB_BLOC = 0;
 	
 	public static int NB_IMBR = 0;
 	
@@ -25,8 +25,8 @@ public abstract class TDS {
 	protected ArrayList<TDS> TDSs;
 	
 	public TDS(){
-		nb_bloc = NB_TDS;
-		NB_TDS++;
+		nb_bloc = NB_BLOC;
+		NB_BLOC++;
 		fields = new ArrayList<Field>();
 	}
 	
