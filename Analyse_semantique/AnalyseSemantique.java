@@ -67,39 +67,47 @@ public class AnalyseSemantique {
 		switch(node.getToken().getText()){
 			//D�claration d'une variable
 			case "var":
+				analyseChild(node);
 				//alimenter la TDS
 				break;
 				
 			//D�claration d'un type
 			case "type":
+				analyseChild(node);
 				break;
 				
 			//D�claration d'une fonction
 			case "FUNC_DECL":
 				createTDSFunc(node);
+				analyseChild(node);
+				fermetureTDS();
 				break;
 			
 			case "BLOCK":
 				//Quand on entre dans un bloc on augmente l'imbrication
 				analyseChild(node);
-				fermetureTDS();
 				break;
 			
 				
 			//Appel d'une fonction
 			case "FUNC_CALL":
+				analyseChild(node);
 				break;
 				
 			//Affectation
 			case ":=":
+				analyseChild(node);
 				break;
 				
 			//Condition
 			case "COND":
+				analyseChild(node);
 				break;
 				
 			case "let":
 				createTDSLet(node);
+				analyseChild(node);
+				fermetureTDS();
 				break;
 				
 			// Boucle for
@@ -107,19 +115,25 @@ public class AnalyseSemantique {
 				//on incr�mente le for en plus de son bloc (les vars d�clar�es dans le for sont dans un
 				//bloc sup�rieur au bloc lui-m�me
 				createTDSFor(node);
+				analyseChild(node);
+				fermetureTDS();
 				break;
 				
 			case "if":
+				analyseChild(node);
 				break;
 			
 			case "then":
+				analyseChild(node);
 				//Les vars du if sont accessibles depuis le then et le else
 				break;
 				
 			case "else":
+				analyseChild(node);
 				break;
 				
 			case "while":
+				analyseChild(node);
 				break;
 			
 			//L'une des quatre op�rations binaires
@@ -131,19 +145,21 @@ public class AnalyseSemantique {
 				
 			//Acc�s � une case d'un tableau
 			case "CELL":
+				analyseChild(node);
 				break;
 			
 			//D�finition dela taille d'un tableau
 			case "SIZE":
-					taille_tableau.check(node, pile);
+				taille_tableau.check(node, pile);
+				analyseChild(node);
 				break;
 				
 			case "PARAMSFORM":
-				
+				analyseChild(node);
 				break;
 		}
 		
-		analyseChild(node);
+		
 		// provisoire! A enlever par la suite et ajouter a certains cas superieurs
 	}
 	

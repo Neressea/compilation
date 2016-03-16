@@ -15,18 +15,9 @@ public class ControleExistenceVariable implements ControleSemantique{
 		CommonTree n = (CommonTree) tree.getChild(0);
 		
 		for (TDS tds: TDSs){
-			if (tds.getImbrication() == TDS.NB_IMBR){
-				if (tds.getBloc() == TDS.NB_TDS){
-					if (tds.existIn(n.getText(), "Variable")){
-						found = true;
-						break;
-					}
-				}
-			}else if(tds.getImbrication() < TDS.NB_IMBR){
-				if (tds.existIn(n.getText(), "Variable")){
-					found = true;
-					break;
-				}
+			if (tds.existInVariable(n.getChild(0).getText())){
+				found=true;
+				break;
 			}
 		}	
 		

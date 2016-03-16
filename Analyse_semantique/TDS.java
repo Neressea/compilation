@@ -36,6 +36,66 @@ public abstract class TDS {
 		return nb_bloc;
 	}
 	
+	public ArrayList<Field> getFields(){
+		return this.fields;
+	}
+	
+	public boolean existInVariable(String ID){
+		for (Field field : this.fields){
+			if(field instanceof FieldVariable){
+				tryID(field, ID);
+			}
+		}
+		return false;
+		
+	}
+	
+	public boolean existInFonction(String ID){
+		for (Field field : this.fields){
+			if(field instanceof FieldFonction){
+				tryID(field, ID);
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	public boolean existInStructure(String ID){
+		for (Field field : this.fields){
+			if(field instanceof FieldStructure){
+				tryID(field, ID);
+			}
+		}
+		return false;
+		
+	}
+	
+	public boolean existInTableau(String ID){
+		for (Field field : this.fields){
+			if(field instanceof FieldTableau){
+				tryID(field, ID);
+			}
+		}
+		return false;
+		
+	}
+	
+	public boolean existInType(String ID){
+		for (Field field : this.fields){
+			if(field instanceof FieldType){
+				tryID(field, ID);
+			}
+		}
+		return false;
+		
+	}
+	
+	private boolean tryID(Field field, String ID){
+		if (field.getID().equals(ID)) return true;
+		else return false;
+	}
+
 	/**
 	 * Met a jour le curseur sur le bloc parent du bloc courant.
 	 * @return

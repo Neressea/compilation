@@ -27,7 +27,7 @@ public abstract class Field {
 	}
 
 	public void setID(String ID) {
-		ID = ID;
+		this.ID = ID;
 	}
 
 	public int getTaille_du_saut() {
