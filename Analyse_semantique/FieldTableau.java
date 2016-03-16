@@ -1,4 +1,6 @@
 
+
+
 public class FieldTableau extends Field{
 
 	private String type;
@@ -18,5 +20,10 @@ public class FieldTableau extends Field{
 	
 	public int getBorneSup(){
 		return this.borne_sup;
+	}
+	
+	@Override
+	public FieldTypeName getFieldType(){
+		return FieldTypeName.FieldTableau;
 	}
 }

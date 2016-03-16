@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public abstract class Field {
 	
+	public enum FieldTypeName {FieldFonction, FieldStructure, FieldTableau, FieldType, FieldVariable};
+	
 	//Nom du champ dans le code source
 	protected String ID;
 		
@@ -46,5 +48,6 @@ public abstract class Field {
 		this.taille_min = taille_min;
 	}
 	
+	public abstract FieldTypeName getFieldType();
 	
 }

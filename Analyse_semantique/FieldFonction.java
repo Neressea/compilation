@@ -27,4 +27,9 @@ public class FieldFonction extends Field{
 		return this.params;
 	}
 	
+	@Override
+	public FieldTypeName getFieldType(){
+		return FieldTypeName.FieldFonction;
+	}
+	
 }

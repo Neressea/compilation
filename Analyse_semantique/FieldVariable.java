@@ -1,5 +1,3 @@
-
-
 public class FieldVariable extends Field{
 
 	private String type;
@@ -11,6 +9,11 @@ public class FieldVariable extends Field{
 	
 	public String getType(){
 		return this.type;
+	}
+	
+	@Override
+	public FieldTypeName getFieldType(){
+		return FieldTypeName.FieldVariable;
 	}
 
 }
