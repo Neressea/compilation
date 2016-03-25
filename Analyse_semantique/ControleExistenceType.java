@@ -6,7 +6,7 @@ import org.antlr.runtime.tree.CommonTree;
 public class ControleExistenceType extends ControleSemantique{
 	
 	public ControleExistenceType(CommonTree tree) {
-		super.node=tree;
+		super(tree);
 	}
 
 	@Override

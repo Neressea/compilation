@@ -3,6 +3,6 @@ let
 	type arrayInt = array of int 
 	var tab := arrayInt [-5] of 0
 	var ok := arrayInt [3-5] of 5
-	var pasok := arrayInt [-(5+3)] of 10
+	var pasok := arrayInt [-5] of 10
 
 in end

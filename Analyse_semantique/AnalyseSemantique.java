@@ -37,8 +37,6 @@ public class AnalyseSemantique {
 		err_messages = "";
 		TDSs = new ArrayList<TDS>();
 		pile = new ArrayList<TDS>();
-		
-		taille_tableau = new ControleTableau();
 	}
 	
 	public void analyze(){
@@ -236,6 +234,7 @@ public class AnalyseSemantique {
 			
 			//D�finition dela taille d'un tableau
 			case "SIZE":
+				taille_tableau = new ControleTableau(node);
 				taille_tableau.check(pile);
 				analyseChild(node);
 				break;
@@ -243,6 +242,9 @@ public class AnalyseSemantique {
 			case "PARAMSFORM":
 				analyseChild(node);
 				break;
+				
+			default:
+				analyseChild(node);
 		}		
 	}
 	

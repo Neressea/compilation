@@ -11,5 +11,9 @@ public abstract class ControleSemantique {
 	
 	protected CommonTree node;
 	
+	public ControleSemantique(CommonTree node){
+		this.node=node;
+	}
+	
 	public abstract void check(ArrayList<TDS> TDSs) throws ErreurSemantique;
 }

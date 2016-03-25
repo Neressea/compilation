@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import org.antlr.runtime.tree.CommonTree;
 
 public class ControleTableau extends ControleSemantique{
+	
+	public ControleTableau(CommonTree node) {
+		super(node);
+	}
 
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
