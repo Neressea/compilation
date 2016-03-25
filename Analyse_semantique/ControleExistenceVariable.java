@@ -14,7 +14,7 @@ public class ControleExistenceVariable extends ControleSemantique{
 		CommonTree n = (CommonTree) node.getChild(0);
 		
 		for (TDS tds: TDSs){
-			if (tds.existIn(n.getChild(0).getText(), FieldType.FieldVariable)){
+			if (tds.existIn(n.getChild(0).getText(), FieldType.FieldVariable) != null){
 				found=true;
 				break;
 			}

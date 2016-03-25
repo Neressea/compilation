@@ -12,8 +12,8 @@ public class FieldFonction extends Field{
 	 */
 	private ArrayList<Couple<String, String>> params;
 	
-	public FieldFonction(String ID, int taille_du_saut, int taille, String type) {
-		super(ID, taille_du_saut, taille);
+	public FieldFonction(String ID, int taille_du_saut, String type) {
+		super(ID, taille_du_saut, -1);
 		params = new ArrayList<Couple<String, String>>();
 		this.type = type;
 	}

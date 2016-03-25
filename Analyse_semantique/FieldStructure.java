@@ -9,8 +9,8 @@ public class FieldStructure extends Field{
 		noms_champs_et_types = new ArrayList<Couple<String, String>>();
 	}
 	
-	public void addChamp(String name, String type){
-		noms_champs_et_types.add(new Couple<String, String>(name, type));
+	public void addChamp(String name, String value){
+		noms_champs_et_types.add(new Couple<String, String>(name, value));
 	}
 	
 	@Override

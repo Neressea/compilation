@@ -20,8 +20,10 @@ public class AnalyseSemantique {
 	private boolean is_ok;
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
-	public static ArrayList<TDS> pile;
+	private ArrayList<TDS> pile;
 	private ControleSemantique taille_tableau;
+	
+	private static final int SIZE_PRIMITIF = 8;
 	
 	public AnalyseSemantique(String file_path) throws IOException, RecognitionException{
 		tree = null;
@@ -63,23 +65,35 @@ public class AnalyseSemantique {
 	 */
 	public void checkNode(CommonTree node) throws ErreurSemantique{
 		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
-		TDS current = pile.get(pile.size()-1);
+		TDS current = null;
+		
+		if(pile.size()>0) current = pile.get(pile.size()-1);
+		
 		switch(node.getToken().getText()){
-			//D"claration d'une variable
+			//Déclaration d'une variable
 			case "var":
+				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
-					//On a un tableau
-					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, FieldType.FieldTableau));
-				}else if(node.getChild(1).getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){
-					//On a une variable
-					if(node.getChild(1).getChildCount() == 2){
-						//current.add(new FieldVariable(node.getChild(0).getText(), taille_du_saut, taille_min, type));
+					
+					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0)));
+					
+				//On a une variable
+				}else if(node.getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){	
+					
+					//Le type n'est pas indiqué
+					if(node.getChildCount() == 2){
+						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
+						
+					//Le type est indiqué
 					}else{
 						ControleExistenceType cet = new ControleExistenceType(node);
-						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), cet.computeSize(), node.getChild(1).getText()));
+						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
 					}	
+					
+				//On a une structure
 				}else if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("STRUCT")){
-					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), taille);
+					
+					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()));
 					
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
@@ -92,25 +106,62 @@ public class AnalyseSemantique {
 				analyseChild(node);
 				break;
 				
-			//Dï¿½claration d'un type
+			//Déclaration d'un type
 			case "type":
+				FieldType type = null;
+				int taille=0;
+				
+				switch (node.getChild(1).getText()) {
+					case "PRIMITIF":
+						//Variable indique que c'est un type primitif
+						type = FieldType.FieldVariable;
+						taille = computeSizeType(node.getChild(1).getChild(0).getText());
+						break;
+						
+					case "TAB":
+						type = FieldType.FieldTableau;
+						
+						//@ du premier élément du tableau + taille d'un entier pour la borne sup du tableau
+						taille = SIZE_PRIMITIF * 2;
+						break;
+						
+					case "STRUCT":
+						type = FieldType.FieldStructure;
+						for(int i=0; i<node.getChild(1).getChildCount(); i++){
+							taille+=computeSizeType(node.getChild(1).getChild(1).getText());
+						}
+						
+						break;
+				}
+				
+				current.add(new FieldTypeDef(node.getChild(0).getText(), current.getCurrentSize(), taille, type));
 				analyseChild(node);
 				break;
 				
 			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
 				FieldFonction ff = null;
-				
+								
 				//Si on a le type qui est précisé
 				if(node.getChildCount() == 4){
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, node.getChild(2).getText());
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getText());
 				
-					//On ajoute 
+					//On ajoute les paramètres formels
+					for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
+						ff.addParam(node.getChild(2).getChild(i).getChild(0).getText(), node.getChild(2).getChild(i).getChild(1).getText());
+					}
+					
 				}else if(node.getChildCount() == 3){
 					//Deux cas avec les 3 fils : soit params, soit type. On vérifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getText():"UNDEFINED");
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getText():"UNDEFINED");
+				
+					if (node.getChild(1).getText().equals("TYPE")){
+						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
+							ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
+						}
+					}
 				}else
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, "UNDEFINED");
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), "UNDEFINED");
 				
 				current.add(ff);
 				createTDSFunc(node);
@@ -123,7 +174,6 @@ public class AnalyseSemantique {
 				analyseChild(node);
 				break;
 			
-				
 			//Appel d'une fonction
 			case "FUNC_CALL":
 				analyseChild(node);
@@ -150,6 +200,7 @@ public class AnalyseSemantique {
 				//on incrï¿½mente le for en plus de son bloc (les vars dï¿½clarï¿½es dans le for sont dans un
 				//bloc supï¿½rieur au bloc lui-mï¿½me
 				createTDSFor(node);
+				pile.get(pile.size()-1).add(new FieldVariable(node.getChild(0).getText(), pile.get(pile.size()-1).getCurrentSize(), SIZE_PRIMITIF, "int"));
 				analyseChild(node);
 				closeTDS();
 				break;
@@ -185,17 +236,14 @@ public class AnalyseSemantique {
 			
 			//Dï¿½finition dela taille d'un tableau
 			case "SIZE":
-				taille_tableau.check(node, pile);
+				taille_tableau.check(pile);
 				analyseChild(node);
 				break;
 				
 			case "PARAMSFORM":
 				analyseChild(node);
 				break;
-		}
-		
-		
-		// provisoire! A enlever par la suite et ajouter a certains cas superieurs
+		}		
 	}
 	
 	private void analyseChild(CommonTree node){
@@ -230,6 +278,50 @@ public class AnalyseSemantique {
 		TDS.NB_IMBR--;
 	}
 	
+	private int computeSizeType(String id){
+		switch (id) {
+		case "int":
+		case "string":
+			return SIZE_PRIMITIF;
+
+		default:
+			FieldTypeDef ftd = null;
+			
+			for(int i=pile.size()-1; i>=0;i--){
+				ftd = (FieldTypeDef) pile.get(i).existIn(id, FieldType.FieldType);
+				if(ftd != null) break;
+			}
+			
+			return ftd.getTaille();
+		}
+	}
+	
+	private int computeSizePrimitif(String primit){
+		int size=0;
+		try{
+			//Si le cast marche, alors c'est un int et la taille est celle d'un élément primitif
+			Integer.parseInt(primit);
+			size = SIZE_PRIMITIF;
+		}catch(Exception e){
+			//On ne prend pas en compte les deux ""
+			size = SIZE_PRIMITIF * (primit.length()-2);
+		}
+		
+		return size;
+	}
+	
+	private boolean isInteger(String primit){
+		boolean is_int = true;
+		try{
+			//Si le cast marche, alors c'est un int et la taille est celle d'un élément primitif
+			Integer.parseInt(primit);
+		}catch(Exception e){
+			is_int = false;
+		}
+		
+		return is_int;
+	}
+	
 	public boolean isOK(){
 		return is_ok;
 	}
@@ -240,7 +332,7 @@ public class AnalyseSemantique {
 	
 	public static void main(String[] args){
 			
-			//On vï¿½rifie qu'on a bien le chemin du fichier en paramï¿½tre
+			//On vérifie qu'on a bien le chemin du fichier en paramètre
 			if(args.length != 1){
 				System.err.println("Usage : java -cp ./Analyse_lexicale_et_syntaxique/antlr-3.3-complete.jar AnalyseAnalyseSemantique file_name");
 				System.exit(1);

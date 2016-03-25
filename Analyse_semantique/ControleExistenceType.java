@@ -13,9 +13,4 @@ public class ControleExistenceType extends ControleSemantique{
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
 	}
-	
-	public int computeSize(){
-		return taille;
-	}
-
 }

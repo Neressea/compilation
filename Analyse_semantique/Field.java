@@ -30,11 +30,11 @@ public abstract class Field {
 		this.ID = ID;
 	}
 
-	public int getTaille_du_saut() {
+	public int getTailleDuSaut() {
 		return taille_du_saut;
 	}
 
-	public void setTaille_du_saut(int taille_du_saut) {
+	public void setTailleDuSaut(int taille_du_saut) {
 		this.taille_du_saut = taille_du_saut;
 	}
 

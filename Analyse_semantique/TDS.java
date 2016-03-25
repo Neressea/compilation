@@ -38,13 +38,13 @@ public abstract class TDS {
 		return this.fields;
 	}
 	
-	public boolean existIn(String ID, FieldType fieldtype){
+	public Field existIn(String ID, FieldType fieldtype){
 		for (Field field : this.fields){
 			if(field.getFieldType().equals(fieldtype)){
-				if(field.getID().equals(ID)) return true;
+				if(field.getID().equals(ID)) return field;
 			}
 		}
-		return false;
+		return null;
 		
 	}
 	
