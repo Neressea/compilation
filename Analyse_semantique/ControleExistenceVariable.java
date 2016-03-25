@@ -3,25 +3,24 @@ import java.util.ArrayList;
 import org.antlr.runtime.tree.CommonTree;
 
 
-public class ControleExistenceVariable implements ControleSemantique{
+public class ControleExistenceVariable extends ControleSemantique{
 
 	
 	@Override
-	public void check(CommonTree tree, ArrayList<TDS> TDSs)
-			throws ErreurSemantique {
+	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
 		boolean found = false;
 		
-		CommonTree n = (CommonTree) tree.getChild(0);
+		CommonTree n = (CommonTree) node.getChild(0);
 		
 		for (TDS tds: TDSs){
-			if (tds.existIn(n.getChild(0).getText(), Field.FieldTypeName.FieldVariable)){
+			if (tds.existIn(n.getChild(0).getText(), FieldType.FieldVariable)){
 				found=true;
 				break;
 			}
 		}	
 		
-		if (!found)throw new ErreurSemantique(tree.getLine(), "Variable non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Variable non déclarée");
 		
 	}
 

@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.tree.CommonTree;
 
-public class ControleTableau implements ControleSemantique{
+public class ControleTableau extends ControleSemantique{
 
 	@Override
-	public void check(CommonTree node, ArrayList<TDS> TDSs) throws ErreurSemantique {
+	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
 		/*------------------- On vérifie que la taille du tableau n'est pas négative -------------------*/
 		

@@ -7,6 +7,9 @@ import org.antlr.runtime.tree.CommonTree;
  * Contrôle sémantique
  *
  */
-public interface ControleSemantique {
-	public void check(CommonTree tree, ArrayList<TDS> TDSs) throws ErreurSemantique;
+public abstract class ControleSemantique {
+	
+	protected CommonTree node;
+	
+	public abstract void check(ArrayList<TDS> TDSs) throws ErreurSemantique;
 }

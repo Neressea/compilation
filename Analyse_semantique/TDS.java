@@ -19,9 +19,7 @@ public abstract class TDS {
 	protected int nb_bloc;
 	
 	protected ArrayList<Field> fields;
-	
-	//protected ArrayList<TDS> TDSs;
-	
+		
 	public TDS(){
 		nb_bloc = NB_BLOC;
 		NB_BLOC++;
@@ -40,7 +38,7 @@ public abstract class TDS {
 		return this.fields;
 	}
 	
-	public boolean existIn(String ID, Field.FieldTypeName fieldtype){
+	public boolean existIn(String ID, FieldType fieldtype){
 		for (Field field : this.fields){
 			if(field.getFieldType().equals(fieldtype)){
 				if(field.getID().equals(ID)) return true;
@@ -48,6 +46,10 @@ public abstract class TDS {
 		}
 		return false;
 		
+	}
+	
+	public void add(Field f){
+		fields.add(f);
 	}
 
 	/**
@@ -86,7 +88,15 @@ public abstract class TDS {
 	*/
 	
 	
-
+	public int getCurrentSize(){
+		int size=0;
+		
+		for(Field f : fields){
+			size+=f.getTaille();
+		}
+		
+		return size;
+	}
 	
 	
 }

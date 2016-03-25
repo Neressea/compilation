@@ -1,14 +1,35 @@
 
+public enum FieldType{
+	FieldFonction, FieldStructure, FieldTableau, FieldType, FieldVariable;
+	
+	/*public int sizeOf(){
+		int size = 0;
+		
+		switch (this) {
+		case FieldFonction:
+			
+			break;
 
-
-public class FieldType extends Field{
-
-	public FieldType(String ID, int taille_du_saut, int taille_min) {
-		super(ID, taille_du_saut, taille_min);
-	}
-
-	@Override
-	public FieldTypeName getFieldType(){
-		return FieldTypeName.FieldType;
-	}
+		case FieldStructure:
+			
+			break;
+			
+		case FieldTableau:
+			
+			break;
+			
+		case FieldType:
+			
+			break;
+			
+		case FieldVariable:
+			
+			break;
+			
+		default:
+			break;
+		}
+		
+		return size;
+	}*/
 }

@@ -10,8 +10,21 @@ public class FieldTableau extends Field{
 	 */
 	private int borne_sup;
 	
-	public FieldTableau(String ID, int taille_du_saut, int taille_min) {
-		super(ID, taille_du_saut, taille_min);
+	/**
+	 * Adresse où commencent les éléments du tableau.
+	 * Champ qui sera calculé lors de la géénration de code.
+	 */
+	private int adresse_virtuelle;
+	
+	/**
+	 * Taille d'un élément du tableau.
+	 */
+	private int taille_element;
+		
+	public FieldTableau(String ID, int taille_du_saut, int taille, String type, int taille_element, int borne_sup) {
+		super(ID, taille_du_saut, taille);
+		this.borne_sup=borne_sup;
+		this.type=type;
 	}
 	
 	public String getType(){
@@ -23,7 +36,7 @@ public class FieldTableau extends Field{
 	}
 	
 	@Override
-	public FieldTypeName getFieldType(){
-		return FieldTypeName.FieldTableau;
+	public FieldType getFieldType(){
+		return FieldType.FieldTableau;
 	}
 }

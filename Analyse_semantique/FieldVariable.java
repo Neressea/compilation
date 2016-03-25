@@ -12,8 +12,8 @@ public class FieldVariable extends Field{
 	}
 	
 	@Override
-	public FieldTypeName getFieldType(){
-		return FieldTypeName.FieldVariable;
+	public FieldType getFieldType(){
+		return FieldType.FieldVariable;
 	}
 
 }

@@ -3,13 +3,19 @@ import java.util.ArrayList;
 import org.antlr.runtime.tree.CommonTree;
 
 
-public class ControleExistenceType implements ControleSemantique{
+public class ControleExistenceType extends ControleSemantique{
+	
+	public ControleExistenceType(CommonTree tree) {
+		super.node=tree;
+	}
 
 	@Override
-	public void check(CommonTree tree, ArrayList<TDS> TDSs)
-			throws ErreurSemantique {
-		// TODO Auto-generated method stub
+	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
+	}
+	
+	public int computeSize(){
+		return taille;
 	}
 
 }

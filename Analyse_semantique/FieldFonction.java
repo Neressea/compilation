@@ -12,11 +12,14 @@ public class FieldFonction extends Field{
 	 */
 	private ArrayList<Couple<String, String>> params;
 	
-	public FieldFonction(String ID, int taille_du_saut, int taille_min, String type, ArrayList<Couple<String, String>> params) {
-		super(ID, taille_du_saut, taille_min);
+	public FieldFonction(String ID, int taille_du_saut, int taille, String type) {
+		super(ID, taille_du_saut, taille);
+		params = new ArrayList<Couple<String, String>>();
 		this.type = type;
-		this.params=params;
-		
+	}
+	
+	public void addParam(String name, String type){
+		params.add(new Couple<String, String>(name, type));
 	}
 	
 	public String getType(){
@@ -28,8 +31,8 @@ public class FieldFonction extends Field{
 	}
 	
 	@Override
-	public FieldTypeName getFieldType(){
-		return FieldTypeName.FieldFonction;
+	public FieldType getFieldType(){
+		return FieldType.FieldFonction;
 	}
 	
 }

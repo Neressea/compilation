@@ -20,7 +20,7 @@ public class AnalyseSemantique {
 	private boolean is_ok;
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
-	private ArrayList<TDS> pile;
+	public static ArrayList<TDS> pile;
 	private ControleSemantique taille_tableau;
 	
 	public AnalyseSemantique(String file_path) throws IOException, RecognitionException{
@@ -54,7 +54,6 @@ public class AnalyseSemantique {
 			err_messages+=e.getMessage()+"\n";
 			is_ok = false;
 		}
-		
 	}
 	
 	/**
@@ -64,11 +63,33 @@ public class AnalyseSemantique {
 	 */
 	public void checkNode(CommonTree node) throws ErreurSemantique{
 		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
+		TDS current = pile.get(pile.size()-1);
 		switch(node.getToken().getText()){
-			//Dï¿½claration d'une variable
+			//D"claration d'une variable
 			case "var":
+				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
+					//On a un tableau
+					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, FieldType.FieldTableau));
+				}else if(node.getChild(1).getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){
+					//On a une variable
+					if(node.getChild(1).getChildCount() == 2){
+						//current.add(new FieldVariable(node.getChild(0).getText(), taille_du_saut, taille_min, type));
+					}else{
+						ControleExistenceType cet = new ControleExistenceType(node);
+						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), cet.computeSize(), node.getChild(1).getText()));
+					}	
+				}else if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("STRUCT")){
+					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), taille);
+					
+					for(int i=0; i<node.getChild(1).getChildCount();i++){
+						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
+						fs.addChamp(ct.getChild(0).getText(), ct.getChild(1).getText());
+					}
+					
+					current.add(fs);
+				}
+					
 				analyseChild(node);
-				//alimenter la TDS
 				break;
 				
 			//Dï¿½claration d'un type
@@ -78,9 +99,23 @@ public class AnalyseSemantique {
 				
 			//Dï¿½claration d'une fonction
 			case "FUNC_DECL":
+				FieldFonction ff = null;
+				
+				//Si on a le type qui est précisé
+				if(node.getChildCount() == 4){
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, node.getChild(2).getText());
+				
+					//On ajoute 
+				}else if(node.getChildCount() == 3){
+					//Deux cas avec les 3 fils : soit params, soit type. On vérifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getText():"UNDEFINED");
+				}else
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), taille, "UNDEFINED");
+				
+				current.add(ff);
 				createTDSFunc(node);
 				analyseChild(node);
-				fermetureTDS();
+				closeTDS();
 				break;
 			
 			case "BLOCK":
@@ -107,7 +142,7 @@ public class AnalyseSemantique {
 			case "let":
 				createTDSLet(node);
 				analyseChild(node);
-				fermetureTDS();
+				closeTDS();
 				break;
 				
 			// Boucle for
@@ -116,7 +151,7 @@ public class AnalyseSemantique {
 				//bloc supï¿½rieur au bloc lui-mï¿½me
 				createTDSFor(node);
 				analyseChild(node);
-				fermetureTDS();
+				closeTDS();
 				break;
 				
 			case "if":
@@ -190,7 +225,7 @@ public class AnalyseSemantique {
 		TDS.NB_IMBR++;
 	}
 	
-	private void fermetureTDS(){
+	private void closeTDS(){
 		this.pile.remove(this.pile.size()-1);
 		TDS.NB_IMBR--;
 	}

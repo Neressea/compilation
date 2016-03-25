@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public abstract class Field {
 	
-	public enum FieldTypeName {FieldFonction, FieldStructure, FieldTableau, FieldType, FieldVariable};
-	
 	//Nom du champ dans le code source
 	protected String ID;
 		
@@ -14,14 +12,14 @@ public abstract class Field {
 	protected int taille_du_saut;
 	
 	/**
-	 * Taille minimale de l'ï¿½lï¿½ment
+	 * Taille minimale de l'élément
 	 */
-	protected int taille_min;
+	protected int taille;
 	
-	public Field(String ID, int taille_du_saut, int taille_min){
+	public Field(String ID, int taille_du_saut, int taille){
 		this.ID=ID;
 		this.taille_du_saut=taille_du_saut;
-		this.taille_min=taille_min;
+		this.taille=taille;
 	}
 	
 	public String getID() {
@@ -40,14 +38,14 @@ public abstract class Field {
 		this.taille_du_saut = taille_du_saut;
 	}
 
-	public int getTaille_min() {
-		return taille_min;
+	public int getTaille() {
+		return taille;
 	}
 
-	public void setTaille_min(int taille_min) {
-		this.taille_min = taille_min;
+	public void setTaille(int taille) {
+		this.taille = taille;
 	}
 	
-	public abstract FieldTypeName getFieldType();
+	public abstract FieldType getFieldType();
 	
 }
