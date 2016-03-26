@@ -65,7 +65,7 @@ public class AnalyseSemantique {
 		//En fonction du type du noeud, on appelle diffï¿½rents contrï¿½les sï¿½mantiques
 		TDS current = null;
 		
-		if(pile.size()>0) current = pile.get(pile.size()-1);
+		if(pile.size()>0) current = top();
 		
 		switch(node.getToken().getText()){
 			//Déclaration d'une variable
@@ -152,12 +152,13 @@ public class AnalyseSemantique {
 				}else if(node.getChildCount() == 3){
 					//Deux cas avec les 3 fils : soit params, soit type. On vérifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getText():"UNDEFINED");
-				
-					if (node.getChild(1).getText().equals("TYPE")){
+					
+					if (node.getChild(1).getText().equals("PARAMSFORM")){
 						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 							ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 						}
 					}
+					
 				}else
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), "UNDEFINED");
 				
@@ -198,7 +199,6 @@ public class AnalyseSemantique {
 				//on incrï¿½mente le for en plus de son bloc (les vars dï¿½clarï¿½es dans le for sont dans un
 				//bloc supï¿½rieur au bloc lui-mï¿½me
 				createTDSFor(node);
-				pile.get(pile.size()-1).add(new FieldVariable(node.getChild(0).getText(), pile.get(pile.size()-1).getCurrentSize(), SIZE_PRIMITIF, "int"));
 				analyseChild(node);
 				closeTDS();
 				break;
@@ -257,11 +257,44 @@ public class AnalyseSemantique {
 	private void createTDSFor(CommonTree node){
 		TDS newTDS = new TDSFor(pile.size());
 		openTDS(newTDS);
+		
+		newTDS.add(new FieldVariable(node.getChild(0).getText(), top().getCurrentSize(), SIZE_PRIMITIF, "int"));
+	}
+	
+	/**
+	 * Retourne le sommet de la pile des TDSs
+	 * @return
+	 */
+	private TDS top(){
+		return pile.get(pile.size()-1);
 	}
 	
 	private void createTDSFunc(CommonTree node){
 		TDS newTDS = new TDSFunc(pile.size());
+		
+		//On ajoute la TDS à la pile
 		openTDS(newTDS);
+		
+		//Si on a le type et les paramètres qui sont précisés
+		if(node.getChildCount() == 4){
+			
+			//On ajoute les paramètres formels à la TDS de la fonction
+			FieldVariable fv;
+			for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
+				fv = new FieldVariable(node.getChild(2).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(2).getChild(i).getChild(1).getText()), node.getChild(2).getChild(i).getChild(1).getText());
+				newTDS.add(fv);
+			}
+			
+		//Si on a que les paramètres qui sont précisés
+		}else if(node.getChildCount() == 3 && node.getChild(1).getText().equals("PARAMSFORM")){
+
+			//On ajoute les paramètres formels à la TDS de la fonction
+			FieldVariable fv;
+			for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
+				fv = new FieldVariable(node.getChild(1).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(1).getChild(i).getChild(1).getText()), node.getChild(1).getChild(i).getChild(1).getText());
+				newTDS.add(fv);
+			}
+		}
 	}
 	
 	private void createTDSLet(CommonTree node){
