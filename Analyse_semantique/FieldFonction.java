@@ -35,4 +35,18 @@ public class FieldFonction extends Field{
 		return FieldType.FieldFonction;
 	}
 	
+	@Override
+	public String toString(){
+		
+		String ret = "params={";
+		
+		for(Couple<String, String> c : params){
+			ret+=c.getLeft()+":"+c.getRight()+", ";
+		}
+		
+		ret+="}";
+		
+		return super.toString()+", "+ret;
+	}
+	
 }

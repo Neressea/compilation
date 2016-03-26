@@ -9,25 +9,24 @@ public abstract class TDS {
 	
 	//Compteur du nombre de TDS dans le programme.
 	public static int NB_BLOC = 0;
-	
-	public static int NB_IMBR = 0;
-	
+		
 	//Numï¿½ro d'imbrication du bloc
-	protected int nb_imbrication;
+	protected int num_imbrication;
 	
 	//Numï¿½ro du bloc (identifiant unique)
 	protected int nb_bloc;
 	
 	protected ArrayList<Field> fields;
 		
-	public TDS(){
+	public TDS(int num_imbr){
 		nb_bloc = NB_BLOC;
 		NB_BLOC++;
 		fields = new ArrayList<Field>();
+		num_imbrication=num_imbr;
 	}
 	
 	public int getImbrication(){
-		return nb_imbrication;
+		return num_imbrication;
 	}
 	
 	public int getBloc(){
@@ -45,47 +44,11 @@ public abstract class TDS {
 			}
 		}
 		return null;
-		
 	}
 	
 	public void add(Field f){
 		fields.add(f);
 	}
-
-	/**
-	 * Met a jour le curseur sur le bloc parent du bloc courant.
-	 * @return
-	 */
-	
-	/*
-	public TDS sgetParent(ArrayList<TDS> list){
-		TDS current;
-		for (int i = list.size()-1; i >=0 ; i--) {
-			current = list.get(i);
-			if(current.getImbrication() == TDS.NB_IMBR-1){
-				TDS.CURRENT_TDS = current;
-				TDS.NB_IMBR--;
-				return TDS.CURRENT_TDS;
-			}
-		}
-		return null;
-	}
-	
-	public void addField(Field newField){
-		this.fields.add(newField);
-	}
-	
-	public TDS createParent(ArrayList<TDS> list){
-		TDS new_tds = new TDS();
-		
-		list.add(new_tds);
-		NB_IMBR++;
-		CURRENT_TDS = new_tds;
-		
-		return new_tds;
-	}
-	
-	*/
 	
 	
 	public int getCurrentSize(){
@@ -98,5 +61,14 @@ public abstract class TDS {
 		return size;
 	}
 	
-	
+	@Override
+	public String toString(){
+		String ret  = "* n° bloc="+nb_bloc+", n° imbrication="+num_imbrication+" * \n";
+		
+		for(Field f : fields){
+			ret+="| "+f+" |\n";
+		}
+		
+		return ret;
+	}
 }

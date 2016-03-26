@@ -9,7 +9,7 @@ let
 	type str = {a:int, b:int}
 	var c := str{a:=3, b:=0}
 	
-	var x : kebab := "sugoiiiiiii"
+	var x : string := "sugoiiiiiii"
 
 	/*Ceci est un commentaire */
 

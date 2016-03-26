@@ -15,5 +15,11 @@ public class FieldVariable extends Field{
 	public FieldType getFieldType(){
 		return FieldType.FieldVariable;
 	}
-
+	
+	@Override
+	public String toString(){
+		
+		return super.toString()+", type="+type;
+	}
+	
 }

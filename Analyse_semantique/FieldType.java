@@ -1,4 +1,4 @@
 
 public enum FieldType{
-	FieldFonction, FieldStructure, FieldTableau, FieldType, FieldVariable;
+	FieldFonction, FieldStructure, FieldTableau, FieldTypeDef, FieldVariable;
 }

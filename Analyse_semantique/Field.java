@@ -48,4 +48,9 @@ public abstract class Field {
 	
 	public abstract FieldType getFieldType();
 	
+	@Override
+	public String toString(){
+		return "catégorie="+this.getFieldType()+", id="+ID+", taille="+taille+", saut="+taille_du_saut;
+	}
+	
 }

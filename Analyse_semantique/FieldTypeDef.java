@@ -12,6 +12,12 @@ public class FieldTypeDef extends Field{
 
 	@Override
 	public FieldType getFieldType(){
-		return FieldType.FieldType;
+		return FieldType.FieldTypeDef;
+	}
+	
+	@Override
+	public String toString(){
+		
+		return super.toString()+", nature="+nature;
 	}
 }

@@ -38,4 +38,12 @@ public class FieldTableau extends Field{
 	public FieldType getFieldType(){
 		return FieldType.FieldTableau;
 	}
+	
+	@Override
+	public String toString(){
+		
+		String ret = "borne sup="+borne_sup.getText()+", "+"type="+type;
+		
+		return super.toString()+", "+ret;
+	}
 }

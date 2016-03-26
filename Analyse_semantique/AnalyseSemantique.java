@@ -126,12 +126,12 @@ public class AnalyseSemantique {
 					case "STRUCT":
 						type = FieldType.FieldStructure;
 						for(int i=0; i<node.getChild(1).getChildCount(); i++){
-							taille+=computeSizeType(node.getChild(1).getChild(1).getText());
+							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());
 						}
 						
 						break;
 				}
-				
+
 				current.add(new FieldTypeDef(node.getChild(0).getText(), current.getCurrentSize(), taille, type));
 				analyseChild(node);
 				break;
@@ -255,47 +255,50 @@ public class AnalyseSemantique {
 	}
 	
 	private void createTDSFor(CommonTree node){
-		TDS newTDS = new TDSFor();
+		TDS newTDS = new TDSFor(pile.size());
 		openTDS(newTDS);
 	}
 	
 	private void createTDSFunc(CommonTree node){
-		TDS newTDS = new TDSFunc();
+		TDS newTDS = new TDSFunc(pile.size());
 		openTDS(newTDS);
 	}
 	
 	private void createTDSLet(CommonTree node){
-		TDS newTDS = new TDSLet();
+		TDS newTDS = new TDSLet(pile.size());
 		openTDS(newTDS);
 	}
 	
 	private void openTDS(TDS tds){
 		this.TDSs.add(tds);
 		this.pile.add(tds);
-		TDS.NB_IMBR++;
 	}
 	
 	private void closeTDS(){
 		this.pile.remove(this.pile.size()-1);
-		TDS.NB_IMBR--;
 	}
 	
 	private int computeSizeType(String id){
+		
+		int size;
 		switch (id) {
-		case "int":
-		case "string":
-			return SIZE_PRIMITIF;
-
-		default:
-			FieldTypeDef ftd = null;
-			
-			for(int i=pile.size()-1; i>=0;i--){
-				ftd = (FieldTypeDef) pile.get(i).existIn(id, FieldType.FieldType);
-				if(ftd != null) break;
-			}
-			
-			return ftd.getTaille();
+			case "int":
+			case "string":
+				size = SIZE_PRIMITIF;
+				break;
+			default:
+				FieldTypeDef ftd = null;
+				
+				for(int i=pile.size()-1; i>=0;i--){
+					ftd = (FieldTypeDef) pile.get(i).existIn(id, FieldType.FieldTypeDef);
+					if(ftd != null) break;
+				}
+											
+				size = ftd.getTaille();
+				break;
 		}
+				
+		return size;
 	}
 	
 	private int computeSizePrimitif(String primit){
@@ -349,6 +352,13 @@ public class AnalyseSemantique {
 			}
 						
 			analyzer.analyze();
+			
+			int i=1;
+			for(TDS tds : analyzer.TDSs){
+				System.out.println("--------- TDS n° "+i+++" ---------");
+				System.out.println(tds);
+				System.out.println("----------------------------");
+			}
 			
 			if(analyzer.isOK()){
 				System.out.println("L'analyse sï¿½mantique n'a dï¿½tectï¿½ aucun problï¿½me !");

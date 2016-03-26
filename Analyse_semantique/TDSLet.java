@@ -1,6 +1,6 @@
 
 public class TDSLet extends TDS{
-	public TDSLet(){
-		super();
+	public TDSLet(int num_imbr){
+		super(num_imbr);
 	}
 }

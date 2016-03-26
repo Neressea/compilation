@@ -1,6 +1,6 @@
 
 public class TDSFunc extends TDS{
-	public TDSFunc(){
-		super();
+	public TDSFunc(int num_imbr){
+		super(num_imbr);
 	}
 }
