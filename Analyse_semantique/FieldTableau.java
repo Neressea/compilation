@@ -8,6 +8,11 @@ public class FieldTableau extends FieldAvecType{
 	private CommonTree borne_sup;
 	
 	/**
+	 * Initialisation des champs
+	 */
+	private CommonTree initialisation;
+	
+	/**
 	 * Adresse où commencent les éléments du tableau.
 	 * Champ qui sera calculé lors de la géénration de code.
 	 */
@@ -18,9 +23,10 @@ public class FieldTableau extends FieldAvecType{
 	 */
 	private int taille_element;
 		
-	public FieldTableau(String ID, int taille_du_saut, int taille, String type, CommonTree borne_sup) {
+	public FieldTableau(String ID, int taille_du_saut, int taille, String type, CommonTree borne_sup, CommonTree init) {
 		super(ID, taille_du_saut, taille, type);
 		this.borne_sup=borne_sup;
+		this.initialisation=init;
 	}
 	
 	public CommonTree getBorneSup(){
@@ -35,7 +41,7 @@ public class FieldTableau extends FieldAvecType{
 	@Override
 	public String toString(){
 		
-		String ret = "borne sup="+borne_sup.getText()+", ";
+		String ret = "borne sup="+borne_sup.toStringTree()+", initialisation="+initialisation.toStringTree();
 		
 		return super.toString()+", "+ret;
 	}

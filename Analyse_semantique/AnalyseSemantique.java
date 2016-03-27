@@ -73,7 +73,7 @@ public class AnalyseSemantique {
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
 					
-					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0)));
+					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
 				//On a une variable
 				}else if(node.getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){	
@@ -89,7 +89,7 @@ public class AnalyseSemantique {
 					}	
 					
 				//On a une structure
-				}else if(node.getChild(1).getChildCount() == 2){
+				}else if(node.getChild(1).getChildCount() >= 2){
 					
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
 					
@@ -106,33 +106,41 @@ public class AnalyseSemantique {
 				
 			//Déclaration d'un type
 			case "type":
-				FieldType type = null;
+				String type = null;
+				FieldTypeDef definition = null;
 				int taille=0;
+				type = node.getChild(1).getChild(0).getText();
 				
 				switch (node.getChild(1).getText()) {
 					case "PRIMITIF":
 						//Variable indique que c'est un type primitif
-						type = FieldType.FieldVariable;
 						taille = computeSizeType(node.getChild(1).getChild(0).getText());
+						definition = new FieldTypeDefSimple(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
 						break;
 						
 					case "TAB":
-						type = FieldType.FieldTableau;
-						
 						//@ du premier élément du tableau + taille d'un entier pour la borne sup du tableau
 						taille = SIZE_PRIMITIF * 2;
+						definition = new FieldTypeDefTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
+						
 						break;
 						
-					case "STRUCT":
-						type = FieldType.FieldStructure;
+					case "STRUCT":						
 						for(int i=0; i<node.getChild(1).getChildCount(); i++){
 							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());
+						}
+						
+						definition = new FieldTypeDefStructure(node.getChild(0).getText(), current.getCurrentSize(), taille);
+						
+						for(int i=0; i<node.getChild(1).getChildCount(); i++){
+							CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
+							((FieldTypeDefStructure) definition).addChampType(ct.getChild(0).getText(), ct.getChild(1).getText());
 						}
 						
 						break;
 				}
 
-				current.add(new FieldTypeDef(node.getChild(0).getText(), current.getCurrentSize(), taille, type));
+				current.add(definition);
 				analyseChild(node);
 				break;
 				
@@ -320,8 +328,7 @@ public class AnalyseSemantique {
 				size = SIZE_PRIMITIF;
 				break;
 			default:
-				FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, id, FieldType.FieldTypeDef);
-											
+				FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, id, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
 				size = ftd.getTaille();
 				break;
 		}

@@ -67,14 +67,16 @@ public abstract class TDS {
 	 * Retrouve une définition dans la liste de TDS donnée.
 	 * @param tds_list
 	 * @param ID
-	 * @param field_type
+	 * @param field_type Champs recherchés (variables, fonctions, ...). Plusieurs peuvent être recherchés
 	 * @return Un objet Field ou null si aucune définition correspondante n'a été retrouvée
 	 */
-	public static Field findIn(ArrayList<TDS> tds_list, String ID, FieldType field_type){
+	public static Field findIn(ArrayList<TDS> tds_list, String ID, FieldType... field_type){
 		Field f = null;
 		for(TDS tds : tds_list){
-			if((f=tds.existIn(ID, field_type))!=null){
-				return f;
+			for (int i = 0; i < field_type.length; i++) {
+				if((f=tds.existIn(ID, field_type[i]))!=null){
+					return f;
+				}
 			}
 		}
 		return null;

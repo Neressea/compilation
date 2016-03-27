@@ -2,12 +2,14 @@ let
 
 	var N := 8
 	type intArray = array of int
+	type redef = string
+	var testtab := intArray [x + 3 - 2] of x + 13 * 7
 	var row := intArray [ N ] of 0
 	var col := intArray [ N ] of 0
 	var diag1 := intArray [ N+N-1 ] of 0
 	var diag2 := intArray [ N+N-1 ] of 0
-	type str = {a:int, b:int}
-	var c := str{a:=3, b:=0}
+	type str = {a:int, b:int, c:int}
+	var c := str{a:=3, b:=0, c:=12000}
 	
 	var x : string := "sugoiiiiiii"
 
