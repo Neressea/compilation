@@ -39,7 +39,7 @@ public class FieldFonction extends FieldAvecType{
 		
 		ret+="}";
 		
-		return super.toString()+", "+ret+", type=";
+		return super.toString()+", "+ret;
 	}
 	
 }

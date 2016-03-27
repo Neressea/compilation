@@ -89,13 +89,13 @@ public class AnalyseSemantique {
 					}	
 					
 				//On a une structure
-				}else if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("STRUCT")){
+				}else if(node.getChild(1).getChildCount() == 2){
 					
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
 					
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
-						fs.addChamp(ct.getChild(0).getText(), ct.getChild(1).getText());
+						fs.addChamp(ct.getText(), ct.getChild(0).getText());
 					}
 					
 					current.add(fs);
@@ -320,12 +320,7 @@ public class AnalyseSemantique {
 				size = SIZE_PRIMITIF;
 				break;
 			default:
-				FieldTypeDef ftd = null;
-				
-				for(int i=pile.size()-1; i>=0;i--){
-					ftd = (FieldTypeDef) pile.get(i).existIn(id, FieldType.FieldTypeDef);
-					if(ftd != null) break;
-				}
+				FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, id, FieldType.FieldTypeDef);
 											
 				size = ftd.getTaille();
 				break;

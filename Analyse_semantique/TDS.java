@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 /**
  * 
  * Reprï¿½sente la fonction principale qui doit-ï¿½tre implï¿½mentï¿½e par toute TDS.
@@ -59,6 +61,23 @@ public abstract class TDS {
 		}
 		
 		return size;
+	}
+	
+	/**
+	 * Retrouve une définition dans la liste de TDS donnée.
+	 * @param tds_list
+	 * @param ID
+	 * @param field_type
+	 * @return Un objet Field ou null si aucune définition correspondante n'a été retrouvée
+	 */
+	public static Field findIn(ArrayList<TDS> tds_list, String ID, FieldType field_type){
+		Field f = null;
+		for(TDS tds : tds_list){
+			if((f=tds.existIn(ID, field_type))!=null){
+				return f;
+			}
+		}
+		return null;
 	}
 	
 	@Override
