@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class FieldStructure extends Field{
+public class FieldStructure extends FieldAvecType{
 	
 	private ArrayList<Couple<String, String>> noms_champs_et_valeurs;
 
-	public FieldStructure(String ID, int taille_du_saut, int taille) {
-		super(ID, taille_du_saut, taille);
+	public FieldStructure(String ID, int taille_du_saut, int taille, String type) {
+		super(ID, taille_du_saut, taille, type);
 		noms_champs_et_valeurs = new ArrayList<Couple<String, String>>();
 	}
 	
@@ -29,7 +29,7 @@ public class FieldStructure extends Field{
 		
 		ret+="}";
 		
-		return super.toString()+", "+ret;
+		return super.toString()+", "+ret+", type=";
 	}
 
 }

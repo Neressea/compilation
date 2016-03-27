@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 
 
-public class FieldFonction extends Field{
-
-	private String type;
+public class FieldFonction extends FieldAvecType{
 	
 	/**
 	 * List<Couple<ID, type>>
@@ -13,18 +11,13 @@ public class FieldFonction extends Field{
 	private ArrayList<Couple<String, String>> params;
 	
 	public FieldFonction(String ID, int taille_du_saut, String type) {
-		super(ID, taille_du_saut, -1);
+		super(ID, taille_du_saut, -1, type);
 		params = new ArrayList<Couple<String, String>>();
-		this.type = type;
 	}
 	
 	public void addParam(String name, String type){
 		params.add(new Couple<String, String>(name, type));
-	}
-	
-	public String getType(){
-		return this.type;
-	}
+	}	
 	
 	public ArrayList<Couple<String, String>> getParams(){
 		return this.params;
@@ -46,7 +39,7 @@ public class FieldFonction extends Field{
 		
 		ret+="}";
 		
-		return super.toString()+", "+ret;
+		return super.toString()+", "+ret+", type=";
 	}
 	
 }

@@ -1,14 +1,7 @@
-public class FieldVariable extends Field{
-
-	private String type;
+public class FieldVariable extends FieldAvecType{
 	
 	public FieldVariable(String ID, int taille_du_saut, int taille_min, String type) {
-		super(ID, taille_du_saut, taille_min);
-		this.type=type;
-	}
-	
-	public String getType(){
-		return this.type;
+		super(ID, taille_du_saut, taille_min, type);
 	}
 	
 	@Override
@@ -19,7 +12,7 @@ public class FieldVariable extends Field{
 	@Override
 	public String toString(){
 		
-		return super.toString()+", type="+type;
+		return super.toString();
 	}
 	
 }

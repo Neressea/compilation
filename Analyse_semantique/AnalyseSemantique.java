@@ -91,7 +91,7 @@ public class AnalyseSemantique {
 				//On a une structure
 				}else if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("STRUCT")){
 					
-					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()));
+					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
 					
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);

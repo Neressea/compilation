@@ -1,8 +1,6 @@
 import org.antlr.runtime.tree.CommonTree;
 
-public class FieldTableau extends Field{
-
-	private String type;
+public class FieldTableau extends FieldAvecType{
 	
 	/**
 	 * Borne superieure des tableaux. Ceux-ci commencent par 0.
@@ -21,13 +19,8 @@ public class FieldTableau extends Field{
 	private int taille_element;
 		
 	public FieldTableau(String ID, int taille_du_saut, int taille, String type, CommonTree borne_sup) {
-		super(ID, taille_du_saut, taille);
+		super(ID, taille_du_saut, taille, type);
 		this.borne_sup=borne_sup;
-		this.type=type;
-	}
-	
-	public String getType(){
-		return this.type;
 	}
 	
 	public CommonTree getBorneSup(){
@@ -42,7 +35,7 @@ public class FieldTableau extends Field{
 	@Override
 	public String toString(){
 		
-		String ret = "borne sup="+borne_sup.getText()+", "+"type="+type;
+		String ret = "borne sup="+borne_sup.getText()+", ";
 		
 		return super.toString()+", "+ret;
 	}
