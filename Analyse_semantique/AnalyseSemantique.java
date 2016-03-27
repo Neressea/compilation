@@ -233,6 +233,9 @@ public class AnalyseSemantique {
 			case "-":
 			case "*":
 			case "/":
+				//on crée une expression correspondant au noeud en cours.
+				ExpressionArithmetique ea = new ExpressionArithmetique(node);
+				System.out.println(node.toStringTree()+" : "+ea.computeType(pile));
 				break;
 				
 			//Accï¿½s ï¿½ une case d'un tableau
