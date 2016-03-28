@@ -192,9 +192,7 @@ public class AnalyseSemantique {
 						
 					case "STRUCT":	
 						
-						for(int i=0; i<node.getChild(1).getChildCount(); i++){
-							System.out.println("AA : "+i);
-							
+						for(int i=0; i<node.getChild(1).getChildCount(); i++){							
 							existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(i).getChild(1));
 							fire(existencetype);
 							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());

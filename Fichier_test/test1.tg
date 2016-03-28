@@ -37,4 +37,4 @@ let
 			   	     diag2[r+7-c]:=0)
 		
 		)
-in try(0) end
+in try("coucou") end

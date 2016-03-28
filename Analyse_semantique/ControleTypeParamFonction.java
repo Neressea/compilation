@@ -27,8 +27,8 @@ public class ControleTypeParamFonction extends ControleSemantique {
 					throw new ErreurSemantique(node.getLine(), 
 													"Erreur type, variable n° " + i + 
 													" dans la fonction " + node.getChild(0).getText()
-													+ " : " + f.getParams().get(i).getRight() +
-													" attendu : " + ea.computeType(TDSs));
+													+ " : '" + f.getParams().get(i).getRight() +
+													"' attendu, '" + ea.computeType(TDSs)+"' trouve");
 				}
 			}
 		}

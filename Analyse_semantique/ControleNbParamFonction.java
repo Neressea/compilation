@@ -28,7 +28,6 @@ public class ControleNbParamFonction extends ControleSemantique {
 		} else {
 			// Cas où l'appel comporte plusieurs fils
 			// On regarde le nombre de fils du deuxième fils de l'appel = nb de paramètres
-			System.out.println(node.getChild(1).getText());
 			if (node.getChild(1).getChildCount() != nbParamsAttendu) {
 				// S'il n'y a pas le bon nombre de paramètres
 				throw new ErreurSemantique(node.getLine(), "Nombre de parametre fonction : " +
