@@ -26,41 +26,59 @@ public class ControleBoolCondition extends ControleSemantique{
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
-		ControleBoolCondition child;
+		String err = "";
 		
-		if(comparateur.contains(node.getChild(0).getText())){
-			
-			child = new ControleBoolCondition((CommonTree) node.getChild(0));
-			String first = child.checkinf(TDSs);
-			child = new ControleBoolCondition((CommonTree) node.getChild(1));
-			String second = child.checkinf(TDSs);
-			
-			if (!first.equals(second)){
-				throw new ErreurSemantique(node.getLine(), "Comparaison de deux expressions aux types diffÃ©rents "+first+" et "+second);
-			}
-			
-		}
-		else if (associateur.contains(node.getChild(0).getText())){
-			if (node.getChildCount() >= 2){
-				child = new ControleBoolCondition((CommonTree) node.getChild(0));
-				child.check(TDSs);
-			}
-			
-			if(node.getChildCount() >= 1){
-				child = new ControleBoolCondition((CommonTree) node.getChild(1));
-				child.check(TDSs);
-			}else{
-				
-			}
-			
-		}else{
-			throw new ErreurSemantique(node.getLine(), "La condition n'est pas un boolean");
-		}
+		err = recursiveCheck(TDSs);
+		
+		if(!err.equals(""))
+			throw new ErreurSemantique(err);
 		
 	}
 	
-	private String checkinf(ArrayList<TDS> TDSs) throws ErreurSemantique{
+	public String recursiveCheck(ArrayList<TDS> TDSs){
+		ControleBoolCondition child1;
+		ControleBoolCondition child2;
+		String err="";
 		
+		if(node.getChildCount() == 0) 
+			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-booleenne dans la condition : '"+node.getText()+"'\n";
+		else if (node.getChildCount() == 1)
+			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-booleenne dans la condition : '"+node.getChild(0).getText()+"'\n";
+		else if(comparateur.contains(node.getText())){
+			
+			child1 = new ControleBoolCondition((CommonTree) node.getChild(0));
+			String first="";
+			try {
+				first = child1.checkinf(TDSs);
+			} catch (ErreurSemantique e) {
+				err+=e.getMessage();
+			}
+			child2 = new ControleBoolCondition((CommonTree) node.getChild(1));
+			String second="";
+			try {
+				second = child2.checkinf(TDSs);
+			} catch (ErreurSemantique e) {
+				err+=e.getMessage();
+			}
+			
+			if (!first.equals(second)){
+				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Comparaison de deux expressions aux types differents : '"+node.getChild(0).toStringTree()+"' ("+first+") et '"+node.getChild(1).toStringTree()+"' ("+second+")\n";
+			}
+			
+		}else if (associateur.contains(node.getText())){
+
+				child1 = new ControleBoolCondition((CommonTree) node.getChild(0));
+				err+=child1.recursiveCheck(TDSs);
+				
+				child2 = new ControleBoolCondition((CommonTree) node.getChild(1));
+				err+=child2.recursiveCheck(TDSs);
+
+		}
+		
+		return err;
+	}
+	
+	private String checkinf(ArrayList<TDS> TDSs) throws ErreurSemantique{
 		ExpressionArithmetique ea = new ExpressionArithmetique(node);
 		return ea.computeType(TDSs);
 		

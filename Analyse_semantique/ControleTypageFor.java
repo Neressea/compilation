@@ -14,6 +14,7 @@ public class ControleTypageFor extends ControleSemantique{
 
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
+		String err = "";
 		//On récupère l'arbre de la borne inférieure
 		CommonTree binf = (CommonTree) node.getChild(0).getChild(0).getChild(0);
 		CommonTree bsup = (CommonTree) node.getChild(0).getChild(1).getChild(0);
@@ -26,13 +27,16 @@ public class ControleTypageFor extends ControleSemantique{
 		String type_inf = ea_inf.computeType(TDSs);
 		String type_sup = ea_sup.computeType(TDSs);
 		
-		if(!type_inf.equals("int") && !type_sup.equals("int")){
-			throw new ErreurSemantique(node.getLine(), "Erreur de typage dans for. Attendu : int. Trouvé : inf = "+type_inf+", sup = "+type_sup);
-		}else if(!type_inf.equals("int")){
-			throw new ErreurSemantique(node.getLine(), "Erreur de typage dans for. Attendu : int. Trouvé : inf = "+type_inf);
-		}else if(!type_sup.equals("int")){
-			throw new ErreurSemantique(node.getLine(), "Erreur de typage dans for. Attendu : int. Trouvé : sup = "+type_sup);
+		if(!type_inf.equals("int")){
+			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la borne inferieure du for. Attendu : int. Trouvé = "+type_inf+"\n";
 		}
+		
+		if(!type_sup.equals("int")){
+			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la borne superieure du for. Attendu : int. Trouvé = "+type_sup+"\n";
+		}
+		
+		if(!err.equals(""))
+			throw new ErreurSemantique(err);
 	}
 	
 }

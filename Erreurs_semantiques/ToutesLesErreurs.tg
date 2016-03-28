@@ -1,0 +1,72 @@
+let
+
+	/*Type inexistant*/
+	var v1 : inexistant := "coucou"
+
+	type kebab = string
+	type stringArray = array of string
+	type str = {a:int, b:string}
+
+	/*Type incompatible*/
+	var v2 : kebab := 5
+
+	/*Erreur tableau : taille non int et type pas respecté*/
+	var stringtab := stringArray["salut"] of 12000
+
+	var chaine := "une chaine"
+
+	/*Erreur structure : mauvais nombre de champs et mauvais types*/
+	var str_inst := str{a:="rien", c:="pas bon", b:=666}
+	var structure := str{a:=666, b:="abc"}
+
+	function void() : string = "C'est le néant"
+
+	function calculer(premier:int, second:int, troisieme:int) : string = (
+
+		/*Retour de fonction incompatible avec le calcul*/
+		v2 := premier + second + void();
+
+		/*Retour avec un if et else incompatible*/
+		if premier then
+			chaine := "cool"
+		else (
+			chaine := "pas cool";
+			50
+		)
+	)
+
+	function vraiment_rien(inutile:string) = print(inutile)
+
+	/*Double déclaration : variable avec même nom que fonction*/
+	var void := 0
+
+in 
+	
+	/*Affectation d'une fonction qui ne retourne rien*/
+	v2 := vraiment_rien(v2);
+
+	/*Apppel à une fonction inexistante*/
+	nope();
+
+	/*Appel à une variable non-déclarée*/
+	WXYZ := "ABCD";
+
+	/*Appel de fonction avec mauvais nombre de paramètres*/
+	calculer(12);
+
+	/*Bornes du for non entières*/
+	for k := "x" to structure do (
+		/*Appel à une fonction avec un paramètre du mauvais type*/
+		calculer("b", 20, "d");
+
+		/*Condition avec une condition non-booléenne*/
+		if k + 3 < "coucou" & k then k := 5;
+
+		/*While avec une condition non-booléenne*/
+		while void() do (
+			print("coucou");
+			k := read()
+		)
+	)
+
+end

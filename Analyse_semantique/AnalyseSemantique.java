@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, type_params_func_call, doubledecl, typage;
+	private ControleSemantique ctrl_taille_tableau, ctrl_retour_fonction, ctrl_nbparams, ctrl_existencefonction, ctrl_existencetype, ctrl_type_params_func_call, ctrl_doubledecl, ctrl_typage, ctrl_bool;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -89,24 +89,16 @@ public class AnalyseSemantique {
 		switch(node.getToken().getText()){
 			//D�claration d'une variable
 			case "var":
-				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
-				fire(doubledecl);
+				ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(ctrl_doubledecl);
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
 				
-					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-					fire(existencetype);
+					ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+					fire(ctrl_existencetype);
 					
 					ExpressionArithmetique ea_init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0));
 					ExpressionArithmetique ea_taille = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0));
-					
-					try {
-						ea_init.computeType(pile);
-						ea_taille.computeType(pile);
-					} catch (ErreurSemantique e) {
-						err_messages+=e.getMessage()+"\n";
-						is_ok=false;
-					}
 					
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
@@ -122,8 +114,8 @@ public class AnalyseSemantique {
 						//Le type est indiqu�
 					}else{
 					
-						existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-						fire(existencetype);
+						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+						fire(ctrl_existencetype);
 						
 						ea = new ExpressionArithmetique((CommonTree) node.getChild(2));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
@@ -140,8 +132,8 @@ public class AnalyseSemantique {
 				//On a une structure
 				}else {
 				
-					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-					fire(existencetype);
+					ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+					fire(ctrl_existencetype);
 				
 										
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
@@ -161,8 +153,8 @@ public class AnalyseSemantique {
 					current.add(fs);
 				}
 				
-				typage = new ControleTypageDeclaration(node);
-				fire(typage);
+				ctrl_typage = new ControleTypageDeclaration(node);
+				fire(ctrl_typage);
 					
 				analyseChild(node);
 				break;
@@ -173,31 +165,31 @@ public class AnalyseSemantique {
 				FieldTypeDef definition = null;
 				int taille=0;
 				type = node.getChild(1).getChild(0).getText();
-				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
-				fire(doubledecl);
+				ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(ctrl_doubledecl);
 				
 				switch (node.getChild(1).getText()) {
 					case "PRIMITIF":
 						//Variable indique que c'est un type primitif
 						taille = computeSizeType(node.getChild(1).getChild(0).getText());
 						definition = new FieldTypeDefSimple(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
-						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						fire(existencetype);
+						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						fire(ctrl_existencetype);
 						break;
 						
 					case "TAB":
 						//@ du premier �l�ment du tableau + taille d'un entier pour la borne sup du tableau
 						taille = SIZE_PRIMITIF * 2;
 						definition = new FieldTypeDefTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
-						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						fire(existencetype);
+						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						fire(ctrl_existencetype);
 						break;
 						
 					case "STRUCT":	
 						
 						for(int i=0; i<node.getChild(1).getChildCount(); i++){							
-							existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(i).getChild(1));
-							fire(existencetype);
+							ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(i).getChild(1));
+							fire(ctrl_existencetype);
 							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());
 							
 						}
@@ -220,21 +212,21 @@ public class AnalyseSemantique {
 			case "FUNC_DECL":
 				FieldFonction ff = null;
 				
-				doubledecl = new ControleDoubleDeclaration(node);
-				fire(doubledecl);
+				ctrl_doubledecl = new ControleDoubleDeclaration(node);
+				fire(ctrl_doubledecl);
 			
 								
 				//Si on a le type qui est pr�cis�
 				if(node.getChildCount() == 4){
-					existencetype = new ControleExistenceType((CommonTree) node.getChild(2).getChild(0));
-					fire(existencetype);
+					ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(2).getChild(0));
+					fire(ctrl_existencetype);
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getChild(0).getText());
 				
 					//On ajoute les param�tres formels
 					for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 						
-						doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
-						fire(doubledecl);
+						ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
+						fire(ctrl_doubledecl);
 						
 						ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 					}
@@ -242,8 +234,8 @@ public class AnalyseSemantique {
 				}else if(node.getChildCount() == 3){
 					//Deux cas avec les 3 fils : soit params, soit type. On v�rifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
 					if((node.getChild(1).getText().equals("TYPE"))){
-						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						fire(existencetype);
+						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						fire(ctrl_existencetype);
 						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(1).getChild(0).getText());
 					}else{
 						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), "UNDEFINED");
@@ -252,8 +244,8 @@ public class AnalyseSemantique {
 					if (node.getChild(1).getText().equals("PARAMSFORM")){
 						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 					
-							doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
-							fire(doubledecl);
+							ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
+							fire(ctrl_doubledecl);
 						
 							ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 						}
@@ -266,8 +258,8 @@ public class AnalyseSemantique {
 				createTDSFunc(node);
 				
 				//On contr�le le type de retour de la fonction
-				retour_fonction = new ControleRetourFonction(node);
-				fire(retour_fonction);
+				ctrl_retour_fonction = new ControleRetourFonction(node);
+				fire(ctrl_retour_fonction);
 				
 				analyseChild(node);
 				closeTDS();
@@ -281,20 +273,20 @@ public class AnalyseSemantique {
 			
 			//Appel d'une fonction
 			case "FUNC_CALL":
-				existencefonction = new ControleExistenceFonction(node);
-				fire(existencefonction);
-				nbparams = new ControleNbParamFonction(node);
-				fire(nbparams);
-				type_params_func_call = new ControleTypeParamFonction(node);
-				fire(type_params_func_call);
+				ctrl_existencefonction = new ControleExistenceFonction(node);
+				fire(ctrl_existencefonction);
+				ctrl_nbparams = new ControleNbParamFonction(node);
+				fire(ctrl_nbparams);
+				ctrl_type_params_func_call = new ControleTypeParamFonction(node);
+				fire(ctrl_type_params_func_call);
 				
 				analyseChild(node);
 				break;
 				
 			//Affectation
 			case ":=":
-				typage = new ControleTypageAffect(node);
-				fire(typage);
+				ctrl_typage = new ControleTypageAffect(node);
+				fire(ctrl_typage);
 				analyseChild(node);
 				break;
 				
@@ -315,18 +307,20 @@ public class AnalyseSemantique {
 				//bloc sup�rieur au bloc lui-m�me
 				createTDSFor(node);
 				
-				typage = new ControleTypageFor(node);
-				fire(typage);
+				ctrl_typage = new ControleTypageFor(node);
+				fire(ctrl_typage);
 				analyseChild(node);
 				
 				closeTDS();
 				
-				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
-				fire(doubledecl);
+				ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(ctrl_doubledecl);
 				
 				break;
 				
 			case "if":
+				ctrl_bool = new ControleBoolCondition((CommonTree) node.getChild(0).getChild(0));
+				fire(ctrl_bool);
 				analyseChild(node);
 				break;
 			
@@ -340,6 +334,8 @@ public class AnalyseSemantique {
 				break;
 				
 			case "while":
+				ctrl_bool = new ControleBoolCondition((CommonTree) node.getChild(0).getChild(0));
+				fire(ctrl_bool);
 				analyseChild(node);
 				break;
 			
@@ -357,6 +353,7 @@ public class AnalyseSemantique {
 					err_messages+=e.getMessage()+"\n";
 					is_ok=false;
 				}
+				analyseChild(node);
 				break;
 				
 			//Acc�s � une case d'un tableau
@@ -366,8 +363,8 @@ public class AnalyseSemantique {
 			
 			//D�finition dela taille d'un tableau
 			case "SIZE":
-				taille_tableau = new ControleTableau(node);
-				fire(taille_tableau);
+				ctrl_taille_tableau = new ControleTableau(node);
+				fire(ctrl_taille_tableau);
 				analyseChild(node);
 				break;
 				
@@ -381,6 +378,7 @@ public class AnalyseSemantique {
 	}
 	
 	private void analyseChild(CommonTree node){
+		
 		for(int i = 0; i<node.getChildCount(); i++){
 			loop((CommonTree) node.getChild(i));
 		}
@@ -453,6 +451,7 @@ public class AnalyseSemantique {
 				break;
 			default:
 				FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, id, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+				if(ftd == null) return 0;
 				size = ftd.getTaille();
 				break;
 		}
@@ -514,18 +513,19 @@ public class AnalyseSemantique {
 			}
 			
 			analyzer.analyze();
-			
-			int i=1;
-			for(TDS tds : analyzer.TDSs){
-				System.out.println("--------- TDS n� "+i+++" ---------");
-				System.out.println(tds);
-				System.out.println("----------------------------");
-			}
-			
-			if(analyzer.isOK()){
-				System.out.println("L'analyse semantique n'a detecte aucun probleme !");
-			}else{
+				
+			if(!analyzer.isOK()){
 				System.err.println(analyzer.getErrors());
+				System.err.println(ErreurSemantique.NB_ERRORS+" erreur(s) semantique(s) trouvee(s)");
+			}else{
+				int i=1;
+				
+				for(TDS tds : analyzer.TDSs){
+					System.out.println("--------- TDS n� "+i+++" ---------");
+					System.out.println(tds);
+					System.out.println("----------------------------");
+				}
+				System.out.println("L'analyse semantique n'a detecte aucun probleme !");
 			}
 		}
 		

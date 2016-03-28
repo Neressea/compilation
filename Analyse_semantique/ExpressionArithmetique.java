@@ -56,7 +56,7 @@ public class ExpressionArithmetique {
 			type2 = findRealType(pile, typedef2);
 		
 		//On vï¿½rifie que les types rï¿½els sont bien des entiers, sinon l'expression est erronï¿½e
-		if(type1.equals(type2)|| !type1.equals("UNDEFINED")){
+		if(type1.equals(type2) && !type1.equals("UNDEFINED")){
 			return true;
 		}
 
@@ -173,7 +173,7 @@ public class ExpressionArithmetique {
 		
 		//Si c'est "string" on renvoi UNDEFINED
 		if(type.equals("string"))
-			return "UNDEFINED";
+			return "string";
 		
 		//Sinon on a un nouveau typedef. On recherche sa dï¿½finition.
 		FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, type, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
@@ -195,6 +195,10 @@ public class ExpressionArithmetique {
 	 */
 	private String findUnitType(ArrayList<TDS> pile, CommonTree unit) throws ErreurSemantique{
 		
+		ArrayList<String> comparateurs = new ArrayList<String>(Arrays.asList(new String[]{">", "<", "<>", "=", "<=", ">=", "&", "|"}));
+		
+		if(comparateurs.contains(unit.getText())) return "bool";
+		
 		//Si jamais c'est un appel de fonction, on récupère le fils droit (nom de la fonction)
 		if(unit.getText().equals("FUNC_CALL"))
 			unit = (CommonTree) unit.getChild(0);
@@ -202,6 +206,11 @@ public class ExpressionArithmetique {
 		//Si c'est un if, on calcule son type de retour
 		if(unit.getText().equals("if")){
 			return computeTypeIf(pile, unit);
+		}
+		
+		//Si c'est une affectation, on renvoie le type de la variable. Concordance déjà checkée.
+		if(unit.getText().equals(":=")){
+			return findUnitType(pile, (CommonTree) unit.getChild(0));
 		}
 		
 		String type=null;

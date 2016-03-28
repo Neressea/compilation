@@ -17,8 +17,8 @@ public class ControleDoubleDeclaration extends ControleSemantique {
 													FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau,
 													FieldType.FieldVariable);
 		if (f!=null) {
-			throw new ErreurSemantique(node.getLine(), "L identifiant " + idVariable 
-													+ " a deja ete declare (" + f.getFieldType().toString() + ")");
+			throw new ErreurSemantique(node.getLine(), "L identifiant '" + idVariable 
+													+ "' a deja ete declare (" + f.getFieldType().toString() + ")");
 		}
 	}
 

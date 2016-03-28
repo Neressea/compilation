@@ -1,7 +1,10 @@
 
 public class ErreurSemantique extends Exception{
+	
+	public static int NB_ERRORS = 0;
+	
 	public ErreurSemantique(int line, String mess){
-		super("Erreur à la ligne "+line+" : "+mess);
+		super("Erreur "+(++NB_ERRORS)+" à la ligne "+line+" : "+mess);
 	}
 	
 	/**

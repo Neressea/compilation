@@ -39,7 +39,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				
 				//On vérifie que c'est bien un entier
 				if(!ExpressionArithmetique.checkTypes(TDSs, type_taille, "int"))
-					erreurs += "Erreur à la ligne "+node.getLine()+" : Erreur de typage dans la taille du tableau : int attendu mais '"+type_taille+"' trouvé\n";
+					erreurs += "Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la taille du tableau : int attendu mais '"+type_taille+"' trouvé\n";
 				
 				//On calcule le type d'initialisation
 				ExpressionArithmetique ea_init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0));
@@ -47,7 +47,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				
 				//On vérifie que c'est bien le type du tableau
 				if(!ExpressionArithmetique.checkTypes(TDSs, type_init, type_init_expected)){
-					erreurs+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans l'initialisation du tableau : '"+type_init_expected+"' attendu mais '"+type_init+"' trouvé\n";
+					erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans l'initialisation du tableau : '"+type_init_expected+"' attendu mais '"+type_init+"' trouvé\n";
 				}
 				
 				if(!erreurs.equals(""))
@@ -76,7 +76,10 @@ public class ControleTypageDeclaration extends ControleSemantique{
 						String type_found = e_a.computeType(TDSs);
 						
 						if(!ExpressionArithmetique.checkTypes(TDSs, type_champ, type_found)){
-							erreurs+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans le champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' : '"+type_champ+"' attendu mais '"+type_found+"' trouvé\n";
+							if(!type_champ.equals("UNDEFINED"))
+								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans le champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' : '"+type_champ+"' attendu mais '"+type_found+"' trouvé\n";
+							else
+								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Accès au champ inexistant '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
 						}
 					}catch(ErreurSemantique err){
 						//L'erreur a déjà été détecté ailleurs

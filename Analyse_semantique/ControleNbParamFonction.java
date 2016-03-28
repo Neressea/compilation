@@ -18,6 +18,9 @@ public class ControleNbParamFonction extends ControleSemantique {
 		CommonTree n = (CommonTree) node.getChild(0);
 		// On récupère la fonction dans la TDS ou elle a été créée
 		f = (FieldFonction) TDS.findIn(TDSs, n.getText(), FieldType.FieldFonction);
+		
+		if(f==null) return;
+		
 		// On regarde le nombre de paramètres attendu par la fonction
 		int nbParamsAttendu = f.getParams().size();
 		
@@ -30,10 +33,10 @@ public class ControleNbParamFonction extends ControleSemantique {
 			// On regarde le nombre de fils du deuxième fils de l'appel = nb de paramètres
 			if (node.getChild(1).getChildCount() != nbParamsAttendu) {
 				// S'il n'y a pas le bon nombre de paramètres
-				throw new ErreurSemantique(node.getLine(), "Nombre de parametre fonction : " +
-															node.getChild(0) + " "
-															+ node.getChild(1).getChildCount()
-															+ " attendu(" + nbParamsAttendu + ")");
+				throw new ErreurSemantique(node.getLine(), "Mauvais nombre de parametre pour la fonction '" +
+															node.getChild(0) + "' : "
+															+ nbParamsAttendu
+															+ " attendu, " + node.getChild(1).getChildCount() + " trouves");
 			}
 		}
 
