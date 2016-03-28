@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams, existence;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -38,7 +38,7 @@ public class AnalyseSemantique {
 		TDSs = new ArrayList<TDS>();
 		pile = new ArrayList<TDS>();
 		
-		//On crée une TDS qui contient les fonctions de base du langage : print et read
+		//On crï¿½e une TDS qui contient les fonctions de base du langage : print et read
 		TDS base = new TDSLet(0);
 		
 		FieldFonction fprint = new FieldFonction("print", 0, "UNDEFINED");
@@ -81,7 +81,7 @@ public class AnalyseSemantique {
 		if(pile.size()>0) current = top();
 		
 		switch(node.getToken().getText()){
-			//Déclaration d'une variable
+			//Dï¿½claration d'une variable
 			case "var":
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
@@ -91,11 +91,11 @@ public class AnalyseSemantique {
 				//On a une variable
 				}else if(node.getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){	
 					
-					//Le type n'est pas indiqué
+					//Le type n'est pas indiquï¿½
 					if(node.getChildCount() == 2){
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
 						
-					//Le type est indiqué
+					//Le type est indiquï¿½
 					}else{
 						ControleExistenceType cet = new ControleExistenceType(node);
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
@@ -117,7 +117,7 @@ public class AnalyseSemantique {
 				analyseChild(node);
 				break;
 				
-			//Déclaration d'un type
+			//Dï¿½claration d'un type
 			case "type":
 				String type = null;
 				FieldTypeDef definition = null;
@@ -132,7 +132,7 @@ public class AnalyseSemantique {
 						break;
 						
 					case "TAB":
-						//@ du premier élément du tableau + taille d'un entier pour la borne sup du tableau
+						//@ du premier ï¿½lï¿½ment du tableau + taille d'un entier pour la borne sup du tableau
 						taille = SIZE_PRIMITIF * 2;
 						definition = new FieldTypeDefTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
 						
@@ -161,17 +161,17 @@ public class AnalyseSemantique {
 			case "FUNC_DECL":
 				FieldFonction ff = null;
 								
-				//Si on a le type qui est précisé
+				//Si on a le type qui est prï¿½cisï¿½
 				if(node.getChildCount() == 4){
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getChild(0).getText());
 				
-					//On ajoute les paramètres formels
+					//On ajoute les paramï¿½tres formels
 					for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 						ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 					}
 					
 				}else if(node.getChildCount() == 3){
-					//Deux cas avec les 3 fils : soit params, soit type. On vérifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
+					//Deux cas avec les 3 fils : soit params, soit type. On vï¿½rifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getChild(0).getText():"UNDEFINED");
 					
 					if (node.getChild(1).getText().equals("PARAMSFORM")){
@@ -186,7 +186,7 @@ public class AnalyseSemantique {
 				current.add(ff);
 				createTDSFunc(node);
 				
-				//On contrôle le type de retour de la fonction
+				//On contrï¿½le le type de retour de la fonction
 				retour_fonction = new ControleRetourFonction(node);
 				retour_fonction.check(pile);
 				
@@ -201,8 +201,11 @@ public class AnalyseSemantique {
 			
 			//Appel d'une fonction
 			case "FUNC_CALL":
+				existence = new ControleExistenceFonction(node);
+				existence.check(pile);
 				nbparams = new ControleNbParamFonction(node);
 				nbparams.check(pile);
+				
 				analyseChild(node);
 				break;
 				
@@ -254,7 +257,7 @@ public class AnalyseSemantique {
 			case "*":
 			case "/":
 			case "NEG":
-				//on crée une expression correspondant au noeud en cours.
+				//on crï¿½e une expression correspondant au noeud en cours.
 				ExpressionArithmetique ea = new ExpressionArithmetique(node);
 				break;
 				
@@ -303,13 +306,13 @@ public class AnalyseSemantique {
 	private void createTDSFunc(CommonTree node){
 		TDS newTDS = new TDSFunc(pile.size());
 		
-		//On ajoute la TDS à la pile
+		//On ajoute la TDS ï¿½ la pile
 		openTDS(newTDS);
 		
-		//Si on a le type et les paramètres qui sont précisés
+		//Si on a le type et les paramï¿½tres qui sont prï¿½cisï¿½s
 		if(node.getChildCount() == 4){
 			
-			//On ajoute les paramètres formels à la TDS de la fonction
+			//On ajoute les paramï¿½tres formels ï¿½ la TDS de la fonction
 			FieldVariable fv;
 			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 				CommonTree p = (CommonTree) node.getChild(1).getChild(i);
@@ -317,10 +320,10 @@ public class AnalyseSemantique {
 				newTDS.add(fv);
 			}
 			
-		//Si on a que les paramètres qui sont précisés
+		//Si on a que les paramï¿½tres qui sont prï¿½cisï¿½s
 		}else if(node.getChildCount() == 3 && node.getChild(1).getText().equals("PARAMSFORM")){
 
-			//On ajoute les paramètres formels à la TDS de la fonction
+			//On ajoute les paramï¿½tres formels ï¿½ la TDS de la fonction
 			FieldVariable fv;
 			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 				fv = new FieldVariable(node.getChild(1).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(1).getChild(i).getChild(1).getText()), node.getChild(1).getChild(i).getChild(1).getText());
@@ -363,7 +366,7 @@ public class AnalyseSemantique {
 	private int computeSizePrimitif(String primit){
 		int size=0;
 		try{
-			//Si le cast marche, alors c'est un int et la taille est celle d'un élément primitif
+			//Si le cast marche, alors c'est un int et la taille est celle d'un ï¿½lï¿½ment primitif
 			Integer.parseInt(primit);
 			size = SIZE_PRIMITIF;
 		}catch(Exception e){
@@ -377,7 +380,7 @@ public class AnalyseSemantique {
 	private boolean isInteger(String primit){
 		boolean is_int = true;
 		try{
-			//Si le cast marche, alors c'est un int et la taille est celle d'un élément primitif
+			//Si le cast marche, alors c'est un int et la taille est celle d'un ï¿½lï¿½ment primitif
 			Integer.parseInt(primit);
 		}catch(Exception e){
 			is_int = false;
@@ -396,7 +399,7 @@ public class AnalyseSemantique {
 	
 	public static void main(String[] args){
 			
-			//On vérifie qu'on a bien le chemin du fichier en paramètre
+			//On vï¿½rifie qu'on a bien le chemin du fichier en paramï¿½tre
 			if(args.length != 1){
 				System.err.println("Usage : java -cp ./Analyse_lexicale_et_syntaxique/antlr-3.3-complete.jar AnalyseAnalyseSemantique file_name");
 				System.exit(1);
@@ -414,7 +417,7 @@ public class AnalyseSemantique {
 			
 			int i=1;
 			for(TDS tds : analyzer.TDSs){
-				System.out.println("--------- TDS n° "+i+++" ---------");
+				System.out.println("--------- TDS nï¿½ "+i+++" ---------");
 				System.out.println(tds);
 				System.out.println("----------------------------");
 			}

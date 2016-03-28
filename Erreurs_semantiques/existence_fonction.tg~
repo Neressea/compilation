@@ -1,8 +1,5 @@
 let
 
-function a() : kebab =
-x := 3
-
 function b(y:int, w:string) : string =
 y := x + "coucou"
 

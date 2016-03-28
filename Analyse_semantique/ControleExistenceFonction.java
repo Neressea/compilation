@@ -13,14 +13,12 @@ public class ControleExistenceFonction extends ControleSemantique{
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
 		boolean found = false;
-		
-		CommonTree n = (CommonTree) node.getChild(0);
-		
-		if (TDS.findIn(TDSs, n.getChild(0).getText(), FieldType.FieldFonction) != null){
+				
+		if (TDS.findIn(TDSs, node.getChild(0).getText(), FieldType.FieldFonction) != null){
 			found=true;
 		}
 		
-		if (!found)throw new ErreurSemantique(node.getLine(), "Fonction :"+n.getChild(0).getText()+"non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Fonction "+node.getChild(0).getText()+" non déclarée");
 		
 	}
 }
