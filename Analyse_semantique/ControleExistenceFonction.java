@@ -11,14 +11,16 @@ public class ControleExistenceFonction extends ControleSemantique{
 
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
-		//Lors d'une affectation, on s'assure que la variable existe deja dans la TDS
+		
+		boolean found = false;
+		
 		CommonTree n = (CommonTree) node.getChild(0);
 		
-		// En attente de modification de la classe TDS
+		if (TDS.findIn(TDSs, n.getChild(0).getText(), FieldType.FieldFonction) != null){
+			found=true;
+		}
 		
-		
-		//if (!n.exits(TDSs))throw new ErreurSemantique(node.getLine(), "Fonction non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Fonction :"+n.getChild(0).getText()+"non déclarée");
 		
 	}
-
 }
