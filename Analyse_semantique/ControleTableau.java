@@ -11,14 +11,17 @@ public class ControleTableau extends ControleSemantique{
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		
-		/*------------------- On vérifie que la taille du tableau n'est pas négative -------------------*/
+		/*------------------- On vï¿½rifie que la taille du tableau n'est pas nï¿½gative -------------------*/
 		
-		//On récupère la taille du tableau
+		//On rï¿½cupï¿½re la taille du tableau
 		CommonTree n = (CommonTree) node.getChild(0); 
 		
-		/*On essaie de caster en entier. Sinon ce n'est pas une constante entière et on ne peut
-		  donc vérifier si la valeur est négative */
+		/*On essaie de caster en entier. Sinon ce n'est pas une constante entiï¿½re et on ne peut
+		  donc vï¿½rifier si la valeur est nï¿½gative */
 
+		ExpressionArithmetique ea = new ExpressionArithmetique(n);
+		ea.computeType(TDSs);
+			
 		if(n.getText().matches("NEG")) throw new ErreurSemantique(node.getLine(), "Taille de tableau < 0");
 			
 	}

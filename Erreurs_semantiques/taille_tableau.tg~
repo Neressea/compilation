@@ -5,6 +5,6 @@ let
 	var ok := arrayInt [3 -5] of 5
 	var pasok := arrayInt [-5] of 10
 	var test := arrayInt [N -3] of 8
-	var test2 := arrayInt [W -9] of 10
+	var test2 := arrayInt [W-9] of 10
 
 in end
