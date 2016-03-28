@@ -1,8 +1,11 @@
 let
 
+type fromage = int
+type strArr = array of string
+
 var x : fromage := 10
 var y : int := 2 + 4 / 5
-var nom_tableau := string [ x ] of "coucou"
+var nom_tableau := strArr [ x ] of "coucou"
 
 function dtc(c:string, a:int, k:fromage):int = 
 (x := (3 + 2) / 5 + 6;

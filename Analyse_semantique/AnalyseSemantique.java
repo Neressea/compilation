@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau;
+	private ControleSemantique taille_tableau, retour_fonction;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -150,16 +150,16 @@ public class AnalyseSemantique {
 								
 				//Si on a le type qui est précisé
 				if(node.getChildCount() == 4){
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getText());
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getChild(0).getText());
 				
 					//On ajoute les paramètres formels
-					for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
-						ff.addParam(node.getChild(2).getChild(i).getChild(0).getText(), node.getChild(2).getChild(i).getChild(1).getText());
+					for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
+						ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 					}
 					
 				}else if(node.getChildCount() == 3){
 					//Deux cas avec les 3 fils : soit params, soit type. On vérifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getText():"UNDEFINED");
+					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getChild(0).getText():"UNDEFINED");
 					
 					if (node.getChild(1).getText().equals("PARAMSFORM")){
 						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
@@ -172,6 +172,11 @@ public class AnalyseSemantique {
 				
 				current.add(ff);
 				createTDSFunc(node);
+				
+				//On contrôle le type de retour de la fonction
+				retour_fonction = new ControleRetourFonction(node);
+				retour_fonction.check(pile);
+				
 				analyseChild(node);
 				closeTDS();
 				break;
@@ -236,7 +241,6 @@ public class AnalyseSemantique {
 			case "NEG":
 				//on crée une expression correspondant au noeud en cours.
 				ExpressionArithmetique ea = new ExpressionArithmetique(node);
-				System.out.println(node.toStringTree()+" : "+ea.computeType(pile));
 				break;
 				
 			//Accï¿½s ï¿½ une case d'un tableau
@@ -292,8 +296,9 @@ public class AnalyseSemantique {
 			
 			//On ajoute les paramètres formels à la TDS de la fonction
 			FieldVariable fv;
-			for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
-				fv = new FieldVariable(node.getChild(2).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(2).getChild(i).getChild(1).getText()), node.getChild(2).getChild(i).getChild(1).getText());
+			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
+				CommonTree p = (CommonTree) node.getChild(1).getChild(i);
+				fv = new FieldVariable(p.getChild(0).getText(), top().getCurrentSize(), computeSizeType(p.getChild(1).getText()), p.getChild(1).getText());
 				newTDS.add(fv);
 			}
 			
@@ -302,7 +307,7 @@ public class AnalyseSemantique {
 
 			//On ajoute les paramètres formels à la TDS de la fonction
 			FieldVariable fv;
-			for (int i = 0; i < node.getChild(2).getChildCount(); i++) {
+			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 				fv = new FieldVariable(node.getChild(1).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(1).getChild(i).getChild(1).getText()), node.getChild(1).getChild(i).getChild(1).getText());
 				newTDS.add(fv);
 			}

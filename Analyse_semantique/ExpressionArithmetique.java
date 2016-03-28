@@ -28,6 +28,41 @@ public class ExpressionArithmetique {
 	}
 	
 	/**
+	 * Vérifie que deux types soient équivalents
+	 * @param type1
+	 * @param type2
+	 * @return
+	 */
+	public static boolean checkTypes(ArrayList<TDS> pile, String type1, String type2){
+		//On vérifie si l'un des deux types est undefined
+		if(type1.equals("UNDEFINED") || type2.equals("UNDEFINED")) 
+			return false;
+		
+		//S'ils sont définis, on les récupère (si ce ne sont pas des int)
+		FieldTypeDef typedef1 = null, typedef2 = null;
+		
+		if(!type1.equals("int"))
+			typedef1 = (FieldTypeDef) TDS.findIn(pile, type1, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
+		
+		if(!type2.equals("int")){
+			typedef2 = (FieldTypeDef) TDS.findIn(pile, type2, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
+		}
+		//On récupère leurs types réel (si renommage)
+		if(typedef1 != null)
+			type1 = findRealType(pile, typedef1);
+		
+		if(typedef2 != null)
+			type2 = findRealType(pile, typedef2);
+		
+		//On vérifie que les types réels sont bien des entiers, sinon l'expression est erronée
+		if(type1.equals(type2)){
+			return true;
+		}
+
+		return false;
+	}
+	
+	/**
 	 * @param exp Expression à calculer
 	 * @return
 	 */
@@ -115,7 +150,7 @@ public class ExpressionArithmetique {
 	 * @param typedef
 	 * @return UNDEFINED ou le type réel
 	 */
-	private String findRealType(ArrayList<TDS> pile, FieldTypeDef typedef){
+	private static String findRealType(ArrayList<TDS> pile, FieldTypeDef typedef){
 		//Si c'est une structure, on renvoie UNDEFINED
 		if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure))
 			return "UNDEFINED";
