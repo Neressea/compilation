@@ -37,7 +37,18 @@ public class ExpressionArithmetique {
 		String left = null;
 		String right = null;
 		
-		ArrayList<String> ops = new ArrayList<String>(Arrays.asList(new String[]{"+", "-", "/", "*"}));
+		ArrayList<String> ops = new ArrayList<String>(Arrays.asList(new String[]{"+", "-", "/", "*", "NEG"}));
+		
+		//Si le noeud est un - unaire, on le skippe
+		if(exp.getText().equals("NEG") && exp.getChildCount() == 1){
+			return recursiveComputeType(pile, (CommonTree) exp.getChild(0));
+		}
+		
+		//Si le noeud n'est pas une expression arithmétique (ie une variable), on renvoie cash son type
+		if(!ops.contains(exp.getText())){
+			String t  =findUnitType(pile, exp);
+			return t;
+		}
 		
 		//Si le fils est un opérateur, ce n'est pas une unité
 		if(ops.contains(exp.getChild(0).getText())){
@@ -46,7 +57,7 @@ public class ExpressionArithmetique {
 		}else{
 			left = findUnitType(pile, (CommonTree) exp.getChild(0));
 		}
-		
+				
 		//Si le fils est un opérateur, ce n'est pas une unité
 		if(ops.contains(exp.getChild(1).getText())){
 			//On récupère le type du fils gauche (récursivité)
