@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
-
 /**
  * 
  * Repr�sente la fonction principale qui doit-�tre impl�ment�e par toute TDS.

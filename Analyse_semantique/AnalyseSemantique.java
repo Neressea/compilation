@@ -108,7 +108,7 @@ public class AnalyseSemantique {
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
 				//On a une variable
-				}else if((node.getChildCount() == 2 && !node.getChild(1).getText().equals("STRUCT")) || (node.getChildCount() == 3)){	
+				}else if((node.getChildCount() == 2 && TDS.findIn(pile, node.getChild(1).getText(), FieldType.FieldTypeDefStructure)==null) || (node.getChildCount() == 3)){	
 					
 					ExpressionArithmetique ea;
 					
@@ -157,11 +157,14 @@ public class AnalyseSemantique {
 					
 					current.add(fs);
 				}
+				
+				typage = new ControleTypageDeclaration(node);
+				fire(typage);
 					
 				analyseChild(node);
 				break;
 				
-			//D�claration d'un type
+			//Declaration d'un type
 			case "type":
 				String type = null;
 				FieldTypeDef definition = null;
@@ -289,7 +292,7 @@ public class AnalyseSemantique {
 				
 			//Affectation
 			case ":=":
-				typage = new ControleTypage((CommonTree) node.getChild(1), (CommonTree) node.getChild(0));
+				typage = new ControleTypageAffect(node);
 				fire(typage);
 				analyseChild(node);
 				break;
@@ -312,10 +315,7 @@ public class AnalyseSemantique {
 				createTDSFor(node);
 				analyseChild(node);
 				closeTDS();
-				typage = new ControleTypage((CommonTree) node.getChild(0).getChild(0), (CommonTree) node.getChild(0));
-				fire(typage);
-				
-				typage = new ControleTypage((CommonTree) node.getChild(0).getChild(1), (CommonTree) node.getChild(0));
+				typage = new ControleTypageFor(node);
 				fire(typage);
 				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
 				fire(doubledecl);

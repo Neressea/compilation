@@ -204,7 +204,7 @@ public class ExpressionArithmetique {
 		
 		//Si aucune d�finition n'a �t� retrouv�e, l'expression est indetermin�e.
 		if(var == null)
-			throw new ErreurSemantique(unit.getLine(), "Variable non-déclarée : "+unit.getText());
+			throw new ErreurSemantique(unit.getLine(), "Variable non-declaree : "+unit.getText());
 		
 		//Si l'unit� n'a pas de fils, c'est un type simple et on renvoie donc son type
 		if(unit.getChildCount() == 0)
