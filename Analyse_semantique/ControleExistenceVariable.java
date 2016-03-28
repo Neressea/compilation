@@ -17,14 +17,11 @@ public class ControleExistenceVariable extends ControleSemantique{
 		
 		CommonTree n = (CommonTree) node.getChild(0);
 		
-		for (TDS tds: TDSs){
-			if (tds.existIn(n.getChild(0).getText(), FieldType.FieldVariable) != null){
-				found=true;
-				break;
-			}
-		}	
+		if (TDS.findIn(TDSs, n.getChild(0).getText(), FieldType.FieldVariable) != null){
+			found=true;
+		}
 		
-		if (!found)throw new ErreurSemantique(node.getLine(), "Variable non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Variable :"+n.getChild(0).getText()+" non déclarée");
 		
 	}
 
