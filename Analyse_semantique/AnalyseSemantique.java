@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, type_params_func_call, doubledecl;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, type_params_func_call, doubledecl, typage;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -289,13 +289,8 @@ public class AnalyseSemantique {
 				
 			//Affectation
 			case ":=":
-				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
-				try {
-					ea.computeType(pile);
-				} catch (ErreurSemantique e) {
-					err_messages+=e.getMessage()+"\n";
-					is_ok=false;
-				}
+				typage = new ControleTypage((CommonTree) node.getChild(1), (CommonTree) node.getChild(0));
+				fire(typage);
 				analyseChild(node);
 				break;
 				
@@ -317,7 +312,11 @@ public class AnalyseSemantique {
 				createTDSFor(node);
 				analyseChild(node);
 				closeTDS();
-				System.out.println("coucou");
+				typage = new ControleTypage((CommonTree) node.getChild(0).getChild(0), (CommonTree) node.getChild(0));
+				fire(typage);
+				
+				typage = new ControleTypage((CommonTree) node.getChild(0).getChild(1), (CommonTree) node.getChild(0));
+				fire(typage);
 				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
 				fire(doubledecl);
 				break;
