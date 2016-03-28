@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, existencevariable;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -86,20 +86,34 @@ public class AnalyseSemantique {
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
 					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
 					existencetype.check(pile);
+					
+					ExpressionArithmetique ea_init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0));
+					ExpressionArithmetique ea_taille = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0));
+					
+					ea_init.computeType(pile);
+					ea_taille.computeType(pile);
+					
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
 				//On a une variable
-				}else if(node.getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){	
-					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-					existencetype.check(pile);
+				}else if((node.getChildCount() == 2 && !node.getChild(1).getText().equals("STRUCT")) || (node.getChildCount() == 3)){	
+					
+					ExpressionArithmetique ea;
+					
 					//Le type n'est pas indiqu�
 					if(node.getChildCount() == 2){
+						ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
-						
-					//Le type est indiqu�
+						//Le type est indiqu�
 					}else{
+						existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+						existencetype.check(pile);
+						ea = new ExpressionArithmetique((CommonTree) node.getChild(2));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
 					}	
+					
+					//Vérifie existence des variales aupassage
+					ea.computeType(pile);
 					
 				//On a une structure
 				}else {
@@ -108,9 +122,11 @@ public class AnalyseSemantique {
 					existencetype.check(pile);
 										
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
-					
+					ExpressionArithmetique ea;
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
+						ea = new ExpressionArithmetique((CommonTree) ct.getChild(0));
+						ea.computeType(pile);
 						fs.addChamp(ct.getText(), ct.getChild(0).getText());
 					}
 					
@@ -231,6 +247,8 @@ public class AnalyseSemantique {
 				
 			//Affectation
 			case ":=":
+				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
+				ea.computeType(pile);
 				analyseChild(node);
 				break;
 				
@@ -278,7 +296,8 @@ public class AnalyseSemantique {
 			case "/":
 			case "NEG":
 				//on cr�e une expression correspondant au noeud en cours.
-				ExpressionArithmetique ea = new ExpressionArithmetique(node);
+				ExpressionArithmetique ea2 = new ExpressionArithmetique(node);
+				ea2.computeType(pile);
 				break;
 				
 			//Acc�s � une case d'un tableau
