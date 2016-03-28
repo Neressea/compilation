@@ -25,16 +25,16 @@ public class ControleNbParamFonction extends ControleSemantique {
 			// Cas où l'appel ne comporte qu'un seul fils (donc pas de paramètres)
 			if (nbParamsAttendu != 0)
 				throw new ErreurSemantique(node.getLine(), "Nombre de parametres : 0 attendu(" + nbParamsAttendu + ")");
-		else {
+		} else {
 			// Cas où l'appel comporte plusieurs fils
 			// On regarde le nombre de fils du deuxième fils de l'appel = nb de paramètres
+			System.out.println(node.getChild(1).getText());
 			if (node.getChild(1).getChildCount() != nbParamsAttendu) {
 				// S'il n'y a pas le bon nombre de paramètres
 				throw new ErreurSemantique(node.getLine(), "Nombre de parametre : " 
 															+ node.getChild(1).getChildCount()
 															+ " attendu(" + nbParamsAttendu + ")");
 			}
-		}
 		}
 
 	}

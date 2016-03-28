@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -188,6 +188,8 @@ public class AnalyseSemantique {
 			
 			//Appel d'une fonction
 			case "FUNC_CALL":
+				nbparams = new ControleNbParamFonction(node);
+				nbparams.check(pile);
 				analyseChild(node);
 				break;
 				
