@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.antlr.runtime.tree.CommonTree;
 
@@ -33,20 +34,30 @@ public class ExpressionArithmetique {
 	private String recursiveComputeType(ArrayList<TDS> pile, CommonTree exp){
 		
 		String type = null;
+		String left = null;
+		String right = null;
 		
-		if(exp.getChildCount() > 1){
+		ArrayList<String> ops = new ArrayList<String>(Arrays.asList(new String[]{"+", "-", "/", "*"}));
+		
+		//Si le fils est un opérateur, ce n'est pas une unité
+		if(ops.contains(exp.getChild(0).getText())){
 			//On récupère le type du fils gauche (récursivité)
-			String left = recursiveComputeType(pile, (CommonTree) exp.getChild(0));
-			
-			//On récupère le type du fils droit (récursivité)
-			String right = recursiveComputeType(pile, (CommonTree) exp.getChild(1));
-			
-			//On vérifie la compatibilité des deux types (qu'ils soient admissibles dans les calculs et correspondent)
-			type = concatType(pile, left, right);
+			left = recursiveComputeType(pile, (CommonTree) exp.getChild(0));
 		}else{
-			type = findUnitType(pile, exp);
+			left = findUnitType(pile, (CommonTree) exp.getChild(0));
 		}
-
+		
+		//Si le fils est un opérateur, ce n'est pas une unité
+		if(ops.contains(exp.getChild(1).getText())){
+			//On récupère le type du fils gauche (récursivité)
+			right = recursiveComputeType(pile, (CommonTree) exp.getChild(1));
+		}else{
+			right = findUnitType(pile, (CommonTree) exp.getChild(1));
+		}
+				
+		//On vérifie la compatibilité des deux types (qu'ils soient admissibles dans les calculs et correspondent)
+		type = concatType(pile, left, right);
+						
 		//Si c'est bon, on renvoie le type commun. Sinon UNDEFINED.
 		return type;
 	}
@@ -65,12 +76,13 @@ public class ExpressionArithmetique {
 		
 		//S'ils sont définis, on les récupère (si ce ne sont pas des int)
 		FieldTypeDef typedef1 = null, typedef2 = null;
+		
 		if(!type1.equals("int"))
 			typedef1 = (FieldTypeDef) TDS.findIn(pile, type1, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
 		
-		if(!type2.equals("int"))
-			typedef2 = (FieldTypeDef) TDS.findIn(pile, type1, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
-		
+		if(!type2.equals("int")){
+			typedef2 = (FieldTypeDef) TDS.findIn(pile, type2, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
+		}
 		//On récupère leurs types réel (si renommage)
 		if(typedef1 != null)
 			type1 = findRealType(pile, typedef1);
@@ -82,7 +94,7 @@ public class ExpressionArithmetique {
 		if(type1.equals("int") && type2.equals("int")){
 			return "int";
 		}
-		
+
 		return "UNDEFINED";
 	}
 	
@@ -135,13 +147,12 @@ public class ExpressionArithmetique {
 	private String findUnitType(ArrayList<TDS> pile, CommonTree unit){
 		
 		String type=null;
-		
 		//On vérifie si l'unité est une constante
 		if(!(type=tryConstante(unit.getText())).equals("UNDEFINED")) return type;
 		
 		//Sinon on recherche la définition de l'unité. On sait qu'il s'agit forcément d'une unité typée.
 		FieldAvecType var = (FieldAvecType) TDS.findIn(pile, unit.getText(), FieldType.FieldFonction, FieldType.FieldStructure, FieldType.FieldTableau, FieldType.FieldVariable);
-
+		
 		//Si aucune définition n'a été retrouvée, l'expression est indeterminée.
 		if(var == null)
 			return "UNDEFINED";
@@ -149,9 +160,9 @@ public class ExpressionArithmetique {
 		//Si l'unité n'a pas de fils, c'est un type simple et on renvoie donc son type
 		if(unit.getChildCount() == 0)
 			return var.getType();
-		
+				
 		//Si l'unité a des fils, alors c'est un type composite (tableau ou structure).
-		return "UNDEFINED";//findUnitComposite(pile, unit);
+		return findUnitComposite(pile, unit);
 	}
 	
 	/**
@@ -185,11 +196,43 @@ public class ExpressionArithmetique {
 			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefTableau)){
 				
 				//On récupère le type des éléments du tableau
+				String type_tab = ((FieldTypeDefTableau)typedef).getTypeElements();
 				
-				//On regarde s'il accède à un champ existant dans la définition du type
+				//On regarde le nombre de fils. S'il n'y en a qu'un, il n'y a qu'un simple accès à une case et on renvoie le type du tableau
+				if(unit.getChildCount() == 1){
+					type = type_tab;
+				}
 				
-				//Si le champ n'existe pas, on renvoie UNDEFINED
+				//S'il n'y a pas de fils, alors UNDEFINED. On ne peut pas utiliser un tableau entier dans un calcul
+				if(unit.getChildCount() == 0){
+					type = "UNDEFINED";
+				}
 				
+				//S'il y a plus de fils, on a deux cas : tous sont des tableaux, ou alors le dernier est uen structure
+				if(unit.getChildCount() > 1){
+					//On récupère la définition du type des éléments du tableau
+					FieldTypeDef typedef_elem = (FieldTypeDef) TDS.findIn(pile, type_tab, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+					
+					//On parcourt les fils de 0 à n-2 (le dernier est un cas particulier)
+					for (int i = 0; i < unit.getChildCount()-2; i++) {
+						//Si le type n'a pas été trouvé, on renvoie UNDEF
+						if(typedef_elem == null)
+							type= "UNDEFINED";
+						
+						//On vérifie que c'est bien une définition de tableau. Sinon, on ne pourrait pas y accéder par []
+						if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
+							type= "UNDEFINED";
+						
+						//Maintenant, on va vérifier la même chose pour le type des éléments du tableau suivant.
+						typedef_elem = (FieldTypeDef) TDS.findIn(pile, ((FieldTypeDefTableau)typedef_elem).getTypeElements(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+					}
+					
+					//Pour le dernier fils, si celui-ci est un tableau, on renvoi son type.
+					if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
+						type = ((FieldTypeDefTableau)typedef_elem).getTypeElements();
+					
+					//Si le dernier fils est une structure
+				}
 			}
 		
 		//Si l'unité n'a pas de fils, on renvoie le type récupéré.
