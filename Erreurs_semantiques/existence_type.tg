@@ -1,0 +1,15 @@
+let
+
+type T2 = array of T1
+type T3 = array of T2
+
+type alias = int
+
+var tab := T3[10] of T2[10] of T1[5]
+var a : alias := 5
+
+in
+
+tab[1][2][3] + a
+
+end
