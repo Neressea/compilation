@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams, existence;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -48,7 +48,6 @@ public class AnalyseSemantique {
 		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
 		base.add(fread);
 		
-		TDSs.add(base);
 		openTDS(base);
 	}
 	
@@ -85,25 +84,29 @@ public class AnalyseSemantique {
 			case "var":
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
-					
+					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+					existencetype.check(pile);
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
 				//On a une variable
 				}else if(node.getChildCount() >= 2 && node.getChild(1).getChildCount() == 0){	
-					
+					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+					existencetype.check(pile);
 					//Le type n'est pas indiqu�
 					if(node.getChildCount() == 2){
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
 						
 					//Le type est indiqu�
 					}else{
-						ControleExistenceType cet = new ControleExistenceType(node);
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
 					}	
 					
 				//On a une structure
-				}else if(node.getChild(1).getChildCount() >= 2){
-					
+				}else {
+					System.out.println("OOO"+node.getChild(1));
+					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
+					existencetype.check(pile);
+										
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
 					
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
@@ -129,18 +132,27 @@ public class AnalyseSemantique {
 						//Variable indique que c'est un type primitif
 						taille = computeSizeType(node.getChild(1).getChild(0).getText());
 						definition = new FieldTypeDefSimple(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
+						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						existencetype.check(pile);
 						break;
 						
 					case "TAB":
 						//@ du premier �l�ment du tableau + taille d'un entier pour la borne sup du tableau
 						taille = SIZE_PRIMITIF * 2;
 						definition = new FieldTypeDefTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
-						
+						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						existencetype.check(pile);
 						break;
 						
-					case "STRUCT":						
+					case "STRUCT":	
+						
 						for(int i=0; i<node.getChild(1).getChildCount(); i++){
+							System.out.println("AA : "+i);
+							
+							existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(i).getChild(1));
+							existencetype.check(pile);
 							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());
+							
 						}
 						
 						definition = new FieldTypeDefStructure(node.getChild(0).getText(), current.getCurrentSize(), taille);
@@ -163,6 +175,8 @@ public class AnalyseSemantique {
 								
 				//Si on a le type qui est pr�cis�
 				if(node.getChildCount() == 4){
+					existencetype = new ControleExistenceType((CommonTree) node.getChild(2).getChild(0));
+					existencetype.check(pile);
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getChild(0).getText());
 				
 					//On ajoute les param�tres formels
@@ -172,7 +186,13 @@ public class AnalyseSemantique {
 					
 				}else if(node.getChildCount() == 3){
 					//Deux cas avec les 3 fils : soit params, soit type. On v�rifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
-					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), (node.getChild(1).getText().equals("TYPE"))?node.getChild(1).getChild(0).getText():"UNDEFINED");
+					if((node.getChild(1).getText().equals("TYPE"))){
+						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
+						existencetype.check(pile);
+						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(1).getChild(0).getText());
+					}else{
+						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), "UNDEFINED");
+					}
 					
 					if (node.getChild(1).getText().equals("PARAMSFORM")){
 						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
@@ -201,8 +221,8 @@ public class AnalyseSemantique {
 			
 			//Appel d'une fonction
 			case "FUNC_CALL":
-				existence = new ControleExistenceFonction(node);
-				existence.check(pile);
+				existencefonction = new ControleExistenceFonction(node);
+				existencefonction.check(pile);
 				nbparams = new ControleNbParamFonction(node);
 				nbparams.check(pile);
 				

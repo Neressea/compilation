@@ -14,13 +14,14 @@ public class ControleExistenceType extends ControleSemantique{
 		
 		boolean found = false;
 		
-		CommonTree n = (CommonTree) node.getChild(0);
-		
-		if (TDS.findIn(TDSs, n.getChild(1).getText(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau) != null){
+		if(node.getText().equals("string") || node.getText().equals("int"))
+			found=true;
+				
+		if (TDS.findIn(TDSs, node.getText(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau) != null){
 			found=true;
 		}
 		
-		if (!found)throw new ErreurSemantique(node.getLine(), "Type :"+n.getChild(1).getText()+"non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Type :"+node.getText()+" non déclarée");
 		
 	}
 }
