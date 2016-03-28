@@ -407,7 +407,7 @@ public class AnalyseSemantique {
 			}
 			
 			if(analyzer.isOK()){
-				System.out.println("L'analyse s�mantique n'a d�tect� aucun probl�me !");
+				System.out.println("L'analyse semantique n'a detecte aucun probleme !");
 			}else{
 				System.err.println(analyzer.getErrors());
 			}
