@@ -82,6 +82,25 @@ public abstract class TDS {
 		return null;
 	}
 	
+	/**
+	 * Retrouve toutes les definitions d'un ID dans les TDS
+	 * @param tds_list
+	 * @param ID
+	 * @param field_type
+	 * @return Une ArrayList de Field pouvant etre de taille 0 si aucune correspondance
+	 */
+	public static ArrayList<Field> findAll(ArrayList<TDS> tds_list, String ID, FieldType... field_type) {
+		ArrayList<Field> all = new ArrayList<Field>();
+		for (TDS tds : tds_list) {
+			for (int i=0 ; i< field_type.length; i++) {
+				if ((tds.existIn(ID, field_type[i]))!=null) {
+					all.add(tds.existIn(ID, field_type[i]));
+				}
+			}
+		}
+		return all;
+	}
+	
 	@Override
 	public String toString(){
 		String ret  = "* n° bloc="+nb_bloc+", n° imbrication="+num_imbrication+" * \n";

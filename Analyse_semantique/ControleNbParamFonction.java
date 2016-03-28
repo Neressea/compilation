@@ -31,7 +31,8 @@ public class ControleNbParamFonction extends ControleSemantique {
 			System.out.println(node.getChild(1).getText());
 			if (node.getChild(1).getChildCount() != nbParamsAttendu) {
 				// S'il n'y a pas le bon nombre de paramètres
-				throw new ErreurSemantique(node.getLine(), "Nombre de parametre : " 
+				throw new ErreurSemantique(node.getLine(), "Nombre de parametre fonction : " +
+															node.getChild(0) + " "
 															+ node.getChild(1).getChildCount()
 															+ " attendu(" + nbParamsAttendu + ")");
 			}
