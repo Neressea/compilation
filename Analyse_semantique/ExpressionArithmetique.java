@@ -197,12 +197,19 @@ public class ExpressionArithmetique {
 			//On regarde si c'est un tableau ou une structure
 			if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure)){
 				
-				//On regarde s'il accède à un champ existant dans la définition du type
+				//On regarde s'il accède à un champ existant dans la définition du type (on saute le noeud FIELD)
+				String type_struct = ((FieldTypeDefStructure)typedef).getChampType(unit.getChild(0).getChild(0).getText());
 				
 				//Si le champ n'existe pas, on renvoie UNDEFINED
+				if(type_struct.equals("UNDEFINED")) return type_struct;
 				
-				//Si tout s'est bien passé, on récure
-				findUnitComposite(pile, (CommonTree)unit.getChild(1));
+				//On regarde s'il a un frère (accès à struct ou tab)
+				CommonTree cursor = unit;
+				
+				while(cursor.getChildCount() > 1){
+					
+					
+				}
 				
 			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefTableau)){
 				
