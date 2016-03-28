@@ -37,6 +37,19 @@ public class AnalyseSemantique {
 		err_messages = "";
 		TDSs = new ArrayList<TDS>();
 		pile = new ArrayList<TDS>();
+		
+		//On crée une TDS qui contient les fonctions de base du langage : print et read
+		TDS base = new TDSLet(0);
+		
+		FieldFonction fprint = new FieldFonction("print", 0, "UNDEFINED");
+		fprint.addParam("s", "string");
+		base.add(fprint);
+		
+		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
+		base.add(fread);
+		
+		TDSs.add(base);
+		openTDS(base);
 	}
 	
 	public void analyze(){
