@@ -1,0 +1,51 @@
+let
+
+	type kebab = string
+	type stringArray = array of string
+	type str = {a:int, b:string}
+
+	var v2 : kebab := "5"
+
+	var stringtab := stringArray[12000] of "coucou"
+
+	var chaine := "une chaine"
+
+	var structure := str{a:=666, b:="abc"}
+
+	function void() : string = "C'est le néant"
+
+	function calculer(premier:int, second:int, troisieme:int) : string = (
+
+		v2 := void();
+
+		if premier > second & second > troisieme then
+			chaine := "cool"
+		else (
+			50;
+			chaine := "pas cool"
+		)
+	)
+
+	function vraiment_rien(inutile:string) = print(inutile)
+
+	var void2 := 0
+
+in 
+	
+	v2 := void();
+
+	for k := 0 to 5 * void2 do (
+
+		calculer(100, 20, 5);
+
+		/*Condition avec une condition non-booléenne*/
+		if k + 3 < 10 & k > 5 then k := 5;
+
+		/*While avec une condition non-booléenne*/
+		while void() < "abcdef" do (
+			print(stringtab[k]);
+			k := read()
+		)
+	)
+
+end

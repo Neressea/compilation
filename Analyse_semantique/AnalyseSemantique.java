@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique ctrl_taille_tableau, ctrl_retour_fonction, ctrl_nbparams, ctrl_existencefonction, ctrl_existencetype, ctrl_type_params_func_call, ctrl_doubledecl, ctrl_typage, ctrl_bool;
+	private ControleSemantique ctrl_taille_tableau, ctrl_retour_fonction, ctrl_nbparams, ctrl_existencefonction, ctrl_existencetype, ctrl_type_params_func_call, ctrl_doubledecl, ctrl_typage, ctrl_bool, ctrl_acces;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -358,6 +358,8 @@ public class AnalyseSemantique {
 				
 			//Acc�s � une case d'un tableau
 			case "CELL":
+				ctrl_acces = new ControleAccesTableau((CommonTree) node.getParent());
+				fire(ctrl_acces);
 				analyseChild(node);
 				break;
 			
@@ -521,9 +523,9 @@ public class AnalyseSemantique {
 				int i=1;
 				
 				for(TDS tds : analyzer.TDSs){
-					System.out.println("--------- TDS n� "+i+++" ---------");
+					System.out.println("--------- TDS numero "+i+++" ---------");
 					System.out.println(tds);
-					System.out.println("----------------------------");
+					System.out.println("--------------------------------");
 				}
 				System.out.println("L'analyse semantique n'a detecte aucun probleme !");
 			}

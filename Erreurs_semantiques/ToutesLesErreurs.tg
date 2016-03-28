@@ -64,7 +64,8 @@ in
 
 		/*While avec une condition non-booléenne*/
 		while void() do (
-			print("coucou");
+			/*Accès à un tableau par variable non-entière*/
+			print(stringtab[v2]);
 			k := read()
 		)
 	)
