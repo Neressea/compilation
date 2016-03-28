@@ -21,7 +21,7 @@ public class AnalyseSemantique {
 	private String err_messages;
 	private ArrayList<TDS> TDSs;
 	private ArrayList<TDS> pile;
-	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, type_params_func_call;
+	private ControleSemantique taille_tableau, retour_fonction, nbparams, existencefonction, existencetype, type_params_func_call, doubledecl;
 	
 	private static final int SIZE_PRIMITIF = 8;
 	
@@ -51,6 +51,15 @@ public class AnalyseSemantique {
 		openTDS(base);
 	}
 	
+	public void fire(ControleSemantique cs) {
+		try {
+			cs.check(pile);
+		} catch (ErreurSemantique e2) {
+			err_messages+=e2.getMessage()+"\n";
+			is_ok=false;
+		}
+	}
+	
 	public void analyze(){
 		loop(tree);
 	}
@@ -60,12 +69,7 @@ public class AnalyseSemantique {
 	 * @param tree AST � analyser
 	 */
 	public void loop(CommonTree current){
-		try {
-			checkNode(current);
-		} catch (ErreurSemantique e) {
-			err_messages+=e.getMessage()+"\n";
-			is_ok = false;
-		}
+			checkNode(current);	
 	}
 	
 	/**
@@ -73,7 +77,7 @@ public class AnalyseSemantique {
 	 * @param node Noeud � v�rifier
 	 * @throws ErreurSemantique
 	 */
-	public void checkNode(CommonTree node) throws ErreurSemantique{
+	public void checkNode(CommonTree node) {
 		//En fonction du type du noeud, on appelle diff�rents contr�les s�mantiques
 		TDS current = null;
 		
@@ -82,16 +86,24 @@ public class AnalyseSemantique {
 		switch(node.getToken().getText()){
 			//D�claration d'une variable
 			case "var":
+				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(doubledecl);
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
+				
 					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-					existencetype.check(pile);
+					fire(existencetype);
 					
 					ExpressionArithmetique ea_init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0));
 					ExpressionArithmetique ea_taille = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0));
 					
-					ea_init.computeType(pile);
-					ea_taille.computeType(pile);
+					try {
+						ea_init.computeType(pile);
+						ea_taille.computeType(pile);
+					} catch (ErreurSemantique e) {
+						err_messages+=e.getMessage()+"\n";
+						is_ok=false;
+					}
 					
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
@@ -106,27 +118,40 @@ public class AnalyseSemantique {
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
 						//Le type est indiqu�
 					}else{
+					
 						existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-						existencetype.check(pile);
+						fire(existencetype);
+						
 						ea = new ExpressionArithmetique((CommonTree) node.getChild(2));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
 					}	
 					
 					//Vérifie existence des variales aupassage
-					ea.computeType(pile);
+					try {
+						ea.computeType(pile);
+					} catch (ErreurSemantique e) {
+						err_messages+=e.getMessage()+"\n";
+						is_ok=false;
+					}
 					
 				//On a une structure
 				}else {
-					System.out.println("OOO"+node.getChild(1));
+				
 					existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
-					existencetype.check(pile);
+					fire(existencetype);
+				
 										
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
 					ExpressionArithmetique ea;
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
 						ea = new ExpressionArithmetique((CommonTree) ct.getChild(0));
-						ea.computeType(pile);
+						try {
+							ea.computeType(pile);
+						} catch (ErreurSemantique e) {
+							err_messages+=e.getMessage()+"\n";
+							is_ok=false;
+						}
 						fs.addChamp(ct.getText(), ct.getChild(0).getText());
 					}
 					
@@ -142,6 +167,8 @@ public class AnalyseSemantique {
 				FieldTypeDef definition = null;
 				int taille=0;
 				type = node.getChild(1).getChild(0).getText();
+				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(doubledecl);
 				
 				switch (node.getChild(1).getText()) {
 					case "PRIMITIF":
@@ -149,7 +176,7 @@ public class AnalyseSemantique {
 						taille = computeSizeType(node.getChild(1).getChild(0).getText());
 						definition = new FieldTypeDefSimple(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
 						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						existencetype.check(pile);
+						fire(existencetype);
 						break;
 						
 					case "TAB":
@@ -157,7 +184,7 @@ public class AnalyseSemantique {
 						taille = SIZE_PRIMITIF * 2;
 						definition = new FieldTypeDefTableau(node.getChild(0).getText(), current.getCurrentSize(), taille, type);
 						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						existencetype.check(pile);
+						fire(existencetype);
 						break;
 						
 					case "STRUCT":	
@@ -166,7 +193,7 @@ public class AnalyseSemantique {
 							System.out.println("AA : "+i);
 							
 							existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(i).getChild(1));
-							existencetype.check(pile);
+							fire(existencetype);
 							taille+=computeSizeType(node.getChild(1).getChild(i).getChild(1).getText());
 							
 						}
@@ -188,15 +215,23 @@ public class AnalyseSemantique {
 			//D�claration d'une fonction
 			case "FUNC_DECL":
 				FieldFonction ff = null;
+				
+				doubledecl = new ControleDoubleDeclaration(node);
+				fire(doubledecl);
+			
 								
 				//Si on a le type qui est pr�cis�
 				if(node.getChildCount() == 4){
 					existencetype = new ControleExistenceType((CommonTree) node.getChild(2).getChild(0));
-					existencetype.check(pile);
+					fire(existencetype);
 					ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(2).getChild(0).getText());
 				
 					//On ajoute les param�tres formels
 					for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
+						
+						doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
+						fire(doubledecl);
+						
 						ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 					}
 					
@@ -204,7 +239,7 @@ public class AnalyseSemantique {
 					//Deux cas avec les 3 fils : soit params, soit type. On v�rifie par ternaire et si c'est type on envoie le type sinon UNDEFINED
 					if((node.getChild(1).getText().equals("TYPE"))){
 						existencetype = new ControleExistenceType((CommonTree) node.getChild(1).getChild(0));
-						existencetype.check(pile);
+						fire(existencetype);
 						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), node.getChild(1).getChild(0).getText());
 					}else{
 						ff = new FieldFonction(node.getChild(0).getText(), current.getCurrentSize(), "UNDEFINED");
@@ -212,6 +247,10 @@ public class AnalyseSemantique {
 					
 					if (node.getChild(1).getText().equals("PARAMSFORM")){
 						for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
+					
+							doubledecl = new ControleDoubleDeclaration((CommonTree) node.getChild(1).getChild(i));
+							fire(doubledecl);
+						
 							ff.addParam(node.getChild(1).getChild(i).getChild(0).getText(), node.getChild(1).getChild(i).getChild(1).getText());
 						}
 					}
@@ -222,12 +261,13 @@ public class AnalyseSemantique {
 				current.add(ff);
 				createTDSFunc(node);
 				
-				//On contr�le le type de retour de la fonction
-				retour_fonction = new ControleRetourFonction(node);
-				retour_fonction.check(pile);
+				
 				
 				analyseChild(node);
 				closeTDS();
+				//On contr�le le type de retour de la fonction
+				retour_fonction = new ControleRetourFonction(node);
+				fire(retour_fonction);
 				break;
 			
 			case "BLOCK":
@@ -238,11 +278,11 @@ public class AnalyseSemantique {
 			//Appel d'une fonction
 			case "FUNC_CALL":
 				existencefonction = new ControleExistenceFonction(node);
-				existencefonction.check(pile);
+				fire(existencefonction);
 				nbparams = new ControleNbParamFonction(node);
-				nbparams.check(pile);
+				fire(nbparams);
 				type_params_func_call = new ControleTypeParamFonction(node);
-				type_params_func_call.check(pile);
+				fire(type_params_func_call);
 				
 				analyseChild(node);
 				break;
@@ -250,7 +290,12 @@ public class AnalyseSemantique {
 			//Affectation
 			case ":=":
 				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
-				ea.computeType(pile);
+				try {
+					ea.computeType(pile);
+				} catch (ErreurSemantique e) {
+					err_messages+=e.getMessage()+"\n";
+					is_ok=false;
+				}
 				analyseChild(node);
 				break;
 				
@@ -272,6 +317,9 @@ public class AnalyseSemantique {
 				createTDSFor(node);
 				analyseChild(node);
 				closeTDS();
+				System.out.println("coucou");
+				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
+				fire(doubledecl);
 				break;
 				
 			case "if":
@@ -299,7 +347,12 @@ public class AnalyseSemantique {
 			case "NEG":
 				//on cr�e une expression correspondant au noeud en cours.
 				ExpressionArithmetique ea2 = new ExpressionArithmetique(node);
-				ea2.computeType(pile);
+				try {
+					ea2.computeType(pile);
+				} catch (ErreurSemantique e) {
+					err_messages+=e.getMessage()+"\n";
+					is_ok=false;
+				}
 				break;
 				
 			//Acc�s � une case d'un tableau
@@ -310,7 +363,7 @@ public class AnalyseSemantique {
 			//D�finition dela taille d'un tableau
 			case "SIZE":
 				taille_tableau = new ControleTableau(node);
-				taille_tableau.check(pile);
+				fire(taille_tableau);
 				analyseChild(node);
 				break;
 				
@@ -332,7 +385,6 @@ public class AnalyseSemantique {
 	private void createTDSFor(CommonTree node){
 		TDS newTDS = new TDSFor(pile.size());
 		openTDS(newTDS);
-		
 		newTDS.add(new FieldVariable(node.getChild(0).getText(), top().getCurrentSize(), SIZE_PRIMITIF, "int"));
 	}
 	
