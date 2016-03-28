@@ -43,11 +43,10 @@ public class ControleRetourFonction extends ControleSemantique{
 			last = (CommonTree) last.getChild(1);
 		}
 		
-		
 		//On calcule la valeur de l'expression.
 		ExpressionArithmetique ea = new ExpressionArithmetique(last);
 		String type_ret;
-		if (last.getText().equals("for") || last.getText().equals("if") || last.getText().equals("while")) {
+		if (last.getText().equals("for") || last.getText().equals("while")) {
 			type_ret = "UNDEFINED";
 		} else {
 			type_ret = ea.computeType(TDSs);

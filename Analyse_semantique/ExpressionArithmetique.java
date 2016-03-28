@@ -42,10 +42,10 @@ public class ExpressionArithmetique {
 		//S'ils sont dï¿½finis, on les rï¿½cupï¿½re (si ce ne sont pas des int)
 		FieldTypeDef typedef1 = null, typedef2 = null;
 		
-		if(!type1.equals("int"))
+		if(!type1.equals("int")&&!type1.equals("string"))
 			typedef1 = (FieldTypeDef) TDS.findIn(pile, type1, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
 		
-		if(!type2.equals("int")){
+		if(!type2.equals("int")&&!type2.equals("string")){
 			typedef2 = (FieldTypeDef) TDS.findIn(pile, type2, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
 		}
 		//On rï¿½cupï¿½re leurs types rï¿½el (si renommage)
@@ -56,7 +56,7 @@ public class ExpressionArithmetique {
 			type2 = findRealType(pile, typedef2);
 		
 		//On vï¿½rifie que les types rï¿½els sont bien des entiers, sinon l'expression est erronï¿½e
-		if(type1.equals(type2)){
+		if(type1.equals(type2)|| !type1.equals("UNDEFINED")){
 			return true;
 		}
 
@@ -83,11 +83,11 @@ public class ExpressionArithmetique {
 		
 		//Si le noeud n'est pas une expression arithmï¿½tique (ie une variable), on renvoie cash son type
 		if(!ops.contains(exp.getText())){
-			String t  =findUnitType(pile, exp);
+			String t = findUnitType(pile, exp);
 			return t;
 		}
 		
-		//Si le fils est un opï¿½rateur, ce n'est pas une unitï¿½
+		//Si le fils est un operateur, ce n'est pas une unitï¿½
 		if(ops.contains(exp.getChild(0).getText())){
 			//On rï¿½cupï¿½re le type du fils gauche (rï¿½cursivitï¿½)
 			left = recursiveComputeType(pile, (CommonTree) exp.getChild(0));
@@ -125,10 +125,10 @@ public class ExpressionArithmetique {
 		//S'ils sont dï¿½finis, on les rï¿½cupï¿½re (si ce ne sont pas des int)
 		FieldTypeDef typedef1 = null, typedef2 = null;
 		
-		if(!type1.equals("int"))
+		if(!type1.equals("int") && !type1.equals("string"))
 			typedef1 = (FieldTypeDef) TDS.findIn(pile, type1, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
 		
-		if(!type2.equals("int")){
+		if(!type2.equals("int") && !type2.equals("string")){
 			typedef2 = (FieldTypeDef) TDS.findIn(pile, type2, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
 		}
 		//On rï¿½cupï¿½re leurs types rï¿½el (si renommage)
@@ -139,8 +139,8 @@ public class ExpressionArithmetique {
 			type2 = findRealType(pile, typedef2);
 		
 		//On vï¿½rifie que les types rï¿½els sont bien des entiers, sinon l'expression est erronï¿½e
-		if(type1.equals("int") && type2.equals("int")){
-			return "int";
+		if(type1.equals(type2) && !type1.equals("UNDEFINED")){
+			return type1;
 		}
 
 		return "UNDEFINED";
@@ -195,13 +195,21 @@ public class ExpressionArithmetique {
 	 */
 	private String findUnitType(ArrayList<TDS> pile, CommonTree unit) throws ErreurSemantique{
 		
+		//Si jamais c'est un appel de fonction, on récupère le fils droit (nom de la fonction)
+		if(unit.getText().equals("FUNC_CALL"))
+			unit = (CommonTree) unit.getChild(0);
+		
+		//Si c'est un if, on calcule son type de retour
+		if(unit.getText().equals("if")){
+			return computeTypeIf(pile, unit);
+		}
+		
 		String type=null;
 		//On vï¿½rifie si l'unitï¿½ est une constante
 		if(!(type=tryConstante(unit.getText())).equals("UNDEFINED")) return type;
 		
 		//Sinon on recherche la dï¿½finition de l'unitï¿½. On sait qu'il s'agit forcï¿½ment d'une unitï¿½ typï¿½e.
 		FieldAvecType var = (FieldAvecType) TDS.findIn(pile, unit.getText(), FieldType.FieldFonction, FieldType.FieldStructure, FieldType.FieldTableau, FieldType.FieldVariable);
-		
 		//Si aucune dï¿½finition n'a ï¿½tï¿½ retrouvï¿½e, l'expression est indeterminï¿½e.
 		if(var == null)
 			throw new ErreurSemantique(unit.getLine(), "Variable non-declaree : "+unit.getText());
@@ -212,6 +220,33 @@ public class ExpressionArithmetique {
 				
 		//Si l'unitï¿½ a des fils, alors c'est un type composite (tableau ou structure).
 		return findUnitComposite(pile, unit);
+	}
+	
+	public String computeTypeIf(ArrayList<TDS> pile, CommonTree iftree)throws ErreurSemantique{
+		String type = "UNDEFINED";
+		
+		//On calcule le type du then
+		CommonTree then_tree = (CommonTree) iftree.getChild(1).getChild(iftree.getChild(1).getChildCount()-1);
+		
+		//Le type est donné par la dernière expression
+		String then_type = findUnitType(pile, then_tree);
+		
+		//On calcule le type du else s'il y en a un
+		if(iftree.getChildCount() == 3){
+			
+			CommonTree else_tree = (CommonTree) iftree.getChild(2).getChild(iftree.getChild(2).getChildCount()-1);
+			
+			//Le type est donné par la dernière expression
+			String else_type = findUnitType(pile, else_tree);
+			
+			//On calcule la correspondance des deux : s'ils sont identiques, alors on renvoie ce type
+			type=concatType(pile, then_type, else_type);
+			
+		}else{
+			//S'il n'y a pas de else, le type est UNDEFINED => pas sûr d'avoir un retour
+		}
+		
+		return type;
 	}
 	
 	/**

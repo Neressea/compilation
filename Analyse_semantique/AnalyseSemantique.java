@@ -33,6 +33,9 @@ public class AnalyseSemantique {
 		Tiger3Parser parser = new Tiger3Parser(tokens);
 		Tiger3Parser.tiger3_return r = parser.tiger3();
 		tree = (CommonTree)r.getTree();
+		if(parser.getNumberOfSyntaxErrors()>0){
+			throw new IOException("Une erreur syntaxique est survenue");
+		}
 		is_ok = true;
 		err_messages = "";
 		TDSs = new ArrayList<TDS>();
@@ -262,13 +265,13 @@ public class AnalyseSemantique {
 				current.add(ff);
 				createTDSFunc(node);
 				
-				
-				
-				analyseChild(node);
-				closeTDS();
 				//On contr�le le type de retour de la fonction
 				retour_fonction = new ControleRetourFonction(node);
 				fire(retour_fonction);
+				
+				analyseChild(node);
+				closeTDS();
+				
 				break;
 			
 			case "BLOCK":
@@ -311,12 +314,16 @@ public class AnalyseSemantique {
 				//on incr�mente le for en plus de son bloc (les vars d�clar�es dans le for sont dans un
 				//bloc sup�rieur au bloc lui-m�me
 				createTDSFor(node);
-				analyseChild(node);
-				closeTDS();
+				
 				typage = new ControleTypageFor(node);
 				fire(typage);
+				analyseChild(node);
+				
+				closeTDS();
+				
 				doubledecl = new ControleDoubleDeclaration((CommonTree) node);
 				fire(doubledecl);
+				
 				break;
 				
 			case "if":
@@ -495,14 +502,17 @@ public class AnalyseSemantique {
 				System.exit(1);
 			}
 			
+			
+			
 			AnalyseSemantique analyzer = null;
+
 			try {
 				analyzer = new AnalyseSemantique(args[0]);
-			} catch (IOException | RecognitionException e) {
+			} catch (Throwable e) {
 				System.err.println("Erreur lors de la lecture de l'AST : "+e.getMessage());
 				System.exit(2);
 			}
-						
+			
 			analyzer.analyze();
 			
 			int i=1;
