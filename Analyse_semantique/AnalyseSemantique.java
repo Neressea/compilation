@@ -16,6 +16,8 @@ import org.antlr.runtime.tree.CommonTree;
  */
 public class AnalyseSemantique {
 	
+	public static AnalyseSemantique analyse_courante;
+	
 	private CommonTree tree;
 	private boolean is_ok;
 	private String err_messages;
@@ -52,6 +54,8 @@ public class AnalyseSemantique {
 		base.add(fread);
 		
 		openTDS(base);
+		
+		analyse_courante = this;
 	}
 	
 	public void fire(ControleSemantique cs) {
@@ -97,19 +101,19 @@ public class AnalyseSemantique {
 					ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
 					fire(ctrl_existencetype);
 					
-					ExpressionArithmetique ea_init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0));
-					ExpressionArithmetique ea_taille = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0));
+					Expression ea_init = new Expression((CommonTree) node.getChild(1).getChild(1).getChild(0));
+					Expression ea_taille = new Expression((CommonTree) node.getChild(1).getChild(0).getChild(0));
 					
 					current.add(new FieldTableau(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText(), (CommonTree) node.getChild(1).getChild(0).getChild(0), (CommonTree) node.getChild(1).getChild(1).getChild(0)));
 					
 				//On a une variable
 				}else if((node.getChildCount() == 2 && TDS.findIn(pile, node.getChild(1).getText(), FieldType.FieldTypeDefStructure)==null) || (node.getChildCount() == 3)){	
 					
-					ExpressionArithmetique ea;
+					Expression ea;
 					
 					//Le type n'est pas indiqu�
 					if(node.getChildCount() == 2){
-						ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
+						ea = new Expression((CommonTree) node.getChild(1));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
 						//Le type est indiqu�
 					}else{
@@ -117,7 +121,7 @@ public class AnalyseSemantique {
 						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
 						fire(ctrl_existencetype);
 						
-						ea = new ExpressionArithmetique((CommonTree) node.getChild(2));
+						ea = new Expression((CommonTree) node.getChild(2));
 						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText()));
 					}	
 					
@@ -137,10 +141,10 @@ public class AnalyseSemantique {
 				
 										
 					FieldStructure fs = new FieldStructure(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(node.getChild(1).getText()), node.getChild(1).getText());
-					ExpressionArithmetique ea;
+					Expression ea;
 					for(int i=0; i<node.getChild(1).getChildCount();i++){
 						CommonTree ct = (CommonTree) node.getChild(1).getChild(i);
-						ea = new ExpressionArithmetique((CommonTree) ct.getChild(0));
+						ea = new Expression((CommonTree) ct.getChild(0));
 						try {
 							ea.computeType(pile);
 						} catch (ErreurSemantique e) {
@@ -319,7 +323,7 @@ public class AnalyseSemantique {
 				break;
 				
 			case "if":
-				ctrl_bool = new ControleBoolCondition((CommonTree) node.getChild(0).getChild(0));
+				ctrl_bool = new ControleBool((CommonTree) node.getChild(0).getChild(0));
 				fire(ctrl_bool);
 				analyseChild(node);
 				break;
@@ -334,7 +338,7 @@ public class AnalyseSemantique {
 				break;
 				
 			case "while":
-				ctrl_bool = new ControleBoolCondition((CommonTree) node.getChild(0).getChild(0));
+				ctrl_bool = new ControleBool((CommonTree) node.getChild(0).getChild(0));
 				fire(ctrl_bool);
 				analyseChild(node);
 				break;
@@ -346,7 +350,7 @@ public class AnalyseSemantique {
 			case "/":
 			case "NEG":
 				//on cr�e une expression correspondant au noeud en cours.
-				ExpressionArithmetique ea2 = new ExpressionArithmetique(node);
+				Expression ea2 = new Expression(node);
 				try {
 					ea2.computeType(pile);
 				} catch (ErreurSemantique e) {

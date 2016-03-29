@@ -20,8 +20,8 @@ public class ControleTypageFor extends ControleSemantique{
 		CommonTree bsup = (CommonTree) node.getChild(0).getChild(1).getChild(0);
 		
 		//On les traduit en expressions arithmétiques
-		ExpressionArithmetique ea_inf = new ExpressionArithmetique(binf);
-		ExpressionArithmetique ea_sup = new ExpressionArithmetique(bsup);
+		Expression ea_inf = new Expression(binf);
+		Expression ea_sup = new Expression(bsup);
 		
 		//On calcule le type des bornes
 		String type_inf = ea_inf.computeType(TDSs);

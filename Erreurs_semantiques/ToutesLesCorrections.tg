@@ -3,6 +3,7 @@ let
 	type kebab = string
 	type stringArray = array of string
 	type str = {a:int, b:string}
+	type str2 = {a:int, b:str}
 
 	var v2 : kebab := "5"
 
@@ -12,7 +13,9 @@ let
 	var chaine := "une chaine"
 
 	var structure := str{a:=666, b:="abc"}
-	var structure2 := str{b:="abc", a:=0}
+	var structure2 := str{a:=777, b:="Le kebab le kebab c'est génial"}
+
+	var struct_folle := str2{a:=777, b:=structure}
 
 	function void() : string = "C'est le néant"
 
@@ -36,7 +39,7 @@ in
 	
 	v2 := void();
 
-	for k := 0 to 5 * void2 do (
+	for k := 0 to 5 * structure.a do (
 
 		calculer(100, 20, 5);
 
@@ -50,6 +53,20 @@ in
 		)
 	);
 
-	stringtab1[5]:=stringtab2[10]
+	/*Accès à un champ de structure*/
+	struct_folle.b.a := 5;
+
+	/*Affectation de tableau*/
+	stringtab1:=stringtab2;
+
+	/*Affectation de structures*/
+	structure := structure2;
+
+	/*Comparaison de let*/
+	chaine := let
+		var BG : int  := 3
+	in
+		calculer(BG, 10, 10)
+	end	
 
 end

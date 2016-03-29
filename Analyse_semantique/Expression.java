@@ -11,21 +11,11 @@ import org.antlr.runtime.tree.CommonTree;
  *
  */
 
-public class ExpressionArithmetique {
+public class Expression {
 	private CommonTree expr;
 	
-	public ExpressionArithmetique(CommonTree exp){
+	public Expression(CommonTree exp){
 		expr=exp;
-	}
-	
-	/**
-	 * Calcule le type de l'expression
-	 * @param pile Pile des environnements ouverts
-	 * @return Le type de l'expression ou UNDEFINED si l'expression est incorrecte.
-	 * @throws ErreurSemantique 
-	 */
-	public String computeType(ArrayList<TDS> pile) throws ErreurSemantique{
-		return recursiveComputeType(pile, expr);
 	}
 	
 	/**
@@ -64,6 +54,16 @@ public class ExpressionArithmetique {
 	}
 	
 	/**
+	 * Calcule le type de l'expression
+	 * @param pile Pile des environnements ouverts
+	 * @return Le type de l'expression ou UNDEFINED si l'expression est incorrecte.
+	 * @throws ErreurSemantique 
+	 */
+	public String computeType(ArrayList<TDS> pile) throws ErreurSemantique{
+		return recursiveComputeType(pile, expr);
+	}
+
+	/**
 	 * @param exp Expression ï¿½ calculer
 	 * @return
 	 * @throws ErreurSemantique 
@@ -75,7 +75,6 @@ public class ExpressionArithmetique {
 		String right = null;
 		
 		ArrayList<String> ops = new ArrayList<String>(Arrays.asList(new String[]{"+", "-", "/", "*", "NEG"}));
-		
 		//Si le noeud est un - unaire, on le skippe
 		if(exp.getText().equals("NEG") && exp.getChildCount() == 1){
 			return recursiveComputeType(pile, (CommonTree) exp.getChild(0));
@@ -153,13 +152,14 @@ public class ExpressionArithmetique {
 	 * @return UNDEFINED ou le type rï¿½el
 	 */
 	private static String findRealType(ArrayList<TDS> pile, FieldTypeDef typedef){
-		//Si c'est une structure, on renvoie UNDEFINED
-		if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure))
-			return "UNDEFINED";
 		
-		//Si c'est un tableau, on renvoie UNDEFINED
+		//Si c'est une structure, on renvoie le type(affectation de structure)
+		if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure))
+			return typedef.getID();
+		
+		//Si c'est un tableau, on renvoie le type (affectation de tableau)
 		if(typedef.getFieldType().equals(FieldType.FieldTypeDefTableau))
-			return "UNDEFINED";
+			return typedef.getID();
 		
 		//Sinon on a un alias.
 		FieldTypeDefSimple ftds = (FieldTypeDefSimple) typedef;
@@ -213,6 +213,11 @@ public class ExpressionArithmetique {
 			return findUnitType(pile, (CommonTree) unit.getChild(0));
 		}
 		
+		//Si c'est un let, on appelle une fonction de calcul spécifique
+		if(unit.getText().equals("let")){
+			return computeTypeLet(pile, unit);
+		}
+		
 		String type=null;
 		//On vï¿½rifie si l'unitï¿½ est une constante
 		if(!(type=tryConstante(unit.getText())).equals("UNDEFINED")) return type;
@@ -229,6 +234,27 @@ public class ExpressionArithmetique {
 				
 		//Si l'unitï¿½ a des fils, alors c'est un type composite (tableau ou structure).
 		return findUnitComposite(pile, unit);
+	}
+	
+	public String computeTypeLet(ArrayList<TDS> pile, CommonTree lettree) throws ErreurSemantique{
+		String type="UNDEFINED";
+		
+		//On vérifie que let ait le fils 'in'
+		if(lettree.getChildCount() == 2){
+			//On récupère la dernière expression du 'in'
+			CommonTree last = (CommonTree) lettree.getChild(1).getChild(lettree.getChild(1).getChildCount()-1);
+			
+			//On analyse 
+			AnalyseSemantique.analyse_courante.checkNode(lettree);
+			
+			type = (new Expression(last)).computeType(pile);
+			 
+			//On retourne le calcul du type
+			return type;
+		}else{
+			//Sinon le 'in' est vide et on retourne "UNDEFINED"
+			return "UNDEFINED";
+		}
 	}
 	
 	public String computeTypeIf(ArrayList<TDS> pile, CommonTree iftree)throws ErreurSemantique{
@@ -263,8 +289,9 @@ public class ExpressionArithmetique {
 	 * @param pile
 	 * @param unit
 	 * @return Le type trouvï¿½ ou null UNDEFINED si rien n'a ï¿½tï¿½ trouvï¿½
+	 * @throws ErreurSemantique 
 	 */
-	private String findUnitComposite(ArrayList<TDS> pile, CommonTree unit){
+	private String findUnitComposite(ArrayList<TDS> pile, CommonTree unit) throws ErreurSemantique{
 		String type = "UNDEFINED";
 		
 		//On rï¿½cuï¿½re la dï¿½finition de l'unitï¿½
@@ -273,25 +300,32 @@ public class ExpressionArithmetique {
 		//On rï¿½cupï¿½re la dï¿½finition du type de l'unitï¿½
 		FieldTypeDef typedef = (FieldTypeDef) TDS.findIn(pile, var.getType(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
 		
-		//On regarde si l'unitï¿½ a des fils
+		//On regarde si l'unité a des fils
 		if(unit.getChildCount() != 0){
 			
 			//On regarde si c'est un tableau ou une structure
 			if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure)){
 				
-				//On regarde s'il accï¿½de ï¿½ un champ existant dans la dï¿½finition du type (on saute le noeud FIELD)
-				String type_struct = ((FieldTypeDefStructure)typedef).getChampType(unit.getChild(0).getChild(0).getText());
-				
-				//Si le champ n'existe pas, on renvoie UNDEFINED
-				if(type_struct.equals("UNDEFINED")) return type_struct;
-				
 				//On regarde s'il a un frï¿½re (accï¿½s ï¿½ struct ou tab)
-				CommonTree cursor = unit;
+				CommonTree cursor = (CommonTree) unit.getChild(0);
 				
-				while(cursor.getChildCount() > 1){
+				FieldTypeDefStructure def_struct = (FieldTypeDefStructure) typedef;
+				String type_champ;
+
+				while(cursor.getChild(1) != null){
+					type_champ = def_struct.getChampType(cursor.getChild(0).getText());
+										
+					//Si le champ n'existe pas, on renvoie une erreur
+					if(type_champ.equals("UNDEFINED"))
+						throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
 					
+					//On récupère le champ à droite
+					cursor = (CommonTree) cursor.getChild(1);
+					def_struct = (FieldTypeDefStructure) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure);
 					
 				}
+				
+				return def_struct.getChampType(cursor.getChild(0).getText());
 				
 			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefTableau)){
 				

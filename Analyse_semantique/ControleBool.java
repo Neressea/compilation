@@ -4,12 +4,12 @@ import java.util.Arrays;
 import org.antlr.runtime.tree.CommonTree;
 
 
-public class ControleBoolCondition extends ControleSemantique{
+public class ControleBool extends ControleSemantique{
 
 	ArrayList<String> comparateur = new ArrayList<String>();
 	ArrayList<String> associateur = new ArrayList<String>();
 	
-	public ControleBoolCondition(CommonTree node) {
+	public ControleBool(CommonTree node) {
 		super(node);
 		
 		this.comparateur.add("<>");
@@ -36,8 +36,8 @@ public class ControleBoolCondition extends ControleSemantique{
 	}
 	
 	public String recursiveCheck(ArrayList<TDS> TDSs){
-		ControleBoolCondition child1;
-		ControleBoolCondition child2;
+		ControleBool child1;
+		ControleBool child2;
 		String err="";
 		
 		if(node.getChildCount() == 0) 
@@ -46,14 +46,14 @@ public class ControleBoolCondition extends ControleSemantique{
 			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-booleenne dans la condition : '"+node.getChild(0).getText()+"'\n";
 		else if(comparateur.contains(node.getText())){
 			
-			child1 = new ControleBoolCondition((CommonTree) node.getChild(0));
+			child1 = new ControleBool((CommonTree) node.getChild(0));
 			String first="";
 			try {
 				first = child1.checkinf(TDSs);
 			} catch (ErreurSemantique e) {
 				err+=e.getMessage();
 			}
-			child2 = new ControleBoolCondition((CommonTree) node.getChild(1));
+			child2 = new ControleBool((CommonTree) node.getChild(1));
 			String second="";
 			try {
 				second = child2.checkinf(TDSs);
@@ -67,10 +67,10 @@ public class ControleBoolCondition extends ControleSemantique{
 			
 		}else if (associateur.contains(node.getText())){
 
-				child1 = new ControleBoolCondition((CommonTree) node.getChild(0));
+				child1 = new ControleBool((CommonTree) node.getChild(0));
 				err+=child1.recursiveCheck(TDSs);
 				
-				child2 = new ControleBoolCondition((CommonTree) node.getChild(1));
+				child2 = new ControleBool((CommonTree) node.getChild(1));
 				err+=child2.recursiveCheck(TDSs);
 
 		}
@@ -79,7 +79,7 @@ public class ControleBoolCondition extends ControleSemantique{
 	}
 	
 	private String checkinf(ArrayList<TDS> TDSs) throws ErreurSemantique{
-		ExpressionArithmetique ea = new ExpressionArithmetique(node);
+		Expression ea = new Expression(node);
 		return ea.computeType(TDSs);
 		
 	}

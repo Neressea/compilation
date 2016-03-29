@@ -44,7 +44,7 @@ public class ControleRetourFonction extends ControleSemantique{
 		}
 		
 		//On calcule la valeur de l'expression.
-		ExpressionArithmetique ea = new ExpressionArithmetique(last);
+		Expression ea = new Expression(last);
 		String type_ret;
 		if (last.getText().equals("for") || last.getText().equals("while")) {
 			type_ret = "UNDEFINED";
@@ -53,7 +53,7 @@ public class ControleRetourFonction extends ControleSemantique{
 		}
 		
 		//On vérifie la compatibilité des types.
-		if(!ExpressionArithmetique.checkTypes(TDSs, type, type_ret))
+		if(!Expression.checkTypes(TDSs, type, type_ret))
 			throw new ErreurSemantique(last.getLine(), "Erreur : le type du prototype ("+type+") ne concorde pas avec le type du retour ("+type_ret+")");
 	}
 

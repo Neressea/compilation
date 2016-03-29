@@ -32,6 +32,17 @@ public class FieldTypeDefStructure extends FieldTypeDef{
 		
 		return "UNDEFINED";
 	}
+	
+	public int getChampNum(String name){
+		Couple<String, String> c;
+		for(int i=0; i<noms_champs_et_types.size();i++){
+			c = noms_champs_et_types.get(i);
+			if(c.getLeft().equals(name))
+				return i;
+		}
+		
+		return -1;
+	}
 
 	@Override
 	public FieldType getFieldType() {

@@ -22,9 +22,9 @@ public class ControleTypeParamFonction extends ControleSemantique {
 		if (nbChildren == 2 && node.getChild(1).getChildCount()==f.getParams().size()) {
 			
 			for (int i =0 ; i < node.getChild(1).getChildCount(); i++ ) {
-				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(i));
+				Expression ea = new Expression((CommonTree) node.getChild(1).getChild(i));
 				// Si le type du parametre i est celui specifie dans la TDS
-				boolean concordance = ExpressionArithmetique.checkTypes(TDSs, f.getParams().get(i).getRight(), ea.computeType(TDSs));
+				boolean concordance = Expression.checkTypes(TDSs, f.getParams().get(i).getRight(), ea.computeType(TDSs));
 				if (!concordance) {
 					err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur dans le typage du parametre " + i + 
 													" de la fonction " + node.getChild(0).getText()

@@ -5,12 +5,18 @@ type T2 = array of T1
 type T3 = array of T2
 
 type alias = int
+type str = {a:int, b:string, c:T1}
 
 var tab := T3[10] of T2[10] of T1[5]
 var a : alias := 5
 
+var TT := T1[10] of 0
+var fou := str{a:=10, b:="salut", c:=TT}
+
 in
 
-tab[1][2][3] + a
+tab[1][2][3] + a;
+
+a.b.c := 5
 
 end

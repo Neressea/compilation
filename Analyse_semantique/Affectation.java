@@ -1,5 +1,5 @@
 
 public class Affectation {
-	private ExpressionArithmetique expression;
+	private Expression expression;
 	private String id;
 }

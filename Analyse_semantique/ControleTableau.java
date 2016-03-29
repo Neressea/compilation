@@ -19,7 +19,7 @@ public class ControleTableau extends ControleSemantique{
 		/*On essaie de caster en entier. Sinon ce n'est pas une constante enti�re et on ne peut
 		  donc v�rifier si la valeur est n�gative */
 
-		ExpressionArithmetique ea = new ExpressionArithmetique(n);
+		Expression ea = new Expression(n);
 		ea.computeType(TDSs);
 			
 		if(n.getText().matches("NEG")) throw new ErreurSemantique(node.getLine(), "Taille de tableau < 0");

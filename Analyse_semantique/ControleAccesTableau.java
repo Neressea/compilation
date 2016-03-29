@@ -14,7 +14,7 @@ public class ControleAccesTableau extends ControleSemantique{
 
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
-		ExpressionArithmetique exp = new ExpressionArithmetique((CommonTree) node.getChild(0).getChild(0));
+		Expression exp = new Expression((CommonTree) node.getChild(0).getChild(0));
 		String type = exp.computeType(TDSs);
 		
 		if(!type.equals("int"))

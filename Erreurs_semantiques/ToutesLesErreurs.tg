@@ -6,6 +6,7 @@ let
 	type kebab = string
 	type stringArray = array of string
 	type str = {a:int, b:string}
+	type str2 = {a:int, b:str}
 
 	/*Type incompatible*/
 	var v2 : kebab := 5
@@ -20,6 +21,11 @@ let
 
 	/*Accès multiple à un champ + mauvais typage*/
 	var structure2 := str{b:=0, b:="abc"}
+
+	/*Renseignement désordonné des champs d'une structure*/
+	var structure3 := str{b:="coucou", a:=3}
+
+	var struct_folle := str2{a:=777, b:=structure2}
 
 	function void() : string = "C'est le néant"
 
@@ -57,7 +63,7 @@ in
 	calculer(12);
 
 	/*Bornes du for non entières*/
-	for k := "x" to structure do (
+	for k := "x" to structure2 do (
 		/*Appel à une fonction avec un paramètre du mauvais type*/
 		calculer("b", 20, "d");
 
@@ -70,6 +76,22 @@ in
 			print(stringtab[v2]);
 			k := read()
 		)
-	)
+	);
 
+	/*Affectation d'un tableau à une structure*/
+	str_inst := stringtab;
+
+	/*Erreur de typage : affectation de structure*/
+	struct_folle.b.a := "pas un int";
+
+	/*Accès à un champ de structure inexistant*/
+	structure2.c := 10
+
+	
+	chaine := let
+		/*Redéclaration dans un let*/
+		var chaine : string  := "3"
+	in
+		calculer(BG, 10, 10)
+	end	
 end
