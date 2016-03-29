@@ -94,7 +94,18 @@ in
 	chaine := let
 		/*Redéclaration dans un let*/
 		var chaine : string  := "3"
+		var BG := 50
 	in
+		calculer(BG, 10, 10);
+		/*Mauvais retour*/
+		BG
+	end;
+
+	/*Let dans non-entier dans une condition*/
+	if let
+		var BG : int  := 3
+	in
+		BG;
 		calculer(BG, 10, 10)
-	end	
+	end then print("Je fais de la magie noire")
 end

@@ -67,11 +67,19 @@ in
 	/*Affectation de structures*/
 	structure := structure2;
 
-	/*Comparaison de let*/
+	/*Affectation de retour de let*/
 	chaine := let
 		var BG : int  := 3
 	in
 		calculer(BG, 10, 10)
-	end	
+	end;
+
+	/*Let dans uen condition*/
+	if let
+		var BG : int  := 3
+	in
+		calculer(BG, 10, 10);
+		BG
+	end then print("Je fais de la magie noire")
 
 end

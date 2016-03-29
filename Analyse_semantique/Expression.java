@@ -244,11 +244,10 @@ public class Expression {
 			//On récupère la dernière expression du 'in'
 			CommonTree last = (CommonTree) lettree.getChild(1).getChild(lettree.getChild(1).getChildCount()-1);
 			
-			//On analyse 
-			AnalyseSemantique.analyse_courante.checkNode(lettree);
-			
-			type = (new Expression(last)).computeType(pile);
-			 
+			//On analyse le type du let
+			Let let = new Let(lettree);
+			type = let.computeType(pile);
+						 
 			//On retourne le calcul du type
 			return type;
 		}else{

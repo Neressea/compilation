@@ -16,8 +16,7 @@ import org.antlr.runtime.tree.CommonTree;
  */
 public class AnalyseSemantique {
 	
-	public static AnalyseSemantique analyse_courante;
-	
+	private String type_block;
 	private CommonTree tree;
 	private boolean is_ok;
 	private String err_messages;
@@ -54,8 +53,27 @@ public class AnalyseSemantique {
 		base.add(fread);
 		
 		openTDS(base);
+	}
+	
+	public AnalyseSemantique(CommonTree node){
+		tree=node;
 		
-		analyse_courante = this;
+		is_ok = true;
+		err_messages = "";
+		TDSs = new ArrayList<TDS>();
+		pile = new ArrayList<TDS>();
+		
+		//On crï¿½e une TDS qui contient les fonctions de base du langage : print et read
+		TDS base = new TDSLet(0);
+		
+		FieldFonction fprint = new FieldFonction("print", 0, "UNDEFINED");
+		fprint.addParam("s", "string");
+		base.add(fprint);
+		
+		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
+		base.add(fread);
+		
+		openTDS(base);
 	}
 	
 	public void fire(ControleSemantique cs) {
@@ -68,6 +86,11 @@ public class AnalyseSemantique {
 	}
 	
 	public void analyze(){
+		loop(tree);
+	}
+	
+	public void analyze(ArrayList<TDS> Pile){
+		this.pile = Pile;
 		loop(tree);
 	}
 	
@@ -302,6 +325,15 @@ public class AnalyseSemantique {
 			case "let":
 				createTDSLet(node);
 				analyseChild(node);
+				type_block="UNDEFINED";
+				if(node.getChildCount() == 2){
+					CommonTree last = (CommonTree) node.getChild(1).getChild(node.getChild(1).getChildCount()-1);
+					try {
+						type_block = new Expression(last).computeType(pile);
+					} catch (ErreurSemantique e1) {
+						err_messages+="Erreur à la ligne "+last.getLine()+" : "+e1.getMessage();
+					}
+				}
 				closeTDS();
 				break;
 				
@@ -431,6 +463,10 @@ public class AnalyseSemantique {
 				newTDS.add(fv);
 			}
 		}
+	}
+	
+	public String getType(){
+		return type_block;
 	}
 	
 	private void createTDSLet(CommonTree node){

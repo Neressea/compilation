@@ -39,16 +39,6 @@ public class ControleBool extends ControleSemantique{
 		ControleBool child1;
 		ControleBool child2;
 		String err="";
-		
-		//Si c'est une unité, on vérifie que c'est bien un entier
-		if(node.getChildCount() == 0 || node.getChildCount() == 1){
-			Expression e = new Expression(node);
-			String type = e.computeType(TDSs);
-			
-			if(!type.equals("int")){
-				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-entiere utilisee comme booleen dans la condition : '"+node.getText()+"'\n";
-			}
-		}
 	
 		if(comparateur.contains(node.getText())){
 			
@@ -79,6 +69,14 @@ public class ControleBool extends ControleSemantique{
 				child2 = new ControleBool((CommonTree) node.getChild(1));
 				err+=child2.recursiveCheck(TDSs);
 
+		}else{
+			//Si c'est une unité, on vérifie que c'est bien un entier
+			Expression e = new Expression(node);
+			String type = e.computeType(TDSs);
+			
+			if(!type.equals("int")){
+				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-entiere utilisee comme booleen dans la condition : '"+node.getText()+"'\n";
+			}
 		}
 		
 		return err;
