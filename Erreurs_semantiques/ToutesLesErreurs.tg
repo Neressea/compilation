@@ -15,9 +15,11 @@ let
 
 	var chaine := "une chaine"
 
-	/*Erreur structure : mauvais nombre de champs et mauvais types*/
-	var str_inst := str{a:="rien", c:="pas bon", b:=666}
-	var structure := str{a:=666, b:="abc"}
+	/*Erreur structure :  mauvais types, accès à un champs inexistant et non-renseignement d'un champ*/
+	var str_inst := str{c:="pas bon", b:=666}
+
+	/*Accès multiple à un champ + mauvais typage*/
+	var structure2 := str{b:=0, b:="abc"}
 
 	function void() : string = "C'est le néant"
 

@@ -6,11 +6,13 @@ let
 
 	var v2 : kebab := "5"
 
-	var stringtab := stringArray[12000] of "coucou"
+	var stringtab1 := stringArray[12000] of "coucou"
+	var stringtab2 := stringArray[50] of "salut"
 
 	var chaine := "une chaine"
 
 	var structure := str{a:=666, b:="abc"}
+	var structure2 := str{b:="abc", a:=0}
 
 	function void() : string = "C'est le néant"
 
@@ -43,9 +45,11 @@ in
 
 		/*While avec une condition non-booléenne*/
 		while void() < "abcdef" do (
-			print(stringtab[k]);
+			print(stringtab1[k]);
 			k := read()
 		)
-	)
+	);
+
+	stringtab1[5]:=stringtab2[10]
 
 end

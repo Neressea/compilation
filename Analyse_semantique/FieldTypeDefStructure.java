@@ -14,6 +14,10 @@ public class FieldTypeDefStructure extends FieldTypeDef{
 		noms_champs_et_types.add(new Couple<String, String>(name, type));
 	}
 	
+	public ArrayList<Couple<String, String>> getNomsChampsEtTypes(){
+		return noms_champs_et_types;
+	}
+	
 	/**
 	 * Cherche un champ et renvoie son type.
 	 * @param name Nom du champ

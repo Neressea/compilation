@@ -57,6 +57,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 			case FieldStructure:
 				
 				CommonTree struct = (CommonTree) node.getChild(1);
+				ArrayList<String> deja_renseignes = new ArrayList<String>();
 				
 				//on récupère la définition du type de la structure
 				FieldTypeDefStructure ftds = (FieldTypeDefStructure) TDS.findIn(TDSs, struct.getText(), FieldType.FieldTypeDefStructure);
@@ -81,9 +82,33 @@ public class ControleTypageDeclaration extends ControleSemantique{
 							else
 								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Accès au champ inexistant '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
 						}
+						
+						if(deja_renseignes.contains(champ.getText())){
+							erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Accès multiple au champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
+						}else{
+							deja_renseignes.add(champ.getText());
+						}
+					
 					}catch(ErreurSemantique err){
 						//L'erreur a déjà été détecté ailleurs
 					}
+				}
+				
+				//Maintenant, on vérifie que tous les champs ont bien été renseignés
+				ArrayList<String> champs_a_renseigner = new ArrayList<String>();
+				for(Couple<String, String> c : ftds.getNomsChampsEtTypes())
+					champs_a_renseigner.add(c.getLeft());
+				
+				String champs_non_renseignes = "";
+				
+				//On calcule la difference entre les deux
+				for (int i = 0; i < champs_a_renseigner.size(); i++) {
+					if(!deja_renseignes.contains(champs_a_renseigner.get(i)))
+						champs_non_renseignes+=champs_a_renseigner.get(i)+"  ";
+				}
+				
+				if(!champs_non_renseignes.equals("")){
+					erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Tous les champs n'ont pas ete renseignes dans la structure '"+node.getChild(0).getText()+"' : "+champs_non_renseignes+"\n";
 				}
 								
 				if(!erreurs.equals(""))
