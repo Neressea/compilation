@@ -70,6 +70,9 @@ in
 		/*Condition avec une condition non-booléenne*/
 		if k + 3 < "coucou" & k then k := 5;
 
+		/*Utilisation d'une chaine dans une condition*/
+		if "pas une condition" then k := 42;
+
 		/*While avec une condition non-booléenne*/
 		while void() do (
 			/*Accès à un tableau par variable non-entière*/
@@ -85,7 +88,7 @@ in
 	struct_folle.b.a := "pas un int";
 
 	/*Accès à un champ de structure inexistant*/
-	structure2.c := 10
+	structure2.c := 10;
 
 	
 	chaine := let

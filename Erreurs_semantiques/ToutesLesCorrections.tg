@@ -35,6 +35,8 @@ let
 
 	var void2 := 0
 
+	function entiere() : int = void2
+
 in 
 	
 	v2 := void();
@@ -46,8 +48,11 @@ in
 		/*Condition avec une condition non-booléenne*/
 		if k + 3 < 10 & k > 5 then k := 5;
 
+		/*Utilisation d'un entier dans uen condition*/
+		if entiere() then print("pas 0");
+
 		/*While avec une condition non-booléenne*/
-		while void() < "abcdef" do (
+		while 1 do (
 			print(stringtab1[k]);
 			k := read()
 		)

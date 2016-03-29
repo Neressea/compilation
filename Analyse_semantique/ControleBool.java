@@ -35,16 +35,22 @@ public class ControleBool extends ControleSemantique{
 		
 	}
 	
-	public String recursiveCheck(ArrayList<TDS> TDSs){
+	public String recursiveCheck(ArrayList<TDS> TDSs) throws ErreurSemantique{
 		ControleBool child1;
 		ControleBool child2;
 		String err="";
 		
-		if(node.getChildCount() == 0) 
-			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-booleenne dans la condition : '"+node.getText()+"'\n";
-		else if (node.getChildCount() == 1)
-			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-booleenne dans la condition : '"+node.getChild(0).getText()+"'\n";
-		else if(comparateur.contains(node.getText())){
+		//Si c'est une unité, on vérifie que c'est bien un entier
+		if(node.getChildCount() == 0 || node.getChildCount() == 1){
+			Expression e = new Expression(node);
+			String type = e.computeType(TDSs);
+			
+			if(!type.equals("int")){
+				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-entiere utilisee comme booleen dans la condition : '"+node.getText()+"'\n";
+			}
+		}
+	
+		if(comparateur.contains(node.getText())){
 			
 			child1 = new ControleBool((CommonTree) node.getChild(0));
 			String first="";
