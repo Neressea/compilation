@@ -26,7 +26,7 @@ public class ControleTypeParamFonction extends ControleSemantique {
 				// Si le type du parametre i est celui specifie dans la TDS
 				boolean concordance = Expression.checkTypes(TDSs, f.getParams().get(i).getRight(), ea.computeType(TDSs));
 				if (!concordance) {
-					err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur dans le typage du parametre " + i + 
+					err+="Erreur à la ligne "+node.getLine()+" : Erreur dans le typage du parametre " + i + 
 													" de la fonction " + node.getChild(0).getText()
 													+ " : '" + f.getParams().get(i).getRight() +
 													"' attendu, '" + ea.computeType(TDSs)+"' trouve\n";

@@ -4,18 +4,31 @@ let
 	type stringArray = array of string
 	type str = {a:int, b:string}
 	type str2 = {a:int, b:str}
+	type structArray = array of str
+	type stringArray2D = array of structArray
 
 	var v2 : kebab := "5"
 
 	var stringtab1 := stringArray[12000] of "coucou"
 	var stringtab2 := stringArray[50] of "salut"
 
+	/*Tableau 2D*/
+	var structure := str{a:=666, b:="abc"}
+	var tabStruct := structArray[100] of structure
+	var tab2D := stringArray2D[100] of tabStruct
+
+	/*Structure de tableaux*/
+	type strTab = {a:stringArray2D}
+	var str_tab := strTab{a:=tab2D}
+
 	var chaine := "une chaine"
 
-	var structure := str{a:=666, b:="abc"}
+	
 	var structure2 := str{a:=777, b:="Le kebab le kebab c'est génial"}
 
 	var struct_folle := str2{a:=777, b:=structure}
+
+	var casse := 3 < 5
 
 	function void() : string = "C'est le néant"
 
@@ -58,8 +71,11 @@ in
 		)
 	);
 
-	/*Accès à un champ de structure*/
+	/*Accès à des champs en cascades*/
 	struct_folle.b.a := 5;
+
+	/*Accès à des tableaux à N dimensions*/
+	tab2D[10][5].b := v2;
 
 	/*Affectation de tableau*/
 	stringtab1:=stringtab2;

@@ -6,8 +6,9 @@ import org.antlr.runtime.tree.CommonTree;
 
 public class ControleBool extends ControleSemantique{
 
-	ArrayList<String> comparateur = new ArrayList<String>();
-	ArrayList<String> associateur = new ArrayList<String>();
+	private ArrayList<String> comparateur = new ArrayList<String>();
+	private ArrayList<String> associateur = new ArrayList<String>();
+	private String err = "";
 	
 	public ControleBool(CommonTree node) {
 		super(node);
@@ -42,25 +43,15 @@ public class ControleBool extends ControleSemantique{
 	
 		if(comparateur.contains(node.getText())){
 			
-			child1 = new ControleBool((CommonTree) node.getChild(0));
-			String first="";
-			try {
-				first = child1.checkinf(TDSs);
-			} catch (ErreurSemantique e) {
-				err+=e.getMessage();
-			}
-			child2 = new ControleBool((CommonTree) node.getChild(1));
-			String second="";
-			try {
-				second = child2.checkinf(TDSs);
-			} catch (ErreurSemantique e) {
-				err+=e.getMessage();
-			}
-			
-			if (!first.equals(second)){
-				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Comparaison de deux expressions aux types differents : '"+node.getChild(0).toStringTree()+"' ("+first+") et '"+node.getChild(1).toStringTree()+"' ("+second+")\n";
-			}
-			
+//			child1 = new ControleBool((CommonTree) node.getChild(0));
+//			String first="";
+//			first = child1.checkinf(TDSs);
+//
+//			child2 = new ControleBool((CommonTree) node.getChild(1));
+//			String second="";
+//			second = child2.checkinf(TDSs);
+			(new Expression(node)).computeType(TDSs);
+									
 		}else if (associateur.contains(node.getText())){
 
 				child1 = new ControleBool((CommonTree) node.getChild(0));
@@ -71,21 +62,26 @@ public class ControleBool extends ControleSemantique{
 
 		}else{
 			//Si c'est une unité, on vérifie que c'est bien un entier
-			Expression e = new Expression(node);
-			String type = e.computeType(TDSs);
-			
+			ControleBool cb = new ControleBool(node);
+			String type=cb.checkinf(TDSs);
+									
 			if(!type.equals("int")){
-				err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Expression non-entiere utilisee comme booleen dans la condition : '"+node.getText()+"'\n";
+				err+="Erreur à la ligne "+node.getLine()+" : Expression non-entiere utilisee comme booleen dans la condition : '"+node.getText()+"'\n";
 			}
 		}
 		
 		return err;
 	}
 	
-	private String checkinf(ArrayList<TDS> TDSs) throws ErreurSemantique{
-		Expression ea = new Expression(node);
-		return ea.computeType(TDSs);
+	private String checkinf(ArrayList<TDS> TDSs){
+		try{
+			Expression ea = new Expression(node);
+			return ea.computeType(TDSs);
+		}catch(Exception e){
+			err+=e.getMessage();
+		}
 		
+		return "UNDEFINED";
 	}
 
 }

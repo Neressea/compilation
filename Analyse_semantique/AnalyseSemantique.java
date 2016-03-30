@@ -118,6 +118,7 @@ public class AnalyseSemantique {
 			case "var":
 				ctrl_doubledecl = new ControleDoubleDeclaration((CommonTree) node);
 				fire(ctrl_doubledecl);
+				
 				//On a un tableau
 				if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
 				
@@ -137,9 +138,12 @@ public class AnalyseSemantique {
 					//Le type n'est pas indiqu�
 					if(node.getChildCount() == 2){
 						ea = new Expression((CommonTree) node.getChild(1));
-						current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), (isInteger(node.getChild(1).getText())?"int":"string")));
-						//Le type est indiqu�
-					}else{
+						String type_primitif=null;
+							try {
+								type_primitif = ea.computeType(pile);
+								current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), type_primitif));
+							} catch (ErreurSemantique e) {}
+						}else{
 					
 						ctrl_existencetype = new ControleExistenceType((CommonTree) node.getChild(1));
 						fire(ctrl_existencetype);
@@ -515,18 +519,6 @@ public class AnalyseSemantique {
 		return size;
 	}
 	
-	private boolean isInteger(String primit){
-		boolean is_int = true;
-		try{
-			//Si le cast marche, alors c'est un int et la taille est celle d'un �l�ment primitif
-			Integer.parseInt(primit);
-		}catch(Exception e){
-			is_int = false;
-		}
-		
-		return is_int;
-	}
-	
 	public boolean isOK(){
 		return is_ok;
 	}
@@ -557,8 +549,9 @@ public class AnalyseSemantique {
 			analyzer.analyze();
 				
 			if(!analyzer.isOK()){
-				System.err.println(analyzer.getErrors());
-				System.err.println(ErreurSemantique.NB_ERRORS+" erreur(s) semantique(s) trouvee(s)");
+				String errors = analyzer.getErrors();
+				System.err.println(errors);
+				System.err.println(errors.split("\n").length+" erreur(s) semantique(s) trouvee(s)");
 			}else{
 				int i=1;
 				

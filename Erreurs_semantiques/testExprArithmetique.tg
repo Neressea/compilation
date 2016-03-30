@@ -15,8 +15,10 @@ var fou := str{a:=10, b:="salut", c:=TT}
 
 in
 
-tab[1][2][3] + a;
-
+/*Accès à des structures en cascade*/
 a.b.c := 5
+
+/*Accès à des tableaux multidimensionnels*/
+tab[1][2][3] + a;
 
 end

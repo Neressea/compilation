@@ -1,7 +1,7 @@
 let
 
 	/*Type inexistant*/
-	var v1 : inexistant := "coucou"
+	var v1 : existe_pas := "coucou"
 
 	type kebab = string
 	type stringArray = array of string
@@ -67,7 +67,7 @@ in
 		/*Appel à une fonction avec un paramètre du mauvais type*/
 		calculer("b", 20, "d");
 
-		/*Condition avec une condition non-booléenne*/
+		/*If avec une condition non-booléenne*/
 		if k + 3 < "coucou" & k then k := 5;
 
 		/*Utilisation d'une chaine dans une condition*/
@@ -84,7 +84,7 @@ in
 	/*Affectation d'un tableau à une structure*/
 	str_inst := stringtab;
 
-	/*Erreur de typage : affectation de structure*/
+	/*Erreur de typage : chaine à int*/
 	struct_folle.b.a := "pas un int";
 
 	/*Accès à un champ de structure inexistant*/

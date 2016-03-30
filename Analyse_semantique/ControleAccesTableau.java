@@ -14,10 +14,19 @@ public class ControleAccesTableau extends ControleSemantique{
 
 	@Override
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
-		Expression exp = new Expression((CommonTree) node.getChild(0).getChild(0));
-		String type = exp.computeType(TDSs);
+		Expression exp=null;
 		
-		if(!type.equals("int"))
-			throw new ErreurSemantique(node.getLine(), "Acces au tableau "+node.getText()+" par valeur non-entière : "+type);
+		//On vérifie le type de tous les fils
+		for (int i = 0; i < node.getChildCount(); i++) {
+			if(node.getChild(i).getChildCount() == 1){
+				exp = new Expression((CommonTree) node.getChild(i).getChild(0));
+				String type = exp.computeType(TDSs);
+								
+				if(!type.equals("int"))
+					throw new ErreurSemantique(node.getLine(), "Acces au tableau "+node.getText()+" par valeur non-entière : "+type);
+			
+			}
+		}
+		
 	}
 }

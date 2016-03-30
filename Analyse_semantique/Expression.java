@@ -75,7 +75,6 @@ public class Expression {
 		String right = null;
 		
 		ArrayList<String> ops = new ArrayList<String>(Arrays.asList(new String[]{"+", "-", "/", "*", "NEG"}));
-		//Si le noeud est un - unaire, on le skippe
 		if(exp.getText().equals("NEG") && exp.getChildCount() == 1){
 			return recursiveComputeType(pile, (CommonTree) exp.getChild(0));
 		}
@@ -197,7 +196,21 @@ public class Expression {
 		
 		ArrayList<String> comparateurs = new ArrayList<String>(Arrays.asList(new String[]{">", "<", "<>", "=", "<=", ">=", "&", "|"}));
 		
-		if(comparateurs.contains(unit.getText())) return "bool";
+		if(comparateurs.contains(unit.getText())){
+			//On compare type du fils gauche et droit.
+			Expression left = new Expression((CommonTree) unit.getChild(0));
+			Expression right = new Expression((CommonTree) unit.getChild(1));
+			
+			String type_left = left.computeType(pile);
+			String type_right = right.computeType(pile);
+						
+			//On vérifie que les deux fils soient du même type et qu'ils sont primitifs
+			if(!(type_left.equals(type_right) && (type_left.equals("int") || type_left.equals("string")))){
+				throw new ErreurSemantique(unit.getLine(), "Les deux elements compares ne sont pas du même type");
+			}
+			
+			return "int";
+		}
 		
 		//Si jamais c'est un appel de fonction, on récupère le fils droit (nom de la fonction)
 		if(unit.getText().equals("FUNC_CALL"))
@@ -299,73 +312,26 @@ public class Expression {
 		//On rï¿½cupï¿½re la dï¿½finition du type de l'unitï¿½
 		FieldTypeDef typedef = (FieldTypeDef) TDS.findIn(pile, var.getType(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
 		
+		if(typedef == null){
+			throw new ErreurSemantique(unit.getLine(), "Acces a une case d'un type primitif");
+		}
+		
 		//On regarde si l'unité a des fils
 		if(unit.getChildCount() != 0){
-			
+
 			//On regarde si c'est un tableau ou une structure
 			if(typedef.getFieldType().equals(FieldType.FieldTypeDefStructure)){
 				
-				//On regarde s'il a un frï¿½re (accï¿½s ï¿½ struct ou tab)
-				CommonTree cursor = (CommonTree) unit.getChild(0);
-				
 				FieldTypeDefStructure def_struct = (FieldTypeDefStructure) typedef;
-				String type_champ;
-
-				while(cursor.getChild(1) != null){
-					type_champ = def_struct.getChampType(cursor.getChild(0).getText());
-										
-					//Si le champ n'existe pas, on renvoie une erreur
-					if(type_champ.equals("UNDEFINED"))
-						throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
-					
-					//On récupère le champ à droite
-					cursor = (CommonTree) cursor.getChild(1);
-					def_struct = (FieldTypeDefStructure) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure);
-					
-				}
 				
-				return def_struct.getChampType(cursor.getChild(0).getText());
+				return computeTypeChamp(pile, unit, def_struct);
 				
 			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefTableau)){
 				
 				//On rï¿½cupï¿½re le type des ï¿½lï¿½ments du tableau
-				String type_tab = ((FieldTypeDefTableau)typedef).getTypeElements();
-				
-				//On regarde le nombre de fils. S'il n'y en a qu'un, il n'y a qu'un simple accï¿½s ï¿½ une case et on renvoie le type du tableau
-				if(unit.getChildCount() == 1){
-					type = type_tab;
-				}
-				
-				//S'il n'y a pas de fils, alors UNDEFINED. On ne peut pas utiliser un tableau entier dans un calcul
-				if(unit.getChildCount() == 0){
-					type = "UNDEFINED";
-				}
-				
-				//S'il y a plus de fils, on a deux cas : tous sont des tableaux, ou alors le dernier est uen structure
-				if(unit.getChildCount() > 1){
-					//On rï¿½cupï¿½re la dï¿½finition du type des ï¿½lï¿½ments du tableau
-					FieldTypeDef typedef_elem = (FieldTypeDef) TDS.findIn(pile, type_tab, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
-					
-					//On parcourt les fils de 0 ï¿½ n-2 (le dernier est un cas particulier)
-					for (int i = 0; i < unit.getChildCount()-2; i++) {
-						//Si le type n'a pas ï¿½tï¿½ trouvï¿½, on renvoie UNDEF
-						if(typedef_elem == null)
-							type= "UNDEFINED";
-						
-						//On vï¿½rifie que c'est bien une dï¿½finition de tableau. Sinon, on ne pourrait pas y accï¿½der par []
-						if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
-							type= "UNDEFINED";
-						
-						//Maintenant, on va vï¿½rifier la mï¿½me chose pour le type des ï¿½lï¿½ments du tableau suivant.
-						typedef_elem = (FieldTypeDef) TDS.findIn(pile, ((FieldTypeDefTableau)typedef_elem).getTypeElements(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
-					}
-					
-					//Pour le dernier fils, si celui-ci est un tableau, on renvoi son type.
-					if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
-						type = ((FieldTypeDefTableau)typedef_elem).getTypeElements();
-					
-					//Si le dernier fils est une structure
-				}
+				return computetypeTableau(pile, unit, ((FieldTypeDefTableau)typedef));
+			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefSimple)){
+				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
 			}
 		
 		//Si l'unitï¿½ n'a pas de fils, on renvoie le type rï¿½cupï¿½rï¿½.
@@ -373,6 +339,97 @@ public class Expression {
 			type = var.getType();
 		}
 		
+		return type;
+	}
+	
+	public String computetypeTableau(ArrayList<TDS> pile, CommonTree unit, FieldTypeDefTableau typedef) throws ErreurSemantique{
+		String type="UNDEFINED";
+		String type_tab = typedef.getTypeElements();
+				
+		//On regarde le nombre de fils. S'il n'y en a qu'un, il n'y a qu'un simple accï¿½s ï¿½ une case et on renvoie le type du tableau
+		if(unit.getChildCount() == 1){
+			type = type_tab;
+		}
+		
+		//S'il n'y a pas de fils, alors UNDEFINED. On ne peut pas utiliser un tableau entier dans un calcul
+		if(unit.getChildCount() == 0){
+			type = "UNDEFINED";
+		}
+		
+		//S'il y a plus de fils, on a deux cas : tous sont des tableaux, ou alors le dernier est uen structure
+		if(unit.getChildCount() > 1){
+			//On rï¿½cupï¿½re la dï¿½finition du type des ï¿½lï¿½ments du tableau
+			FieldTypeDef typedef_elem = (FieldTypeDef) TDS.findIn(pile, type_tab, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+			int i;
+			//On parcourt les fils de 0 ï¿½ n-2 (le dernier est un cas particulier)
+			for (i = 0; i < unit.getChildCount()-2; i++) {
+				//Si le type n'a pas ï¿½tï¿½ trouvï¿½, on renvoie UNDEF
+				if(typedef_elem == null)
+					throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+				
+				//On vï¿½rifie que c'est bien une dï¿½finition de tableau. Sinon, on ne pourrait pas y accï¿½der par []
+				if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
+					throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+				
+				
+				//Maintenant, on va vï¿½rifier la mï¿½me chose pour le type des ï¿½lï¿½ments du tableau suivant.
+				typedef_elem = (FieldTypeDef) TDS.findIn(pile, ((FieldTypeDefTableau)typedef_elem).getTypeElements(), FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+			}
+			
+			if(typedef_elem == null)
+				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+			
+			//On vï¿½rifie que c'est bien une dï¿½finition de tableau. Sinon, on ne pourrait pas y accï¿½der par []
+			//On vérifie si c'est une structure
+			if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefStructure)){
+				return type= computeTypeChamp(pile, (CommonTree) unit.getChild(i+1), (FieldTypeDefStructure) typedef_elem);
+			}
+			
+			if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
+				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+			
+			//Pour le dernier fils, si celui-ci est un tableau, on renvoi son type.
+			if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau)){
+					type = ((FieldTypeDefTableau)typedef_elem).getTypeElements();
+			}
+			
+		}
+		
+		return type;
+	}
+	
+	public String computeTypeChamp(ArrayList<TDS> pile, CommonTree unit, FieldTypeDefStructure typedef) throws ErreurSemantique{
+		String type="UNDEFINED";
+		String type_champ = "UNDEFINED";
+				
+		//On regarde s'il a un frï¿½re (accï¿½s ï¿½ struct ou tab)
+		CommonTree cursor = (CommonTree) unit.getChild(0);
+		
+		FieldTypeDef ftd = (FieldTypeDef) typedef;
+
+		//on boucle tant que le curseur a un fils droit
+		while(cursor.getChild(1) != null){
+			type_champ = ((FieldTypeDefStructure) ftd).getChampType(cursor.getChild(0).getText());
+							
+			//On récupère le champ à droite
+			cursor = (CommonTree) cursor.getChild(1);
+			ftd = (FieldTypeDefStructure) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure);
+						
+			if(ftd == null)
+				throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
+
+			//On vérifie si on a un tableau
+			if(ftd.getFieldType().equals(FieldType.FieldTypeDefTableau)){
+				return computetypeTableau(pile, (CommonTree) unit.getChild(1), (FieldTypeDefTableau) ftd);
+			}
+		}
+		
+		if(ftd != null && cursor.getChildCount() > 0) type = ((FieldTypeDefStructure) ftd).getChampType(cursor.getChild(0).getText());
+		else if(ftd != null) type = ((FieldTypeDefStructure) ftd).getChampType(cursor.getText());
+				
+		if(type.equals("UNDEFINED"))
+			throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
+				
 		return type;
 	}
 	

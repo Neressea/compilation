@@ -28,11 +28,11 @@ public class ControleTypageFor extends ControleSemantique{
 		String type_sup = ea_sup.computeType(TDSs);
 		
 		if(!type_inf.equals("int")){
-			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la borne inferieure du for. Attendu : int. Trouvé = "+type_inf+"\n";
+			err+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans la borne inferieure du for. Attendu : int. Trouvé = "+type_inf+"\n";
 		}
 		
 		if(!type_sup.equals("int")){
-			err+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la borne superieure du for. Attendu : int. Trouvé = "+type_sup+"\n";
+			err+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans la borne superieure du for. Attendu : int. Trouvé = "+type_sup+"\n";
 		}
 		
 		if(!err.equals(""))

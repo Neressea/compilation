@@ -12,6 +12,9 @@ public class ControleTypageDeclaration extends ControleSemantique{
 	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
 		FieldAvecType fat = (FieldAvecType) TDS.findIn(TDSs, node.getChild(0).getText(), FieldType.FieldVariable, FieldType.FieldStructure, FieldType.FieldTableau);
 		String erreurs = "";
+		
+		if(fat==null) return;
+		
 		switch(fat.getFieldType()){
 			case FieldVariable:
 				
@@ -39,7 +42,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				
 				//On vérifie que c'est bien un entier
 				if(!Expression.checkTypes(TDSs, type_taille, "int"))
-					erreurs += "Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans la taille du tableau : int attendu mais '"+type_taille+"' trouvé\n";
+					erreurs += "Erreur à la ligne "+node.getLine()+" : Erreur de typage dans la taille du tableau : int attendu mais '"+type_taille+"' trouvé\n";
 				
 				//On calcule le type d'initialisation
 				Expression ea_init = new Expression((CommonTree) node.getChild(1).getChild(1).getChild(0));
@@ -47,7 +50,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				
 				//On vérifie que c'est bien le type du tableau
 				if(!Expression.checkTypes(TDSs, type_init, type_init_expected)){
-					erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans l'initialisation du tableau : '"+type_init_expected+"' attendu mais '"+type_init+"' trouvé\n";
+					erreurs+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans l'initialisation du tableau : '"+type_init_expected+"' attendu mais '"+type_init+"' trouvé\n";
 				}
 				
 				if(!erreurs.equals(""))
@@ -82,18 +85,18 @@ public class ControleTypageDeclaration extends ControleSemantique{
 						if(!Expression.checkTypes(TDSs, type_champ, type_found)){
 							//On vérifie qu'on accède à un champ existant
 							if(!type_champ.equals("UNDEFINED"))
-								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Erreur de typage dans le champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' : '"+type_champ+"' attendu mais '"+type_found+"' trouvé\n";
+								erreurs+="Erreur à la ligne "+node.getLine()+" : Erreur de typage dans le champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' : '"+type_champ+"' attendu mais '"+type_found+"' trouvé\n";
 							else
-								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Accès au champ inexistant '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
+								erreurs+="Erreur à la ligne "+node.getLine()+" : Accès au champ inexistant '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
 						}else{
 							//On vérifie que le champ est renseigné au bon emplacement
 							if(i != num_champ){
-								erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : L'ordre des champs n'est pas respecté : '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' en position "+(i+1)+" au lieu de la position "+(num_champ+1)+" \n";
+								erreurs+="Erreur à la ligne "+node.getLine()+" : L'ordre des champs n'est pas respecté : '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"' en position "+(i+1)+" au lieu de la position "+(num_champ+1)+" \n";
 							}
 						}
 
 						if(deja_renseignes.contains(champ.getText())){
-							erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Accès multiple au champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
+							erreurs+="Erreur à la ligne "+node.getLine()+" : Accès multiple au champ '"+champ.getText()+"' de la structure '"+node.getChild(0).getText()+"'\n";
 						}else{
 							deja_renseignes.add(champ.getText());
 						}
@@ -117,7 +120,7 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				}
 				
 				if(!champs_non_renseignes.equals("")){
-					erreurs+="Erreur "+(++ErreurSemantique.NB_ERRORS)+" à la ligne "+node.getLine()+" : Tous les champs n'ont pas ete renseignes dans la structure '"+node.getChild(0).getText()+"' : "+champs_non_renseignes+" manquant(s)\n";
+					erreurs+="Erreur à la ligne "+node.getLine()+" : Tous les champs n'ont pas ete renseignes dans la structure '"+node.getChild(0).getText()+"' : "+champs_non_renseignes+" manquant(s)\n";
 				}
 								
 				if(!erreurs.equals(""))
