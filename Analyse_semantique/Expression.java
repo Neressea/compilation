@@ -344,7 +344,10 @@ public class Expression {
 	
 	public String computetypeTableau(ArrayList<TDS> pile, CommonTree unit, FieldTypeDefTableau typedef) throws ErreurSemantique{
 		String type="UNDEFINED";
-		String type_tab = typedef.getTypeElements();
+		String type_tab = typedef.getTypeElements();	
+		
+		//Si on reçoit "CELL", on erécupère le parent
+		if(unit==null)return "UNDEFINED";
 				
 		//On regarde le nombre de fils. S'il n'y en a qu'un, il n'y a qu'un simple accï¿½s ï¿½ une case et on renvoie le type du tableau
 		if(unit.getChildCount() == 1){
@@ -403,7 +406,14 @@ public class Expression {
 		String type_champ = "UNDEFINED";
 				
 		//On regarde s'il a un frï¿½re (accï¿½s ï¿½ struct ou tab)
-		CommonTree cursor = (CommonTree) unit.getChild(0);
+		CommonTree cursor = null;
+		
+		//On vérifie si on a un field ou son fils
+		if(unit.getChild(0).getText().equals("FIELD")){
+			cursor = (CommonTree) unit.getChild(0);
+		}else{
+			cursor = (CommonTree) unit;
+		}
 		
 		FieldTypeDef ftd = (FieldTypeDef) typedef;
 
@@ -412,16 +422,18 @@ public class Expression {
 			type_champ = ((FieldTypeDefStructure) ftd).getChampType(cursor.getChild(0).getText());
 							
 			//On récupère le champ à droite
-			cursor = (CommonTree) cursor.getChild(1);
-			ftd = (FieldTypeDefStructure) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure);
-						
-			if(ftd == null)
+			ftd = (FieldTypeDef) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
+			if(ftd == null){
 				throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
-
+			}
+				
 			//On vérifie si on a un tableau
 			if(ftd.getFieldType().equals(FieldType.FieldTypeDefTableau)){
+				System.out.println(unit.getChild(1)+"  "+ftd);
 				return computetypeTableau(pile, (CommonTree) unit.getChild(1), (FieldTypeDefTableau) ftd);
 			}
+			
+			cursor = (CommonTree) cursor.getChild(1);
 		}
 		
 		if(ftd != null && cursor.getChildCount() > 0) type = ((FieldTypeDefStructure) ftd).getChampType(cursor.getChild(0).getText());

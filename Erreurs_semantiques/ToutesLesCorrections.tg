@@ -3,8 +3,9 @@ let
 	type kebab = string
 	type stringArray = array of string
 	type str = {a:int, b:string}
+	type strArray = {a:int, b:stringArray, c:int}
 	type str2 = {a:int, b:str}
-	type structArray = array of str
+	type structArray = array of strArray
 	type stringArray2D = array of structArray
 
 	var v2 : kebab := "5"
@@ -13,7 +14,7 @@ let
 	var stringtab2 := stringArray[50] of "salut"
 
 	/*Tableau 2D*/
-	var structure := str{a:=666, b:="abc"}
+	var structure := strArray{a:=666, b:=stringtab1, c:=12000}
 	var tabStruct := structArray[100] of structure
 	var tab2D := stringArray2D[100] of tabStruct
 
@@ -25,8 +26,12 @@ let
 
 	
 	var structure2 := str{a:=777, b:="Le kebab le kebab c'est génial"}
+	var structure3 := str{a:=666, b:="Le DrPepper c'est encore meilleur"}
 
-	var struct_folle := str2{a:=777, b:=structure}
+	var struct_folle := str2{a:=777, b:=structure2}
+
+	type StructDeTab = {tab:structArray}
+	var struct_qui_contient_des_tableaux_de_struct := StructDeTab{tab:=tabStruct}
 
 	var casse := 3 < 5 & structure.a
 
@@ -75,13 +80,13 @@ in
 	struct_folle.b.a := 5;
 
 	/*Accès à des tableaux à N dimensions*/
-	tab2D[10][5].b := v2;
+	tab2D[10][5].b[50] := v2;
 
 	/*Affectation de tableau*/
 	stringtab1:=stringtab2;
 
 	/*Affectation de structures*/
-	structure := structure2;
+	structure2 := structure3;
 
 	/*Affectation de retour de let*/
 	chaine := let

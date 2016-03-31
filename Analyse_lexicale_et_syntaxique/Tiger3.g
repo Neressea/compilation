@@ -150,7 +150,8 @@ type_declaration
 			-> ^($t1 $i $t2)
 	;
 	
-type	:	t=type_id -> ^(PRIMITIF $t)
+type	:	ID
+			-> ^(PRIMITIF ID)
 	|	'{' t=type_fields? '}' 
 			-> {$t.tree != null}? ^(STRUCT $t) 
 			-> ^(STRUCT)
@@ -219,3 +220,4 @@ STRING 	:	'"'.+'"'; /* . correspond à n'importe quel caractère ou n'importe qu
 WS 	:	(' '|'\t')+ {$channel=HIDDEN;};
 NEWLINE	:	'\r'? '\n' {$channel=HIDDEN;};
 COMMENT	: 	'/*'.* '*/' {$channel=HIDDEN;};
+COMMENT2	: '//' .* '\r'? '\n' {$channel=HIDDEN;};
