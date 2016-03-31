@@ -21,7 +21,7 @@ public class ControleExistenceVariable extends ControleSemantique{
 			found=true;
 		}
 		
-		if (!found)throw new ErreurSemantique(node.getLine(), "Variable :"+n.getChild(0).getText()+" non déclarée");
+		if (!found)throw new ErreurSemantique(node.getLine(), "Variable :"+n.getChild(0).getText()+" non declaree");
 		
 	}
 

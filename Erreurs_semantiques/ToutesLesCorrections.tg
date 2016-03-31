@@ -28,7 +28,7 @@ let
 
 	var struct_folle := str2{a:=777, b:=structure}
 
-	var casse := 3 < 5
+	var casse := 3 < 5 & structure.a
 
 	function void() : string = "C'est le néant"
 

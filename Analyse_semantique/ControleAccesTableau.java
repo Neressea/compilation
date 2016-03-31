@@ -13,8 +13,16 @@ public class ControleAccesTableau extends ControleSemantique{
 	}
 
 	@Override
-	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique {
+	public void check(ArrayList<TDS> TDSs) throws ErreurSemantique{
 		Expression exp=null;
+		
+		//On récupère le parent 
+		CommonTree nodeFils = node;
+		node = (CommonTree) node.getParent();
+		
+		//Si ce n'est pas le premier fils qu'on a, on a déjà vérifié et on arrête tout
+		if(!node.getChild(0).equals(nodeFils))
+			return;
 		
 		//Type du tableau
 		FieldTableau ft = (FieldTableau) TDS.findIn(TDSs, node.getText(), FieldType.FieldTableau);
@@ -29,9 +37,14 @@ public class ControleAccesTableau extends ControleSemantique{
 		for (int i = 0; i < node.getChildCount()-1; i++) {
 			if(node.getChild(i).getChildCount() == 1){
 				exp = new Expression((CommonTree) node.getChild(i).getChild(0));
-				String type = exp.computeType(TDSs);
 				
 				typedeftab = (FieldTypeDef) TDS.findIn(TDSs, typeelems, FieldType.FieldTypeDefTableau, FieldType.FieldTypeDefStructure);
+				
+				if(typedeftab == null)
+					return;
+				
+				String type = exp.computeType(TDSs);
+				
 				if(typedeftab.getFieldType().equals(FieldType.FieldTypeDefTableau))
 					typeelems = ((FieldTypeDefTableau) typedeftab).getTypeElements();
 								
@@ -39,7 +52,7 @@ public class ControleAccesTableau extends ControleSemantique{
 					throw new ErreurSemantique(node.getLine(), "Acces au tableau "+node.getText()+" par valeur non-entière : "+type);
 			}
 		}
-		
+				
 		//Si le dernier élément est un tableau, on le vérifie
 		CommonTree last = (CommonTree) node.getChild(node.getChildCount()-1);
 		if(typedeftab!=null && typedeftab.getFieldType().equals(FieldType.FieldTypeDefTableau)){

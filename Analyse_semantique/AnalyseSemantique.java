@@ -398,7 +398,7 @@ public class AnalyseSemantique {
 				
 			//Acc�s � une case d'un tableau
 			case "CELL":
-				ctrl_acces = new ControleAccesTableau((CommonTree) node.getParent());
+				ctrl_acces = new ControleAccesTableau(node);
 				fire(ctrl_acces);
 				analyseChild(node);
 				break;

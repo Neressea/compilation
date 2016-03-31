@@ -27,7 +27,8 @@ let
 
 	var struct_folle := str2{a:=777, b:=structure2}
 
-	function void() : string = "C'est le néant"
+	/*Accès à une dimension inexistante d'un tableau*/
+	function void() : string = stringtab[0][3]
 
 	function calculer(premier:int, second:int, troisieme:int) : string = (
 
@@ -45,9 +46,6 @@ let
 
 	function vraiment_rien(inutile:string) = print(inutile)
 
-	/*Double déclaration : variable avec même nom que fonction*/
-	var void := 0
-
 in 
 	
 	/*Affectation d'une fonction qui ne retourne rien*/
@@ -64,7 +62,7 @@ in
 
 	/*Bornes du for non entières*/
 	for k := "x" to structure2 do (
-		/*Appel à une fonction avec un paramètre du mauvais type*/
+		/*Appel à une fonction avec un paramètre du mauvais type et mauvais nombre de paramètres*/
 		calculer("b", 20, "d");
 
 		/*If avec une condition non-booléenne*/
@@ -93,7 +91,7 @@ in
 	
 	chaine := let
 		/*Redéclaration dans un let*/
-		var chaine : string  := "3"
+		var void : string  := "3"
 		var BG := 50
 	in
 		calculer(BG, 10, 10);
