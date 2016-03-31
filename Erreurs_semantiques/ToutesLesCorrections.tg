@@ -1,6 +1,7 @@
 let
 
 	type kebab = string
+	type alias = kebab
 	type stringArray = array of string
 	type str = {a:int, b:string}
 	type strArray = {a:int, b:stringArray, c:int}

@@ -150,7 +150,8 @@ type_declaration
 			-> ^($t1 $i $t2)
 	;
 	
-type	:	ID
+type	:	(ID | t=type_id)
+			-> {$t.tree != null}? ^(PRIMITIF $t)
 			-> ^(PRIMITIF ID)
 	|	'{' t=type_fields? '}' 
 			-> {$t.tree != null}? ^(STRUCT $t) 
