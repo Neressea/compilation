@@ -14,7 +14,11 @@ public abstract class Instruction {
 		this.node = node;
 	}
 	
-	public abstract void genererCode(ArrayList<TDS> TDSs);
+	/**
+	 * Génère le code correspondant à l'instruction et le stocke dans CodeAss
+	 * @param pile Pile des TDSs ouvertes
+	 */
+	public abstract void genererCode(ArrayList<TDS> pile);
 	
 	public CommonTree getNode() {
 		return this.node;

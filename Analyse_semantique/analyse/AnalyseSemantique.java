@@ -533,4 +533,8 @@ public class AnalyseSemantique {
 	public ArrayList<TDS> getTDS(){
 		return TDSs;
 	}
+	
+	public CommonTree getTree(){
+		return tree;
+	}
 }
