@@ -1,6 +1,0 @@
-let
-
-function b(y:int, w:string) : string =
-y := x + "coucou"
-
-in a() ; b(4, "concombre") ; b(1,2) ; b(1,"concombre",3) end

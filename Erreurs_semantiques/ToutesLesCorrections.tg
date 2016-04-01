@@ -109,5 +109,4 @@ in
 		calculer(BG, 10, "xyz");
 		BG
 	end then print("Je fais de la magie noire")
-
 end

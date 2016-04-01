@@ -51,7 +51,7 @@ in
 	//Affectation d'une fonction qui ne retourne rien
 	v2 := vraiment_rien(v2);
 
-	//Apppel à une fonction inexistante
+	//Appel à une fonction inexistante
 	nope();
 
 	//Appel à une variable non-déclarée

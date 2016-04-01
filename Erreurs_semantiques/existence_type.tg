@@ -8,7 +8,9 @@ type alias = int
 type str = {a:int, b:kebab}
 type str2 = {a:int}
 
-var tab := T3[10] of T2[10] of T1[5]
+var tab1 := T1[5] of 0
+var tab2 := T2[10] of tab1
+var tab3 := T3[10] of tab2
 var a : alias := 5
 
 var d : babek := 10
@@ -21,6 +23,6 @@ function f2(c:int) : kebab = a
 
 in
 
-tab[1][2][3] + a
+	tab[1][2][3] + a
 
 end

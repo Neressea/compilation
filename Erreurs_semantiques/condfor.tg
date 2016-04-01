@@ -1,0 +1,21 @@
+let
+
+type fromage = int
+type strArr = array of string
+
+var x : fromage := 10
+var y : int := 2 + 4 / 5
+var nom_tableau := strArr [ x ] of "coucou"
+
+function dtc(c:string, a:int, k:fromage):int = (	
+	x := (3 + 2) / 5 + 6;
+	for i := 2 + 3 to 10 do (
+		if i <= 8 | b <> 3 & c = 100 then
+			(x := a-1+1;
+			y := 3 * (a + x) - 2;
+			nom_tableau[y+x] := 50);
+
+		b := -y/x)
+)
+
+in dtc("coucou", 8, 20) ; x:=3 ; w:="dimension" end

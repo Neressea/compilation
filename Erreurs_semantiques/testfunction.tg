@@ -2,13 +2,17 @@ let
 
 var test := "coucou"
 
-function a() : int =
-x := 3
+function a() : int = 
+	x := 3
 
 function b(y:int, w:string) : string =
-y := "coucou"
+	test := "coucou"
 
-in a() ; 
-b(4, test) ; 
-b(1,2) ; 
-b(1,"concombre",3) end
+in 
+
+	a() ; 
+	b(4, test) ; 
+	b(1,2) ; 
+	b(1,"concombre",3) 
+
+end

@@ -9,11 +9,15 @@ type nope = array of string
 type entier = int
 var troll := "michel"
 
-function nope(troll:string):int =
-	(coucou = "je fais des trucs";
+function nope(troll:string):int =(
+	coucou = "je fais des trucs";
 	for entier:= 3 to 10 do (
 		entier := 7+4;
 		troll := "tout est casse"
 	);
-	entier)
-in end
+	entier
+)
+
+in 
+
+end

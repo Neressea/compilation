@@ -4,7 +4,7 @@ let
 	var tab := intArray[10] of YY
 
 	type str = {rr:int}
-	var str_inst := str{rr:=AA} 
+	var str_inst := str{rr:=intArray} 
 
 	var x:int :=ZZ
 	var y:=54

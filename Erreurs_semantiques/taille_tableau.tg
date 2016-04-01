@@ -1,7 +1,6 @@
 let
 	var N:=5
 	type arrayInt = array of int 
-	var tab := arrayInt [-5] of 0
 	var ok := arrayInt [3 -5] of 5
 	var pasok := arrayInt [-5] of 10
 	var test := arrayInt [N -3] of 8
