@@ -4,4 +4,5 @@ output
 .metadata
 .project
 .git
+.recommenders
 *~

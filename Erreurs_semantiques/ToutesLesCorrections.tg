@@ -1,6 +1,8 @@
 let
 
 	type kebab = string
+
+	//Alias d'alias
 	type alias = kebab
 	type stringArray = array of string
 	type str = {a:int, b:string}
@@ -73,6 +75,7 @@ in
 		//While avec une condition non-booléenne
 		while 1 do (
 			print(stringtab1[k]);
+			break;
 			k := read()
 		)
 	);
