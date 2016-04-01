@@ -9,7 +9,7 @@ let
 	type structArray = array of strArray
 	type stringArray2D = array of structArray
 
-	var v2 : kebab := "5"
+	var v2 : alias := "5"
 
 	var stringtab1 := stringArray[12000] of "coucou"
 	var stringtab2 := stringArray[50] of "salut"
