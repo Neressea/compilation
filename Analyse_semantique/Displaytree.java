@@ -6,6 +6,8 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 
+import analyse.Tiger3Lexer;
+import analyse.Tiger3Parser;
 import sun.applet.Main;
 
 
