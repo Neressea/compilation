@@ -82,7 +82,7 @@ in
 			k := read()
 		)
 	);
-
+	
 	//Accès à des champs en cascades
 	struct_folle.b.a := 5;
 
