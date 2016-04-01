@@ -1,0 +1,29 @@
+	// PFSI TD n}9 / question 2
+
+	// (C) Alexandre Parodi 2004 - 2011
+
+	// Programme de test o = |i - 3| / 2
+
+	RESETA 	equ 0xFFFA 	// adresse de lancement
+	INA    	equ 0xFFA0 	// adresse du port // d'entr}e
+	OUTA   	equ 0xFFA2 	// adresse du port // de sortie
+	LOADA  	equ 0xFFDC      // adresse de chargement
+	SEUIL	equ 3		// seuil
+
+	ORG   LOADA	// chargement en LOADA
+	START RESETA	// d}marre en RESETA
+
+DEBUT	LDW R1, #INA	// R1 <- FFA0h 		R1 = FFA0h
+	LDW R0, (R1)	// R0 <- M[R1]		R0 = M[FFA0h] = i
+	LDW R1, #SEUIL	// R1 <- 3		R1 = 3
+	SUB R0, R1, R0	// R0 - R1 -> R0	R0 = i - 3
+	JAE #POSIT-$-2	// saute } l'instruction plac}e en POSIT si dernier r}sultat i-3 >= 0
+	NEG R0, R0	// -R0 -> R0		R0 = -(i - 3)
+POSIT	SRL R0, R0	// R0 / 2 -> R0		R0 = | i - 3 | / 2
+	LDW R1, #OUTA	// R1 <- FFA2h		R1 = FFA2h
+	STW R0, (R1)	// R0 <- M[R1]		o = M[FFA2h] = | i - 3 | / 2
+	JMP #DEBUT-$-2	// saute } l'instruction plac}e en DEBUT
+	
+	RSB RESETA-$	// r}serve RESETA-$ octets : procha}ne instruction plac}e en RESETA	
+
+	JMP #DEBUT-$-2	// saute } l'instruction plac}e en DEBUT

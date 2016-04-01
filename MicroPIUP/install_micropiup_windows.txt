@@ -1,0 +1,238 @@
+INSTALLATION DES OUTILS D'ASSEMBLAGE SOUS WINDOWS
+
+Alexandre PARODI, Pr. à l'ESIAL
+
+Comment installer les outils d'assemblage sur un PC Windows chez vous ou
+ailleurs (e.g. à l'école) même sans avoir les droits super-utilisateur.
+
+Note: l'outil simulateur & assembleur microPIUP a été développé par Karol PROCH, 
+(MdC au département informatique de l'UHP);
+pour fonctionner originellement sur Unix.
+La machine et son jeu d'instructions a été conçu par l'auteur.
+
+
+1. INSTALLATION DU SIMULATEUR
+
+Créez un dossier (c'est à dire un répertoire) à la racine d'un disque dur (par exemple c:),
+on a appelle ce dossier par exemple RISC.
+
+o double-cliquez le "Poste de travail"
+        une fenêtre apparaît avec les disques de la machine
+o double-cliquez le "disque local (C:)"
+        les répertoires de la racines du disque C: apparaissent;
+o cliquez le menu Nouveau / Dossier
+        un nouveau dossier "Nouveau dossier" apparaît dans la liste
+o changez le nom du dossier:
+- cliquez l'ancien nom
+- effacez-le avec la touche DEL <-
+- écrivez le nouveau nom RISC
+
+Ensuite déposez l'archive java microPIUPK.jar (le simulateur et assembleur)
+(par exemple attachée à mon courriel) dans ce dossier.
+
+o ouvrez mon courriel
+o cliquez sur la pièce jointe avec le bouton droit
+        un menu apparaît
+o cliquez sur "Enregistrer sous"
+        une fenêtre apparaît
+o parcourir et sélectionner le dossier RISC (Poste de travail / C: / RISC)
+o cliquez le bouton "Enregistrer"
+
+On suppose que vous avez un run-time java à jour installé sur votre machine.
+
+Ouvrez le dossier RISC (poste de travail / C: / RISC)
+
+Testez le simulateur
+
+o cliquez sur l'archive avec le bouton droit de la souris;
+        une fenêtre pop-up "Ouvrir" saute à l'écran;
+o cliquez "Choisir le programme"
+        une liste de programmes se déroule
+o cliquer "java (TM) platform SE Binary"
+
+La fenêtre du simulateur apparaît !
+
+Pour faciliter le démarrage ensuite, vous pouvez ensuite :
+o créer un Raccourci vers C:\RISC\microPIUPK.jar;
+- cliquez Fichier / Nouveau / Raccourci
+        une boîte de dialogue apparaît
+- parcourir pour sélectionner le fichier microPIUPK.jar (Poste de travail /C:/RISC/microPIUPK.jar)
+- cliquez "OK"
+- cliquez "suivant"
+- cliquez "terminer"
+        un raccourci dans le dossier courant apparaît
+o Draguez (glissez) le raccourci sur le bureau ou dans la barre de tâches.
+
+
+2. LANCEMENT DU SIMULATEUR
+
+Pour faire fonctionner le simulateur:
+
+cliquer sur le raccourci "microPIUPK" (de la barre de tâche par exemple)
+
+Mode d'emploi du simulateur:
+
+menu Aide / Documentation
+
+
+3. INSTALLATION DE L'EDITEUR
+
+o Déposez l'archive toto.zip (attachée à mon courriel ou dans le pot) dans le dossier c:\RISC
+(même processus que ci-dessus).
+
+o ouvrez le dossier c:\RISC puis cliquez sur l'archive toto.zip
+        le fichier toto.zip est sélectionné
+o cliquez menu "Fichier / Extraire tout"
+        un assistant s'ouvre
+o cliquez le bouton "Suivant"
+        une boîte de dialogue s'ouvre
+o entrez le dossier où extraire: c:\RISC puis cliquez suivant
+        une boîte de dialogue demande un mot de passe (qui est toto)
+o entrez toto puis cliquez "OK"
+        une boîte de dialogue s'ouvre
+o cliquez le bouton "terminer"
+        l'archive ZIP Notepad++.zip apparaît maintenant dans le dossier c:\RISC
+
+o ouvrez le dossier c:\RISC puis cliquez sur l'archive Notepad++.zip avec le bouton droit
+        un menu saute à l'écran
+o cliquez "Propriétés"
+        une boîte de dialogue s'affiche
+o cliquez le bouton "Débloquer"
+o cliquez le bouton "OK"
+o cliquez le fichier Notepad++
+        le fichier Notepad++.zip est sélectionné
+o cliquez menu "Fichier / Extraire tout"
+        un assistant s'ouvre
+o cliquez le bouton "Suivant"
+        une boîte de dialogue s'ouvre indiquant le dossier où extraire: c:\RISC\Notepad++
+o cliquez "Suivant"
+o une boîte de dialogue demande un mot de passe (qui est toto)
+o entrez toto puis cliquez "OK"
+        une boîte de dialogue s'ouvre
+o cliquez le bouton "terminer"
+        le dossier Notepad++ apparaît maintenant dans le dossier c:\RISC
+o créez un lien sur le fichier notepad++.exe du dossier Notepad++
+- cliquez Fichier / Nouveau / Raccourci
+        une boîte de dialogue apparaît
+- parcourir pour sélectionner le fichier notepad++.exe (Poste de travail /C:/RISC/Notepad++/Notepad++.exe
+- cliquez "OK"
+- cliquez "suivant"
+- cliquez "terminer"
+        un raccourci dans le dossier courant apparaît
+Draguez (glissez) le raccourci sur le bureau ou dans la barre de tâches.
+
+
+4. LANCEMENT DE L'EDITEUR
+
+o cliquez sur le raccourci Notepad++ (dans par exemple la barre de tâches)
+
+Attention: il faut ensuite sélectionner Format / Unix pour écrire un fichier au format Unix (LF pour fin de ligne);
+Sélectionner le langage "Assembler" est pratique 
+(mais il ne connaît pas toutes les instructions ni la syntaxe de ce langage d'assemblage qui lui est inconnu);
+
+
+5. INSTALLATION DE L'ASSEMBLEUR
+
+Pour installer l'assembleur:
+
+o Lancez le bloc-note (Démarrer/Tous les programmes/Accessoires/Bloc-Note)
+
+o éditez le "script" asm.bat avec une ligne vide à la fin (ce qui est après rem est un commentaire facultatif):
+
+echo off                                 rem n'affiche plus les commandes
+java -jar c:\RISC\microPIUPK.jar -ass %1 rem lance l'assembleur sur le fichier indiqué
+del %1$tmp                               rem efface le fichier temporaire créé
+echo on                                  rem affiche à nouveau les commandes
+
+(un "script" est un programme constitué d'une séquence de commandes alpha-numériques 
+-ici au moniteur dit "shell" du système opérateur- dans un fichier "BATch", cf. cours de shell.
+On suppose ici que le disque dur choisi est c: mais ça peut être aussi le disque réseau z: 
+c'est à dire votre dossier sur le serveur.
+ %1 est une variable qui contient automatiquement le paramètre de la commande, 
+donc le nom du fichier source à assembler).
+
+o enregistrez ce script dans le fichier asm.bat dans le dossier c:\RISC
+
+o faites un raccourci sur l'"Invite de commandes" et placez-le par exemple dans la barre de tâches.
+
+o Facultatif: pour travailler dans n'importe que dossier
+sans avoir à préciser le chemin complet de votre fichier source 
+ni avoir à modifier la variable de chemin %path% chaque fois que vous ouvrez une nouvelle fenêtre de commande, 
+modifiez-là directement dans les propriétés du système Windows.
+(La variable de chemin %path% est une variable d'environnement du système opérateur qui
+indique la liste des chemins absolus de chacun des dossiers par défaut 
+où chercher les programmes à exécuter; 
+dans cette liste, les chemins sont séparés par un point virgule ;  ) .
+
+ATTENTION ! CECI DOIT ETRE FAIT EXACTEMENT ! 
+(Les droits de superviseur sont nécessaires: 
+donc ceci ne peut être fait que sur votre PC personnel):
+
+- cliquez le bouton Démarrez
+	la boîte de dialogue Démarrez s'affiche
+- cliquez le "Poste de travail" avec le bouton droit
+	un menu se déroule
+- cliquez le bouton "Propriétés"
+	une boîte de dialogue "Propriétés du système" s'affiche
+- cliquez l'onglet "Avancé"
+	une l'onglet "Avancé" vient en premier plan
+- cliquez le bouton "variables d'environnement"
+	les "variables système" s'affiche dans une boîte d'édition;
+- faites défiler les variables avec les ascenseurs;
+	la variable "%Path%" apparaît
+- cliquez la variable "%Path%"
+	la variable "%Path" est sélectionnée;
+- cliquez sur le bouton "Modifier";
+	une boîte de cartouche "Modifier la variable système" apparaît;
+	le nom de variable est "Path"
+- éditez le cartouche "Valeur de la variable" pour y ajouter à la fin: ;C:\RISC
+- cliquez sur le bouton OK
+	la boîte de cartouches disparaît
+- cliquez à nouveau la variable système "Path"
+	la variable "%Path" est sélectionnée;
+- cliquez sur le bouton "Modifier";
+	une boîte de cartouche "Modifier la variable système" apparaît;
+	le nom de variable est "Path"
+- faites défiler la variable avec les flèches du clavier <- ->
+	la variable est bien ce qu'il y avait avant suivi de ;C:\RISC
+- cliquez sur le bouton "Annuler"
+	la boîte de cartouches disparaît
+- cliquez sur le bouton "OK" de la boîte "Variables d'environnement"
+	cette boîte disparaît
+- cliquez sur le bouton "OK" de la boîte "Propriétés Système"
+	cette boîte disparaît
+- lancez une fenêtre "Invite de commandes"
+	cette fenêtre "Invite de commandes" s'affiche
+- tapez la commande: path
+	la variable %path% s'affiche, avec ;C:\RISC à la fin.
+
+
+6. LANCEMENT DE L'ASSEMBLEUR
+
+On suppose qu'un fichier source en langage d'assemblage prog.src a été édité au format Unix 
+(LF pour fin de ligne);
+
+o lancer une fenêtre de commande
+- cliquez le raccourci c:\ (par exemple dans la barre de tâches)
+ou Démarrer / Tous les programmes / Accessoires / Invite de commandes
+
+o Facultatif: si vous voulez utiliser cet assembleur depuis n'importe quel dossier de travail,
+et que la variable d'environnement %path% n'a pas été complétée à l'installation, 
+ajoutez lui le dossier C:\RISC afin que le PC puisse accéder au script sans avoir à préciser l'emplacement.
+
+- tapez la commande:
+
+path %path%;C:\RISC
+
+o assembler le fichier source prog.src avec la commande (l'extension ne peut pas être omise) :
+
+asm prog.src
+
+        l'assembleur affiche son analyse;
+        en cas de succès, un fichier de code machine prog.iup 
+        est créé dans le même dossier que le fichier source
+        (et non pas dans le dossier courant);
+        les fichiers temporaires sont supprimés.
+
+(On peut naturellement garder la fenêtre d'invite de commande ouverte et 
+se contenter de répéter la commande d'assemblage ensuite).
