@@ -86,9 +86,6 @@ in
 	//Accès à des tableaux à N dimensions
 	tab2D[10][5].b[50] := v2;
 
-	//C'est la folie
-	//struct_qui_contient_des_tableaux_de_struct.tab[10].b[50]	 := struct_folle.b.b;
-
 	//Affectation de tableau
 	stringtab1:=stringtab2;
 

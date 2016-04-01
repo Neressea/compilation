@@ -9,7 +9,7 @@ let
 	type str2 = {a:int, b:str}
 
 	//Type incompatible
-	var v2 : kebab := 5
+	var v2 : kebab := "abc"
 
 	//Erreur tableau : taille non int et type pas respecté
 	var stringtab := stringArray["salut"] of 12000
@@ -17,7 +17,7 @@ let
 	var chaine := "une chaine"
 
 	//Erreur structure :  mauvais types, accès à un champs inexistant et non-renseignement d'un champ
-	var str_inst := str{c:="pas bon", b:=666}
+	var str_inst := str{a:=666, c:="pas bon"}
 
 	//Accès multiple à un champ + mauvais typage
 	var structure2 := str{b:=0, b:="abc"}
@@ -44,7 +44,7 @@ let
 		)
 	)
 
-	function vraiment_rien(inutile:string) = print(inutile)
+	function vraiment_rien(inutile:string) : int = print(inutile)
 
 in 
 	
@@ -79,6 +79,8 @@ in
 		)
 	);
 
+	k := 3;
+
 	//Affectation d'un tableau à une structure
 	str_inst := stringtab;
 
@@ -87,7 +89,6 @@ in
 
 	//Accès à un champ de structure inexistant
 	structure2.c := 10;
-
 	
 	chaine := let
 		//Redéclaration dans un let
