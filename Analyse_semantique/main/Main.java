@@ -1,3 +1,4 @@
+package main;
 import analyse.AnalyseSemantique;
 import analyse.TDS;
 
