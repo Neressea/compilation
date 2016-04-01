@@ -1,6 +1,6 @@
 let
 
-	/*Type inexistant*/
+	//Type inexistant
 	var v1 : existe_pas := "coucou"
 
 	type kebab = string
@@ -8,34 +8,34 @@ let
 	type str = {a:int, b:string}
 	type str2 = {a:int, b:str}
 
-	/*Type incompatible*/
+	//Type incompatible
 	var v2 : kebab := 5
 
-	/*Erreur tableau : taille non int et type pas respecté*/
+	//Erreur tableau : taille non int et type pas respecté
 	var stringtab := stringArray["salut"] of 12000
 
 	var chaine := "une chaine"
 
-	/*Erreur structure :  mauvais types, accès à un champs inexistant et non-renseignement d'un champ*/
+	//Erreur structure :  mauvais types, accès à un champs inexistant et non-renseignement d'un champ
 	var str_inst := str{c:="pas bon", b:=666}
 
-	/*Accès multiple à un champ + mauvais typage*/
+	//Accès multiple à un champ + mauvais typage
 	var structure2 := str{b:=0, b:="abc"}
 
-	/*Renseignement désordonné des champs d'une structure*/
+	//Renseignement désordonné des champs d'une structure
 	var structure3 := str{b:="coucou", a:=3}
 
 	var struct_folle := str2{a:=777, b:=structure2}
 
-	/*Accès à une dimension inexistante d'un tableau*/
+	//Accès à une dimension inexistante d'un tableau
 	function void() : string = stringtab[0][3]
 
 	function calculer(premier:int, second:int, troisieme:int) : string = (
 
-		/*Retour de fonction incompatible avec le calcul*/
+		//Retour de fonction incompatible avec le calcul
 		v2 := premier + second + void();
 
-		/*Retour avec un if et else incompatible*/
+		//Retour avec un if et else incompatible
 		if premier then
 			chaine := "cool"
 		else (
@@ -48,58 +48,58 @@ let
 
 in 
 	
-	/*Affectation d'une fonction qui ne retourne rien*/
+	//Affectation d'une fonction qui ne retourne rien
 	v2 := vraiment_rien(v2);
 
-	/*Apppel à une fonction inexistante*/
+	//Apppel à une fonction inexistante
 	nope();
 
-	/*Appel à une variable non-déclarée*/
+	//Appel à une variable non-déclarée
 	WXYZ := "ABCD";
 
-	/*Appel de fonction avec mauvais nombre de paramètres*/
+	//Appel de fonction avec mauvais nombre de paramètres
 	calculer(12);
 
-	/*Bornes du for non entières*/
+	//Bornes du for non entières
 	for k := "x" to structure2 do (
-		/*Appel à une fonction avec un paramètre du mauvais type et mauvais nombre de paramètres*/
+		//Appel à une fonction avec un paramètre du mauvais type et mauvais nombre de paramètres
 		calculer("b", 20, "d");
 
-		/*If avec une condition non-booléenne*/
+		//If avec une condition non-booléenne
 		if k + 3 < "coucou" & k then k := 5;
 
-		/*Utilisation d'une chaine dans une condition*/
+		//Utilisation d'une chaine dans une condition
 		if "pas une condition" then k := 42;
 
-		/*While avec une condition non-booléenne*/
+		//While avec une condition non-booléenne
 		while void() do (
-			/*Accès à un tableau par variable non-entière*/
+			//Accès à un tableau par variable non-entière
 			print(stringtab[v2]);
 			k := read()
 		)
 	);
 
-	/*Affectation d'un tableau à une structure*/
+	//Affectation d'un tableau à une structure
 	str_inst := stringtab;
 
-	/*Erreur de typage : chaine à int*/
+	//Erreur de typage : chaine à int
 	struct_folle.b.a := "pas un int";
 
-	/*Accès à un champ de structure inexistant*/
+	//Accès à un champ de structure inexistant
 	structure2.c := 10;
 
 	
 	chaine := let
-		/*Redéclaration dans un let*/
+		//Redéclaration dans un let
 		var void : string  := "3"
 		var BG := 50
 	in
 		calculer(BG, 10, 10);
-		/*Mauvais retour*/
+		//Mauvais retour
 		BG
 	end;
 
-	/*Let dans non-entier dans une condition*/
+	//Let dans non-entier dans une condition
 	if let
 		var BG : int  := 3
 	in

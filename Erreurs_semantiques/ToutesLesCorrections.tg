@@ -14,12 +14,12 @@ let
 	var stringtab1 := stringArray[12000] of "coucou"
 	var stringtab2 := stringArray[50] of "salut"
 
-	/*Tableau 2D*/
+	//Tableau 2D
 	var structure := strArray{a:=666, b:=stringtab1, c:=12000}
 	var tabStruct := structArray[100] of structure
 	var tab2D := stringArray2D[100] of tabStruct
 
-	/*Structure de tableaux*/
+	//Structure de tableaux
 	type strTab = {a:stringArray2D}
 	var str_tab := strTab{a:=tab2D}
 
@@ -38,11 +38,11 @@ let
 
 	function void() : string = "C'est le néant"
 
-	function calculer(premier:int, second:int, troisieme:int) : string = (
+	function calculer(premier:int, second:int, troisieme:string) : string = (
 
 		v2 := void();
 
-		if premier > second & second > troisieme then
+		if premier > second & "abc" >= troisieme then
 			chaine := "cool"
 		else (
 			50;
@@ -62,45 +62,48 @@ in
 
 	for k := 0 to 5 * structure.a do (
 
-		calculer(100, 20, 5);
+		calculer(100, 20, "abc");
 
-		/*Condition avec une condition non-booléenne*/
+		//Condition avec une condition non-booléenne
 		if k + 3 < 10 & k > 5 then k := 5;
 
-		/*Utilisation d'un entier dans uen condition*/
+		//Utilisation d'un entier dans uen condition
 		if entiere() then print("pas 0");
 
-		/*While avec une condition non-booléenne*/
+		//While avec une condition non-booléenne
 		while 1 do (
 			print(stringtab1[k]);
 			k := read()
 		)
 	);
 
-	/*Accès à des champs en cascades*/
+	//Accès à des champs en cascades
 	struct_folle.b.a := 5;
 
-	/*Accès à des tableaux à N dimensions*/
+	//Accès à des tableaux à N dimensions
 	tab2D[10][5].b[50] := v2;
 
-	/*Affectation de tableau*/
+	//C'est la folie
+	//struct_qui_contient_des_tableaux_de_struct.tab[10].b[50]	 := struct_folle.b.b;
+
+	//Affectation de tableau
 	stringtab1:=stringtab2;
 
-	/*Affectation de structures*/
+	//Affectation de structures
 	structure2 := structure3;
 
-	/*Affectation de retour de let*/
+	//Affectation de retour de let
 	chaine := let
 		var BG : int  := 3
 	in
-		calculer(BG, 10, 10)
+		calculer(BG, 10, "cba")
 	end;
 
-	/*Let dans uen condition*/
+	//Let dans uen condition
 	if let
 		var BG : int  := 3
 	in
-		calculer(BG, 10, 10);
+		calculer(BG, 10, "xyz");
 		BG
 	end then print("Je fais de la magie noire")
 
