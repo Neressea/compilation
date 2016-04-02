@@ -1,32 +1,25 @@
 efdc  origine
 efdc  debut d'execution
-6380   emplacement : 61404  (0xefdc)  ligne n° 8	LDW R3, #3
-0003   emplacement : 61406  (0xefde) 
+6380   emplacement : 61404  (0xefdc)  ligne n° 8	LDW R3, #14
+000e   emplacement : 61406  (0xefde) 
 634f   emplacement : 61408  (0xefe0)  ligne n° 9	STW R3, -(R15)
 6380   emplacement : 61410  (0xefe2)  ligne n° 10	LDW R3, #7
 0007   emplacement : 61412  (0xefe4) 
 64bf   emplacement : 61414  (0xefe6)  ligne n° 11	LDW R4, (R15)+
-e343   emplacement : 61416  (0xefe8)  ligne n° 12	ADD R3, R4, R3
+e433   emplacement : 61416  (0xefe8)  ligne n° 12	ADD R4, R3, R3
 634f   emplacement : 61418  (0xefea)  ligne n° 13	STW R3, -(R15)
 6380   emplacement : 61420  (0xefec)  ligne n° 14	LDW R3, #2
 0002   emplacement : 61422  (0xefee) 
 64bf   emplacement : 61424  (0xeff0)  ligne n° 15	LDW R4, (R15)+
-6580   emplacement : 61426  (0xeff2)  ligne n° 18	LDW R5, #0 //on initialise un compteur
-0000   emplacement : 61428  (0xeff4) 
-f434   emplacement : 61430  (0xeff6)  ligne n° 19	DEBDIV SUB R4, R3, R4
-1706   emplacement : 61432  (0xeff8)  ligne n° 20	BLW FINDIV-$-2 //On saute ` l'instruction d'aprhs si c'est infirieur ou igal ` 0
-3501   emplacement : 61434  (0xeffa)  ligne n° 21	ADQ 1, R5//On incrimente un compteur
-0180   emplacement : 61436  (0xeffc)  ligne n° 22	JMP #DEBDIV-$-2 //On revient au dibut de la boucle
-fff8   emplacement : 61438  (0xeffe) 
-6395   emplacement : 61440  (0xf000)  ligne n° 24	LDW R3, R5 //On met le risultat de la division dans R3
-634f   emplacement : 61442  (0xf002)  ligne n° 26	STW R3, -(R15)
-6380   emplacement : 61444  (0xf004)  ligne n° 27	LDW R3, #2
-0002   emplacement : 61446  (0xf006) 
-4733   emplacement : 61448  (0xf008)  ligne n° 28	NEG R3, R3
-634f   emplacement : 61450  (0xf00a)  ligne n° 29	STW R3, -(R15)
-6380   emplacement : 61452  (0xf00c)  ligne n° 30	LDW R3, #2
-0002   emplacement : 61454  (0xf00e) 
-64bf   emplacement : 61456  (0xf010)  ligne n° 31	LDW R4, (R15)+
-b343   emplacement : 61458  (0xf012)  ligne n° 32	MUL R3, R4, R3
-64bf   emplacement : 61460  (0xf014)  ligne n° 33	LDW R4, (R15)+
-e343   emplacement : 61462  (0xf016)  ligne n° 34	ADD R3, R4, R3
+a433   emplacement : 61426  (0xeff2)  ligne n° 16	DIV R4, R3, R3
+634f   emplacement : 61428  (0xeff4)  ligne n° 17	STW R3, -(R15)
+6380   emplacement : 61430  (0xeff6)  ligne n° 18	LDW R3, #2
+0002   emplacement : 61432  (0xeff8) 
+4733   emplacement : 61434  (0xeffa)  ligne n° 19	NEG R3, R3
+634f   emplacement : 61436  (0xeffc)  ligne n° 20	STW R3, -(R15)
+6380   emplacement : 61438  (0xeffe)  ligne n° 21	LDW R3, #2
+0002   emplacement : 61440  (0xf000) 
+64bf   emplacement : 61442  (0xf002)  ligne n° 22	LDW R4, (R15)+
+b433   emplacement : 61444  (0xf004)  ligne n° 23	MUL R4, R3, R3
+64bf   emplacement : 61446  (0xf006)  ligne n° 24	LDW R4, (R15)+
+f433   emplacement : 61448  (0xf008)  ligne n° 25	SUB R4, R3, R3

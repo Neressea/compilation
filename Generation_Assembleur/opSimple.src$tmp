@@ -5,30 +5,21 @@ LOADA  	equ 0xEFDC      // adresse de chargement
 SEUIL	equ 3		// seuil
 ORG   LOADA	// chargement en LOADA
 START RESETA	// demarre en RESETA
-LDW R3, #3
+LDW R3, #14
 STW R3, -(R15)
 LDW R3, #7
 LDW R4, (R15)+
-ADD R3, R4, R3
+ADD R4, R3, R3
 STW R3, -(R15)
 LDW R3, #2
 LDW R4, (R15)+
-
-//Tant que R3-R4 > 0, on boucle pour calculer la division
-LDW R5, #0 //on initialise un compteur
-DEBDIV SUB R4, R3, R4
-BLW FINDIV-$-2 //On saute ` l'instruction d'aprhs si c'est infirieur ou igal ` 0
-ADQ 1, R5//On incrimente un compteur
-JMP #DEBDIV-$-2 //On revient au dibut de la boucle
-FINDIV //Fin de la boucle de division
-LDW R3, R5 //On met le risultat de la division dans R3
-
+DIV R4, R3, R3
 STW R3, -(R15)
 LDW R3, #2
 NEG R3, R3
 STW R3, -(R15)
 LDW R3, #2
 LDW R4, (R15)+
-MUL R3, R4, R3
+MUL R4, R3, R3
 LDW R4, (R15)+
-ADD R3, R4, R3
+SUB R4, R3, R3
