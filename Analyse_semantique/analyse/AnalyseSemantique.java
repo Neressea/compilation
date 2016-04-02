@@ -391,7 +391,9 @@ public class AnalyseSemantique {
 				//on crï¿½e une expression correspondant au noeud en cours.
 				Expression ea2 = new Expression(node);
 				try {
-					ea2.computeType(pile);
+					String type_exp = ea2.computeType(pile);
+					if(!type_exp.equals("int")&& !type_exp.equals("string"))
+						throw new ErreurSemantique(node.getLine(), "Expression arithmétique avec des types non concordants");
 				} catch (ErreurSemantique e) {
 					err_messages+=e.getMessage()+"\n";
 					is_ok=false;
