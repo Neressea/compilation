@@ -1,4 +1,4 @@
-RESETA 	equ 0xEFFA 	// adresse de lancement
+RESETA 	equ 0xEFDC 	// adresse de lancement
 INA    	equ 0xEFA0 	// adresse du port // d'entree
 OUTA   	equ 0xEFA2 	// adresse du port // de sortie
 LOADA  	equ 0xEFDC      // adresse de chargement
@@ -13,11 +13,21 @@ ADD R3, R4, R3
 STW R3, -(R15)
 LDW R3, #2
 LDW R4, (R15)+
-DIV R3, R4, R3
+
+//Tant que R3-R4 > 0, on boucle pour calculer la division
+LDW R5, #0 //on initialise un compteur
+DEBDIV SUB R4, R3, R4
+BLW FINDIV-$-2 //On saute à l'instruction d'après si c'est inférieur ou égal à 0
+ADQ 1, R5//On incrémente un compteur
+JMP #DEBDIV-$-2 //On revient au début de la boucle
+FINDIV //Fin de la boucle de division
+LDW R3, R5 //On met le résultat de la division dans R3
+
 STW R3, -(R15)
 LDW R3, #2
+NEG R3, R3
 STW R3, -(R15)
-LDW R3, #3
+LDW R3, #2
 LDW R4, (R15)+
 MUL R3, R4, R3
 LDW R4, (R15)+
