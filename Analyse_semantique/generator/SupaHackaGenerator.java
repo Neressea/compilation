@@ -67,8 +67,6 @@ public class SupaHackaGenerator {
 				switch(node.getToken().getText()){
 					//D�claration d'une variable
 					case "var":
-						
-							
 						genererChild(node);
 						break;
 						
@@ -142,7 +140,9 @@ public class SupaHackaGenerator {
 					case "*":
 					case "/":
 					case "NEG":
-						genererChild(node);
+						ExpressionArithmetique ea = new ExpressionArithmetique(node);
+						ea.genererCode(pile);
+						//genererChild(node);
 						break;
 						
 					//Acc�s � une case d'un tableau

@@ -9,8 +9,8 @@ public class Main {
 	public static void main(String[] args){
 		
 		//On v�rifie qu'on a bien le chemin du fichier en param�tre
-		if(args.length != 2){
-			System.err.println("Usage : java -cp ./Analyse_lexicale_et_syntaxique/antlr-3.3-complete.jar AnalyseAnalyseSemantique file_src file_dest");
+		if(args.length != 1){
+			System.err.println("Usage : java -cp ./Analyse_lexicale_et_syntaxique/antlr-3.3-complete.jar AnalyseAnalyseSemantique file_src");
 			System.exit(1);
 		}
 		
@@ -42,7 +42,8 @@ public class Main {
 			System.out.println("L'analyse semantique n'a detecte aucun probleme !");
 			SupaHackaGenerator daru = new SupaHackaGenerator(analyzer.getTree(), analyzer.getTDS());
 			try {
-				daru.genererCode(args[1]);
+				String path = args[0].replace(".tg", ".src");
+				daru.genererCode(path);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
