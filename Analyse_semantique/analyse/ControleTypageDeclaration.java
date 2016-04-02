@@ -34,6 +34,8 @@ public class ControleTypageDeclaration extends ControleSemantique{
 				//On récupère la définition du type du tableau
 				FieldTypeDefTableau ftdt = (FieldTypeDefTableau) TDS.findIn(TDSs, node.getChild(1).getText(), FieldType.FieldTypeDefTableau);
 				
+				if(ftdt == null) return;
+				
 				//On calcule le type d'initialisation attendu
 				String type_init_expected = ftdt.getTypeElements();
 								
