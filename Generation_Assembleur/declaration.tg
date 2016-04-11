@@ -1,0 +1,11 @@
+let
+
+	var x : int := 9
+	var i := 4
+	var z := (2 * 3) - x
+
+in
+
+	(x * 3 + i) / -z //Donne 10
+
+end
