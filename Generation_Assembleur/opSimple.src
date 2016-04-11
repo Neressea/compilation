@@ -5,11 +5,11 @@ LOADA  	equ 0xEFDC      // adresse de chargement
 SEUIL	equ 3		// seuil
 ORG   LOADA	// chargement en LOADA
 START RESETA	// demarre en RESETA
-LDW R3, #2
+LDW R3, #14
 STW R3, -(R15)
-LDW R3, #1
+LDW R3, #7
 LDW R4, (R15)+
-SUB R4, R3, R3
+ADD R4, R3, R3
 STW R3, -(R15)
 LDW R3, #2
 LDW R4, (R15)+
