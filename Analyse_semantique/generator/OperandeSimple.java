@@ -32,21 +32,10 @@ public class OperandeSimple extends Instruction {
 			if (is_digit) { // C'est une constante entiere
 				ca.append("LDW R3, #" + value);
 			} else { // Il s'agit d'un identifiant
-				//On récupère les infos dans les TDS.
-				FieldVariable infos = (FieldVariable) TDS.findIn(pile, token, FieldType.FieldVariable); //Pour l'instant on ne gère que les identifiants de variables simples
+				Identifiant idf = new Identifiant(node);
 				
-				//On calcule l'adresse de la variable (dans R4).
-				int base = ca.getBasePile();
-				//On calcule le saut de la base de la pile jusqu'à la TDS contenant l'identifiant
-				int sautTDS = Integer.parseInt(TDS.findSautToTDS(pile, token, FieldType.FieldVariable)+"", 16);
-				int sautVar = Integer.parseInt(infos.getTailleDuSaut()+"", 16);
-				
-				//On y ajoute le saut de la base de l'environnement jusqu'à la variable
-				
-				//On range l'adresse dans R4
-				String hex = Integer.toHexString(base - sautTDS - sautVar);
-				while(hex.length() < 4) hex = "0" + hex;
-				ca.append("LDW R4, #0x"+hex);
+				//L'adresse de la variable est stockée dans R4
+				idf.genererCode(pile);
 				
 				//On fout le contenu de ce que pointe R4 dans R3
 				ca.append("LDW R3, (R4)");
