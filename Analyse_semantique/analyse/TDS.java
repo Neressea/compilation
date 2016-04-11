@@ -100,6 +100,30 @@ public abstract class TDS {
 		return all;
 	}
 	
+	/**
+	 * Calcule le saut de la base de la pile jusqu'à la TDS contenant l'élément ID.
+	 * @param tds_list
+	 * @param ID
+	 * @param field_type
+	 * @return
+	 */
+	public static int findSautToTDS(ArrayList<TDS> tds_list, String ID, FieldType... field_type){
+		int saut = 2; //Le tout premier mot de la pile n'est jamais utilisé
+		Field f = null;
+		
+		for(int i=1; i<tds_list.size(); i++){
+			TDS tds = tds_list.get(i);
+			for (int j = 0; j < field_type.length; j++) {
+				if((f=tds.existIn(ID, field_type[j]))!=null){
+					return saut;
+				}
+			}
+			saut+=tds.getCurrentSize();
+		}
+		
+		return 0;
+	}
+	
 	@Override
 	public String toString(){
 		String ret  = "* n° bloc="+nb_bloc+", n° imbrication="+num_imbrication+" * \n";

@@ -27,7 +27,7 @@ public class AnalyseSemantique {
 	private ArrayList<TDS> pile;
 	private ControleSemantique ctrl_taille_tableau, ctrl_retour_fonction, ctrl_nbparams, ctrl_existencefonction, ctrl_existencetype, ctrl_type_params_func_call, ctrl_doubledecl, ctrl_typage, ctrl_bool, ctrl_acces;
 	
-	private static final int SIZE_PRIMITIF = 8;
+	private static final int SIZE_PRIMITIF = 2;
 	
 	public AnalyseSemantique(String file_path) throws IOException, RecognitionException{
 		tree = null;

@@ -13,6 +13,7 @@ import java.io.IOException;
 public class CodeAss {
 	
 	private String code;
+	private int base_pile = 0x1000;
 
 	private CodeAss() {
 		code="RESETA 	equ 0xEFDC 	// adresse de lancement\n"
@@ -53,6 +54,10 @@ public class CodeAss {
 		writer.write(code);
 		writer.close();
 		System.out.println("Le code a bien ete genere dans " + path + " Voila.");
+	}
+	
+	public int getBasePile(){
+		return base_pile;
 	}
 
 }

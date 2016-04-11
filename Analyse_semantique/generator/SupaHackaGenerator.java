@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.antlr.runtime.tree.CommonTree;
+
+import analyse.FieldType;
 import analyse.TDS;
 
 /**
@@ -67,7 +69,19 @@ public class SupaHackaGenerator {
 				switch(node.getToken().getText()){
 					//D�claration d'une variable
 					case "var":
-						genererChild(node);
+						
+						//On a un tableau
+						if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
+							
+							//On a une variable
+						}else if((node.getChildCount() == 2 && TDS.findIn(pile, node.getChild(1).getText(), FieldType.FieldTypeDefStructure)==null) || (node.getChildCount() == 3)){	
+							Declaration decl = new Declaration(node);
+							decl.genererCode(pile);
+						//On a une structure
+						}else {
+							
+						}
+						
 						break;
 						
 					//Declaration d'un type
