@@ -15,7 +15,7 @@ public class CodeAss {
 	private String code;
 
 	private CodeAss() {
-		code="RESETA 	equ 0xEFFA 	// adresse de lancement\n"
+		code="RESETA 	equ 0xEFDC 	// adresse de lancement\n"
 	+"INA    	equ 0xEFA0 	// adresse du port // d'entree\n"
 	+"OUTA   	equ 0xEFA2 	// adresse du port // de sortie\n"
 	+"LOADA  	equ 0xEFDC      // adresse de chargement\n"

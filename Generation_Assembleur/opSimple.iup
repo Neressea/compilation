@@ -1,12 +1,12 @@
 efdc  origine
 efdc  debut d'execution
-6380   emplacement : 61404  (0xefdc)  ligne n° 8	LDW R3, #14
-000e   emplacement : 61406  (0xefde) 
+6380   emplacement : 61404  (0xefdc)  ligne n° 8	LDW R3, #2
+0002   emplacement : 61406  (0xefde) 
 634f   emplacement : 61408  (0xefe0)  ligne n° 9	STW R3, -(R15)
-6380   emplacement : 61410  (0xefe2)  ligne n° 10	LDW R3, #7
-0007   emplacement : 61412  (0xefe4) 
+6380   emplacement : 61410  (0xefe2)  ligne n° 10	LDW R3, #1
+0001   emplacement : 61412  (0xefe4) 
 64bf   emplacement : 61414  (0xefe6)  ligne n° 11	LDW R4, (R15)+
-e433   emplacement : 61416  (0xefe8)  ligne n° 12	ADD R4, R3, R3
+f433   emplacement : 61416  (0xefe8)  ligne n° 12	SUB R4, R3, R3
 634f   emplacement : 61418  (0xefea)  ligne n° 13	STW R3, -(R15)
 6380   emplacement : 61420  (0xefec)  ligne n° 14	LDW R3, #2
 0002   emplacement : 61422  (0xefee) 
