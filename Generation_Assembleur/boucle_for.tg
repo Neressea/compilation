@@ -1,0 +1,28 @@
+let
+
+	var x : int := 9
+	var a := 4
+	var z := (2 * 3) - x // -3
+
+	var res1 := 0
+	var res2 := 0
+
+in
+
+	//Pour i de 5 à 6 (inclus)
+	for i := a + 1 to (x + z) do (
+		res1 := res1+2;
+		res1 := res1 - 1
+	);
+
+	/** res1 doit valoir 2 **/
+
+	//Pour i de 8 à 10 (inclus)
+	for i := a - z + 1 to x - z / 2 do
+		//Pour j de 1 à 4
+		for j := 1 to a do
+			res2 := res2 + 1
+
+	/** res2 doit valoir 12 **/
+
+end
