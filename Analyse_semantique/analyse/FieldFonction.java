@@ -12,7 +12,7 @@ public class FieldFonction extends FieldAvecType{
 	private ArrayList<Couple<String, String>> params;
 	
 	public FieldFonction(String ID, int taille_du_saut, String type) {
-		super(ID, taille_du_saut, -1, type);
+		super(ID, taille_du_saut, 0, type);
 		params = new ArrayList<Couple<String, String>>();
 	}
 	

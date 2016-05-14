@@ -37,8 +37,8 @@ public class OperandeSimple extends Instruction {
 				//L'adresse de la variable est stockée dans R4
 				idf.genererCode(pile);
 				
-				//On fout le contenu de ce que pointe R4 dans R3
-				ca.append("LDW R3, (R4)");
+				//On fout le contenu de ce que pointe R1 dans R3
+				ca.append("LDW R3, (R1)");
 			}
 		}
 		

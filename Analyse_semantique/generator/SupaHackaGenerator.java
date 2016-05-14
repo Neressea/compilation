@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.tree.CommonTree;
 
+import com.sun.org.apache.xpath.internal.functions.Function;
+
 import analyse.FieldType;
 import analyse.TDS;
 
@@ -59,7 +61,7 @@ public class SupaHackaGenerator {
 
 
 
-	private void genererNode(CommonTree node) {
+	public void genererNode(CommonTree node) {
 		
 		//En fonction du type du noeud, on appelle diff�rents contr�les s�mantiques
 				TDS current = null;
@@ -105,13 +107,14 @@ public class SupaHackaGenerator {
 					
 					//Appel d'une fonction
 					case "FUNC_CALL":
-						
-						genererChild(node);
+						Fonction func = new Fonction(node);
+						func.genererCode(pile);
 						break;
 						
 					//Affectation
 					case ":=":
-						genererChild(node);
+						Affectation aff = new Affectation(node, this);
+						aff.genererCode(pile);
 						break;
 						
 					//Condition
@@ -128,7 +131,8 @@ public class SupaHackaGenerator {
 					// Boucle for
 					case "for":			
 						openTDS();
-						genererChild(node);
+						For f = new For(node, this);
+						f.genererCode(pile);
 						closeTDS();
 						break;
 						
@@ -156,7 +160,6 @@ public class SupaHackaGenerator {
 					case "NEG":
 						ExpressionArithmetique ea = new ExpressionArithmetique(node);
 						ea.genererCode(pile);
-						//genererChild(node);
 						break;
 						
 					//Acc�s � une case d'un tableau
@@ -199,7 +202,7 @@ public class SupaHackaGenerator {
 
 
 
-	private void genererChild(CommonTree node) {
+	public void genererChild(CommonTree node) {
 		for(int i = 0; i<node.getChildCount(); i++){
 			genererNode((CommonTree) node.getChild(i));
 		}

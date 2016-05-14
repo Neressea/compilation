@@ -52,6 +52,10 @@ public class AnalyseSemantique {
 		fprint.addParam("s", "string");
 		base.add(fprint);
 		
+		FieldFonction fprinti = new FieldFonction("printi", base.getCurrentSize(), "UNDEFINED");
+		fprinti.addParam("i", "int");
+		base.add(fprinti);
+		
 		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
 		base.add(fread);
 		
@@ -144,7 +148,7 @@ public class AnalyseSemantique {
 						String type_primitif=null;
 							try {
 								type_primitif = ea.computeType(pile);
-								current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizePrimitif(node.getChild(1).getText()), type_primitif));
+								current.add(new FieldVariable(node.getChild(0).getText(), current.getCurrentSize(), computeSizeType(type_primitif), type_primitif));
 							} catch (ErreurSemantique e) {}
 						}else{
 					
@@ -507,20 +511,6 @@ public class AnalyseSemantique {
 				break;
 		}
 				
-		return size;
-	}
-	
-	private int computeSizePrimitif(String primit){
-		int size=0;
-		try{
-			//Si le cast marche, alors c'est un int et la taille est celle d'un �l�ment primitif
-			Integer.parseInt(primit);
-			size = SIZE_PRIMITIF;
-		}catch(Exception e){
-			//On ne prend pas en compte les deux ""
-			size = SIZE_PRIMITIF * (primit.length()-2);
-		}
-		
 		return size;
 	}
 	

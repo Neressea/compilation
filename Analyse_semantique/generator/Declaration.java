@@ -29,6 +29,6 @@ public class Declaration extends Instruction{
 		ea.genererCode(pile);
 		
 		//On empile la valeur
-		ca.append("STW R3, -(R15)");
+		ca.append("STW R3, -(R15) //On empile la valeur déclarée");
 	}
 }

@@ -6,12 +6,24 @@ import analyse.TDS;
 
 public class Affectation extends Instruction{
 	
-	public Affectation(CommonTree node) {
+	private SupaHackaGenerator generator;
+	
+	public Affectation(CommonTree node, SupaHackaGenerator generator) {
 		super(node);
+		this.generator = generator;
 	}
 	
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
-		// TODO Auto-generated method stub
+		//On effectue les calculs de la partie droite
+		generator.genererNode((CommonTree) node.getChild(1));
+				
+		//On calcule l'adresse de la variable dans la pile : adresse chargée dans R1
+		Identifiant idf = new Identifiant((CommonTree) node.getChild(0));
+		idf.genererCode(pile);
+		
+		//On affecte la valeur de retour (R3) dans la mémoire
+		CodeAss ca = CodeAss.getCodeSingleton();
+		ca.append("STW R3, (R1) //On stocke le resultat dans la mémoire");
 	}
 }

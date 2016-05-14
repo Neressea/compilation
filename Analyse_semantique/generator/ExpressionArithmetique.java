@@ -31,24 +31,24 @@ public class ExpressionArithmetique extends Instruction{
 				return;
 			}
 			
-			ca.append("STW R3, -(R15)"); // REMPLIR
+			ca.append("STW R3, -(R15) //On empile le resultat de l'operande droite");
 			ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
 			ea.genererCode(pile);
-			ca.append("LDW R4, (R15)+");
+			ca.append("LDW R2, (R15)+ //On depile l'operande droite");
 			
 			switch (node.getText()) {
 				case "+":
-					// R4 (partie gauche) + R3 (partie droite) dans R3
-					ca.append("ADD R4, R3, R3");
+					// R2 (partie gauche) + R3 (partie droite) dans R3
+					ca.append("ADD R2, R3, R3");
 					break;
 				case "-":
-					ca.append("SUB R4, R3, R3");
+					ca.append("SUB R2, R3, R3");
 					break;
 				case "*":
-					ca.append("MUL R4, R3, R3");
+					ca.append("MUL R2, R3, R3");
 					break;
 				case "/":
-					ca.append("DIV R4, R3, R3");
+					ca.append("DIV R2, R3, R3");
 					break;
 			}
 		}
