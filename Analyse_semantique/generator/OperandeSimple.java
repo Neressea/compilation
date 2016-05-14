@@ -21,12 +21,11 @@ public class OperandeSimple extends Instruction {
 	public void genererCode(ArrayList<TDS> pile) {
 		String token = node.getText();
 		CodeAss ca = CodeAss.getCodeSingleton();
-		String eti = "STRING";
 		String et;
 		
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
-			et=eti.concat(Integer.toString(counter));
-			ca.append("et string token");
+			et="STRING".concat(Integer.toString(counter));
+			ca.append(et+" string "+token);
 			counter++;
 			
 			
