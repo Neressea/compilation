@@ -10,7 +10,7 @@ import analyse.TDS;
 
 public class OperandeSimple extends Instruction {
 	
-	static int counter = 0;
+	public static int counter = 0;
 
 
 	public OperandeSimple(CommonTree node) {
