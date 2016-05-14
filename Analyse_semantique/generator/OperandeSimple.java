@@ -9,6 +9,9 @@ import analyse.FieldVariable;
 import analyse.TDS;
 
 public class OperandeSimple extends Instruction {
+	
+	static int counter = 0;
+
 
 	public OperandeSimple(CommonTree node) {
 		super(node);
@@ -18,8 +21,14 @@ public class OperandeSimple extends Instruction {
 	public void genererCode(ArrayList<TDS> pile) {
 		String token = node.getText();
 		CodeAss ca = CodeAss.getCodeSingleton();
+		String eti = "STRING";
+		String et;
 		
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
+			et=eti.concat(Integer.toString(counter));
+			ca.append("et string token");
+			counter++;
+			
 			
 		} else {
 			boolean is_digit = true;
@@ -34,7 +43,7 @@ public class OperandeSimple extends Instruction {
 			} else { // Il s'agit d'un identifiant
 				Identifiant idf = new Identifiant(node);
 				
-				//L'adresse de la variable est stockée dans R4
+				//L'adresse de la variable est stockï¿½e dans R4
 				idf.genererCode(pile);
 				
 				//On fout le contenu de ce que pointe R1 dans R3
