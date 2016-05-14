@@ -1,0 +1,12 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Spécification grammaticale du langage Tiger}{}% 2
+\BOOKMARK [1][-]{section.2.1}{La grammaire sous ANTLR}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{L'arbre syntaxique}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.3}{L'analyse sémantique}{}% 5
+\BOOKMARK [1][-]{section.3.1}{La structure de la table des symboles}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{Les erreurs sémantiques}{chapter.3}% 7
+\BOOKMARK [0][-]{chapter.4}{La génération de code assembleur}{}% 8
+\BOOKMARK [1][-]{section.4.1}{Quelques schémas de traduction}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.2}{Exemples d'application}{chapter.4}% 10
+\BOOKMARK [0][-]{chapter.5}{Répartition du travail}{}% 11
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 12

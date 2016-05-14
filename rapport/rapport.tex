@@ -1,0 +1,88 @@
+\documentclass[12pt]{report}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage{epstopdf}
+
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{listings}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\spaceJump}{\\[0.5cm]}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\title{
+			\HRule{2pt} \\
+			[0.3cm]
+			\LARGE \textbf{Rapport de projet de compilation} \spaceJump
+			\large \textsc{Encadrant : M. Da Silva Sébastien}
+			\HRule{2pt} 			
+		}
+\author{Gary Guyot \spaceJump Alexandre Farnier \spaceJump Nicolas Bédrine  \\ [0.8cm] Vincent Albert}
+\date{14 Mai 2015}
+
+\lstdefinestyle{ANTLR}{
+    basicstyle=\small\ttfamily\color{magenta},%
+    breaklines=true,%                                      allow line breaks
+    moredelim=[s][\color{green!50!black}\ttfamily]{'}{'},% single quotes in green
+    moredelim=*[s][\color{black}\ttfamily]{options}{\}},%  options in black (until trailing })
+    commentstyle={\color{gray}\itshape},%                  gray italics for comments
+    morecomment=[l]{//},%                                  define // comment
+    emph={%
+        STRING%                                            literal strings listed here
+        },emphstyle={\color{blue}\ttfamily},%              and formatted in blue
+    alsoletter={:,|,;},%
+    morekeywords={:,|,;},%                                 define the special characters
+    keywordstyle={\color{black}},%                         and format them in black
+}
+
+\begin{document}
+	\makeatletter
+    \begin{titlepage}
+        \begin{center}
+            
+						\flushright \includegraphics[width=0.4\linewidth]{UL.jpg}\\[4ex]
+						
+						\center
+            {\huge \bfseries  \@title } 
+						
+						\flushright
+            {\LARGE  \@author} \\ [0.5cm]
+            {\large \@date}
+						\begin{figure}[b]
+							\includegraphics[width=0.3\linewidth]{tncy.png}
+						\end{figure}
+        \end{center}
+    \end{titlepage}
+	\makeatother
+	%\maketitle
+	
+	\tableofcontents
+	\chapter{Introduction}
+		\paragraph{}
+		Pour rappel, l'objectif de ce projet était d'écrire un coompilateur pour le langage Tiger, décrit par Andrew Appel, fonctionnant sur l'émulateur de machine RISK créé par Alexandre Parodi, microPIUP. Pour ce faire, nous avons eu recours à ANTLR pour la spécification de la grammaire et la génération de l'arbre syntaxique (AST), au langage Java pour faire l'analyse sémantique, ainsi que pour générer le code Assembleur au format microPIUP/ASM. Pour la gestion des versions et le travail en équipe, nous avons utilisé git et déposé tous nos fichiers sur la \href{http://forge.telecomnancy.univ-lorraine.fr}{forge} de TELECOM Nancy.
+		\paragraph{}
+		Ce projet a été réalisé en quatuor, composé de Vincent Albert, Alexandre Farnier, Nicolas Bédrine et Gary Guyot, a commencé en Janvier 2016, et a été encadré par M. Da Silva Sébastien. 
+	\chapter{Spécification grammaticale du langage Tiger}
+		\section{La grammaire sous ANTLR}
+			\paragraph{}
+			Pour spécifier le langage à l'aide d'ANTLR, nous avons dû travailler sur un seul fichier ; c'est pourquoi nous avons choisi de le réaliser tous ensemble, à chaque fois sur un seul et même ordinateur. L'objectif était de rendre la grammaire LL(1). Nous avons tout d'abord tenté de transcrire directement la grammaire telle qu'elle était spécifiée dans le sujet, puis de la retravailler directement avec ANTLRworks. Ceci s'est soldé par un échec. Nous avons ensuite tenté de transcrire les règles les plus fondamentales de la spécification fournie, puis d'implémenter au fur et à mesure les règles en la rendant LL(1). Cependant, nous n'avions pas pensé aux priorités d'opérations pour la génération de l'AST à ce moment là et nous nous sommes retrouvés face à une impasse. Notre troisième solution a été de partir de notre propre spécification des expressions arithmétiques simples puis d'empiler petit à petit les règles grammaticales de Tiger. Cette stratégie s'est avérée payante, et a conduit au fichier Tiger3.g dont voici le contenu : \newline
+			\tiny
+			\lstinputlisting{Tiger3.g}
+		\section{L'arbre syntaxique}
+	\chapter{L'analyse sémantique}
+		\section{La structure de la table des symboles}
+		\section{Les erreurs sémantiques}
+	\chapter{La génération de code assembleur}
+		\section{Quelques schémas de traduction}
+		\section{Exemples d'application}
+	\chapter{Répartition du travail}
+	\chapter{Conclusion}
+	
+
+	
+\end{document}

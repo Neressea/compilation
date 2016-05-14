@@ -6,3 +6,4 @@ output
 .git
 .recommenders
 *~
+/bin/
