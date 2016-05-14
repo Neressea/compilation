@@ -1,0 +1,14 @@
+RESETA 	equ 0xEFE4 	// adresse de lancement
+INA    	equ 0xEFA0 	// adresse du port // d'entree
+OUTA   	equ 0xEFA2 	// adresse du port // de sortie
+LOADA  	equ 0xEFDC      // adresse de chargement
+SEUIL	equ 3		// seuil
+ORG   LOADA	// chargement en LOADA
+START RESETA	// demarre en RESETA
+print 
+printi 
+read LDQ 65, R14 //on charge la trap
+LDQ 0, R0 //On ricuphre les chaines de caracthres tout le temps au mjme endroit, en dibut de mimoire
+TRP R14 //On lhve la trappe
+RTS //On retourne dans le programme
+JEA @read

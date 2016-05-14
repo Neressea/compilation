@@ -1,0 +1,8 @@
+efdc  origine
+efe4  debut d'execution
+2e41   emplacement : 61404  (0xefdc)  ligne n° 10	read LDQ 65, R14 //on charge la trap
+2000   emplacement : 61406  (0xefde)  ligne n° 11	LDQ 0, R0 //On ricuphre les chaines de caracthres tout le temps au mjme endroit, en dibut de mimoire
+0b1e   emplacement : 61408  (0xefe0)  ligne n° 12	TRP R14 //On lhve la trappe
+0200   emplacement : 61410  (0xefe2)  ligne n° 13	RTS //On retourne dans le programme
+0950   emplacement : 61412  (0xefe4)  ligne n° 14	JEA @read
+efdc   emplacement : 61414  (0xefe6) 

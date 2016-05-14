@@ -22,28 +22,37 @@ public class Fonction extends Instruction{
 		CommonTree params_effectifs = (node.getChildCount() == 1) ? null : (CommonTree) node.getChild(1);
 		
 		if(function_name.equals("print")){
+			
 			//On récupère le paramètre que veut afficher le programmeur
+			OperandeSimple os = new OperandeSimple((CommonTree) params_effectifs.getChild(0));
+			
+			//Le résultat est foutu dans R3 : adresse de la chaine
+			os.genererCode(pile);
+			
+			//On le transfère dans R0
+			ca.append("LDW R0, R3");
 			
 			//On charge la trappe WRITE dans WR
 			ca.append("LDQ 66, R14");
 			
 		}else if(function_name.equals("printi")){
+			
 			//On récupère le paramètre que veut afficher le programmeur
 			OperandeSimple os = new OperandeSimple((CommonTree) params_effectifs.getChild(0));
 			
 			//Le résultat est foutu dans R3
 			os.genererCode(pile);
 			
-			//On charge la trappe WRITE dans WR
-			ca.append("LDQ 66, R14");
+			//On transfère son adresse dans R0	
+			ca.append("STRING");
+			
+			//On se branche sur le sous-programme d'écriture
+			ca.append("JEA @printi");
 			
 		}else if(function_name.equals("read")){
-			//On récupère l'entrée de l'utilisateur
-			
-			//On charge la trappe READ dans WR
-			ca.append("LDQ 65, R14");
-			
-			//On la renvoie au programmeur dans R5
+
+			//On se branche sur le sous-programme : le résultat sera à l'adresse de R0, c'est-à-dire au début de la mémoire.
+			ca.append("JEA @read");
 			
 		}else{
 			//Autrement, c'est une fonction du programmeur

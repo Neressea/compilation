@@ -16,14 +16,24 @@ public class CodeAss {
 	private int base_pile = 0x1000;
 
 	private CodeAss() {
-		code="RESETA 	equ 0xEFDC 	// adresse de lancement\n"
-	+"INA    	equ 0xEFA0 	// adresse du port // d'entree\n"
-	+"OUTA   	equ 0xEFA2 	// adresse du port // de sortie\n"
-	+"LOADA  	equ 0xEFDC      // adresse de chargement\n"
-	+"SEUIL	equ 3		// seuil\n"
-
-	+"ORG   LOADA	// chargement en LOADA\n"
-	+"START RESETA	// demarre en RESETA\n";
+		code="RESETA 	equ 0xEFE4 	// adresse de lancement\n"
+			+"INA    	equ 0xEFA0 	// adresse du port // d'entree\n"
+			+"OUTA   	equ 0xEFA2 	// adresse du port // de sortie\n"
+			+"LOADA  	equ 0xEFDC      // adresse de chargement\n"
+			+"SEUIL	equ 3		// seuil\n"
+		
+			+"ORG   LOADA	// chargement en LOADA\n"
+			+"START RESETA	// demarre en RESETA\n"
+			+"print \n"
+			
+			+"printi LDQ 66, R14\n"
+			+" \n"
+			+"RTS //On retourne dans la suite de l'exécution\n"
+			
+			+"read LDQ 65, R14 //on charge la trap\n"
+			+"LDQ 0, R0 //On récupère les chaines de caractères tout le temps au même endroit, en début de mémoire\n"
+			+"TRP R14 //On lève la trappe\n"
+			+"RTS //On retourne dans le programme\n";
 	}
 	
 	private static CodeAss codeAss = new CodeAss();
