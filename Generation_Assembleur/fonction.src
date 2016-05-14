@@ -5,8 +5,6 @@ LOADA  	equ 0xEFFA      // adresse de chargement
 SEUIL	equ 3		// seuil
 ORG   LOADA	// chargement en LOADA
 START RESETA	// demarre en RESETA
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #7666
 STW R3, -(R15)
 LDW R0, R15
@@ -21,13 +19,6 @@ STRING1 string "COUCOU2"
 LDW R3, #STRING1
 LDW R0, R3
 JSR @print
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15)
-LDW R0, R15
-LDQ 0, R3
-STW R3, -(R15)
-JSR @printi
 LDQ 64, R14 //On charge la trappe EXIT 
 TRP R14 //On quitte l'exécution
 print LDQ 66, R14
