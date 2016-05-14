@@ -24,10 +24,11 @@ public class OperandeSimple extends Instruction {
 		String et;
 		
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
+			
 			et="STRING".concat(Integer.toString(counter));
 			ca.append(et+" string "+token);
 			counter++;
-			
+			ca.append("LDW R3, #"+et);
 			
 		} else {
 			boolean is_digit = true;
@@ -48,7 +49,7 @@ public class OperandeSimple extends Instruction {
 				//On fout le contenu de ce que pointe R1 dans R3
 				ca.append("LDW R3, (R1)");
 			}
-		}
+		}		
 		
 	}
 
