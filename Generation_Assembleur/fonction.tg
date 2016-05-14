@@ -1,9 +1,9 @@
 let
 
-	
-
 in
 
-	read()
-
+	printi(7666);
+	print("COUCOU1");
+	print("COUCOU2")
+	
 end

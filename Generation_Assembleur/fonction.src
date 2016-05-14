@@ -1,14 +1,42 @@
-RESETA 	equ 0xEFE4 	// adresse de lancement
+RESETA 	equ 0xEFFA 	// adresse de lancement
 INA    	equ 0xEFA0 	// adresse du port // d'entree
 OUTA   	equ 0xEFA2 	// adresse du port // de sortie
-LOADA  	equ 0xEFDC      // adresse de chargement
+LOADA  	equ 0xEFFA      // adresse de chargement
 SEUIL	equ 3		// seuil
 ORG   LOADA	// chargement en LOADA
 START RESETA	// demarre en RESETA
-print 
-printi 
+LDW R3, #0
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #7666
+STW R3, -(R15)
+LDW R0, R15
+LDQ 0, R3
+STW R3, -(R15)
+JSR @printi
+STRING0 string "COUCOU1"
+LDW R3, #STRING0
+LDW R0, R3
+JSR @print
+STRING1 string "COUCOU2"
+LDW R3, #STRING1
+LDW R0, R3
+JSR @print
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15)
+LDW R0, R15
+LDQ 0, R3
+STW R3, -(R15)
+JSR @printi
+LDQ 64, R14 //On charge la trappe EXIT 
+TRP R14 //On quitte l'exécution
+print LDQ 66, R14
+TRP R14 //On lève la trappe
+RTS //On retourne dans la suite de l'exécution
+printi LDQ 66, R14
+TRP R14 //On ève la trappe
+RTS //On retourne dans la suite de l'exécution
 read LDQ 65, R14 //on charge la trap
 LDQ 0, R0 //On récupère les chaines de caractères tout le temps au même endroit, en début de mémoire
 TRP R14 //On lève la trappe
 RTS //On retourne dans le programme
-JEA @read

@@ -1,8 +1,40 @@
-efdc  origine
-efe4  debut d'execution
-2e41   emplacement : 61404  (0xefdc)  ligne n° 10	read LDQ 65, R14 //on charge la trap
-2000   emplacement : 61406  (0xefde)  ligne n° 11	LDQ 0, R0 //On ricuphre les chaines de caracthres tout le temps au mjme endroit, en dibut de mimoire
-0b1e   emplacement : 61408  (0xefe0)  ligne n° 12	TRP R14 //On lhve la trappe
-0200   emplacement : 61410  (0xefe2)  ligne n° 13	RTS //On retourne dans le programme
-0950   emplacement : 61412  (0xefe4)  ligne n° 14	JEA @read
-efdc   emplacement : 61414  (0xefe6) 
+effa  origine
+effa  debut d'execution
+6380   emplacement : 61434  (0xeffa)  ligne n° 8	LDW R3, #7666
+1df2   emplacement : 61436  (0xeffc) 
+634f   emplacement : 61438  (0xeffe)  ligne n° 9	STW R3, -(R15)
+609f   emplacement : 61440  (0xf000)  ligne n° 10	LDW R0, R15
+2300   emplacement : 61442  (0xf002)  ligne n° 11	LDQ 0, R3
+634f   emplacement : 61444  (0xf004)  ligne n° 12	STW R3, -(R15)
+0a50   emplacement : 61446  (0xf006)  ligne n° 13	JSR @printi
+f038   emplacement : 61448  (0xf008) 
+434f   emplacement : 61450  (0xf00a)  ligne n° 14	STRING0 string "COUCOU1"
+5543   emplacement : 61452  (0xf00c) 
+4f55   emplacement : 61454  (0xf00e) 
+3100   emplacement : 61456  (0xf010) 
+6380   emplacement : 61458  (0xf012)  ligne n° 15	LDW R3, #STRING0
+f00a   emplacement : 61460  (0xf014) 
+6093   emplacement : 61462  (0xf016)  ligne n° 16	LDW R0, R3
+0a50   emplacement : 61464  (0xf018)  ligne n° 17	JSR @print
+f032   emplacement : 61466  (0xf01a) 
+434f   emplacement : 61468  (0xf01c)  ligne n° 18	STRING1 string "COUCOU2"
+5543   emplacement : 61470  (0xf01e) 
+4f55   emplacement : 61472  (0xf020) 
+3200   emplacement : 61474  (0xf022) 
+6380   emplacement : 61476  (0xf024)  ligne n° 19	LDW R3, #STRING1
+f01c   emplacement : 61478  (0xf026) 
+6093   emplacement : 61480  (0xf028)  ligne n° 20	LDW R0, R3
+0a50   emplacement : 61482  (0xf02a)  ligne n° 21	JSR @print
+f032   emplacement : 61484  (0xf02c) 
+2e40   emplacement : 61486  (0xf02e)  ligne n° 22	LDQ 64, R14 //On charge la trappe EXIT 
+0b1e   emplacement : 61488  (0xf030)  ligne n° 23	TRP R14 //On quitte l'exicution
+2e42   emplacement : 61490  (0xf032)  ligne n° 24	print LDQ 66, R14
+0b1e   emplacement : 61492  (0xf034)  ligne n° 25	TRP R14 //On lhve la trappe
+0200   emplacement : 61494  (0xf036)  ligne n° 26	RTS //On retourne dans la suite de l'exicution
+2e42   emplacement : 61496  (0xf038)  ligne n° 27	printi LDQ 66, R14
+0b1e   emplacement : 61498  (0xf03a)  ligne n° 28	TRP R14 //On hve la trappe
+0200   emplacement : 61500  (0xf03c)  ligne n° 29	RTS //On retourne dans la suite de l'exicution
+2e41   emplacement : 61502  (0xf03e)  ligne n° 30	read LDQ 65, R14 //on charge la trap
+2000   emplacement : 61504  (0xf040)  ligne n° 31	LDQ 0, R0 //On ricuphre les chaines de caracthres tout le temps au mjme endroit, en dibut de mimoire
+0b1e   emplacement : 61506  (0xf042)  ligne n° 32	TRP R14 //On lhve la trappe
+0200   emplacement : 61508  (0xf044)  ligne n° 33	RTS //On retourne dans le programme
