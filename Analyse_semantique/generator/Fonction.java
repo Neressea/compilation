@@ -33,7 +33,7 @@ public class Fonction extends Instruction{
 			ca.append("LDW R0, R3");
 			
 			//On charge la trappe WRITE dans WR
-			ca.append("LDQ 66, R14");
+			ca.append("JSR @print");
 			
 		}else if(function_name.equals("printi")){
 			
@@ -43,11 +43,18 @@ public class Fonction extends Instruction{
 			//Le résultat est foutu dans R3
 			os.genererCode(pile);
 			
-			//On transfère son adresse dans R0	
-			ca.append("STRING");
+			//On empile R3
+			ca.append("STW R3, -(R15)");
+			
+			//On sauvegarde l'adresse de la pile dans R0
+			ca.append("LDW R0, R15");
+			
+			//On empile NUL
+			ca.append("LDQ 0, R3");
+			ca.append("STW R3, -(R15)");
 			
 			//On se branche sur le sous-programme d'écriture
-			ca.append("JEA @printi");
+			ca.append("JSR @printi");
 			
 		}else if(function_name.equals("read")){
 
