@@ -61,6 +61,8 @@ public class Fonction extends Instruction{
 			//On se branche sur le sous-programme : le résultat sera à l'adresse de R0, c'est-à-dire au début de la mémoire.
 			ca.append("JEA @read");
 			
+			//On place le résultat dans R
+			
 		}else{
 			//Autrement, c'est une fonction du programmeur
 			
