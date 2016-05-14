@@ -12,9 +12,9 @@ import analyse.TDS;
 
 /**
  * 
- * Classe qui va reparcourir l'AST et recréer virtuellement la pile des TDS à partir de la liste complète des TDS.
- * Elle va créer une pile virtuelle des environnements ouverts à partir de la liste complète.
- * Et elle va créer une pile d'instructions et générer leur code.
+ * Classe qui va reparcourir l'AST et recrï¿½er virtuellement la pile des TDS ï¿½ partir de la liste complï¿½te des TDS.
+ * Elle va crï¿½er une pile virtuelle des environnements ouverts ï¿½ partir de la liste complï¿½te.
+ * Et elle va crï¿½er une pile d'instructions et gï¿½nï¿½rer leur code.
  *
  */
 public class SupaHackaGenerator {
@@ -50,7 +50,7 @@ public class SupaHackaGenerator {
 	
 	
 	/**
-	 * Génère le code correspondant à l'arbre passé au constructeur.
+	 * Gï¿½nï¿½re le code correspondant ï¿½ l'arbre passï¿½ au constructeur.
 	 * @param path chemin d acces au fichier dest
 	 * @throws IOException 
 	 */
@@ -119,7 +119,8 @@ public class SupaHackaGenerator {
 						
 					//Condition
 					case "COND":
-						genererChild(node);
+						Condition cond = new Condition(node);
+						cond.genererCode(pile);
 						break;
 						
 					case "let":

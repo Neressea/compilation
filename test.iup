@@ -1,0 +1,14 @@
+effa  origine
+effa  debut d'execution
+2e40   emplacement : 61434  (0xeffa)  ligne n° 8	LDQ 64, R14 //On charge la trappe EXIT 
+0b1e   emplacement : 61436  (0xeffc)  ligne n° 9	TRP R14 //On quitte l'ex}cution
+2e42   emplacement : 61438  (0xeffe)  ligne n° 10	print LDQ 66, R14
+0b1e   emplacement : 61440  (0xf000)  ligne n° 11	TRP R14 //On l}ve la trappe
+0200   emplacement : 61442  (0xf002)  ligne n° 12	RTS //On retourne dans la suite de l'ex}cution
+2e42   emplacement : 61444  (0xf004)  ligne n° 13	printi LDQ 66, R14
+0b1e   emplacement : 61446  (0xf006)  ligne n° 14	TRP R14 //On }ve la trappe
+0200   emplacement : 61448  (0xf008)  ligne n° 15	RTS //On retourne dans la suite de l'ex}cution
+2e41   emplacement : 61450  (0xf00a)  ligne n° 16	read LDQ 65, R14 //on charge la trap
+2000   emplacement : 61452  (0xf00c)  ligne n° 17	LDQ 0, R0 //On r}cup}re les chaines de caract}res tout le temps au m}me endroit, en d}but de m}moire
+0b1e   emplacement : 61454  (0xf00e)  ligne n° 18	TRP R14 //On l}ve la trappe
+0200   emplacement : 61456  (0xf010)  ligne n° 19	RTS //On retourne dans le programme

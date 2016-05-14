@@ -10,7 +10,6 @@ public class Condition extends Instruction{
 
 	public Condition(CommonTree node) {
 		super(node);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
