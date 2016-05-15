@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.antlr.runtime.tree.CommonTree;
 
+import com.sun.org.apache.bcel.internal.classfile.Code;
+
 import analyse.TDS;
 
 public class Fonction extends Instruction{
@@ -20,6 +22,8 @@ public class Fonction extends Instruction{
 		//on regarde s'il s'agit de l'une des deux fonctions du langage (print ou read).
 		String function_name = node.getChild(0).getText();
 		CommonTree params_effectifs = (node.getChildCount() == 1) ? null : (CommonTree) node.getChild(1);
+		
+		Fonction.openEnv();
 		
 		if(function_name.equals("print")){
 			
@@ -61,12 +65,64 @@ public class Fonction extends Instruction{
 			//On se branche sur le sous-programme : le résultat sera à l'adresse de R0, c'est-à-dire au début de la mémoire.
 			ca.append("JEA @read");
 			
-			//On place le résultat dans R
-			
+			//On place le résultat dans R3
+			ca.append("LDW R3, R0");
+		
+		}else if(function_name.equals("itoa")){
+		
 		}else{
 			//Autrement, c'est une fonction du programmeur
-			
+			ca.append("CALL : "+function_name);
+		}
+		
+		Fonction.closeEnv();
+	}
+	
+	
+	
+	/**
+	 * Ouvre un nouvel environnement dans la pile
+	 */
+	public static void openEnv(){
+		CodeAss ca = CodeAss.getCodeSingleton();
+		
+		ca.append("//On ouvre un nouvel environnement dans la pile");
+		ca.append("STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile");
+		ca.append("LDW BP, SP //Le sommet de la pile devient la nouvelle base");
+	}
+	
+	/**
+	 * Ferme l'environnement courant dans la pile
+	 */
+	public static void closeEnv(){
+		CodeAss ca = CodeAss.getCodeSingleton();
+		
+		ca.append("//On ferme l'environnement courant");
+		ca.append("LDW SP, BP //On réintiialise le sommet de la pile à la base courante");
+		ca.append("LDW BP, (SP)+ //On dépile l'ancienne base");
+	}
+	
+	/**
+	 * Fonction sauvegardant les registres lors de l'ouverture d'un nouvel environnement
+	 */
+	private void saveRegisters(){
+		CodeAss ca = CodeAss.getCodeSingleton();
+		
+		ca.append("//On sauvegarde les registres");
+		for (int i = 0; i < 15; i++) {
+			ca.append("STW R"+i+", -(SP)");
 		}
 	}
-
+	
+	/**
+	 * Recharge les registres après la sortie dela fonction
+	 */
+	private void reloadRegisters(){
+		CodeAss ca = CodeAss.getCodeSingleton();
+		
+		ca.append("//On recharge les registres");
+		for (int i = 0; i < 15; i++) {
+			ca.append("LDW R"+i+", (SP)+");
+		}
+	}
 }

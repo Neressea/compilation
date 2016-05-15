@@ -9,12 +9,13 @@ import analyse.TDS;
 /**
  * 
  * Utilisation des registres :
- * R0 = base de l'environnement d'exécution courant
+ * R0 = registre pour les paramètres des fonctions de l'assembleur
  * R1 = adresse des variables à charger
  * R2 = opérande pour opération
- * R3 = opérande pour opération & résultat
+ * R3 = opérande pour opération & résultat & retour de fonction
  * R4 = borne supérieur de boucle
- * R5 = retour de fonction
+ * 
+ * R13 = base de l'environnement courant
  * R14 = Registre de TRAP
  * R15 = SP
  *
