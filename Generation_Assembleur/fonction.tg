@@ -1,7 +1,7 @@
 let
 
 	var s := "ceci est une string"
-	var what_did_I_just_read := 0
+	var what_did_I_just_read := "ceci en est une autre"
 
 in
 
@@ -12,6 +12,6 @@ in
 	s := itoa(100/10, 16);
 	print(s);
 	what_did_I_just_read := read();
-	printi(what_did_I_just_read)
+	print(what_did_I_just_read)
 	
 end

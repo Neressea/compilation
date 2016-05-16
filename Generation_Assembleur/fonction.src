@@ -32,14 +32,15 @@ STB R4, (R2)
 STRING0 string "ceci est une string"
 LDW R3, #STRING0
 STW R3, -(R15) //On empile la valeur déclarée
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
-STRING1 string "COUCOU1"
+STRING1 string "ceci en est une autre"
 LDW R3, #STRING1
+STW R3, -(R15) //On empile la valeur déclarée
+STRING2 string "COUCOU1"
+LDW R3, #STRING2
 LDW R0, R3
 JSR @print
-STRING2 string "COUCOU2"
-LDW R3, #STRING2
+STRING3 string "COUCOU2"
+LDW R3, #STRING3
 LDW R0, R3
 JSR @print
 LDW R3, #7689
@@ -49,8 +50,8 @@ LDW R2, (R15)+ //On depile l'operande droite
 SUB R2, R3, R3
 LDW R5, R3
 LDQ 10, R6
-STRING3 string ""
-LDW R3, #STRING3
+STRING4 string ""
+LDW R3, #STRING4
 JSR @itoa
 LDW R0, R3
 JSR @printi
@@ -66,8 +67,8 @@ DIV R2, R3, R3
 LDW R5, R3
 LDW R3, #16
 LDW R6, R3
-STRING4 string ""
-LDW R3, #STRING4
+STRING5 string ""
+LDW R3, #STRING5
 JSR @itoa
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
@@ -81,13 +82,8 @@ LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R5, R3
-LDQ 10, R6
-STRING5 string ""
-LDW R3, #STRING5
-JSR @itoa
 LDW R0, R3
-JSR @printi
+JSR @print
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exécution
 
@@ -157,8 +153,7 @@ STW R14, -(SP)
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 TRP #WRITE_TRP //On lève la trappe
-STRING6 string ""
-LDQ STRING6, R0
+LDQ SAUT_DE_LIGNE, R0
 TRP #WRITE_TRP
 //On ferme l'environnement courant
 LDW SP, BP //On réintiialise le sommet de la pile à la base courante
@@ -201,7 +196,8 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-LDQ 0, R0 //On récupère les chaines de caractères tout le temps au même endroit, en début de mémoire
+STRING6 string "" //on définit lachaine de caracrtère de retour
+LDQ STRING6, R0
 TRP #READ_TRP //On lève la trappe
 //On ferme l'environnement courant
 LDW SP, BP //On réintiialise le sommet de la pile à la base courante
