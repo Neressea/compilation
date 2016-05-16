@@ -56,6 +56,11 @@ public class AnalyseSemantique {
 		fprinti.addParam("i", "int");
 		base.add(fprinti);
 		
+		FieldFonction itoa = new FieldFonction("itoa", 0, "string");
+		itoa.addParam("entier", "int");
+		itoa.addParam("base", "int");
+		base.add(itoa);
+		
 		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
 		base.add(fread);
 		

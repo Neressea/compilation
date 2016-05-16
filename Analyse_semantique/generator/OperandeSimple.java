@@ -33,11 +33,19 @@ public class OperandeSimple extends Instruction {
 		} else {
 			boolean is_digit = true;
 			int value = 0;
+			
 			try {
 				value = Integer.parseInt(token);
 			} catch (Exception e) {
 				is_digit=false;
 			}
+			
+			if(token.equals("NEG")){
+				is_digit = true;
+				value = Integer.parseInt(node.getChild(0).getText());
+				value = -value;
+			}
+			
 			if (is_digit) { // C'est une constante entiere
 				ca.append("LDW R3, #" + value);
 			} else { // Il s'agit d'un identifiant

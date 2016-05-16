@@ -1,9 +1,14 @@
 let
 
+	var s := "ceci est une string"
+
 in
 
-	printi(7666);
 	print("COUCOU1");
-	print("COUCOU2")
+	print("COUCOU2");
+	printi(7689 - 9999);
+	print(s);
+	s := itoa(100/10, 16);
+	print(s)
 	
 end
