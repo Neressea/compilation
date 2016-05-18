@@ -17,7 +17,7 @@ public class Condition extends Instruction{
 		String token = node.getText();
 		CodeAss codeass = CodeAss.getCodeSingleton();
 
-		generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
+		generateCodeComp(pile, codeass, (CommonTree) node);
 		codeass.append("STW R3, -(R15)\n");
 		
 	}
@@ -56,13 +56,13 @@ public class Condition extends Instruction{
 			String buffer = "CMP R2, R3\n";
 			switch (node.getText()){
 				case "<":
-					buffer+="BLT $-6\n";
+					buffer+="BLT 6\n";
 					break;
 				case "<=":
 					buffer+="BLE $-6\n";
 					break;
 				case "=":
-					buffer+="BEQ $-6\n";
+					buffer+="BEQ 0x$-6\n";
 					break;
 				case ">":
 					buffer+="BGT $-6\n";
@@ -74,9 +74,9 @@ public class Condition extends Instruction{
 					buffer+="BNE $-6\n";
 					break;
 			}
-			buffer += "LDW R3, #1\n"
-			+"JMP $-4\n"
-			+"LDW R3, #0\n"
+			buffer += "LDW R3, #0\n"
+			+"JMP #4\n"
+			+"LDW R3, #1\n"
 			+"STW R3, -(R15)\n";
 			codeass.append(buffer);
 		}

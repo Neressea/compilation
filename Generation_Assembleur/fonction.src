@@ -1,23 +1,23 @@
-//*** On définit les adresses utiles ***//
+//*** On dï¿½finit les adresses utiles ***//
 RESETA 	equ 0xEFFA 	// adresse de lancement du programme
 LOADA  	equ 0xEFFA      // adresse de chargement du programme
 STACKA equ 4096 //Adresse de base de la pile
 
-//*** On définit les registres usuels ***//
+//*** On dï¿½finit les registres usuels ***//
 SP equ R15 //Reigstre de sommet de pile
 WR equ R14 //Registre pour lever les traps
 BP equ R13 //Registre de base de l'environnement courant
 
-//*** On définit les trappes usuelles ***//
+//*** On dï¿½finit les trappes usuelles ***//
 EXIT_TRP equ 64 //Trappe pour quitter le programme
-READ_TRP equ 65 //Trappe de lecture sur l'entrée standard
-WRITE_TRP equ 66 //Trappe d'écriture sur la sortie standard
+READ_TRP equ 65 //Trappe de lecture sur l'entrï¿½e standard
+WRITE_TRP equ 66 //Trappe d'ï¿½criture sur la sortie standard
 
 NIL equ 0 //Base initiale
-NUL equ 0 //Caractère de fin de chaine
+NUL equ 0 //Caractï¿½re de fin de chaine
 
 ORG   LOADA	// chargement en LOADA
-START main	// demarre à main
+START main	// demarre ï¿½ main
 
 main LDW SP, #STACKA //On charge la base de la pile
 LDW BP, #NIL //Base initiale nulle
@@ -31,12 +31,12 @@ STB R3, (R2)+
 STB R4, (R2)
 STRING0 string "ceci est une string"
 LDW R3, #STRING0
-STW R3, -(R15) //On empile la valeur déclarée
+STW R3, -(R15) //On empile la valeur dï¿½clarï¿½e
 STRING1 string "ceci en est une autre"
 LDW R3, #STRING1
-STW R3, -(R15) //On empile la valeur déclarée
+STW R3, -(R15) //On empile la valeur dï¿½clarï¿½e
 LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
+STW R3, -(R15) //On empile la valeur dï¿½clarï¿½e
 STRING2 string "COUCOU1"
 LDW R3, #STRING2
 LDW R0, R3
@@ -70,7 +70,7 @@ LDW R6, R3
 JSR @itoa
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-STW R3, (R1) //On stocke le resultat dans la mémoire
+STW R3, (R1) //On stocke le resultat dans la mï¿½moire
 JSR @read
 LDW R0, R3
 JSR @print
@@ -81,14 +81,14 @@ JSR @print
 JSR @read
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-STW R3, (R1) //On stocke le resultat dans la mémoire
+STW R3, (R1) //On stocke le resultat dans la mï¿½moire
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @print
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-STW R3, (R1) //On stocke le resultat dans la mémoire
+STW R3, (R1) //On stocke le resultat dans la mï¿½moire
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
@@ -97,9 +97,9 @@ JSR @itoa
 LDW R0, R3
 JSR @printi
 //*** On exit le programme principal ***//
-TRP #EXIT_TRP //On quitte l'exécution
+TRP #EXIT_TRP //On quitte l'exï¿½cution
 
-//*** print(string) : affiche le texte passé en paramètre ***//
+//*** print(string) : affiche le texte passï¿½ en paramï¿½tre ***//
 print 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -119,12 +119,12 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-TRP #WRITE_TRP //On lève la trappe
+TRP #WRITE_TRP //On lï¿½ve la trappe
 LDQ SAUT_DE_LIGNE, R0
 TRP #WRITE_TRP
 //On ferme l'environnement courant
-LDW SP, BP //On réintiialise le sommet de la pile à la base courante
-LDW BP, (SP)+ //On dépile l'ancienne base
+LDW SP, BP //On rï¿½intiialise le sommet de la pile ï¿½ la base courante
+LDW BP, (SP)+ //On dï¿½pile l'ancienne base
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
@@ -140,8 +140,8 @@ LDW R4, (SP)+
 LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
-RTS //On retourne dans la suite de l'exécution
-//*** printi(int) : affiche l'entier passé en paramètre ***//
+RTS //On retourne dans la suite de l'exï¿½cution
+//*** printi(int) : affiche l'entier passï¿½ en paramï¿½tre ***//
 printi 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -161,12 +161,12 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-TRP #WRITE_TRP //On lève la trappe
+TRP #WRITE_TRP //On lï¿½ve la trappe
 LDQ SAUT_DE_LIGNE, R0
 TRP #WRITE_TRP
 //On ferme l'environnement courant
-LDW SP, BP //On réintiialise le sommet de la pile à la base courante
-LDW BP, (SP)+ //On dépile l'ancienne base
+LDW SP, BP //On rï¿½intiialise le sommet de la pile ï¿½ la base courante
+LDW BP, (SP)+ //On dï¿½pile l'ancienne base
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
@@ -182,8 +182,8 @@ LDW R4, (SP)+
 LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
-RTS //On retourne dans la suite de l'exécution
-//*** int read() : lit un entier sur l'entrée standard ***//
+RTS //On retourne dans la suite de l'exï¿½cution
+//*** int read() : lit un entier sur l'entrï¿½e standard ***//
 read 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -203,13 +203,13 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING4 RSB 100 //On crée la chaine de retour (100 caractères max)
+STRING4 RSB 100 //On crï¿½e la chaine de retour (100 caractï¿½res max)
 LDQ STRING4, R0 //On met cette adresse en lecture
-TRP #READ_TRP //On lève la trappe
-LDW R3, R0 //On met le résultat dans R3
+TRP #READ_TRP //On lï¿½ve la trappe
+LDW R3, R0 //On met le rï¿½sultat dans R3
 //On ferme l'environnement courant
-LDW SP, BP //On réintiialise le sommet de la pile à la base courante
-LDW BP, (SP)+ //On dépile l'ancienne base
+LDW SP, BP //On rï¿½intiialise le sommet de la pile ï¿½ la base courante
+LDW BP, (SP)+ //On dï¿½pile l'ancienne base
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
@@ -226,7 +226,7 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans le programme
-//*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passée en paramètre ***//
+//*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passï¿½e en paramï¿½tre ***//
 itoa //On sauvegarde les registres
 STW R0, -(SP)
 STW R1, -(SP)
@@ -245,9 +245,9 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING5 RSB 100 //On crée la chaine de retour (100 octets max)
+STRING5 RSB 100 //On crï¿½e la chaine de retour (100 octets max)
 LDQ STRING5, R3 //On charge l'adresse dans R0
-//R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
+//R5 -> entier ï¿½ convertir, R6 -> base de conversion, R3 -> adresse de la chaine rï¿½sultat
 ASCII_MINUS equ 45
 ASCII_PLUS  equ 43
 ASCII_SP    equ 32 
@@ -264,12 +264,12 @@ NEG R5, R5
 LDQ ASCII_MINUS, R7
 POSIT NOP
 
-NOSIGN  LDW R8, R5 //R8 <- entier à convertir
+NOSIGN  LDW R8, R5 //R8 <- entier ï¿½ convertir
 CNVLOOP ldw R5, R8
 
 SRL R6, R6
 //On divise la base par 2
-ANI R5, R9, #1 //ANd Immédiate entre r0 et 00...01 vers r4
+ANI R5, R9, #1 //ANd Immï¿½diate entre r0 et 00...01 vers r4
 SRL R5, R5 //on divise l'entier par 2
 DIV R5, R6, R8
 SHL R5, R5
@@ -289,21 +289,21 @@ TST R8
 BNE CNVLOOP-$-2
  //Boucle si quotient non nul
 
-//On empile maintenant les caractères dans le bon ordre
+//On empile maintenant les caractï¿½res dans le bon ordre
 LDW R2, R3
 LDQ 0, R10
 CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
 BEQ CPYLOOP-$-2
 STB R7, (R2)+ //On copie le signe dans le tampon
-CPYLOOP LDW R5, (SP)+//On dépile le chiffre
+CPYLOOP LDW R5, (SP)+//On dï¿½pile le chiffre
 STB R5, (R2)+
 CMP SP, BP
 BNE CPYLOOP-$-2
 LDQ NUL, R5
 STB R5, (R2)+//On termine la chaine par NUL
 //On ferme l'environnement courant
-LDW SP, BP //On réintiialise le sommet de la pile à la base courante
-LDW BP, (SP)+ //On dépile l'ancienne base
+LDW SP, BP //On rï¿½intiialise le sommet de la pile ï¿½ la base courante
+LDW BP, (SP)+ //On dï¿½pile l'ancienne base
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
