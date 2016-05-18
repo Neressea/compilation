@@ -37,21 +37,5 @@ public abstract class Instruction {
 	public CommonTree getNode() {
 		return this.node;
 	}
-	
-	public void saveRegisters(String... reg){
-		CodeAss ca = CodeAss.getCodeSingleton();
-		
-		for (int i = 0; i < reg.length; i++) {
-			ca.append("STW "+reg[i]+", -(R15)");
-		}
-	}
-	
-	public void loadRegisters(String... reg){
-		CodeAss ca = CodeAss.getCodeSingleton();
-		
-		for (int i = 0; i < reg.length; i++) {
-			ca.append("LDW "+reg[i]+", (R15)+");
-		}
-	}
 
 }

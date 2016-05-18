@@ -1,4 +1,5 @@
 package main;
+import java.io.File;
 import java.io.IOException;
 
 import analyse.AnalyseSemantique;
@@ -41,8 +42,8 @@ public class Main {
 			}
 			System.out.println("L'analyse semantique n'a detecte aucun probleme !");
 			SupaHackaGenerator daru = new SupaHackaGenerator(analyzer.getTree(), analyzer.getTDS());
+			String path = args[0].replace(".tg", ".src");
 			try {
-				String path = args[0].replace(".tg", ".src");
 				daru.genererCode(path);
 			} catch (IOException e) {
 				e.printStackTrace();

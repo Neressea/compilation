@@ -13,68 +13,16 @@ import java.io.IOException;
 public class CodeAss {
 	
 	private String code;
+	private String code_fonctions_utilisateurs; //Le code des fonctions définies par les utilisateurs
+	private String code_fonctions_du_langage;
 	private int base_pile = 0x1000;
+	private boolean writing_func = false;
 
 	private CodeAss() {
 		
-		code =	"//*** On définit les adresses utiles ***//\n"
-				+"RESETA 	equ 0xEFFA 	// adresse de lancement du programme\n"
-				+"LOADA  	equ 0xEFFA      // adresse de chargement du programme\n"
-				+"STACKA equ " + base_pile +" //Adresse de base de la pile\n\n"
-				
-				+"//*** On définit les registres usuels ***//\n"
-				+"SP equ R15 //Reigstre de sommet de pile\n"
-				+"WR equ R14 //Registre pour lever les traps\n"
-				+"BP equ R13 //Registre de base de l'environnement courant\n\n"
-			
-				+"//*** On définit les trappes usuelles ***//\n"
-				+"EXIT_TRP equ 64 //Trappe pour quitter le programme\n"
-				+"READ_TRP equ 65 //Trappe de lecture sur l'entrée standard\n"
-				+"WRITE_TRP equ 66 //Trappe d'écriture sur la sortie standard\n\n"
-			
-				+"NIL equ 0 //Base initiale\n"
-				+"NUL equ 0 //Caractère de fin de chaine\n\n"
-				
-				+"ORG   LOADA	// chargement en LOADA\n"
-				+"START main	// demarre à main\n\n"
+		code_fonctions_utilisateurs = "/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////\n\n";
 		
-				+"main LDW SP, #STACKA //On charge la base de la pile\n"
-				+"LDW BP, #NIL //Base initiale nulle\n\n"
-				
-				+"//*** Saut de ligne ***//\n"
-				+"SAUT_DE_LIGNE string \"\"\n"
-				+"LDQ SAUT_DE_LIGNE, R2\n"
-				+"LDQ 10, R3 //Saut de ligne\n"
-				+"LDQ NUL, R4 //Fin de chaine\n"
-				+"STB R3, (R2)+\n"
-				+"STB R4, (R2)\n";
-	}
-	
-	private static CodeAss codeAss = new CodeAss();
-	
-	/**
-	 * Renvoie l'instance du sigleton
-	 * @return Instance du singleton
-	 */
-	public static CodeAss getCodeSingleton() {
-		return codeAss;
-	}
-	
-	/**
-	 * Ajoute un bloc de code au code à générer
-	 * @param block Bloc de code de 1 à N lignes
-	 */
-	public void append(String block) {
-		code+=block+"\n";
-	}
-	
-	/**
-	 * Ajoute la trappe d'arrêt et les fonctions du langage 
-	 */
-	private void closeCode(){
-		code+=  "//*** On exit le programme principal ***//\n"
-				+"TRP #EXIT_TRP //On quitte l'exécution\n\n"
-				
+		code_fonctions_du_langage = "/////// ------------------------------  Fonctions du langage  ------------------------------ ///////\n\n"
 				+"//*** print(string) : affiche le texte passé en paramètre ***//\n"
 				+"print \n"
 				+ Fonction.saveRegisters()
@@ -170,6 +118,79 @@ public class CodeAss {
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
 				+"RTS\n\n";
+		
+		code =	"/////// ------------------------------  En-tete du programme  ------------------------------ ///////\n\n"
+				+"//*** On définit les adresses utiles ***//\n"
+				+"RESETA 	equ 0xEFFA 	// adresse de lancement du programme\n"
+				+"LOADA  	equ 0xEFFA      // adresse de chargement du programme\n"
+				+"STACKA equ " + base_pile +" //Adresse de base de la pile\n\n"
+				
+				+"//*** On définit les registres usuels ***//\n"
+				+"SP equ R15 //Reigstre de sommet de pile\n"
+				+"WR equ R14 //Registre pour lever les traps\n"
+				+"BP equ R13 //Registre de base de l'environnement courant\n\n"
+			
+				+"//*** On définit les trappes usuelles ***//\n"
+				+"EXIT_TRP equ 64 //Trappe pour quitter le programme\n"
+				+"READ_TRP equ 65 //Trappe de lecture sur l'entrée standard\n"
+				+"WRITE_TRP equ 66 //Trappe d'écriture sur la sortie standard\n\n"
+			
+				+"NIL equ 0 //Base initiale\n"
+				+"NUL equ 0 //Caractère de fin de chaine\n\n"
+				
+				+"ORG   LOADA	// chargement en LOADA\n"
+				+"START main	// demarre à main\n\n"
+				
+				+"/////// ------------------------------  En-tete du programme  ------------------------------ ///////\n\n"
+				
+				+"main LDW SP, #STACKA //On charge la base de la pile\n"
+				+"LDW BP, #NIL //Base initiale nulle\n\n"
+				
+				+"//*** Saut de ligne ***//\n"
+				+"SAUT_DE_LIGNE string \"\"\n"
+				+"LDQ SAUT_DE_LIGNE, R2\n"
+				+"LDQ 10, R3 //Saut de ligne\n"
+				+"LDQ NUL, R4 //Fin de chaine\n"
+				+"STB R3, (R2)+\n"
+				+"STB R4, (R2)\n";
+	}
+	
+	private static CodeAss codeAss = new CodeAss();
+	
+	/**
+	 * Renvoie l'instance du sigleton
+	 * @return Instance du singleton
+	 */
+	public static CodeAss getCodeSingleton() {
+		return codeAss;
+	}
+	
+	/**
+	 * Ajoute un bloc de code au code à générer
+	 * L'ajoute soit au bloc des fonctions soit au bloc principal
+	 * @param block Bloc de code de 1 à N lignes
+	 */
+	public void append(String block) {
+		if(!writing_func)
+			code+=block+"\n";
+		else
+			code_fonctions_utilisateurs+=block+"\n";
+	}
+	
+	/**
+	 * Indique si on écrit dans une fonction ou dans le bloc principal
+	 * @param writing
+	 */
+	public void setWritingFunc(boolean writing){
+		writing_func = writing;
+	}
+	
+	/**
+	 * Ajoute la trappe d'arrêt et les fonctions du langage 
+	 */
+	private void closeCode(){
+		code+=  "//*** On exit le programme principal ***//\n"
+				+"TRP #EXIT_TRP //On quitte l'exécution\n\n";
 	}
 	
 	/**
@@ -180,6 +201,12 @@ public class CodeAss {
 	public void write(String path) throws IOException {
 		
 		closeCode();
+		
+		//On ajoute les focntions définies par l'utilisateur
+		code += code_fonctions_utilisateurs;
+		
+		//On ajoute les fonctions du langage
+		code += code_fonctions_du_langage;
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path)));
 		writer.write(code);

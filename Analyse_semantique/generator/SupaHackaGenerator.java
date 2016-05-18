@@ -95,9 +95,8 @@ public class SupaHackaGenerator {
 					//D�claration d'une fonction
 					case "FUNC_DECL":
 						
-						openTDS();
-						genererChild(node);
-						closeTDS();
+						FonctionDeclaration fd = new FonctionDeclaration(node);
+						
 						break;
 					
 					case "BLOCK":
