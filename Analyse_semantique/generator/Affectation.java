@@ -16,7 +16,8 @@ public class Affectation extends Instruction{
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
 		//On effectue les calculs de la partie droite
-		generator.genererNode((CommonTree) node.getChild(1));
+		ExpressionArithmetique expr = new ExpressionArithmetique((CommonTree) node.getChild(1));
+		expr.genererCode(pile);
 				
 		//On calcule l'adresse de la variable dans la pile : adresse chargée dans R1
 		Identifiant idf = new Identifiant((CommonTree) node.getChild(0));

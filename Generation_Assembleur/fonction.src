@@ -35,6 +35,8 @@ STW R3, -(R15) //On empile la valeur déclarée
 STRING1 string "ceci en est une autre"
 LDW R3, #STRING1
 STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #0
+STW R3, -(R15) //On empile la valeur déclarée
 STRING2 string "COUCOU1"
 LDW R3, #STRING2
 LDW R0, R3
@@ -82,6 +84,27 @@ LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @print
+LDW R3, #5
+LDW R2, R3
+LDW R3, #10
+CMP R2, R3
+BGT $-6
+LDW R3, #0
+JMP #4
+LDW R3, #1
+STW R3, -(R15)
+
+STW R3, -(R15)
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exécution
 

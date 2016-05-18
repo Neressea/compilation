@@ -2,6 +2,7 @@ let
 
 	var s := "ceci est une string"
 	var what_did_I_just_read := "ceci en est une autre"
+	var x : int := 0
 
 in
 
@@ -13,6 +14,8 @@ in
 	print(read());
 	print(s); //A
 	what_did_I_just_read := read();
-	print(what_did_I_just_read)
+	print(what_did_I_just_read);
+	x := 5 > 10;
+	printi(x)
 	
 end

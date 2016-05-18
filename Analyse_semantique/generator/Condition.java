@@ -17,8 +17,9 @@ public class Condition extends Instruction{
 		String token = node.getText();
 		CodeAss codeass = CodeAss.getCodeSingleton();
 
-		generateCodeComp(pile, codeass, node);
-		codeass.append("STW R3, -(R15)");
+		generateCodeComp(pile, codeass, (CommonTree) node);
+		codeass.append("STW R3, -(R15)\n");
+
 		
 	}
 	
@@ -51,31 +52,35 @@ public class Condition extends Instruction{
 			codeass.append("LDW R2, R3");
 			OperandeSimple op2 = new OperandeSimple((CommonTree) node.getChild(1));
 			op2.genererCode(pile);
-			codeass.append("CMP R2, R3");
+			String buffer = "CMP R2, R3\n";
 			switch (node.getText()){
 				case "<":
-					codeass.append("BLT $-6");
+					buffer+="BLT 6\n";
 					break;
 				case "<=":
-					codeass.append("BLE $-6");
+					buffer += "BLE $-6\n";
 					break;
 				case "=":
-					codeass.append("BEQ $-6");
+					buffer+="BEQ 0x$-6\n";
 					break;
 				case ">":
-					codeass.append("BGT $-6");
+					buffer+="BGT $-6\n";
 					break;
 				case ">=":
-					codeass.append("BGE $-6");
+					buffer+="BGE $-6\n";
 					break;
 				case "<>":
-					codeass.append("BNE $-6");
+					buffer+="BNE $-6\n";
 					break;
 			}
-			codeass.append("LDW R3, #1");
-			codeass.append("JMP $-4");
-			codeass.append("LDW R3, #0");
-			codeass.append("STW R3, -(R15)");
+
+			buffer += "LDW R3, #0\n"
+			+"JMP #4\n"
+			+"LDW R3, #1\n"
+			+"STW R3, -(R15)\n";
+			codeass.append(buffer);
+
+			
 		}
 		
 		

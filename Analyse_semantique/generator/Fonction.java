@@ -30,7 +30,7 @@ public class Fonction extends Instruction{
 			
 			//Le résultat est foutu dans R3 : adresse de la chaine
 			ea.genererCode(pile);
-			
+						
 			//On le transfère dans R0
 			ca.append("LDW R0, R3");
 			
