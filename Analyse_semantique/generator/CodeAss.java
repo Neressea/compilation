@@ -211,7 +211,6 @@ public class CodeAss {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path)));
 		writer.write(code);
 		writer.close();
-		System.out.println("Le code a bien ete genere dans " + path + " Voila.");
 	}
 	
 	public int getBasePile(){
