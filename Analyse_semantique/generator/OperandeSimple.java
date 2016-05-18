@@ -1,6 +1,7 @@
 package generator;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.AbstractQueuedLongSynchronizer.ConditionObject;
 
 import org.antlr.runtime.tree.CommonTree;
 
@@ -29,6 +30,11 @@ public class OperandeSimple extends Instruction {
 			ca.append(et+" string "+token);
 			counter++;
 			ca.append("LDW R3, #"+et);
+			
+		}else if(token.matches("COND")){
+			
+			Condition cond = new Condition(node);
+			cond.genererCode(pile);
 			
 		} else {
 			boolean is_digit = true;
