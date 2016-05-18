@@ -41,14 +41,15 @@ public class Condition extends Instruction{
 			if (node.getText().equals("&")){
 				generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
 				generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
-				codeass.append("LDW (R15)+, R2");
-				codeass.append("CMP R2, #1");
-				codeass.append("BEQ $-6");
-				codeass.append("LDW R3, #0");
-				codeass.append("JMP $-8");
-				codeass.append("CMP R3, #1");
-				codeass.append("BEQ $-4");
-				codeass.append("LDW R3, #0");
+				codeass.append("LDW R2, (R15)+");
+				codeass.append("LDW R3, (R15)+");
+				codeass.append("TST R2");
+				codeass.append("BEQ 4");
+				codeass.append("TST R3");
+				codeass.append("BNE 4");
+				codeass.append("LDQ 0, R3");
+				codeass.append("JMP #4");
+				codeass.append("LDQ 1, R3");
 				codeass.append("STW R3, -(R15)");
 			}else if(node.getText().equals("|")){
 				generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
