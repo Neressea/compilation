@@ -1,3 +1,5 @@
+/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+
 //*** On définit les adresses utiles ***//
 RESETA 	equ 0xEFFA 	// adresse de lancement du programme
 LOADA  	equ 0xEFFA      // adresse de chargement du programme
@@ -19,6 +21,8 @@ NUL equ 0 //Caractère de fin de chaine
 ORG   LOADA	// chargement en LOADA
 START main	// demarre à main
 
+/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+
 main LDW SP, #STACKA //On charge la base de la pile
 LDW BP, #NIL //Base initiale nulle
 
@@ -29,20 +33,20 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-STRING0 string "ceci est une string"
-LDW R3, #STRING0
+STRING2 string "ceci est une string"
+LDW R3, #STRING2
 STW R3, -(R15) //On empile la valeur déclarée
-STRING1 string "ceci en est une autre"
-LDW R3, #STRING1
+STRING3 string "ceci en est une autre"
+LDW R3, #STRING3
 STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur déclarée
-STRING2 string "COUCOU1"
-LDW R3, #STRING2
+STRING4 string "COUCOU1"
+LDW R3, #STRING4
 LDW R0, R3
 JSR @print
-STRING3 string "COUCOU2"
-LDW R3, #STRING3
+STRING5 string "COUCOU2"
+LDW R3, #STRING5
 LDW R0, R3
 JSR @print
 LDW R3, #7689
@@ -107,6 +111,10 @@ LDW R0, R3
 JSR @printi
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exécution
+
+/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
+
+/////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
 //*** print(string) : affiche le texte passé en paramètre ***//
 print 
@@ -212,8 +220,8 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING4 RSB 100 //On crée la chaine de retour (100 caractères max)
-LDQ STRING4, R0 //On met cette adresse en lecture
+STRING0 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING0, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R3, R0 //On met le résultat dans R3
 //On ferme l'environnement courant
@@ -254,8 +262,8 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING5 RSB 100 //On crée la chaine de retour (100 octets max)
-LDQ STRING5, R3 //On charge l'adresse dans R0
+STRING1 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING1, R3 //On charge l'adresse dans R0
 //R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
 ASCII_MINUS equ 45
 ASCII_PLUS  equ 43
