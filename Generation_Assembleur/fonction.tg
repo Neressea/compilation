@@ -15,7 +15,7 @@ in
 	print(s); //A
 	what_did_I_just_read := read();
 	print(what_did_I_just_read);
-	x := 5 < 10;
+	x := 5 > 10;
 	printi(x)
 	
 end

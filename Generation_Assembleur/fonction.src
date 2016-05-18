@@ -69,6 +69,7 @@ LDW R3, #16
 LDW R6, R3
 JSR @itoa
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 STW R3, (R1) //On stocke le resultat dans la mémoire
 JSR @read
 LDW R0, R3
@@ -79,12 +80,14 @@ LDW R0, R3
 JSR @print
 JSR @read
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @print
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)

@@ -19,7 +19,7 @@ public class Affectation extends Instruction{
 		generator.genererNode((CommonTree) node.getChild(1));
 				
 		//On calcule l'adresse de la variable dans la pile : adresse chargée dans R1
-		Identifiant idf = new Identifiant((CommonTree) node.getChild(0));
+		ExpressionArithmetique idf = new ExpressionArithmetique((CommonTree) node.getChild(0));
 		idf.genererCode(pile);
 		
 		//On affecte la valeur de retour (R3) dans la mémoire

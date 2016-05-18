@@ -38,7 +38,7 @@ public abstract class Instruction {
 		return this.node;
 	}
 	
-	public void saveRegister(String... reg){
+	public void saveRegisters(String... reg){
 		CodeAss ca = CodeAss.getCodeSingleton();
 		
 		for (int i = 0; i < reg.length; i++) {
@@ -46,7 +46,7 @@ public abstract class Instruction {
 		}
 	}
 	
-	public void loadRegister(String... reg){
+	public void loadRegisters(String... reg){
 		CodeAss ca = CodeAss.getCodeSingleton();
 		
 		for (int i = 0; i < reg.length; i++) {
