@@ -8,8 +8,18 @@ import analyse.TDS;
 
 public class Condition extends Instruction{
 
+	private ArrayList<String> operande = new ArrayList<String>();
+	
 	public Condition(CommonTree node) {
 		super(node);
+		operande.add("&");
+		operande.add("|");
+		operande.add("<");
+		operande.add("<=");
+		operande.add("=");
+		operande.add(">");
+		operande.add(">=");
+		operande.add("<>");
 	}
 
 	@Override
