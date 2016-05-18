@@ -18,6 +18,7 @@ public class If extends Instruction{
 
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
+		nb_if++;
 		CodeAss ca = CodeAss.getCodeSingleton();
 		Condition condIf = new Condition((CommonTree) node.getChild(0).getChild(0));
 		// On genere le code de la condition, le resultat est dans R3
@@ -27,7 +28,7 @@ public class If extends Instruction{
 		ca.append("TST R3");
 		
 		// Saut conditionnel
-		ca.append("BGT else" + nb_if + "-$-2");
+		ca.append("BEQ else" + nb_if + "-$-2");
 		
 		// On cree l'etiquette du THEN
 		ca.append("then" + nb_if + " //etiquette then");
@@ -37,7 +38,7 @@ public class If extends Instruction{
 		generator.genererChild(nodeThen);
 		
 		// Saut a endif (on a execute le contenu de then)
-		ca.append("endif" + nb_if + "-$-2");
+		ca.append("BMP endif" + nb_if + "-$-2");
 		
 		// Etiquette de ELSE
 		ca.append("else" + nb_if + " //etiquette else");

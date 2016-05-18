@@ -151,7 +151,8 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "while":
-						genererChild(node);
+						While while_gen = new While(node, this);
+						while_gen.genererCode(pile);
 						break;
 					
 					//L'une des quatre op�rations binaires
