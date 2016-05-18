@@ -4,6 +4,11 @@ let
 	var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 0
 
+	function do_print(a : string, b : int) = (
+		print(a);
+		printi(b)
+	)
+
 in
 
 	print("COUCOU1");
@@ -14,29 +19,7 @@ in
 	print(read());
 	print(s); //A
 	what_did_I_just_read := read();
-	print(what_did_I_just_read);
-	x := 5 <> 5;
-	printi(x);
-	x := 10 <> 5;
-	printi(x);
-	x := 10 < 5;
-	printi(x);
-	x := 5 < 10;
-	printi(x);
-	x := 5 <= 10;
-	printi(x);
-	x := 6 <= 6;
-	printi(x);
-	x:= 10 <= 5;
-	printi(x);
-	x:= 10 = 5;
-	printi(x);
-	x:= 10 = 10;
-	printi(x);
-	x:= 10 <= 5 | 10;
-	printi(x);
-	x:= 0 | 10;
-	printi(x);
-	x:= 0 | 0;
-	printi(x)
+	x := 5 = 5;
+	do_print(what_did_I_just_read, x)
+
 end
