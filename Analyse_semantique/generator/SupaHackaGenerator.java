@@ -95,7 +95,8 @@ public class SupaHackaGenerator {
 					//D�claration d'une fonction
 					case "FUNC_DECL":
 						
-						FonctionDeclaration fd = new FonctionDeclaration(node);
+						FonctionDeclaration fd = new FonctionDeclaration(node, this);
+						fd.genererCode(pile);
 						
 						break;
 					
