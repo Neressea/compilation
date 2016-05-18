@@ -101,8 +101,10 @@ public class CodeAss {
 				+"read \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
-				+"LDQ 0, R0 //On récupère les chaines de caractères tout le temps au même endroit, en début de mémoire\n"
-				+"TRP #READ_TRP //On lève la trappe\n"
+				+ "STRING"+(OperandeSimple.counter++)+" RSB 100 //On crée la chaine de retour (100 caractères max)\n"
+				+ "LDQ STRING"+(OperandeSimple.counter-1)+", R0 //On met cette adresse en lecture\n"
+				+ "TRP #READ_TRP //On lève la trappe\n"
+				+ "LDW R3, R0 //On met le résultat dans R3\n"
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
 				+"RTS //On retourne dans le programme\n"
@@ -111,6 +113,8 @@ public class CodeAss {
 				+"itoa "
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
+				+ "STRING"+(OperandeSimple.counter++) + " RSB 100 //On crée la chaine de retour (100 octets max)\n"
+				+ "LDQ STRING"+(OperandeSimple.counter-1)+", R3 //On charge l'adresse dans R0\n"
 				+"//R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat\n"
 				+"ASCII_MINUS equ 45\n"
 				+"ASCII_PLUS  equ 43\n"

@@ -49,13 +49,19 @@ public class OperandeSimple extends Instruction {
 			if (is_digit) { // C'est une constante entiere
 				ca.append("LDW R3, #" + value);
 			} else { // Il s'agit d'un identifiant
-				Identifiant idf = new Identifiant(node);
 				
-				//L'adresse de la variable est stock�e dans R4
-				idf.genererCode(pile);
-				
-				//On fout le contenu de ce que pointe R1 dans R3
-				ca.append("LDW R3, (R1)");
+				if(node.getText().equals("FUNC_CALL")){
+					Fonction func = new Fonction(node);
+					func.genererCode(pile);
+				}else{
+					Identifiant idf = new Identifiant(node);
+					
+					//L'adresse de la variable est stock�e dans R4
+					idf.genererCode(pile);
+					
+					//On fout le contenu de ce que pointe R1 dans R3
+					ca.append("LDW R3, (R1)");
+				}
 			}
 		}		
 		

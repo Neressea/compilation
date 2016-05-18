@@ -56,12 +56,12 @@ public class AnalyseSemantique {
 		fprinti.addParam("i", "int");
 		base.add(fprinti);
 		
-		FieldFonction itoa = new FieldFonction("itoa", 0, "string");
-		itoa.addParam("entier", "int");
-		itoa.addParam("base", "int");
-		base.add(itoa);
+		FieldFonction fitoa = new FieldFonction("itoa", 0, "string");
+		fitoa.addParam("entier", "int");
+		fitoa.addParam("base", "int");
+		base.add(fitoa);
 		
-		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "int");
+		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "string");
 		base.add(fread);
 		
 		openTDS(base);

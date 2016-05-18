@@ -51,13 +51,6 @@ public class Fonction extends Instruction{
 			//On considère que c'est de la base 10
 			ca.append("LDQ 10, R6");
 			
-			//On crée la chaine dans laquelle sera stockée le résultat : tout d'abord chaine vide
-			String etiquette = "STRING"+OperandeSimple.counter++;
-			ca.append(etiquette+" string \"\"");
-			
-			//On stocke son adresse dans R3
-			ca.append("LDW R3, #"+etiquette);
-			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
 			ca.append("JSR @itoa");
 			
@@ -68,12 +61,8 @@ public class Fonction extends Instruction{
 			ca.append("JSR @printi");
 			
 		}else if(function_name.equals("read")){
-
-			//On se branche sur le sous-programme : le résultat sera à l'adresse de R0, c'est-à-dire au début de la mémoire.
-			ca.append("JSR @read");
 			
-			//On place le résultat dans R3
-			ca.append("LDW R3, R0");
+			ca.append("JSR @read");
 		
 		}else if(function_name.equals("itoa")){
 			//On récupère le paramètre que veut convertir le programmeur
@@ -94,18 +83,17 @@ public class Fonction extends Instruction{
 			//On le déplace dans R6
 			ca.append("LDW R6, R3");
 			
-			//On crée la chaine dans laquelle sera stockée le résultat : tout d'abord chaine vide
-			String etiquette = "STRING"+OperandeSimple.counter++;
-			ca.append(etiquette+" string \"\"");
-			
-			//On stocke son adresse dans R3
-			ca.append("LDW R3, #"+etiquette);
-			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
 			ca.append("JSR @itoa");
 		}else{
 			//Autrement, c'est une fonction du programmeur
 			ca.append("CALL : "+function_name);
+			
+			//On empile les paramètres
+			
+			//On appelle la fonction
+			
+			//On dépile les paramètres
 		}
 	}
 	
@@ -141,7 +129,8 @@ public class Fonction extends Instruction{
 		
 		String code = "//On sauvegarde les registres\n";
 		for (int i = 0; i < 15; i++) {
-			code += "STW R"+i+", -(SP)\n";
+			if( i != 3) //Le registre 3 est utilisé pour les retours
+				code += "STW R"+i+", -(SP)\n";
 		}
 		
 		return code;
@@ -154,7 +143,8 @@ public class Fonction extends Instruction{
 		
 		String code = "//On recharge les registres\n";
 		for (int i = 14; i>=0; i--) {
-			code += "LDW R"+i+", (SP)+\n";
+			if( i != 3) //Le registre 3 est utilisé pour les retours
+				code += "LDW R"+i+", (SP)+\n";
 		}
 		
 		return code;
