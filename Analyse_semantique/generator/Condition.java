@@ -18,70 +18,91 @@ public class Condition extends Instruction{
 		CodeAss codeass = CodeAss.getCodeSingleton();
 
 		generateCodeComp(pile, codeass, (CommonTree) node);
-		codeass.append("STW R3, -(R15)\n");
+		codeass.append("" +
+				"LDW R3, (R15)+\n");
 
 		
 	}
 	
 	private void generateCodeComp(ArrayList<TDS> pile, CodeAss codeass, CommonTree node){
-		if (node.getText().equals("&")){
-			generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
-			generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
-			codeass.append("LDW (R15)+, R2");
-			codeass.append("CMP R2, #1");
-			codeass.append("BEQ $-6");
-			codeass.append("LDW R3, #0");
-			codeass.append("JMP $-8");
-			codeass.append("CMP R3, #1");
-			codeass.append("BEQ $-4");
-			codeass.append("LDW R3, #0");
-			codeass.append("STW R3, -(R15)");
-		}else if(node.getText().equals("|")){
-			generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
-			generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
-			codeass.append("LDW (R15)+, R2");
-			codeass.append("CMP R2, #1");
-			codeass.append("BEQ $-8");
-			codeass.append("CMP R3, #1");
-			codeass.append("BEQ $-4");
-			codeass.append("LDW R3, #0");
+		boolean isNumb = true;
+		
+		try{
+			Integer.parseInt(node.getText());
+		}catch(Exception e){
+			isNumb = false;
+		}
+		
+		if (isNumb){
+			ExpressionArithmetique op = new ExpressionArithmetique((CommonTree) node);
+			op.genererCode(pile);
 			codeass.append("STW R3, -(R15)");
 		}else{
-			OperandeSimple op1 = new OperandeSimple((CommonTree) node.getChild(0));
-			op1.genererCode(pile);
-			codeass.append("LDW R2, R3");
-			OperandeSimple op2 = new OperandeSimple((CommonTree) node.getChild(1));
-			op2.genererCode(pile);
-			String buffer = "CMP R2, R3\n";
-			switch (node.getText()){
-				case "<":
-					buffer+="BLT 6\n";
-					break;
-				case "<=":
-					buffer += "BLE $-6\n";
-					break;
-				case "=":
-					buffer+="BEQ 0x$-6\n";
-					break;
-				case ">":
-					buffer+="BGT $-6\n";
-					break;
-				case ">=":
-					buffer+="BGE $-6\n";
-					break;
-				case "<>":
-					buffer+="BNE $-6\n";
-					break;
+			if (node.getText().equals("&")){
+				generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
+				generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
+				codeass.append("LDW (R15)+, R2");
+				codeass.append("CMP R2, #1");
+				codeass.append("BEQ $-6");
+				codeass.append("LDW R3, #0");
+				codeass.append("JMP $-8");
+				codeass.append("CMP R3, #1");
+				codeass.append("BEQ $-4");
+				codeass.append("LDW R3, #0");
+				codeass.append("STW R3, -(R15)");
+			}else if(node.getText().equals("|")){
+				generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
+				generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
+				codeass.append("LDW R2, (R15)+");
+				codeass.append("LDW R3, (R15)+");
+				codeass.append("TST R2");
+				codeass.append("BNE 4");
+				codeass.append("TST R3");
+				codeass.append("BEQ 2");
+				codeass.append("LDQ 1, R3");
+				codeass.append("JMP #4");
+				codeass.append("LDQ 0, R3");
+				codeass.append("STW R3, -(R15)");
+			}else{
+				ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
+				op1.genererCode(pile);
+				codeass.append("LDW R2, R3");
+				ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
+				op2.genererCode(pile);
+				String buffer = "CMP R2, R3\n";
+				switch (node.getText()){
+					case "<":
+						buffer+="BLW 4\n";
+						break;
+					case "<=":
+						buffer += "BLE 4\n";
+						break;
+					case "=":
+						buffer+="BEQ 4\n";
+						break;
+					case ">":
+						buffer+="BGT 4\n";
+						break;
+					case ">=":
+						buffer+="BGE 4\n";
+						break;
+					case "<>":
+						buffer+="BNE 4\n";
+						break;
+				}
+
+				buffer += "LDQ 0, R3\n"
+				+"JMP #4\n"
+				+"LDQ 1, R3\n"
+				+"STW R3, -(R15)\n";
+				codeass.append(buffer);
+
+				
 			}
-
-			buffer += "LDW R3, #0\n"
-			+"JMP #4\n"
-			+"LDW R3, #1\n"
-			+"STW R3, -(R15)\n";
-			codeass.append(buffer);
-
-			
 		}
+		
+		
+		
 		
 		
 		
