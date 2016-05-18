@@ -26,7 +26,7 @@ public class FonctionDeclaration extends Instruction{
 		ca.append(func_name);
 		ca.append(Fonction.saveRegisters());
 		
-		generator.genererChild((CommonTree) node.getChild(1));
+		generator.genererChild((CommonTree) node.getChild(2));
 		
 		ca.append(Fonction.reloadRegisters());
 		ca.append("RTS");

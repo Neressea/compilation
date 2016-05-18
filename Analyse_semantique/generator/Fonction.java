@@ -87,13 +87,24 @@ public class Fonction extends Instruction{
 			ca.append("JSR @itoa");
 		}else{
 			//Autrement, c'est une fonction du programmeur
-			ca.append("CALL : "+function_name);
+			ca.append("//CALL : "+function_name);
 			
 			//On empile les paramètres
+			for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
+				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i));
+				ea.genererCode(pile);
+				//On empile le paramètre
+				ca.append("STW R3, -(R15) //On empile le paramètre");
+			}
 			
 			//On appelle la fonction
+			ca.append("JSR @"+function_name);
 			
 			//On dépile les paramètres
+			for (int i = 0; i < params_effectifs.getChildCount(); i++) {
+				//On dépile le paramètre
+				ca.append("LDW R5, (R15)+ //On empile le paramètre");
+			}
 		}
 	}
 	

@@ -467,7 +467,7 @@ public class AnalyseSemantique {
 			FieldVariable fv;
 			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
 				CommonTree p = (CommonTree) node.getChild(1).getChild(i);
-				fv = new FieldVariable(p.getChild(0).getText(), top().getCurrentSize(), computeSizeType(p.getChild(1).getText()), p.getChild(1).getText());
+				fv = new FieldVariable(p.getChild(0).getText(), - top().getCurrentSize() - 2, computeSizeType(p.getChild(1).getText()), p.getChild(1).getText());
 				newTDS.add(fv);
 			}
 			
@@ -477,7 +477,7 @@ public class AnalyseSemantique {
 			//On ajoute les param�tres formels � la TDS de la fonction
 			FieldVariable fv;
 			for (int i = 0; i < node.getChild(1).getChildCount(); i++) {
-				fv = new FieldVariable(node.getChild(1).getChild(i).getChild(0).getText(), top().getCurrentSize(), computeSizeType(node.getChild(1).getChild(i).getChild(1).getText()), node.getChild(1).getChild(i).getChild(1).getText());
+				fv = new FieldVariable(node.getChild(1).getChild(i).getChild(0).getText(), - top().getCurrentSize() - 2, computeSizeType(node.getChild(1).getChild(i).getChild(1).getText()), node.getChild(1).getChild(i).getChild(1).getText());
 				newTDS.add(fv);
 			}
 		}
