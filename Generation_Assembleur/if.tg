@@ -1,0 +1,14 @@
+let 
+	var x : int := 0
+	var y : int := 1
+in
+	if x<4 then
+		(x:=3;
+		y:=8)
+	else
+		(x:=-2;
+		y:=-1);
+		
+	printi(x);
+	printi(y)
+end
