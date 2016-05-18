@@ -126,12 +126,12 @@ f204   emplacement : 61646  (0xf0ce)
 6180   emplacement : 61680  (0xf0f0)  ligne n° 99	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61682  (0xf0f2) 
 6321   emplacement : 61684  (0xf0f4)  ligne n° 100	STW R3, (R1) //On stocke le resultat dans la mimoire
-6180   emplacement : 61686  (0xf0f6)  ligne n° 102	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-0ffc   emplacement : 61688  (0xf0f8) 
+6180   emplacement : 61686  (0xf0f6)  ligne n° 102	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61688  (0xf0f8) 
 63a1   emplacement : 61690  (0xf0fa)  ligne n° 103	LDW R3, (R1)
 634f   emplacement : 61692  (0xf0fc)  ligne n° 104	STW R3, -(R15) //On empile le paramhtre
-6180   emplacement : 61694  (0xf0fe)  ligne n° 105	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61696  (0xf100) 
+6180   emplacement : 61694  (0xf0fe)  ligne n° 105	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+0ffc   emplacement : 61696  (0xf100) 
 63a1   emplacement : 61698  (0xf102)  ligne n° 106	LDW R3, (R1)
 634f   emplacement : 61700  (0xf104)  ligne n° 107	STW R3, -(R15) //On empile le paramhtre
 0a50   emplacement : 61702  (0xf106)  ligne n° 108	JSR @do_print
@@ -154,14 +154,14 @@ f112   emplacement : 61704  (0xf108)
 6c4f   emplacement : 61736  (0xf128)  ligne n° 129	STW R12, -(SP)
 6d4f   emplacement : 61738  (0xf12a)  ligne n° 130	STW R13, -(SP)
 6e4f   emplacement : 61740  (0xf12c)  ligne n° 131	STW R14, -(SP)
-6180   emplacement : 61742  (0xf12e)  ligne n° 133	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-0ff8   emplacement : 61744  (0xf130) 
+6180   emplacement : 61742  (0xf12e)  ligne n° 133	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61744  (0xf130) 
 63a1   emplacement : 61746  (0xf132)  ligne n° 134	LDW R3, (R1)
 6093   emplacement : 61748  (0xf134)  ligne n° 135	LDW R0, R3
 0a50   emplacement : 61750  (0xf136)  ligne n° 136	JSR @print
 f16c   emplacement : 61752  (0xf138) 
-6180   emplacement : 61754  (0xf13a)  ligne n° 137	LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
-0ff6   emplacement : 61756  (0xf13c) 
+6180   emplacement : 61754  (0xf13a)  ligne n° 137	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+0ffc   emplacement : 61756  (0xf13c) 
 63a1   emplacement : 61758  (0xf13e)  ligne n° 138	LDW R3, (R1)
 6593   emplacement : 61760  (0xf140)  ligne n° 139	LDW R5, R3
 260a   emplacement : 61762  (0xf142)  ligne n° 140	LDQ 10, R6

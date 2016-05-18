@@ -99,10 +99,10 @@ LDW R3, (R15)+
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
 //CALL : do_print
-LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 STW R3, -(R15) //On empile le paramètre
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 STW R3, -(R15) //On empile le paramètre
 JSR @do_print
@@ -130,11 +130,11 @@ STW R12, -(SP)
 STW R13, -(SP)
 STW R14, -(SP)
 
-LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @print
-LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6

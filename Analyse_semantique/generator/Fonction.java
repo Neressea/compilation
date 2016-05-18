@@ -90,7 +90,7 @@ public class Fonction extends Instruction{
 			ca.append("//CALL : "+function_name);
 			
 			//On empile les paramètres
-			for (int i = 0; i < params_effectifs.getChildCount(); i++) {
+			for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
 				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i));
 				ea.genererCode(pile);
 				//On empile le paramètre
