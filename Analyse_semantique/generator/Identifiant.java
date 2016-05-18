@@ -20,8 +20,7 @@ public class Identifiant extends Instruction{
 		CodeAss ca = CodeAss.getCodeSingleton();
 		
 		CommonTree idf = node;
-		if(node.getText().equals("FUNC_CALL")) idf = (CommonTree) node.getChild(0);
-		
+				
 		//On récupère les infos dans les TDS.
 		Field infos = TDS.findIn(pile, idf.getText(), FieldType.FieldVariable); //Pour l'instant on ne gère que les identifiants de variables simples
 

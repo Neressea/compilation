@@ -17,8 +17,8 @@ public class Condition extends Instruction{
 		String token = node.getText();
 		CodeAss codeass = CodeAss.getCodeSingleton();
 
-		generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
-		codeass.append("STW R3, -(R15)\n");
+		generateCodeComp(pile, codeass, node);
+		codeass.append("STW R3, -(R15)");
 		
 	}
 	
@@ -26,59 +26,56 @@ public class Condition extends Instruction{
 		if (node.getText().equals("&")){
 			generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
 			generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
-			String buffer = "LDW (R15)+, R2\n"
-							+"CMP R2, #1\n"
-							+"BEQ $-6\n"
-							+"LDW R3, #0\n"
-							+"JMP $-8\n"
-							+"CMP R3, #1\n"
-							+"BEQ $-4\n"
-							+"LDW R3, #0\n"
-							+"STW R3, -(R15)\n";
-			codeass.append(buffer);
+			codeass.append("LDW (R15)+, R2");
+			codeass.append("CMP R2, #1");
+			codeass.append("BEQ $-6");
+			codeass.append("LDW R3, #0");
+			codeass.append("JMP $-8");
+			codeass.append("CMP R3, #1");
+			codeass.append("BEQ $-4");
+			codeass.append("LDW R3, #0");
+			codeass.append("STW R3, -(R15)");
 		}else if(node.getText().equals("|")){
 			generateCodeComp(pile, codeass, (CommonTree) node.getChild(0));
 			generateCodeComp(pile, codeass, (CommonTree) node.getChild(1));
-			String buffer = "LDW (R15)+, R2\n"
-							+"CMP R2, #1\n"
-							+"BEQ $-8\n"
-							+"CMP R3, #1\n"
-							+"BEQ $-4\n"
-							+"LDW R3, #0\n"
-							+"STW R3, -(R15)\n";
-			codeass.append(buffer);
+			codeass.append("LDW (R15)+, R2");
+			codeass.append("CMP R2, #1");
+			codeass.append("BEQ $-8");
+			codeass.append("CMP R3, #1");
+			codeass.append("BEQ $-4");
+			codeass.append("LDW R3, #0");
+			codeass.append("STW R3, -(R15)");
 		}else{
-			ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
+			OperandeSimple op1 = new OperandeSimple((CommonTree) node.getChild(0));
 			op1.genererCode(pile);
-			codeass.append("LDW R2, R3\n");
-			ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
+			codeass.append("LDW R2, R3");
+			OperandeSimple op2 = new OperandeSimple((CommonTree) node.getChild(1));
 			op2.genererCode(pile);
-			String buffer = "CMP R2, R3\n";
+			codeass.append("CMP R2, R3");
 			switch (node.getText()){
 				case "<":
-					buffer+="BLT $-6\n";
+					codeass.append("BLT $-6");
 					break;
 				case "<=":
-					buffer+="BLE $-6\n";
+					codeass.append("BLE $-6");
 					break;
 				case "=":
-					buffer+="BEQ $-6\n";
+					codeass.append("BEQ $-6");
 					break;
 				case ">":
-					buffer+="BGT $-6\n";
+					codeass.append("BGT $-6");
 					break;
 				case ">=":
-					buffer+="BGE $-6\n";
+					codeass.append("BGE $-6");
 					break;
 				case "<>":
-					buffer+="BNE $-6\n";
+					codeass.append("BNE $-6");
 					break;
 			}
-			buffer += "LDW R3, #1\n"
-			+"JMP $-4\n"
-			+"LDW R3, #0\n"
-			+"STW R3, -(R15)\n";
-			codeass.append(buffer);
+			codeass.append("LDW R3, #1");
+			codeass.append("JMP $-4");
+			codeass.append("LDW R3, #0");
+			codeass.append("STW R3, -(R15)");
 		}
 		
 		
