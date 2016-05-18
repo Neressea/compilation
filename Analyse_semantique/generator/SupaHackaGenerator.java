@@ -95,9 +95,9 @@ public class SupaHackaGenerator {
 					//D�claration d'une fonction
 					case "FUNC_DECL":
 						
-						openTDS();
-						genererChild(node);
-						closeTDS();
+						FonctionDeclaration fd = new FonctionDeclaration(node, this);
+						fd.genererCode(pile);
+						
 						break;
 					
 					case "BLOCK":
@@ -138,7 +138,8 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "if":
-						genererChild(node);
+						If if_gen = new If(node, this); 
+						if_gen.genererCode(pile);
 						break;
 					
 					case "then":
