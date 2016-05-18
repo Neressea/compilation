@@ -48,10 +48,10 @@ public class Condition extends Instruction{
 							+"STW R3, -(R15)\n";
 			codeass.append(buffer);
 		}else{
-			OperandeSimple op1 = new OperandeSimple((CommonTree) node.getChild(0));
+			ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
 			op1.genererCode(pile);
 			codeass.append("LDW R2, R3\n");
-			OperandeSimple op2 = new OperandeSimple((CommonTree) node.getChild(1));
+			ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
 			op2.genererCode(pile);
 			String buffer = "CMP R2, R3\n";
 			switch (node.getText()){
