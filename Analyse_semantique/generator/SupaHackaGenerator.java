@@ -138,7 +138,8 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "if":
-						genererChild(node);
+						If if_gen = new If(node, this); 
+						if_gen.genererCode(pile);
 						break;
 					
 					case "then":
