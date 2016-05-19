@@ -33,62 +33,19 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-STRING2 string "ceci est une string"
-LDW R3, #STRING2
-STW R3, -(R15) //On empile la valeur déclarée
-STRING3 string "ceci en est une autre"
-LDW R3, #STRING3
-STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur déclarée
-STRING4 string "COUCOU1"
-LDW R3, #STRING4
-LDW R0, R3
-JSR @print
-STRING5 string "COUCOU2"
-LDW R3, #STRING5
-LDW R0, R3
-JSR @print
-LDW R3, #7689
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #9999
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDW R5, R3
-LDQ 10, R6
-JSR @itoa
-LDW R0, R3
-JSR @printi
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R0, R3
-JSR @print
-LDW R3, #100
-STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #25
+STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #10
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R5, R3
-LDW R3, #16
-LDW R6, R3
-JSR @itoa
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-JSR @read
-LDW R0, R3
-JSR @print
+STW R3, -(R15) //On empile la valeur déclarée
+boucleW1 // etiquette debut while
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R0, R3
-JSR @print
-JSR @read
-LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R3, #5
 LDW R2, R3
-LDW R3, #5
+LDW R3, #10
 CMP R2, R3
-BEQ 4
+BLW 4
 LDQ 0, R3
 JMP #4
 LDQ 1, R3
@@ -96,44 +53,34 @@ STW R3, -(R15)
 
 LDW R3, (R15)+
 
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//CALL : do_print
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramètre
+TST R3
+BEQ endWhile1-$-2
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-STW R3, -(R15) //On empile le paramètre
-JSR @do_print
-LDW R5, (R15)+ //On empile le paramètre
-LDW R5, (R15)+ //On empile le paramètre
-//*** On exit le programme principal ***//
-TRP #EXIT_TRP //On quitte l'exécution
-
-/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
-
-do_print
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R13, -(SP)
-STW R14, -(SP)
-
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #5
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R0, R3
-JSR @print
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #4
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #1
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+BMP boucleW1-$-2
+endWhile1 //etiquette fin while
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
@@ -141,23 +88,18 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-//On recharge les registres
-LDW R14, (SP)+
-LDW R13, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+//*** On exit le programme principal ***//
+TRP #EXIT_TRP //On quitte l'exécution
 
-RTS
+/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
+
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
 //*** print(string) : affiche le texte passé en paramètre ***//

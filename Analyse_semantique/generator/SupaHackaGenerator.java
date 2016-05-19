@@ -94,10 +94,10 @@ public class SupaHackaGenerator {
 						
 					//D�claration d'une fonction
 					case "FUNC_DECL":
-						
+						openTDS();
 						FonctionDeclaration fd = new FonctionDeclaration(node, this);
 						fd.genererCode(pile);
-						
+						closeTDS();
 						break;
 					
 					case "BLOCK":
@@ -151,7 +151,8 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "while":
-						genererChild(node);
+						While while_gen = new While(node, this);
+						while_gen.genererCode(pile);
 						break;
 					
 					//L'une des quatre op�rations binaires
@@ -175,6 +176,7 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "PARAMSFORM":
+						System.out.println("COUCOU");
 						genererChild(node);
 						break;
 						
