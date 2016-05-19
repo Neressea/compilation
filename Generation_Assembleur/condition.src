@@ -443,6 +443,288 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
+STRING6 string "a"
+LDW R3, #STRING6
+STW R3, -(R15)
+STRING7 string "a"
+LDW R3, #STRING7
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID0 CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID0-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING8 string "a"
+LDW R3, #STRING8
+LDW R2, R3
+STRING9 string "a"
+LDW R3, #STRING9
+CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING10 string "abcd"
+LDW R3, #STRING10
+STW R3, -(R15)
+STRING11 string "bcde"
+LDW R3, #STRING11
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID1 CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID1-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING12 string "abcd"
+LDW R3, #STRING12
+LDW R2, R3
+STRING13 string "bcde"
+LDW R3, #STRING13
+CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING14 string "abcd"
+LDW R3, #STRING14
+STW R3, -(R15)
+STRING15 string "bcde"
+LDW R3, #STRING15
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID2 CMP R2, R3
+BGT 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID2-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING16 string "abcd"
+LDW R3, #STRING16
+LDW R2, R3
+STRING17 string "bcde"
+LDW R3, #STRING17
+CMP R2, R3
+BGT 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING18 string "abcd"
+LDW R3, #STRING18
+STW R3, -(R15)
+STRING19 string "fger"
+LDW R3, #STRING19
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID3 CMP R2, R3
+BEQ 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID3-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING20 string "abcd"
+LDW R3, #STRING20
+LDW R2, R3
+STRING21 string "fger"
+LDW R3, #STRING21
+CMP R2, R3
+BEQ 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING22 string "abcd"
+LDW R3, #STRING22
+STW R3, -(R15)
+STRING23 string "abcd"
+LDW R3, #STRING23
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID4 CMP R2, R3
+BNE 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID4-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING24 string "abcd"
+LDW R3, #STRING24
+LDW R2, R3
+STRING25 string "abcd"
+LDW R3, #STRING25
+CMP R2, R3
+BNE 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING26 string "abcd"
+LDW R3, #STRING26
+STW R3, -(R15)
+STRING27 string "abcd"
+LDW R3, #STRING27
+LDW R5, (R15)+
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID5 CMP R2, R3
+BEQ 4
+LDQ 0, R3
+JMP #20
+ADQ -2, R5
+ADQ -2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID5-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
+STW R3, -(R15)
+
+STRING28 string "abcd"
+LDW R3, #STRING28
+LDW R2, R3
+STRING29 string "abcd"
+LDW R3, #STRING29
+CMP R2, R3
+BEQ 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'ex�cution
 
