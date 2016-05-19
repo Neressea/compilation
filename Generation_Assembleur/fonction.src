@@ -41,12 +41,12 @@ LDW R3, #STRING3
 STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur déclarée
-STRING4 string "COUCOU1"
-LDW R3, #STRING4
+STRING5 string "COUCOU1"
+LDW R3, #STRING5
 LDW R0, R3
 JSR @print
-STRING5 string "COUCOU2"
-LDW R3, #STRING5
+STRING6 string "COUCOU2"
+LDW R3, #STRING6
 LDW R0, R3
 JSR @print
 LDW R3, #7689
@@ -108,6 +108,21 @@ STW R3, -(R15) //On empile le paramètre
 JSR @do_print
 LDW R5, (R15)+ //On empile le paramètre
 LDW R5, (R15)+ //On empile le paramètre
+//CALL : get_string
+JSR @get_string
+LDW R0, R3
+JSR @print
+//CALL : get_int
+JSR @get_int
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exécution
 
@@ -141,6 +156,95 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+get_int
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+
+LDW R3, #3
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #2
+LDW R2, (R15)+ //On depile l'operande droite
+MUL R2, R3, R3
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #7
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #2
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #4
+LDW R2, (R15)+ //On depile l'operande droite
+SUB R2, R3, R3
+LDW R2, (R15)+ //On depile l'operande droite
+DIV R2, R3, R3
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+get_string
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+
+STRING4 string "I like kebabs"
+LDW R3, #STRING4
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+

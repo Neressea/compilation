@@ -115,6 +115,7 @@ public class Main {
 		args.add(0, "java");
 		
 		ProcessBuilder pB = new ProcessBuilder(args);
+		pB.directory(new File("../Generation_Assembleur"));
         Process p = pB.start();
         
         InputStream is = p.getInputStream();

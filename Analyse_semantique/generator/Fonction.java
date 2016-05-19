@@ -89,21 +89,25 @@ public class Fonction extends Instruction{
 			//Autrement, c'est une fonction du programmeur
 			ca.append("//CALL : "+function_name);
 			
-			//On empile les paramètres
-			for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
-				ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i));
-				ea.genererCode(pile);
-				//On empile le paramètre
-				ca.append("STW R3, -(R15) //On empile le paramètre");
+			//On empile les paramètres s'il y en a 
+			if(params_effectifs != null){
+				for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
+					ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i));
+					ea.genererCode(pile);
+					//On empile le paramètre
+					ca.append("STW R3, -(R15) //On empile le paramètre");
+				}
 			}
 			
 			//On appelle la fonction
 			ca.append("JSR @"+function_name);
 			
-			//On dépile les paramètres
-			for (int i = 0; i < params_effectifs.getChildCount(); i++) {
-				//On dépile le paramètre
-				ca.append("LDW R5, (R15)+ //On empile le paramètre");
+			//On dépile les paramètres s'il y en a 
+			if(params_effectifs != null){
+				for (int i = 0; i < params_effectifs.getChildCount(); i++) {
+					//On dépile le paramètre
+					ca.append("LDW R5, (R15)+ //On empile le paramètre");
+				}
 			}
 		}
 	}

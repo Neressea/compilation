@@ -181,7 +181,24 @@ public class SupaHackaGenerator {
 						break;
 						
 					default:
-						genererChild(node);
+						
+						boolean is_numb = node.getText().equals("NEG"), is_string = node.getText().matches("\".*\"");
+						
+						if(!is_string && !is_numb){
+							try{
+								Integer.parseInt(node.getText());
+								is_numb = true;
+							}catch(Exception e){
+								is_numb = false;
+							}
+						}
+						
+						if(is_string || is_numb){
+							OperandeSimple os = new OperandeSimple(node);
+							os.genererCode(pile);
+						}else{
+							genererChild(node);
+						}
 				}
 		
 	}

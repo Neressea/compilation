@@ -9,6 +9,14 @@ let
 		printi(b)
 	)
 
+	function get_int() : int = (
+		x := 3 * 2 + 7 / (2 - 4)
+	)
+
+	function get_string() : string = (
+		"I like kebabs"
+	)
+
 in
 
 	print("COUCOU1");
@@ -20,6 +28,10 @@ in
 	print(s); //A
 	what_did_I_just_read := read();
 	x := 5 = 5;
-	do_print(what_did_I_just_read, x)
+	do_print(what_did_I_just_read, x);
+
+	print(get_string());
+	x := get_int();
+	printi(x)
 
 end
