@@ -8,12 +8,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Scanner;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import analyse.AnalyseSemantique;
 import analyse.TDS;
 import generator.SupaHackaGenerator;
+import javafx.scene.transform.Scale;
 import sun.tools.jar.CommandLine;
 
 public class Main {
@@ -97,16 +99,22 @@ public class Main {
 				Main.executeJAR(verbose_iup, "-ass", path);
 		        
 				//On lance l'exécutable en console
-				System.out.println("Lancement du simulateur...");
-				Main.executeJAR(true, "-sim");
+				System.out.println("------------------- Lancement du simulateur -------------------");
+				System.out.print("Lancer le simulateur en console ? [O-n] : ");
+				
+				if((new Scanner(System.in)).nextLine().equals("n")){
+					Main.executeJAR(true, "-sim");
+				}else{
+					Main.executeJAR(true, "-batch", path.replace(".src", ".iup"));
+				}
 		        
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	public static void executeJAR(boolean verbose, String... params) throws IOException{
+	public static void executeJAR(boolean verbose, String... params) throws IOException, InterruptedException{
 		
 		ArrayList<String> args = new ArrayList<String>(Arrays.asList(params));
 		
@@ -114,18 +122,24 @@ public class Main {
 		args.add(0, "-jar");
 		args.add(0, "java");
 		
-		ProcessBuilder pB = new ProcessBuilder(args);
+        ProcessBuilder pB = new ProcessBuilder(args);
 		pB.directory(new File("../Generation_Assembleur"));
-        Process p = pB.start();
         
-        InputStream is = p.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-        
-        String line;
-        while ((line = br.readLine()) != null) {
-        	if(verbose)
-        		System.out.println(line);
+        if(verbose){
+        	pB.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+    		pB.redirectInput(ProcessBuilder.Redirect.INHERIT);
+    		pB.redirectError(ProcessBuilder.Redirect.INHERIT);
+    		Process p = pB.start();
+    		p.waitFor();
+        }else{
+        	Process p = pB.start();
+        	InputStream is = p.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            
+            String line;
+            while ((line = br.readLine()) != null);
         }
+        
 	}
 }
