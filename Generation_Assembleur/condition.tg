@@ -44,5 +44,17 @@ in
 	x:= 0 & 10;
 	printi(x);
 	x:= 0 & 0;
+	printi(x);
+	x:= "a" < "a";
+	printi(x);
+	x:= "abcd" < "bcde";
+	printi(x);
+	x:= "abcd" > "bcde";
+	printi(x);
+	x:= "abcd" = "fger";
+	printi(x);
+	x:= "abcd" <> "abcd";
+	printi(x);
+	x:= "abcd" = "abcd";
 	printi(x)
 end
