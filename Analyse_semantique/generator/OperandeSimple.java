@@ -44,7 +44,11 @@ public class OperandeSimple extends Instruction {
 			Fonction func = new Fonction(node, this.generator);
 			func.genererCode(pile);
 			
-		} else {
+		}else if(token.equals("if")){
+			If iffunc = new If(node, this.generator);
+			iffunc.genererCode(pile);
+		}
+		else {
 			boolean is_digit = true;
 			int value = 0;
 			

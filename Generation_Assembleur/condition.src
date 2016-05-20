@@ -33,20 +33,22 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-STRING2 string "ceci est une string"
-LDW R3, #STRING2
-STW R3, -(R15) //On empile la valeur d�clar�e
-STRING3 string "ceci en est une autre"
+STRING3 string "ceci est une string"
 LDW R3, #STRING3
+STW R3, -(R15) //On empile la valeur d�clar�e
+STRING4 string "ceci en est une autre"
+LDW R3, #STRING4
 STW R3, -(R15) //On empile la valeur d�clar�e
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur d�clar�e
-STRING4 string "COUCOU1"
-LDW R3, #STRING4
+LDW R3, #1
+STW R3, -(R15) //On empile la valeur d�clar�e
+STRING5 string "COUCOU1"
+LDW R3, #STRING5
 LDW R0, R3
 JSR @print
-STRING5 string "COUCOU2"
-LDW R3, #STRING5
+STRING6 string "COUCOU2"
+LDW R3, #STRING6
 LDW R0, R3
 JSR @print
 LDW R3, #7689
@@ -443,12 +445,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING6 string "a"
-LDW R3, #STRING6
-STW R3, -(R15)
 STRING7 string "a"
 LDW R3, #STRING7
-LDW R5, (R15)+
+LDW R5, R3
+STRING8 string "a"
+LDW R3, #STRING8
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
@@ -456,8 +458,8 @@ CONDID0 CMP R2, R3
 BLW 4
 LDQ 0, R3
 JMP #20
-ADQ -2, R5
-ADQ -2, R6
+ADQ 2, R5
+ADQ 2, R6
 LDW R2, (R5)
 LDW R3, (R6)
 TST R2
@@ -467,18 +469,6 @@ BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING8 string "a"
-LDW R3, #STRING8
-LDW R2, R3
-STRING9 string "a"
-LDW R3, #STRING9
-CMP R2, R3
-BLW 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
 LDW R3, (R15)+
 
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -490,12 +480,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING10 string "abcd"
+STRING9 string "abcd"
+LDW R3, #STRING9
+LDW R5, R3
+STRING10 string "bcde"
 LDW R3, #STRING10
-STW R3, -(R15)
-STRING11 string "bcde"
-LDW R3, #STRING11
-LDW R5, (R15)+
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
@@ -503,8 +493,8 @@ CONDID1 CMP R2, R3
 BLW 4
 LDQ 0, R3
 JMP #20
-ADQ -2, R5
-ADQ -2, R6
+ADQ 2, R5
+ADQ 2, R6
 LDW R2, (R5)
 LDW R3, (R6)
 TST R2
@@ -514,18 +504,6 @@ BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING12 string "abcd"
-LDW R3, #STRING12
-LDW R2, R3
-STRING13 string "bcde"
-LDW R3, #STRING13
-CMP R2, R3
-BLW 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
 LDW R3, (R15)+
 
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -537,12 +515,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING14 string "abcd"
-LDW R3, #STRING14
-STW R3, -(R15)
-STRING15 string "bcde"
-LDW R3, #STRING15
-LDW R5, (R15)+
+STRING11 string "abcd"
+LDW R3, #STRING11
+LDW R5, R3
+STRING12 string "bcde"
+LDW R3, #STRING12
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
@@ -550,8 +528,8 @@ CONDID2 CMP R2, R3
 BGT 4
 LDQ 0, R3
 JMP #20
-ADQ -2, R5
-ADQ -2, R6
+ADQ 2, R5
+ADQ 2, R6
 LDW R2, (R5)
 LDW R3, (R6)
 TST R2
@@ -561,18 +539,6 @@ BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING16 string "abcd"
-LDW R3, #STRING16
-LDW R2, R3
-STRING17 string "bcde"
-LDW R3, #STRING17
-CMP R2, R3
-BGT 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
 LDW R3, (R15)+
 
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -584,12 +550,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING18 string "abcd"
-LDW R3, #STRING18
-STW R3, -(R15)
-STRING19 string "fger"
-LDW R3, #STRING19
-LDW R5, (R15)+
+STRING13 string "abcd"
+LDW R3, #STRING13
+LDW R5, R3
+STRING14 string "fger"
+LDW R3, #STRING14
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
@@ -597,8 +563,8 @@ CONDID3 CMP R2, R3
 BEQ 4
 LDQ 0, R3
 JMP #20
-ADQ -2, R5
-ADQ -2, R6
+ADQ 2, R5
+ADQ 2, R6
 LDW R2, (R5)
 LDW R3, (R6)
 TST R2
@@ -608,18 +574,6 @@ BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING20 string "abcd"
-LDW R3, #STRING20
-LDW R2, R3
-STRING21 string "fger"
-LDW R3, #STRING21
-CMP R2, R3
-BEQ 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
 LDW R3, (R15)+
 
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -631,12 +585,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING22 string "abcd"
-LDW R3, #STRING22
-STW R3, -(R15)
-STRING23 string "abcd"
-LDW R3, #STRING23
-LDW R5, (R15)+
+STRING15 string "abcd"
+LDW R3, #STRING15
+LDW R5, R3
+STRING16 string "abcd"
+LDW R3, #STRING16
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
@@ -644,8 +598,8 @@ CONDID4 CMP R2, R3
 BNE 4
 LDQ 0, R3
 JMP #20
-ADQ -2, R5
-ADQ -2, R6
+ADQ 2, R5
+ADQ 2, R6
 LDW R2, (R5)
 LDW R3, (R6)
 TST R2
@@ -655,15 +609,38 @@ BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING24 string "abcd"
-LDW R3, #STRING24
-LDW R2, R3
-STRING25 string "abcd"
-LDW R3, #STRING25
-CMP R2, R3
-BNE 4
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+STRING17 string "abcd"
+LDW R3, #STRING17
+LDW R5, R3
+STRING18 string "abcd"
+LDW R3, #STRING18
+LDW R11, R3
+LDW R6, R3
+LDW R2, (R5)
+LDW R3, (R6)
+CONDID5 CMP R2, R3
+BEQ 4
 LDQ 0, R3
-JMP #4
+JMP #20
+ADQ 2, R5
+ADQ 2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID5-$-2
+TST R3
+BEQ -16
 LDQ 1, R3
 STW R3, -(R15)
 
@@ -678,35 +655,113 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printi
-STRING26 string "abcd"
-LDW R3, #STRING26
-STW R3, -(R15)
-STRING27 string "abcd"
-LDW R3, #STRING27
-LDW R5, (R15)+
-LDW R6, R3
-LDW R2, (R5)
-LDW R3, (R6)
-CONDID5 CMP R2, R3
-BEQ 4
+LDW R3, #2
+LDW R2, R3
+LDW R3, #4
+CMP R2, R3
+BLW 4
 LDQ 0, R3
-JMP #20
-ADQ -2, R5
-ADQ -2, R6
-LDW R2, (R5)
-LDW R3, (R6)
-TST R2
-BNE CONDID5-$-2
-TST R3
-BEQ -16
+JMP #4
 LDQ 1, R3
 STW R3, -(R15)
 
-STRING28 string "abcd"
-LDW R3, #STRING28
+LDW R3, (R15)+
+
+TST R3
+BEQ else1-$-2
+then1 //etiquette then
+LDW R3, #8
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+BMP endif1-$-2
+else1 //etiquette else
+LDW R3, #1
+NEG R3, R3
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+endif1 //etiquette fin de if
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+LDW R3, #2
 LDW R2, R3
-STRING29 string "abcd"
-LDW R3, #STRING29
+LDW R3, #4
+CMP R2, R3
+BGT 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+TST R3
+BEQ else2-$-2
+then2 //etiquette then
+LDW R3, #8
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+BMP endif2-$-2
+else2 //etiquette else
+LDW R3, #1
+NEG R3, R3
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+endif2 //etiquette fin de if
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R2, R3
+LDW R3, #8
+CMP R2, R3
+BNE 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+TST R3
+BEQ else3-$-2
+then3 //etiquette then
+LDW R3, #8
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+BMP endif3-$-2
+else3 //etiquette else
+LDW R3, #1
+NEG R3, R3
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+endif3 //etiquette fin de if
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R2, R3
+LDW R3, #8
 CMP R2, R3
 BEQ 4
 LDQ 0, R3
@@ -716,6 +771,19 @@ STW R3, -(R15)
 
 LDW R3, (R15)+
 
+TST R3
+BEQ else4-$-2
+then4 //etiquette then
+LDW R3, #2
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+BMP endif4-$-2
+else4 //etiquette else
+LDW R3, #1
+NEG R3, R3
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la m�moire
+endif4 //etiquette fin de if
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la m�moire
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -731,6 +799,49 @@ TRP #EXIT_TRP //On quitte l'ex�cution
 /////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
 
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
+
+//*** println(string) : affiche le texte pass� en param�tre et fait un saut de ligne ***//
+println 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On l�ve la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On r�intiialise le sommet de la pile � la base courante
+LDW BP, (SP)+ //On d�pile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'ex�cution
 
 //*** print(string) : affiche le texte pass� en param�tre ***//
 print 
@@ -753,8 +864,6 @@ STW R14, -(SP)
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 TRP #WRITE_TRP //On l�ve la trappe
-LDQ SAUT_DE_LIGNE, R0
-TRP #WRITE_TRP
 //On ferme l'environnement courant
 LDW SP, BP //On r�intiialise le sommet de la pile � la base courante
 LDW BP, (SP)+ //On d�pile l'ancienne base
@@ -774,8 +883,9 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans la suite de l'ex�cution
-//*** printi(int) : affiche l'entier pass� en param�tre ***//
-printi 
+
+//*** printiln(int) : affiche l'entier pass� en param�tre ***//
+printiln 
 //On sauvegarde les registres
 STW R0, -(SP)
 STW R1, -(SP)
@@ -816,7 +926,49 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans la suite de l'ex�cution
-//*** int read() : lit un entier sur l'entr�e standard ***//
+
+//*** printi(int) : affiche l'entier pass� en param�tre ***//
+printi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On l�ve la trappe
+//On ferme l'environnement courant
+LDW SP, BP //On r�intiialise le sommet de la pile � la base courante
+LDW BP, (SP)+ //On d�pile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'ex�cution
+
+//*** string read() : lit une chaine sur l'entr�e standard ***//
 read 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -859,6 +1011,93 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans le programme
+
+//*** int readi() : lit un entier sur l'entr�e standard ***//
+readi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+//On commence par lire la chaine
+STRING1 RSB 100 //On cr�e la chaine de retour (100 caract�res max)
+LDQ STRING1, R0 //On met cette adresse en lecture
+TRP #READ_TRP //On l�ve la trappe
+LDW R5, R0 //On met le r�sultat dans R5
+JSR @atoi //On convertit en entier. R�sultat dans R3
+//On ferme l'environnement courant
+LDW SP, BP //On r�intiialise le sommet de la pile � la base courante
+LDW BP, (SP)+ //On d�pile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
+//*** int atoi() : convertit une chaine en entier base 10 ***//
+atoi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+//On ferme l'environnement courant
+LDW SP, BP //On r�intiialise le sommet de la pile � la base courante
+LDW BP, (SP)+ //On d�pile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
 //*** string itoa(int number, int base) : Cast un entier en une chaine selon la base pass�e en param�tre ***//
 itoa //On sauvegarde les registres
 STW R0, -(SP)
@@ -878,8 +1117,8 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING1 RSB 100 //On cr�e la chaine de retour (100 octets max)
-LDQ STRING1, R3 //On charge l'adresse dans R0
+STRING2 RSB 100 //On cr�e la chaine de retour (100 octets max)
+LDQ STRING2, R3 //On charge l'adresse dans R0
 //R5 -> entier � convertir, R6 -> base de conversion, R3 -> adresse de la chaine r�sultat
 ASCII_MINUS equ 45
 ASCII_PLUS  equ 43
