@@ -14,7 +14,8 @@ public class TableauAcces extends Instruction{
 
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
-		// TODO Auto-generated method stub
+		String token = node.getText();
+		CodeAss codeass = CodeAss.getCodeSingleton();
 		
 	}
 
