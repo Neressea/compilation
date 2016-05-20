@@ -15,7 +15,6 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 import analyse.AnalyseSemantique;
 import analyse.TDS;
 import generator.SupaHackaGenerator;
-import javafx.scene.transform.Scale;
 import sun.tools.jar.CommandLine;
 
 public class Main {
@@ -89,16 +88,16 @@ public class Main {
 			String path = file_src.replace(".tg", ".src");
 			try {
 				
-				//On génère le code assembleur en un .src
+				//On gï¿½nï¿½re le code assembleur en un .src
 				daru.genererCode(path);
 				
 				System.out.println("Le code a bien ete genere dans " + path + ". Voila.");
 				
 				//On compile en .iup
-				System.out.println("Génération du .iup dans " + path.replace(".src", ".iup") +". Revoila.");
+				System.out.println("Gï¿½nï¿½ration du .iup dans " + path.replace(".src", ".iup") +". Revoila.");
 				Main.executeJAR(verbose_iup, "-ass", path);
 		        
-				//On lance l'exécutable en console
+				//On lance l'exï¿½cutable en console
 				System.out.println("------------------- Lancement du simulateur -------------------");
 				System.out.print("Lancer le simulateur en console ? [O-n] : ");
 				
