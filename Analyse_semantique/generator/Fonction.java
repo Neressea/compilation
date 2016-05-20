@@ -121,6 +121,10 @@ public class Fonction extends Instruction{
 				}
 			}
 			
+			//On charge le chainage statique dans R12
+			ca.append("//On charge le chainage statique dans R12");
+			ca.append("");
+			
 			//On appelle la fonction
 			ca.append("JSR @"+function_name);
 			
@@ -142,6 +146,7 @@ public class Fonction extends Instruction{
 	public static String openEnv(){
 		
 		String code = "//On ouvre un nouvel environnement dans la pile\n";
+		code += "STW STAT, -(SP) //On empile le chainage statique\n";
 		code += "STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile\n";
 		code += "LDW BP, SP //Le sommet de la pile devient la nouvelle base\n";
 		
@@ -153,8 +158,9 @@ public class Fonction extends Instruction{
 	 */
 	public static String closeEnv(){		
 		String code = "//On ferme l'environnement courant\n";
-		code += "LDW SP, BP //On réintiialise le sommet de la pile à la base courante\n";
+		code += "LDW SP, BP //On réintialise le sommet de la pile à la base courante\n";
 		code += "LDW BP, (SP)+ //On dépile l'ancienne base\n";
+		code += "LDW STAT, (SP)+//On dépile le chainage statique\n";
 		
 		return code;
 	}
@@ -166,7 +172,7 @@ public class Fonction extends Instruction{
 		
 		String code = "//On sauvegarde les registres\n";
 		for (int i = 0; i < 15; i++) {
-			if( i != 3 && i!= 13) //Le registre 3 est utilisé pour les retours
+			if( i != 3 && i!= 13 ) //Le registre 3 est utilisé pour les retours
 				code += "STW R"+i+", -(SP)\n";
 		}
 		

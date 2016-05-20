@@ -15,6 +15,7 @@ import analyse.TDS;
  * R3 = opérande pour opération & résultat & retour de fonction
  * R4 = borne supérieur de boucle
  * 
+ * R12 = passage du chainage statique
  * R13 = base de l'environnement courant
  * R14 = Registre de TRAP
  * R15 = SP

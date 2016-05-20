@@ -31,6 +31,8 @@ public class CodeAss {
 				+"SP equ R15 //Reigstre de sommet de pile\n"
 				+"WR equ R14 //Registre pour lever les traps\n"
 				+"BP equ R13 //Registre de base de l'environnement courant\n"
+				+"STAT equ R12 //Registre pour le passage du chainage statique\n\n"
+				
 				+"ASCII_MINUS equ 45\n"
 				+"ASCII_PLUS  equ 43\n"
 				+"ASCII_SP    equ 32 \n"
@@ -59,7 +61,8 @@ public class CodeAss {
 				+"LDQ 10, R3 //Saut de ligne\n"
 				+"LDQ NUL, R4 //Fin de chaine\n"
 				+"STB R3, (R2)+\n"
-				+"STB R4, (R2)\n";
+				+"STB R4, (R2)\n\n"
+				+Fonction.openEnv();
 	}
 	
 	private static CodeAss codeAss = new CodeAss();
@@ -254,6 +257,7 @@ public class CodeAss {
 	 */
 	private void closeCode(){
 		code+=  "//*** On exit le programme principal ***//\n"
+				+Fonction.closeEnv()
 				+"TRP #EXIT_TRP //On quitte l'exécution\n\n";
 	}
 	

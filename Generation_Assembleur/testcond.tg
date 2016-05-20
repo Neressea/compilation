@@ -2,6 +2,6 @@ let
 
 in
 	
-	printi("a" < "b")
+	printi("aa" < "bb")
 
 end

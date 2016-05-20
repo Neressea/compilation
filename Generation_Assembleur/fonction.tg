@@ -1,12 +1,13 @@
 let
 
-	var s := "42"
-	var what_did_I_just_read := "ceci en est une autre"
+	var s := "ceci est une chaines"
+	var faux_entier := "42"
+	var what_did_I_just_read := "ceci en est une autre."
 	var x : int := 5
 
-	function do_print(a : string, b : int) = (
-		println(a);
-		printiln(b)
+	function double_print(a : int, b : string) = (
+		println(b);
+		printiln(a)
 	)
 
 	function get_int() : int = (
@@ -14,29 +15,30 @@ let
 	)
 
 	function get_string() : string = (
-		"I like kebabs"
+		"I like kebabs."
 	)
 
 in
 
-	println("SALUT");
+	println("SALUT!");
 	println("ab");
 	printiln(7689 - 9999);
-	println(s); //ceci est une string
-	s := itoa(100/10, 16);
+	println(what_did_I_just_read); //ceci est une string
 	print("Entrez une chaine : ");
 	println(read());
+	s := itoa(100/10, 16);
 	println(s); //A
-	print("Entrez une nouvelle chaine : ");
+	print("Entrez une nouvelle chaine: ");
 	what_did_I_just_read := read();
 	x := 5 = 5;
-	//do_print(what_did_I_just_read, x);
+	double_print(x, what_did_I_just_read);
 
 	println(get_string());
+	printiln(atoi(faux_entier));
 	x := get_int();
 	printiln(x);
 
-	print("Entrez un entier : ");
+	print("Entrez un entier: ");
 	x := readi();
 	printiln(x)
 

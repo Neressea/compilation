@@ -32,6 +32,7 @@ public class OperandeSimple extends Instruction {
 			et="STRING".concat(Integer.toString(counter));
 			ca.append(et+" string "+token);
 			counter++;
+			ca.append("LDQ 0, R3");
 			ca.append("LDW R3, #"+et);
 			
 		}else if(comparateurs_associateurs.contains(token)){
