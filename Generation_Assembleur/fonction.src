@@ -174,10 +174,6 @@ LDW R3, #STRING8
 LDW R0, R3
 JSR @print
 JSR @readi
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
