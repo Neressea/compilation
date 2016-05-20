@@ -23,7 +23,7 @@ public class Fonction extends Instruction{
 		String function_name = node.getChild(0).getText();
 		CommonTree params_effectifs = (node.getChildCount() == 1) ? null : (CommonTree) node.getChild(1);
 		
-		if(function_name.equals("print")){
+		if(function_name.equals("print") || function_name.equals("println")){
 			
 			//On récupère le paramètre que veut afficher le programmeur
 			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
@@ -35,9 +35,9 @@ public class Fonction extends Instruction{
 			ca.append("LDW R0, R3");
 			
 			//On charge la trappe WRITE dans WR
-			ca.append("JSR @print");
+			ca.append("JSR @"+function_name);
 			
-		}else if(function_name.equals("printi")){
+		}else if(function_name.equals("printi") || function_name.equals("printiln")){
 			
 			//On récupère le paramètre que veut afficher le programmeur
 			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
@@ -58,13 +58,18 @@ public class Fonction extends Instruction{
 			ca.append("LDW R0, R3");
 			
 			//On se branche sur le sous-programme d'écriture
-			ca.append("JSR @printi");
+			ca.append("JSR @"+function_name);
 			
 		}else if(function_name.equals("read")){
 			
 			ca.append("JSR @read");
+			
+		}else if(function_name.equals("readi")){
 		
+			ca.append("JSR @readi");
+			
 		}else if(function_name.equals("itoa")){
+			
 			//On récupère le paramètre que veut convertir le programmeur
 			ExpressionArithmetique entier = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
 			
@@ -85,6 +90,23 @@ public class Fonction extends Instruction{
 			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
 			ca.append("JSR @itoa");
+			
+		}else if(function_name.equals("atoi")){
+			
+			//atoi prend une chaine et la convertit en int base 10
+			
+			//On récupère le paramètre que veut convertir le programmeur
+			ExpressionArithmetique chaine = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
+			
+			//Le résultat est foutu dans R3
+			chaine.genererCode(pile);
+			
+			//On le déplace dans R5
+			ca.append("LDW R5, R3");
+			
+			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
+			ca.append("JSR @itoa");
+			
 		}else{
 			//Autrement, c'est une fonction du programmeur
 			ca.append("//CALL : "+function_name);

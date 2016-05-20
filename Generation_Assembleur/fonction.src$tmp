@@ -44,11 +44,11 @@ STW R3, -(R15) //On empile la valeur diclarie
 STRING5 string "COUCOU1"
 LDW R3, #STRING5
 LDW R0, R3
-JSR @print
+JSR @println
 STRING6 string "COUCOU2"
 LDW R3, #STRING6
 LDW R0, R3
-JSR @print
+JSR @println
 LDW R3, #7689
 STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #9999
@@ -58,11 +58,11 @@ LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
-JSR @printi
+JSR @printiln
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
-JSR @print
+JSR @println
 LDW R3, #100
 STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #10
@@ -74,11 +74,19 @@ LDW R6, R3
 JSR @itoa
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mimoire
-JSR @read
+STRING7 string "Entrez une chaine : "
+LDW R3, #STRING7
 LDW R0, R3
 JSR @print
+JSR @read
+LDW R0, R3
+JSR @println
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
+LDW R0, R3
+JSR @println
+STRING8 string "Entrez une nouvelle chaine : "
+LDW R3, #STRING8
 LDW R0, R3
 JSR @print
 JSR @read
@@ -111,7 +119,7 @@ LDW R5, (R15)+ //On empile le paramhtre
 //CALL : get_string
 JSR @get_string
 LDW R0, R3
-JSR @print
+JSR @println
 //CALL : get_int
 JSR @get_int
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -122,7 +130,7 @@ LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
-JSR @printi
+JSR @printiln
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exicution
 
@@ -148,14 +156,14 @@ STW R14, -(SP)
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
-JSR @print
+JSR @println
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
-JSR @printi
+JSR @printiln
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
@@ -264,6 +272,49 @@ LDW R0, (SP)+
 RTS
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
+//*** println(string) : affiche le texte passi en paramhtre et fait un saut de ligne ***//
+println 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lhve la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On riintiialise le sommet de la pile ` la base courante
+LDW BP, (SP)+ //On dipile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exicution
+
 //*** print(string) : affiche le texte passi en paramhtre ***//
 print 
 //On sauvegarde les registres
@@ -285,8 +336,6 @@ STW R14, -(SP)
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 TRP #WRITE_TRP //On lhve la trappe
-LDQ SAUT_DE_LIGNE, R0
-TRP #WRITE_TRP
 //On ferme l'environnement courant
 LDW SP, BP //On riintiialise le sommet de la pile ` la base courante
 LDW BP, (SP)+ //On dipile l'ancienne base
@@ -306,8 +355,9 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans la suite de l'exicution
-//*** printi(int) : affiche l'entier passi en paramhtre ***//
-printi 
+
+//*** printiln(int) : affiche l'entier passi en paramhtre ***//
+printiln 
 //On sauvegarde les registres
 STW R0, -(SP)
 STW R1, -(SP)
@@ -348,6 +398,48 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans la suite de l'exicution
+
+//*** printi(int) : affiche l'entier passi en paramhtre ***//
+printi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lhve la trappe
+//On ferme l'environnement courant
+LDW SP, BP //On riintiialise le sommet de la pile ` la base courante
+LDW BP, (SP)+ //On dipile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exicution
+
 //*** int read() : lit un entier sur l'entrie standard ***//
 read 
 //On sauvegarde les registres
@@ -391,6 +483,7 @@ LDW R2, (SP)+
 LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans le programme
+
 //*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passie en paramhtre ***//
 itoa //On sauvegarde les registres
 STW R0, -(SP)

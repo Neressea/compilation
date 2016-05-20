@@ -23,8 +23,8 @@ public class CodeAss {
 		code_fonctions_utilisateurs = "/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////\n\n";
 		
 		code_fonctions_du_langage = "/////// ------------------------------  Fonctions du langage  ------------------------------ ///////\n\n"
-				+"//*** print(string) : affiche le texte passé en paramètre ***//\n"
-				+"print \n"
+				+"//*** println(string) : affiche le texte passé en paramètre et fait un saut de ligne ***//\n"
+				+"println \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
 				+ "TRP #WRITE_TRP //On lève la trappe\n"
@@ -32,20 +32,38 @@ public class CodeAss {
 				+ "TRP #WRITE_TRP\n"
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
-				+"RTS //On retourne dans la suite de l'exécution\n"
+				+"RTS //On retourne dans la suite de l'exécution\n\n"
+				
+				+"//*** print(string) : affiche le texte passé en paramètre ***//\n"
+				+"print \n"
+				+ Fonction.saveRegisters()
+				+ Fonction.openEnv()
+				+ "TRP #WRITE_TRP //On lève la trappe\n"
+				+ Fonction.closeEnv()
+				+ Fonction.reloadRegisters()
+				+"RTS //On retourne dans la suite de l'exécution\n\n"
+				
+				+"//*** printiln(int) : affiche l'entier passé en paramètre ***//\n"
+				+"printiln \n"
+				+ Fonction.saveRegisters()
+				+ Fonction.openEnv()
+				+ "TRP #WRITE_TRP //On lève la trappe\n"
+				+ "LDQ SAUT_DE_LIGNE, R0\n"
+				+ "TRP #WRITE_TRP\n"
+				+ Fonction.closeEnv()
+				+ Fonction.reloadRegisters()
+				+"RTS //On retourne dans la suite de l'exécution\n\n"
 				
 				+"//*** printi(int) : affiche l'entier passé en paramètre ***//\n"
 				+"printi \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
 				+ "TRP #WRITE_TRP //On lève la trappe\n"
-				+ "LDQ SAUT_DE_LIGNE, R0\n"
-				+ "TRP #WRITE_TRP\n"
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
-				+"RTS //On retourne dans la suite de l'exécution\n"
+				+"RTS //On retourne dans la suite de l'exécution\n\n"
 				
-				+"//*** int read() : lit un entier sur l'entrée standard ***//\n"
+				+"//*** string read() : lit une chaine sur l'entrée standard ***//\n"
 				+"read \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
@@ -55,7 +73,36 @@ public class CodeAss {
 				+ "LDW R3, R0 //On met le résultat dans R3\n"
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
-				+"RTS //On retourne dans le programme\n"
+				+"RTS //On retourne dans le programme\n\n"
+				
+				+"//*** int readi() : lit un entier sur l'entrée standard ***//\n"
+				+"readi \n"
+				+ Fonction.saveRegisters()
+				+ Fonction.openEnv()
+				+"//On commence par lire la chaine\n"
+				+ "STRING"+(OperandeSimple.counter++)+" RSB 100 //On crée la chaine de retour (100 caractères max)\n"
+				+ "LDQ STRING"+(OperandeSimple.counter-1)+", R0 //On met cette adresse en lecture\n"
+				+ "TRP #READ_TRP //On lève la trappe\n"
+				+ "LDW R5, R0 //On met le résultat dans R5\n"
+				+ "JSR @atoi //On convertit en entier. Résultat dans R3\n"
+				+ Fonction.closeEnv()
+				+ Fonction.reloadRegisters()
+				+ "RTS //On retourne dans le programme\n\n"
+				
+				+"//*** int atoi() : convertit une chaine en entier base 10 ***//\n"
+				+"atoi \n"
+				+ Fonction.saveRegisters()
+				+ Fonction.openEnv()
+				
+				+"LDQ 0, R3 //On initialiseR3\n"
+				+"LOOP_ATOI \n"
+				
+				+"BEQ END_LOOP_ATOI\n"
+				+"BMP END_LOOP_ATOI\n"
+				
+				+ Fonction.closeEnv()
+				+ Fonction.reloadRegisters()
+				+ "RTS //On retourne dans le programme\n\n"
 
 				+"//*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passée en paramètre ***//\n"
 				+"itoa "
@@ -102,7 +149,7 @@ public class CodeAss {
 				+"STKCHR STW R5, -(SP)\n"
 				+"TST R8\n"
 				+"BNE CNVLOOP-$-2\n //Boucle si quotient non nul\n\n"
-				
+				 
 				+"//On empile maintenant les caractères dans le bon ordre\n"
 				+"LDW R2, R3\n"
 				+"LDQ 0, R10\n"

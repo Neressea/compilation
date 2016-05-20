@@ -52,17 +52,33 @@ public class AnalyseSemantique {
 		fprint.addParam("s", "string");
 		base.add(fprint);
 		
+		FieldFonction fprintln = new FieldFonction("println", 0, "UNDEFINED");
+		fprintln.addParam("s", "string");
+		base.add(fprintln);
+		
 		FieldFonction fprinti = new FieldFonction("printi", base.getCurrentSize(), "UNDEFINED");
 		fprinti.addParam("i", "int");
 		base.add(fprinti);
+		
+		FieldFonction fprintiln = new FieldFonction("printiln", base.getCurrentSize(), "UNDEFINED");
+		fprintiln.addParam("i", "int");
+		base.add(fprintiln);
 		
 		FieldFonction fitoa = new FieldFonction("itoa", 0, "string");
 		fitoa.addParam("entier", "int");
 		fitoa.addParam("base", "int");
 		base.add(fitoa);
 		
+		FieldFonction fatoi = new FieldFonction("atoi", 0, "int");
+		fatoi.addParam("chaine", "string");
+		fatoi.addParam("base", "int");
+		base.add(fatoi);
+		
 		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "string");
 		base.add(fread);
+		
+		FieldFonction freadi = new FieldFonction("readi", base.getCurrentSize(), "int");
+		base.add(freadi);
 		
 		openTDS(base);
 	}
