@@ -41,23 +41,75 @@ STB R4, (R2)
 STRING3 string "42"
 LDW R3, #STRING3
 STW R3, -(R15) //On empile la valeur déclarée
-LDW R3, #0
+LDW R3, #5
 STW R3, -(R15) //On empile la valeur déclarée
-JSR @readi
+LDW R3, #0
+STW R3, -(R15) //On empile valeur initiale du compteur de boucle
+boucle0 //Etiquette de la boucle
+STRING4 string "Coucou"
+LDW R3, #STRING4
+LDW R0, R3
+JSR @println
+LDW R3, #5
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R2, (R1) //On charge le compteur dans R2
+SUB R3, R2, R3
+BEQ sortie_boucle0-$-2
+ADQ 1, R2 //on incrémente le compteur
+STW R2, (R1) //On met a jour le compteur en memoire
+BMP boucle0-$-2
+sortie_boucle0
+LDW R3, (R15)+ //on dépile le compteur
+//*** On exit le programme principal ***//
+TRP #EXIT_TRP //On quitte l'exécution
+
+/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
+
+do_print
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @println
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-//*** On exit le programme principal ***//
-TRP #EXIT_TRP //On quitte l'exécution
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
 
-/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
-
+RTS
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
 //*** println(string) : affiche le texte passé en paramètre et fait un saut de ligne ***//

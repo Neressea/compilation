@@ -2,14 +2,14 @@ let
 
 	var s := "42"
 	//var what_did_I_just_read := "ceci en est une autre"
-	var x : int := 0
+	var x : int := 5
 
-	/*function do_print(a : string, b : int) = (
+	function do_print(a : string, b : int) = (
 		println(a);
 		printiln(b)
 	)
 
-	function get_int() : int = (
+	/*function get_int() : int = (
 		x := 3 * 2 + 7 / (2 - 4)
 	)
 
@@ -36,7 +36,9 @@ in
 	x := get_int();
 	printiln(x);*/
 
-	x := readi();
-	printiln(x)
+	for i := 0 to 5 do println("Coucou")
+
+	/*x := readi();
+	printiln(x)*/
 
 end
