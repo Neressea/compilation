@@ -18,9 +18,21 @@ public class TableauDeclaration extends Instruction{
 		CodeAss codeass = CodeAss.getCodeSingleton();
 		
 		String name = node.getChild(0).getText();
-		
-		codeass.append(name+" STB 80");
+		ExpressionArithmetique size = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0), generator); 
+		size.genererCode(pile);
+		codeass.append(name+" STB R3");
+		codeass.append("LDW R5, R3");
 		codeass.append("STW #"+name+" , -(R15)");
+		ExpressionArithmetique init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0), generator);
+		init.genererCode(pile);
+		codeass.append("LDW R6, R3");
+		codeass.append("LDW R7, #"+name);
+		codeass.append("LDW (R7), R6");
+		codeass.append("ADQ -1,  R5");
+		codeass.append("ADQ 2,  R7");
+		codeass.append("TST R5");
+		codeass.append("BNE -6");
+		
 	}
 
 }
