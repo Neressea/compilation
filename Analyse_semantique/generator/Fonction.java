@@ -166,7 +166,7 @@ public class Fonction extends Instruction{
 		
 		String code = "//On sauvegarde les registres\n";
 		for (int i = 0; i < 15; i++) {
-			if( i != 3) //Le registre 3 est utilisé pour les retours
+			if( i != 3 && i!= 13) //Le registre 3 est utilisé pour les retours
 				code += "STW R"+i+", -(SP)\n";
 		}
 		
@@ -180,7 +180,7 @@ public class Fonction extends Instruction{
 		
 		String code = "//On recharge les registres\n";
 		for (int i = 14; i>=0; i--) {
-			if( i != 3) //Le registre 3 est utilisé pour les retours
+			if( i != 3 && i != 13 ) //Le registre 3 est utilisé pour les retours
 				code += "LDW R"+i+", (SP)+\n";
 		}
 		

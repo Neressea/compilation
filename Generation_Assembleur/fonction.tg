@@ -1,7 +1,7 @@
 let
 
 	var s := "42"
-	//var what_did_I_just_read := "ceci en est une autre"
+	var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 5
 
 	function do_print(a : string, b : int) = (
@@ -9,18 +9,18 @@ let
 		printiln(b)
 	)
 
-	/*function get_int() : int = (
+	function get_int() : int = (
 		x := 3 * 2 + 7 / (2 - 4)
 	)
 
 	function get_string() : string = (
 		"I like kebabs"
-	)*/
+	)
 
 in
 
-	/*println("COUCOU1");
-	println("COUCOU2");
+	println("SALUT");
+	println("ab");
 	printiln(7689 - 9999);
 	println(s); //ceci est une string
 	s := itoa(100/10, 16);
@@ -34,11 +34,10 @@ in
 
 	println(get_string());
 	x := get_int();
-	printiln(x);*/
+	printiln(x);
 
-	for i := 0 to 5 do println("Coucou")
-
-	/*x := readi();
-	printiln(x)*/
+	print("Entrez un entier : ");
+	x := readi();
+	printiln(x)
 
 end
