@@ -9,8 +9,8 @@ import analyse.TDS;
 
 public class ExpressionArithmetique extends Instruction{
 
-	public ExpressionArithmetique(CommonTree node) {
-		super(node);
+	public ExpressionArithmetique(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override
@@ -18,11 +18,11 @@ public class ExpressionArithmetique extends Instruction{
 		ArrayList<String> ope = new ArrayList<>(Arrays.asList(new String[]{"+","-","*","/", "NEG"}));
 		CodeAss ca = CodeAss.getCodeSingleton();
 		if (!ope.contains(node.getText())) {
-			OperandeSimple os = new OperandeSimple(node);
+			OperandeSimple os = new OperandeSimple(node, this.generator);
 			os.genererCode(pile);
 		} else {
 			
-			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(0));
+			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
 			ea.genererCode(pile);
 			
 			//Si jamais on a NEG, on négationne R3 et on s'arrête là
@@ -32,7 +32,7 @@ public class ExpressionArithmetique extends Instruction{
 			}
 			
 			ca.append("STW R3, -(R15) //On empile le resultat de l'operande droite");
-			ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
+			ea = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 			ea.genererCode(pile);
 			ca.append("LDW R2, (R15)+ //On depile l'operande droite");
 			

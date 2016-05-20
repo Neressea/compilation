@@ -8,8 +8,8 @@ import analyse.TDS;
 
 public class Declaration extends Instruction{
 
-	public Declaration(CommonTree node) {
-		super(node);
+	public Declaration(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override
@@ -20,9 +20,9 @@ public class Declaration extends Instruction{
 		//On récupère l'expression
 		ExpressionArithmetique ea = null;
 		if(node.getChildCount() == 2){
-			ea = new ExpressionArithmetique((CommonTree) node.getChild(1));
+			ea = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 		}else if (node.getChildCount() == 3){
-			ea = new ExpressionArithmetique((CommonTree) node.getChild(2));
+			ea = new ExpressionArithmetique((CommonTree) node.getChild(2), this.generator);
 		}
 		
 		//On calcule la valeur de l'expression (résultat dans R3)

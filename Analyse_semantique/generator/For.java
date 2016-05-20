@@ -8,12 +8,10 @@ import analyse.TDS;
 
 public class For extends Instruction {
 	
-	private SupaHackaGenerator generator;
 	private static int nb_for = 0; //Un id pour différencier les étiquettes de boucles.
 
 	public For(CommonTree node, SupaHackaGenerator generator) {
-		super(node);
-		this.generator = generator;
+		super(node, generator);
 	}
 
 	@Override
@@ -24,7 +22,7 @@ public class For extends Instruction {
 		/*On calcule la valeur initiale du compteur et on l'empile*/
 		CommonTree var_compteur = (CommonTree) node.getChild(0);
 		CommonTree expr_begin = (CommonTree) var_compteur.getChild(0).getChild(0);
-		ExpressionArithmetique begin = new ExpressionArithmetique(expr_begin);
+		ExpressionArithmetique begin = new ExpressionArithmetique(expr_begin, this.generator);
 		begin.genererCode(pile);
 		
 		//On empile R3
@@ -39,11 +37,11 @@ public class For extends Instruction {
 		
 		/*On calcule la borne sup (stockée dans R3)*/
 		CommonTree expr_sup = (CommonTree) var_compteur.getChild(1).getChild(0);
-		ExpressionArithmetique sup = new ExpressionArithmetique(expr_sup);
+		ExpressionArithmetique sup = new ExpressionArithmetique(expr_sup, this.generator);
 		sup.genererCode(pile);
 		
 		//On charge le compteur dans R2
-		Identifiant idf = new Identifiant(var_compteur);
+		Identifiant idf = new Identifiant(var_compteur, this.generator);
 		idf.genererCode(pile);
 		ca.append("LDW R2, (R1) //On charge le compteur dans R2"); //R2 = contenu pointé par R1
 		

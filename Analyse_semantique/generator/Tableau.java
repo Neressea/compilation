@@ -8,8 +8,8 @@ import analyse.TDS;
 
 public class Tableau extends Instruction{
 
-	public Tableau(CommonTree node) {
-		super(node);
+	public Tableau(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override

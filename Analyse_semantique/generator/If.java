@@ -8,19 +8,17 @@ import analyse.TDS;
 
 public class If extends Instruction{
 	
-	private SupaHackaGenerator generator;
 	private static int nb_if = 0;
 
 	public If(CommonTree node, SupaHackaGenerator generator) {
-		super(node);
-		this.generator = generator;
+		super(node, generator);
 	}
 
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
 		nb_if++;
 		CodeAss ca = CodeAss.getCodeSingleton();
-		Condition condIf = new Condition((CommonTree) node.getChild(0).getChild(0));
+		Condition condIf = new Condition((CommonTree) node.getChild(0).getChild(0), this.generator);
 		// On genere le code de la condition, le resultat est dans R3
 		condIf.genererCode(pile);
 		

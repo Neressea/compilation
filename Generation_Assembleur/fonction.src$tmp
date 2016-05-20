@@ -33,20 +33,20 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-STRING2 string "ceci est une string"
-LDW R3, #STRING2
-STW R3, -(R15) //On empile la valeur diclarie
-STRING3 string "ceci en est une autre"
+STRING3 string "ceci est une string"
 LDW R3, #STRING3
+STW R3, -(R15) //On empile la valeur diclarie
+STRING4 string "ceci en est une autre"
+LDW R3, #STRING4
 STW R3, -(R15) //On empile la valeur diclarie
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur diclarie
-STRING5 string "COUCOU1"
-LDW R3, #STRING5
+STRING6 string "COUCOU1"
+LDW R3, #STRING6
 LDW R0, R3
 JSR @println
-STRING6 string "COUCOU2"
-LDW R3, #STRING6
+STRING7 string "COUCOU2"
+LDW R3, #STRING7
 LDW R0, R3
 JSR @println
 LDW R3, #7689
@@ -74,8 +74,8 @@ LDW R6, R3
 JSR @itoa
 LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mimoire
-STRING7 string "Entrez une chaine : "
-LDW R3, #STRING7
+STRING8 string "Entrez une chaine : "
+LDW R3, #STRING8
 LDW R0, R3
 JSR @print
 JSR @read
@@ -85,8 +85,8 @@ LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @println
-STRING8 string "Entrez une nouvelle chaine : "
-LDW R3, #STRING8
+STRING9 string "Entrez une nouvelle chaine : "
+LDW R3, #STRING9
 LDW R0, R3
 JSR @print
 JSR @read
@@ -251,8 +251,8 @@ STW R12, -(SP)
 STW R13, -(SP)
 STW R14, -(SP)
 
-STRING4 string "I like kebabs"
-LDW R3, #STRING4
+STRING5 string "I like kebabs"
+LDW R3, #STRING5
 //On recharge les registres
 LDW R14, (SP)+
 LDW R13, (SP)+
@@ -440,7 +440,7 @@ LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans la suite de l'exicution
 
-//*** int read() : lit un entier sur l'entrie standard ***//
+//*** string read() : lit une chaine sur l'entrie standard ***//
 read 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -484,6 +484,92 @@ LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans le programme
 
+//*** int readi() : lit un entier sur l'entrie standard ***//
+readi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+//On commence par lire la chaine
+STRING1 RSB 100 //On crie la chaine de retour (100 caracthres max)
+LDQ STRING1, R0 //On met cette adresse en lecture
+TRP #READ_TRP //On lhve la trappe
+LDW R5, R0 //On met le risultat dans R5
+JSR @atoi //On convertit en entier. Risultat dans R3
+//On ferme l'environnement courant
+LDW SP, BP //On riintiialise le sommet de la pile ` la base courante
+LDW BP, (SP)+ //On dipile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
+//*** int atoi() : convertit une chaine en entier base 10 ***//
+atoi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+//On ferme l'environnement courant
+LDW SP, BP //On riintiialise le sommet de la pile ` la base courante
+LDW BP, (SP)+ //On dipile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
 //*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passie en paramhtre ***//
 itoa //On sauvegarde les registres
 STW R0, -(SP)
@@ -503,8 +589,8 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING1 RSB 100 //On crie la chaine de retour (100 octets max)
-LDQ STRING1, R3 //On charge l'adresse dans R0
+STRING2 RSB 100 //On crie la chaine de retour (100 octets max)
+LDQ STRING2, R3 //On charge l'adresse dans R0
 //R5 -> entier ` convertir, R6 -> base de conversion, R3 -> adresse de la chaine risultat
 ASCII_MINUS equ 45
 ASCII_PLUS  equ 43

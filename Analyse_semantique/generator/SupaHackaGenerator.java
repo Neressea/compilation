@@ -77,7 +77,7 @@ public class SupaHackaGenerator {
 							
 							//On a une variable
 						}else if((node.getChildCount() == 2 && TDS.findIn(pile, node.getChild(1).getText(), FieldType.FieldTypeDefStructure)==null) || (node.getChildCount() == 3)){	
-							Declaration decl = new Declaration(node);
+							Declaration decl = new Declaration(node, this);
 							decl.genererCode(pile);
 						//On a une structure
 						}else {
@@ -107,7 +107,7 @@ public class SupaHackaGenerator {
 					
 					//Appel d'une fonction
 					case "FUNC_CALL":
-						Fonction func = new Fonction(node);
+						Fonction func = new Fonction(node, this);
 						func.genererCode(pile);
 						break;
 						
@@ -119,7 +119,7 @@ public class SupaHackaGenerator {
 						
 					//Condition
 					case "COND":
-						Condition cond = new Condition(node);
+						Condition cond = new Condition(node, this);
 						cond.genererCode(pile);
 						break;
 						
@@ -161,7 +161,7 @@ public class SupaHackaGenerator {
 					case "*":
 					case "/":
 					case "NEG":
-						ExpressionArithmetique ea = new ExpressionArithmetique(node);
+						ExpressionArithmetique ea = new ExpressionArithmetique(node, this);
 						ea.genererCode(pile);
 						break;
 						
@@ -194,7 +194,7 @@ public class SupaHackaGenerator {
 						}
 						
 						if(is_string || is_numb){
-							OperandeSimple os = new OperandeSimple(node);
+							OperandeSimple os = new OperandeSimple(node, this);
 							os.genererCode(pile);
 						}else{
 							genererChild(node);

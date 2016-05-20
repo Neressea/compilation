@@ -10,8 +10,8 @@ import analyse.TDS;
 
 public class Fonction extends Instruction{
 
-	public Fonction(CommonTree node) {
-		super(node);
+	public Fonction(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class Fonction extends Instruction{
 		if(function_name.equals("print") || function_name.equals("println")){
 			
 			//On récupère le paramètre que veut afficher le programmeur
-			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
+			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
 			//Le résultat est foutu dans R3 : adresse de la chaine
 			ea.genererCode(pile);
@@ -40,7 +40,7 @@ public class Fonction extends Instruction{
 		}else if(function_name.equals("printi") || function_name.equals("printiln")){
 			
 			//On récupère le paramètre que veut afficher le programmeur
-			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
+			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
 			//Le résultat est foutu dans R3
 			ea.genererCode(pile);
@@ -71,7 +71,7 @@ public class Fonction extends Instruction{
 		}else if(function_name.equals("itoa")){
 			
 			//On récupère le paramètre que veut convertir le programmeur
-			ExpressionArithmetique entier = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
+			ExpressionArithmetique entier = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
 			//Le résultat est foutu dans R3
 			entier.genererCode(pile);
@@ -80,7 +80,7 @@ public class Fonction extends Instruction{
 			ca.append("LDW R5, R3");
 			
 			//On charge la base que l'utilisateur veut utiliser
-			ExpressionArithmetique base_op = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(1));
+			ExpressionArithmetique base_op = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(1), this.generator);
 			
 			//Résultat dans R3
 			base_op.genererCode(pile);
@@ -96,7 +96,7 @@ public class Fonction extends Instruction{
 			//atoi prend une chaine et la convertit en int base 10
 			
 			//On récupère le paramètre que veut convertir le programmeur
-			ExpressionArithmetique chaine = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0));
+			ExpressionArithmetique chaine = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
 			//Le résultat est foutu dans R3
 			chaine.genererCode(pile);
@@ -114,7 +114,7 @@ public class Fonction extends Instruction{
 			//On empile les paramètres s'il y en a 
 			if(params_effectifs != null){
 				for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
-					ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i));
+					ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i), this.generator);
 					ea.genererCode(pile);
 					//On empile le paramètre
 					ca.append("STW R3, -(R15) //On empile le paramètre");

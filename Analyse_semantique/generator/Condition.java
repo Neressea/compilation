@@ -11,8 +11,8 @@ public class Condition extends Instruction{
 	private ArrayList<String> operande = new ArrayList<String>();
 	private static int nb_condid = 0; 
 	
-	public Condition(CommonTree node) {
-		super(node);
+	public Condition(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 		operande.add("&");
 		operande.add("|");
 		operande.add("<");
@@ -45,7 +45,7 @@ public class Condition extends Instruction{
 		}
 		
 		if (isNumb){
-			ExpressionArithmetique op = new ExpressionArithmetique((CommonTree) node);
+			ExpressionArithmetique op = new ExpressionArithmetique((CommonTree) node, this.generator);
 			op.genererCode(pile);
 			codeass.append("STW R3, -(R15)");				
 		}else{
@@ -78,10 +78,10 @@ public class Condition extends Instruction{
 			}else{
 				System.out.println(node.getChild(0).getText()+node.getChild(0).getText().matches("\".*\""));
 				if(node.getChild(0).getText().matches("\".*\"")){
-					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
+					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
 					op1.genererCode(pile);
 					codeass.append("LDW R5, R3");
-					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
+					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 					op2.genererCode(pile);			
 					codeass.append("LDW R11, R3");
 					codeass.append("LDW R6, R3");
@@ -124,10 +124,10 @@ public class Condition extends Instruction{
 					codeass.append(buffer);
 					nb_condid++;
 				}else{
-					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
+					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
 					op1.genererCode(pile);
 					codeass.append("LDW R2, R3");
-					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
+					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 					op2.genererCode(pile);
 					String buffer = "CMP R2, R3\n";
 					switch (node.getText()){

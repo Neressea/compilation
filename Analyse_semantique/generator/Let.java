@@ -8,8 +8,8 @@ import analyse.TDS;
 
 public class Let extends Instruction{
 
-	public Let(CommonTree node) {
-		super(node);
+	public Let(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override

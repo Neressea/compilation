@@ -8,19 +8,17 @@ import analyse.TDS;
 
 public class While extends Instruction{
 	
-	private SupaHackaGenerator generator;
 	private static int nb_while = 0; 
 	
 	public While(CommonTree node, SupaHackaGenerator generator) {
-		super(node);
-		this.generator = generator;
+		super(node, generator);
 	}
 
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
 		nb_while++;
 		CodeAss ca = CodeAss.getCodeSingleton();
-		Condition condWhile = new Condition((CommonTree) node.getChild(0).getChild(0));
+		Condition condWhile = new Condition((CommonTree) node.getChild(0).getChild(0), this.generator);
 		
 		// Creation etiquette code boucle while
 		ca.append("boucleW" + nb_while + " // etiquette debut while");

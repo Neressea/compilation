@@ -23,9 +23,11 @@ import analyse.TDS;
 public abstract class Instruction {
 	
 	protected CommonTree node;
+	protected SupaHackaGenerator generator;
 
-	public Instruction(CommonTree node) {
+	public Instruction(CommonTree node, SupaHackaGenerator generator) {
 		this.node = node;
+		this.generator = generator;
 	}
 	
 	/**

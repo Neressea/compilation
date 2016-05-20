@@ -15,8 +15,8 @@ public class OperandeSimple extends Instruction {
 	public static int counter = 0;
 
 
-	public OperandeSimple(CommonTree node) {
-		super(node);
+	public OperandeSimple(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override
@@ -36,12 +36,12 @@ public class OperandeSimple extends Instruction {
 			
 		}else if(comparateurs_associateurs.contains(token)){
 			
-			Condition cond = new Condition(node);
+			Condition cond = new Condition(node, this.generator);
 			cond.genererCode(pile);
 			
 		}else if (token.equals("FUNC_CALL")){
 			
-			Fonction func = new Fonction(node);
+			Fonction func = new Fonction(node, this.generator);
 			func.genererCode(pile);
 			
 		} else {
@@ -63,7 +63,7 @@ public class OperandeSimple extends Instruction {
 			if (is_digit) { // C'est une constante entiere
 				ca.append("LDW R3, #" + value);
 			} else { // Il s'agit d'un identifiant
-				Identifiant idf = new Identifiant(node);
+				Identifiant idf = new Identifiant(node, this.generator);
 				
 				//L'adresse de la variable est stock�e dans R4
 				idf.genererCode(pile);

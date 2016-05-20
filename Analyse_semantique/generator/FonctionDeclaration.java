@@ -8,11 +8,8 @@ import analyse.TDS;
 
 public class FonctionDeclaration extends Instruction{
 	
-	private SupaHackaGenerator generator;
-
 	public FonctionDeclaration(CommonTree node, SupaHackaGenerator generator) {
-		super(node);
-		this.generator = generator;
+		super(node, generator);
 	}
 
 	@Override

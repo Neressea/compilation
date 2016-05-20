@@ -94,11 +94,11 @@ public class CodeAss {
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
 				
-				+"LDQ 0, R3 //On initialiseR3\n"
-				+"LOOP_ATOI \n"
-				
-				+"BEQ END_LOOP_ATOI\n"
-				+"BMP END_LOOP_ATOI\n"
+//				+"LDQ 0, R3 //On initialiseR3\n"
+//				+"LOOP_ATOI \n"
+//				
+//				+"BEQ END_LOOP_ATOI\n"
+//				+"BMP END_LOOP_ATOI\n"
 				
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()

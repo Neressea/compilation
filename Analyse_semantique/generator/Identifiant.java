@@ -11,8 +11,8 @@ import analyse.TDS;
 
 public class Identifiant extends Instruction{
 
-	public Identifiant(CommonTree node) {
-		super(node);
+	public Identifiant(CommonTree node, SupaHackaGenerator generator) {
+		super(node, generator);
 	}
 
 	@Override
