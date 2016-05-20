@@ -89,17 +89,29 @@ public class CodeAss {
 				+ Fonction.reloadRegisters()
 				+ "RTS //On retourne dans le programme\n\n"
 				
-				+"//*** int atoi() : convertit une chaine en entier base 10 ***//\n"
+				+"//*** int atoi(string) : convertit une chaine en entier base 10. R5 = adresse de la chaine. ***//\n"
 				+"atoi \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
 				
-//				+"LDQ 0, R3 //On initialiseR3\n"
-//				+"LOOP_ATOI \n"
-//				
-//				+"BEQ END_LOOP_ATOI\n"
-//				+"BMP END_LOOP_ATOI\n"
+				+"LDQ 0, R3 //On initialise R3\n"
+				+"LDQ ASCII_0, R6 //On charge lavaleur ASCII de 0 \n"
+				+"LDQ 10, R7 //On charge la valeur ASCII de 0 \n"
+				+"LOOP_ATOI \n"
 				
+				+"//On charge le caractère courant dans R4\n"
+				+"LDB R4, (R5)\n"
+				+"TST R4\n"
+				+"BEQ END_LOOP_ATOI-$-2 //Si le caractère courant est égal à 0, on saute à la fin de la boucle\n\n"
+				
+				+"MUL R3, R7, R3//On multiplie par 10 la valeur de l'entier\n"
+				+"SUB R4, R6, R4 //On calcule la valeur décimale de R4\n"
+				+"ADD R3, R4, R3 //On ajoute cette valeur à R3\n\n"
+				
+				+"ADQ 1, R5//On se déplace dans la chaine\n"
+				+"BMP LOOP_ATOI-$-2\n"
+				
+				+"END_LOOP_ATOI\n"
 				+ Fonction.closeEnv()
 				+ Fonction.reloadRegisters()
 				+ "RTS //On retourne dans le programme\n\n"
@@ -111,16 +123,11 @@ public class CodeAss {
 				+ "STRING"+(OperandeSimple.counter++) + " RSB 100 //On crée la chaine de retour (100 octets max)\n"
 				+ "LDQ STRING"+(OperandeSimple.counter-1)+", R3 //On charge l'adresse dans R0\n"
 				+"//R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat\n"
-				+"ASCII_MINUS equ 45\n"
-				+"ASCII_PLUS  equ 43\n"
-				+"ASCII_SP    equ 32 \n"
-				+"ASCII_0     equ 48 \n"
-				+"ASCII_A     equ 65 \n\n"
 				
 				+"LDQ 10, R8  \n"
 				+"CMP R6, R8  \n"
 				+"BNE NOSIGN-$-2 //Si b==10, on calcule le signe\n"
-				+"LDQ ASCII_PLUS, R7 //R7 contiendra le symbole de la conversion\n"
+				+"LDQ 0, R7 //R7 contiendra le symbole de la conversion\n"
 				+"TST R5\n"
 				+"BGE POSIT-$-2 //On saute si (R5) >= 0\n"
 				+"NEG R5, R5\n"
@@ -175,7 +182,12 @@ public class CodeAss {
 				+"//*** On définit les registres usuels ***//\n"
 				+"SP equ R15 //Reigstre de sommet de pile\n"
 				+"WR equ R14 //Registre pour lever les traps\n"
-				+"BP equ R13 //Registre de base de l'environnement courant\n\n"
+				+"BP equ R13 //Registre de base de l'environnement courant\n"
+				+"ASCII_MINUS equ 45\n"
+				+"ASCII_PLUS  equ 43\n"
+				+"ASCII_SP    equ 32 \n"
+				+"ASCII_0     equ 48 \n"
+				+"ASCII_A     equ 65 \n\n"
 			
 				+"//*** On définit les trappes usuelles ***//\n"
 				+"EXIT_TRP equ 64 //Trappe pour quitter le programme\n"
@@ -188,7 +200,7 @@ public class CodeAss {
 				+"ORG   LOADA	// chargement en LOADA\n"
 				+"START main	// demarre à main\n\n"
 				
-				+"/////// ------------------------------  En-tete du programme  ------------------------------ ///////\n\n"
+				+"/////// ------------------------------  Programme principal  ------------------------------ ///////\n\n"
 				
 				+"main LDW SP, #STACKA //On charge la base de la pile\n"
 				+"LDW BP, #NIL //Base initiale nulle\n\n"

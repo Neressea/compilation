@@ -105,7 +105,7 @@ public class Fonction extends Instruction{
 			ca.append("LDW R5, R3");
 			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
-			ca.append("JSR @itoa");
+			ca.append("JSR @atoi");
 			
 		}else{
 			//Autrement, c'est une fonction du programmeur

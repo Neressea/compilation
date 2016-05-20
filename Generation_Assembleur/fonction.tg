@@ -1,10 +1,10 @@
 let
 
-	var s := "ceci est une string"
-	var what_did_I_just_read := "ceci en est une autre"
+	var s := "42"
+	//var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 0
 
-	function do_print(a : string, b : int) = (
+	/*function do_print(a : string, b : int) = (
 		println(a);
 		printiln(b)
 	)
@@ -15,11 +15,11 @@ let
 
 	function get_string() : string = (
 		"I like kebabs"
-	)
+	)*/
 
 in
 
-	println("COUCOU1");
+	/*println("COUCOU1");
 	println("COUCOU2");
 	printiln(7689 - 9999);
 	println(s); //ceci est une string
@@ -30,10 +30,13 @@ in
 	print("Entrez une nouvelle chaine : ");
 	what_did_I_just_read := read();
 	x := 5 = 5;
-	do_print(what_did_I_just_read, x);
+	//do_print(what_did_I_just_read, x);
 
 	println(get_string());
 	x := get_int();
+	printiln(x);*/
+
+	x := readi();
 	printiln(x)
 
 end

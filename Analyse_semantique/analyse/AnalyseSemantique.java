@@ -71,7 +71,6 @@ public class AnalyseSemantique {
 		
 		FieldFonction fatoi = new FieldFonction("atoi", 0, "int");
 		fatoi.addParam("chaine", "string");
-		fatoi.addParam("base", "int");
 		base.add(fatoi);
 		
 		FieldFonction fread = new FieldFonction("read", base.getCurrentSize(), "string");

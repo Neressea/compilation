@@ -9,6 +9,11 @@ STACKA equ 4096 //Adresse de base de la pile
 SP equ R15 //Reigstre de sommet de pile
 WR equ R14 //Registre pour lever les traps
 BP equ R13 //Registre de base de l'environnement courant
+ASCII_MINUS equ 45
+ASCII_PLUS  equ 43
+ASCII_SP    equ 32 
+ASCII_0     equ 48 
+ASCII_A     equ 65 
 
 //*** On définit les trappes usuelles ***//
 EXIT_TRP equ 64 //Trappe pour quitter le programme
@@ -21,7 +26,7 @@ NUL equ 0 //Caractère de fin de chaine
 ORG   LOADA	// chargement en LOADA
 START main	// demarre à main
 
-/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+/////// ------------------------------  Programme principal  ------------------------------ ///////
 
 main LDW SP, #STACKA //On charge la base de la pile
 LDW BP, #NIL //Base initiale nulle
@@ -33,98 +38,15 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-STRING3 string "ceci est une string"
+STRING3 string "42"
 LDW R3, #STRING3
-STW R3, -(R15) //On empile la valeur déclarée
-STRING4 string "ceci en est une autre"
-LDW R3, #STRING4
 STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #0
 STW R3, -(R15) //On empile la valeur déclarée
-STRING6 string "COUCOU1"
-LDW R3, #STRING6
-LDW R0, R3
-JSR @println
-STRING7 string "COUCOU2"
-LDW R3, #STRING7
-LDW R0, R3
-JSR @println
-LDW R3, #7689
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #9999
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDW R5, R3
-LDQ 10, R6
-JSR @itoa
-LDW R0, R3
-JSR @printiln
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R0, R3
-JSR @println
-LDW R3, #100
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #10
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R5, R3
-LDW R3, #16
-LDW R6, R3
-JSR @itoa
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-STRING8 string "Entrez une chaine : "
-LDW R3, #STRING8
-LDW R0, R3
-JSR @print
-JSR @read
-LDW R0, R3
-JSR @println
-LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R0, R3
-JSR @println
-STRING9 string "Entrez une nouvelle chaine : "
-LDW R3, #STRING9
-LDW R0, R3
-JSR @print
-JSR @read
+JSR @readi
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R3, #5
-LDW R2, R3
-LDW R3, #5
-CMP R2, R3
-BEQ 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
-LDW R3, (R15)+
-
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//CALL : do_print
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramètre
 LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramètre
-JSR @do_print
-LDW R5, (R15)+ //On empile le paramètre
-LDW R5, (R15)+ //On empile le paramètre
-//CALL : get_string
-JSR @get_string
-LDW R0, R3
-JSR @println
-//CALL : get_int
-JSR @get_int
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
@@ -136,140 +58,6 @@ TRP #EXIT_TRP //On quitte l'exécution
 
 /////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
 
-do_print
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R13, -(SP)
-STW R14, -(SP)
-
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R0, R3
-JSR @println
-LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R5, R3
-LDQ 10, R6
-JSR @itoa
-LDW R0, R3
-JSR @printiln
-//On recharge les registres
-LDW R14, (SP)+
-LDW R13, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
-get_int
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R13, -(SP)
-STW R14, -(SP)
-
-LDW R3, #3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #2
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #7
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #2
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #4
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//On recharge les registres
-LDW R14, (SP)+
-LDW R13, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
-get_string
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R13, -(SP)
-STW R14, -(SP)
-
-STRING5 string "I like kebabs"
-LDW R3, #STRING5
-//On recharge les registres
-LDW R14, (SP)+
-LDW R13, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
 //*** println(string) : affiche le texte passé en paramètre et fait un saut de ligne ***//
@@ -530,7 +318,7 @@ LDW R1, (SP)+
 LDW R0, (SP)+
 RTS //On retourne dans le programme
 
-//*** int atoi() : convertit une chaine en entier base 10 ***//
+//*** int atoi(string) : convertit une chaine en entier base 10. R5 = adresse de la chaine. ***//
 atoi 
 //On sauvegarde les registres
 STW R0, -(SP)
@@ -550,6 +338,22 @@ STW R14, -(SP)
 //On ouvre un nouvel environnement dans la pile
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
+LDQ 0, R3 //On initialise R3
+LDQ ASCII_0, R6 //On charge lavaleur ASCII de 0 
+LDQ 10, R7 //On charge la valeur ASCII de 0 
+LOOP_ATOI 
+//On charge le caractère courant dans R4
+LDB R4, (R5)
+TST R4
+BEQ END_LOOP_ATOI-$-2 //Si le caractère courant est égal à 0, on saute à la fin de la boucle
+
+MUL R3, R7, R3//On multiplie par 10 la valeur de l'entier
+SUB R4, R6, R4 //On calcule la valeur décimale de R4
+ADD R3, R4, R3 //On ajoute cette valeur à R3
+
+ADQ 1, R5//On se déplace dans la chaine
+BMP LOOP_ATOI-$-2
+END_LOOP_ATOI
 //On ferme l'environnement courant
 LDW SP, BP //On réintiialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -592,16 +396,10 @@ LDW BP, SP //Le sommet de la pile devient la nouvelle base
 STRING2 RSB 100 //On crée la chaine de retour (100 octets max)
 LDQ STRING2, R3 //On charge l'adresse dans R0
 //R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
-ASCII_MINUS equ 45
-ASCII_PLUS  equ 43
-ASCII_SP    equ 32 
-ASCII_0     equ 48 
-ASCII_A     equ 65 
-
 LDQ 10, R8  
 CMP R6, R8  
 BNE NOSIGN-$-2 //Si b==10, on calcule le signe
-LDQ ASCII_PLUS, R7 //R7 contiendra le symbole de la conversion
+LDQ 0, R7 //R7 contiendra le symbole de la conversion
 TST R5
 BGE POSIT-$-2 //On saute si (R5) >= 0
 NEG R5, R5
