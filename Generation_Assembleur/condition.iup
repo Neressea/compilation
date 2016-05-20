@@ -10,7 +10,7 @@ effa  debut d'execution
 2400   emplacement : 61448  (0xf008)  ligne n° 33	LDQ NUL, R4 //Fin de chaine
 5332   emplacement : 61450  (0xf00a)  ligne n° 34	STB R3, (R2)+
 5422   emplacement : 61452  (0xf00c)  ligne n° 35	STB R4, (R2)
-6365   emplacement : 61454  (0xf00e)  ligne n° 36	STRING2 string "ceci est une string"
+6365   emplacement : 61454  (0xf00e)  ligne n° 36	STRING3 string "ceci est une string"
 6369   emplacement : 61456  (0xf010) 
 2065   emplacement : 61458  (0xf012) 
 7374   emplacement : 61460  (0xf014) 
@@ -20,10 +20,10 @@ effa  debut d'execution
 7472   emplacement : 61468  (0xf01c) 
 696e   emplacement : 61470  (0xf01e) 
 6700   emplacement : 61472  (0xf020) 
-6380   emplacement : 61474  (0xf022)  ligne n° 37	LDW R3, #STRING2
+6380   emplacement : 61474  (0xf022)  ligne n° 37	LDW R3, #STRING3
 f00e   emplacement : 61476  (0xf024) 
 634f   emplacement : 61478  (0xf026)  ligne n° 38	STW R3, -(R15) //On empile la valeur d}clar}e
-6365   emplacement : 61480  (0xf028)  ligne n° 39	STRING3 string "ceci en est une autre"
+6365   emplacement : 61480  (0xf028)  ligne n° 39	STRING4 string "ceci en est une autre"
 6369   emplacement : 61482  (0xf02a) 
 2065   emplacement : 61484  (0xf02c) 
 6e20   emplacement : 61486  (0xf02e) 
@@ -34,1075 +34,1075 @@ f00e   emplacement : 61476  (0xf024)
 6175   emplacement : 61496  (0xf038) 
 7472   emplacement : 61498  (0xf03a) 
 6500   emplacement : 61500  (0xf03c) 
-6380   emplacement : 61502  (0xf03e)  ligne n° 40	LDW R3, #STRING3
+6380   emplacement : 61502  (0xf03e)  ligne n° 40	LDW R3, #STRING4
 f028   emplacement : 61504  (0xf040) 
 634f   emplacement : 61506  (0xf042)  ligne n° 41	STW R3, -(R15) //On empile la valeur d}clar}e
 6380   emplacement : 61508  (0xf044)  ligne n° 42	LDW R3, #0
 0000   emplacement : 61510  (0xf046) 
 634f   emplacement : 61512  (0xf048)  ligne n° 43	STW R3, -(R15) //On empile la valeur d}clar}e
-434f   emplacement : 61514  (0xf04a)  ligne n° 44	STRING4 string "COUCOU1"
-5543   emplacement : 61516  (0xf04c) 
-4f55   emplacement : 61518  (0xf04e) 
-3100   emplacement : 61520  (0xf050) 
-6380   emplacement : 61522  (0xf052)  ligne n° 45	LDW R3, #STRING4
-f04a   emplacement : 61524  (0xf054) 
-6093   emplacement : 61526  (0xf056)  ligne n° 46	LDW R0, R3
-0a50   emplacement : 61528  (0xf058)  ligne n° 47	JSR @print
-f72a   emplacement : 61530  (0xf05a) 
-434f   emplacement : 61532  (0xf05c)  ligne n° 48	STRING5 string "COUCOU2"
-5543   emplacement : 61534  (0xf05e) 
-4f55   emplacement : 61536  (0xf060) 
-3200   emplacement : 61538  (0xf062) 
-6380   emplacement : 61540  (0xf064)  ligne n° 49	LDW R3, #STRING5
-f05c   emplacement : 61542  (0xf066) 
-6093   emplacement : 61544  (0xf068)  ligne n° 50	LDW R0, R3
-0a50   emplacement : 61546  (0xf06a)  ligne n° 51	JSR @print
-f72a   emplacement : 61548  (0xf06c) 
-6380   emplacement : 61550  (0xf06e)  ligne n° 52	LDW R3, #7689
-1e09   emplacement : 61552  (0xf070) 
-634f   emplacement : 61554  (0xf072)  ligne n° 53	STW R3, -(R15) //On empile le resultat de l'operande droite
-6380   emplacement : 61556  (0xf074)  ligne n° 54	LDW R3, #9999
-270f   emplacement : 61558  (0xf076) 
-62bf   emplacement : 61560  (0xf078)  ligne n° 55	LDW R2, (R15)+ //On depile l'operande droite
-f233   emplacement : 61562  (0xf07a)  ligne n° 56	SUB R2, R3, R3
-6593   emplacement : 61564  (0xf07c)  ligne n° 57	LDW R5, R3
-260a   emplacement : 61566  (0xf07e)  ligne n° 58	LDQ 10, R6
-0a50   emplacement : 61568  (0xf080)  ligne n° 59	JSR @itoa
-f870   emplacement : 61570  (0xf082) 
-6093   emplacement : 61572  (0xf084)  ligne n° 60	LDW R0, R3
-0a50   emplacement : 61574  (0xf086)  ligne n° 61	JSR @printi
-f776   emplacement : 61576  (0xf088) 
-6180   emplacement : 61578  (0xf08a)  ligne n° 62	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-0ffe   emplacement : 61580  (0xf08c) 
-63a1   emplacement : 61582  (0xf08e)  ligne n° 63	LDW R3, (R1)
-6093   emplacement : 61584  (0xf090)  ligne n° 64	LDW R0, R3
-0a50   emplacement : 61586  (0xf092)  ligne n° 65	JSR @print
-f72a   emplacement : 61588  (0xf094) 
-6380   emplacement : 61590  (0xf096)  ligne n° 66	LDW R3, #100
-0064   emplacement : 61592  (0xf098) 
-634f   emplacement : 61594  (0xf09a)  ligne n° 67	STW R3, -(R15) //On empile le resultat de l'operande droite
-6380   emplacement : 61596  (0xf09c)  ligne n° 68	LDW R3, #10
-000a   emplacement : 61598  (0xf09e) 
-62bf   emplacement : 61600  (0xf0a0)  ligne n° 69	LDW R2, (R15)+ //On depile l'operande droite
-a233   emplacement : 61602  (0xf0a2)  ligne n° 70	DIV R2, R3, R3
-6593   emplacement : 61604  (0xf0a4)  ligne n° 71	LDW R5, R3
-6380   emplacement : 61606  (0xf0a6)  ligne n° 72	LDW R3, #16
-0010   emplacement : 61608  (0xf0a8) 
-6693   emplacement : 61610  (0xf0aa)  ligne n° 73	LDW R6, R3
-0a50   emplacement : 61612  (0xf0ac)  ligne n° 74	JSR @itoa
-f870   emplacement : 61614  (0xf0ae) 
-6180   emplacement : 61616  (0xf0b0)  ligne n° 75	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-0ffe   emplacement : 61618  (0xf0b2) 
-6321   emplacement : 61620  (0xf0b4)  ligne n° 76	STW R3, (R1) //On stocke le resultat dans la m}moire
-0a50   emplacement : 61622  (0xf0b6)  ligne n° 77	JSR @read
-f7c2   emplacement : 61624  (0xf0b8) 
-6093   emplacement : 61626  (0xf0ba)  ligne n° 78	LDW R0, R3
-0a50   emplacement : 61628  (0xf0bc)  ligne n° 79	JSR @print
-f72a   emplacement : 61630  (0xf0be) 
-6180   emplacement : 61632  (0xf0c0)  ligne n° 80	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
-0ffe   emplacement : 61634  (0xf0c2) 
-63a1   emplacement : 61636  (0xf0c4)  ligne n° 81	LDW R3, (R1)
-6093   emplacement : 61638  (0xf0c6)  ligne n° 82	LDW R0, R3
-0a50   emplacement : 61640  (0xf0c8)  ligne n° 83	JSR @print
-f72a   emplacement : 61642  (0xf0ca) 
-0a50   emplacement : 61644  (0xf0cc)  ligne n° 84	JSR @read
-f7c2   emplacement : 61646  (0xf0ce) 
-6180   emplacement : 61648  (0xf0d0)  ligne n° 85	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
-0ffc   emplacement : 61650  (0xf0d2) 
-6321   emplacement : 61652  (0xf0d4)  ligne n° 86	STW R3, (R1) //On stocke le resultat dans la m}moire
+6380   emplacement : 61514  (0xf04a)  ligne n° 44	LDW R3, #1
+0001   emplacement : 61516  (0xf04c) 
+634f   emplacement : 61518  (0xf04e)  ligne n° 45	STW R3, -(R15) //On empile la valeur d}clar}e
+434f   emplacement : 61520  (0xf050)  ligne n° 46	STRING5 string "COUCOU1"
+5543   emplacement : 61522  (0xf052) 
+4f55   emplacement : 61524  (0xf054) 
+3100   emplacement : 61526  (0xf056) 
+6380   emplacement : 61528  (0xf058)  ligne n° 47	LDW R3, #STRING5
+f050   emplacement : 61530  (0xf05a) 
+6093   emplacement : 61532  (0xf05c)  ligne n° 48	LDW R0, R3
+0a50   emplacement : 61534  (0xf05e)  ligne n° 49	JSR @print
+f79e   emplacement : 61536  (0xf060) 
+434f   emplacement : 61538  (0xf062)  ligne n° 50	STRING6 string "COUCOU2"
+5543   emplacement : 61540  (0xf064) 
+4f55   emplacement : 61542  (0xf066) 
+3200   emplacement : 61544  (0xf068) 
+6380   emplacement : 61546  (0xf06a)  ligne n° 51	LDW R3, #STRING6
+f062   emplacement : 61548  (0xf06c) 
+6093   emplacement : 61550  (0xf06e)  ligne n° 52	LDW R0, R3
+0a50   emplacement : 61552  (0xf070)  ligne n° 53	JSR @print
+f79e   emplacement : 61554  (0xf072) 
+6380   emplacement : 61556  (0xf074)  ligne n° 54	LDW R3, #7689
+1e09   emplacement : 61558  (0xf076) 
+634f   emplacement : 61560  (0xf078)  ligne n° 55	STW R3, -(R15) //On empile le resultat de l'operande droite
+6380   emplacement : 61562  (0xf07a)  ligne n° 56	LDW R3, #9999
+270f   emplacement : 61564  (0xf07c) 
+62bf   emplacement : 61566  (0xf07e)  ligne n° 57	LDW R2, (R15)+ //On depile l'operande droite
+f233   emplacement : 61568  (0xf080)  ligne n° 58	SUB R2, R3, R3
+6593   emplacement : 61570  (0xf082)  ligne n° 59	LDW R5, R3
+260a   emplacement : 61572  (0xf084)  ligne n° 60	LDQ 10, R6
+0a50   emplacement : 61574  (0xf086)  ligne n° 61	JSR @itoa
+fa18   emplacement : 61576  (0xf088) 
+6093   emplacement : 61578  (0xf08a)  ligne n° 62	LDW R0, R3
+0a50   emplacement : 61580  (0xf08c)  ligne n° 63	JSR @printi
+f830   emplacement : 61582  (0xf08e) 
+6180   emplacement : 61584  (0xf090)  ligne n° 64	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+0ffe   emplacement : 61586  (0xf092) 
+63a1   emplacement : 61588  (0xf094)  ligne n° 65	LDW R3, (R1)
+6093   emplacement : 61590  (0xf096)  ligne n° 66	LDW R0, R3
+0a50   emplacement : 61592  (0xf098)  ligne n° 67	JSR @print
+f79e   emplacement : 61594  (0xf09a) 
+6380   emplacement : 61596  (0xf09c)  ligne n° 68	LDW R3, #100
+0064   emplacement : 61598  (0xf09e) 
+634f   emplacement : 61600  (0xf0a0)  ligne n° 69	STW R3, -(R15) //On empile le resultat de l'operande droite
+6380   emplacement : 61602  (0xf0a2)  ligne n° 70	LDW R3, #10
+000a   emplacement : 61604  (0xf0a4) 
+62bf   emplacement : 61606  (0xf0a6)  ligne n° 71	LDW R2, (R15)+ //On depile l'operande droite
+a233   emplacement : 61608  (0xf0a8)  ligne n° 72	DIV R2, R3, R3
+6593   emplacement : 61610  (0xf0aa)  ligne n° 73	LDW R5, R3
+6380   emplacement : 61612  (0xf0ac)  ligne n° 74	LDW R3, #16
+0010   emplacement : 61614  (0xf0ae) 
+6693   emplacement : 61616  (0xf0b0)  ligne n° 75	LDW R6, R3
+0a50   emplacement : 61618  (0xf0b2)  ligne n° 76	JSR @itoa
+fa18   emplacement : 61620  (0xf0b4) 
+6180   emplacement : 61622  (0xf0b6)  ligne n° 77	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+0ffe   emplacement : 61624  (0xf0b8) 
+6321   emplacement : 61626  (0xf0ba)  ligne n° 78	STW R3, (R1) //On stocke le resultat dans la m}moire
+0a50   emplacement : 61628  (0xf0bc)  ligne n° 79	JSR @read
+f876   emplacement : 61630  (0xf0be) 
+6093   emplacement : 61632  (0xf0c0)  ligne n° 80	LDW R0, R3
+0a50   emplacement : 61634  (0xf0c2)  ligne n° 81	JSR @print
+f79e   emplacement : 61636  (0xf0c4) 
+6180   emplacement : 61638  (0xf0c6)  ligne n° 82	LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+0ffe   emplacement : 61640  (0xf0c8) 
+63a1   emplacement : 61642  (0xf0ca)  ligne n° 83	LDW R3, (R1)
+6093   emplacement : 61644  (0xf0cc)  ligne n° 84	LDW R0, R3
+0a50   emplacement : 61646  (0xf0ce)  ligne n° 85	JSR @print
+f79e   emplacement : 61648  (0xf0d0) 
+0a50   emplacement : 61650  (0xf0d2)  ligne n° 86	JSR @read
+f876   emplacement : 61652  (0xf0d4) 
 6180   emplacement : 61654  (0xf0d6)  ligne n° 87	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
 0ffc   emplacement : 61656  (0xf0d8) 
-63a1   emplacement : 61658  (0xf0da)  ligne n° 88	LDW R3, (R1)
-6093   emplacement : 61660  (0xf0dc)  ligne n° 89	LDW R0, R3
-0a50   emplacement : 61662  (0xf0de)  ligne n° 90	JSR @print
-f72a   emplacement : 61664  (0xf0e0) 
-6380   emplacement : 61666  (0xf0e2)  ligne n° 91	LDW R3, #5
-0005   emplacement : 61668  (0xf0e4) 
-6293   emplacement : 61670  (0xf0e6)  ligne n° 92	LDW R2, R3
+6321   emplacement : 61658  (0xf0da)  ligne n° 88	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61660  (0xf0dc)  ligne n° 89	LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+0ffc   emplacement : 61662  (0xf0de) 
+63a1   emplacement : 61664  (0xf0e0)  ligne n° 90	LDW R3, (R1)
+6093   emplacement : 61666  (0xf0e2)  ligne n° 91	LDW R0, R3
+0a50   emplacement : 61668  (0xf0e4)  ligne n° 92	JSR @print
+f79e   emplacement : 61670  (0xf0e6) 
 6380   emplacement : 61672  (0xf0e8)  ligne n° 93	LDW R3, #5
 0005   emplacement : 61674  (0xf0ea) 
-4f23   emplacement : 61676  (0xf0ec)  ligne n° 94	CMP R2, R3
-1304   emplacement : 61678  (0xf0ee)  ligne n° 95	BNE 4
-2300   emplacement : 61680  (0xf0f0)  ligne n° 96	LDQ 0, R3
-0180   emplacement : 61682  (0xf0f2)  ligne n° 97	JMP #4
-0004   emplacement : 61684  (0xf0f4) 
-2301   emplacement : 61686  (0xf0f6)  ligne n° 98	LDQ 1, R3
-634f   emplacement : 61688  (0xf0f8)  ligne n° 99	STW R3, -(R15)
-63bf   emplacement : 61690  (0xf0fa)  ligne n° 101	LDW R3, (R15)+
-6180   emplacement : 61692  (0xf0fc)  ligne n° 103	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61694  (0xf0fe) 
-6321   emplacement : 61696  (0xf100)  ligne n° 104	STW R3, (R1) //On stocke le resultat dans la m}moire
+6293   emplacement : 61676  (0xf0ec)  ligne n° 94	LDW R2, R3
+6380   emplacement : 61678  (0xf0ee)  ligne n° 95	LDW R3, #5
+0005   emplacement : 61680  (0xf0f0) 
+4f23   emplacement : 61682  (0xf0f2)  ligne n° 96	CMP R2, R3
+1304   emplacement : 61684  (0xf0f4)  ligne n° 97	BNE 4
+2300   emplacement : 61686  (0xf0f6)  ligne n° 98	LDQ 0, R3
+0180   emplacement : 61688  (0xf0f8)  ligne n° 99	JMP #4
+0004   emplacement : 61690  (0xf0fa) 
+2301   emplacement : 61692  (0xf0fc)  ligne n° 100	LDQ 1, R3
+634f   emplacement : 61694  (0xf0fe)  ligne n° 101	STW R3, -(R15)
+63bf   emplacement : 61696  (0xf100)  ligne n° 103	LDW R3, (R15)+
 6180   emplacement : 61698  (0xf102)  ligne n° 105	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61700  (0xf104) 
-63a1   emplacement : 61702  (0xf106)  ligne n° 106	LDW R3, (R1)
-6593   emplacement : 61704  (0xf108)  ligne n° 107	LDW R5, R3
-260a   emplacement : 61706  (0xf10a)  ligne n° 108	LDQ 10, R6
-0a50   emplacement : 61708  (0xf10c)  ligne n° 109	JSR @itoa
-f870   emplacement : 61710  (0xf10e) 
-6093   emplacement : 61712  (0xf110)  ligne n° 110	LDW R0, R3
-0a50   emplacement : 61714  (0xf112)  ligne n° 111	JSR @printi
-f776   emplacement : 61716  (0xf114) 
-6380   emplacement : 61718  (0xf116)  ligne n° 112	LDW R3, #10
-000a   emplacement : 61720  (0xf118) 
-6293   emplacement : 61722  (0xf11a)  ligne n° 113	LDW R2, R3
-6380   emplacement : 61724  (0xf11c)  ligne n° 114	LDW R3, #5
-0005   emplacement : 61726  (0xf11e) 
-4f23   emplacement : 61728  (0xf120)  ligne n° 115	CMP R2, R3
-1304   emplacement : 61730  (0xf122)  ligne n° 116	BNE 4
-2300   emplacement : 61732  (0xf124)  ligne n° 117	LDQ 0, R3
-0180   emplacement : 61734  (0xf126)  ligne n° 118	JMP #4
-0004   emplacement : 61736  (0xf128) 
-2301   emplacement : 61738  (0xf12a)  ligne n° 119	LDQ 1, R3
-634f   emplacement : 61740  (0xf12c)  ligne n° 120	STW R3, -(R15)
-63bf   emplacement : 61742  (0xf12e)  ligne n° 122	LDW R3, (R15)+
-6180   emplacement : 61744  (0xf130)  ligne n° 124	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61746  (0xf132) 
-6321   emplacement : 61748  (0xf134)  ligne n° 125	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 61702  (0xf106)  ligne n° 106	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61704  (0xf108)  ligne n° 107	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61706  (0xf10a) 
+63a1   emplacement : 61708  (0xf10c)  ligne n° 108	LDW R3, (R1)
+6593   emplacement : 61710  (0xf10e)  ligne n° 109	LDW R5, R3
+260a   emplacement : 61712  (0xf110)  ligne n° 110	LDQ 10, R6
+0a50   emplacement : 61714  (0xf112)  ligne n° 111	JSR @itoa
+fa18   emplacement : 61716  (0xf114) 
+6093   emplacement : 61718  (0xf116)  ligne n° 112	LDW R0, R3
+0a50   emplacement : 61720  (0xf118)  ligne n° 113	JSR @printi
+f830   emplacement : 61722  (0xf11a) 
+6380   emplacement : 61724  (0xf11c)  ligne n° 114	LDW R3, #10
+000a   emplacement : 61726  (0xf11e) 
+6293   emplacement : 61728  (0xf120)  ligne n° 115	LDW R2, R3
+6380   emplacement : 61730  (0xf122)  ligne n° 116	LDW R3, #5
+0005   emplacement : 61732  (0xf124) 
+4f23   emplacement : 61734  (0xf126)  ligne n° 117	CMP R2, R3
+1304   emplacement : 61736  (0xf128)  ligne n° 118	BNE 4
+2300   emplacement : 61738  (0xf12a)  ligne n° 119	LDQ 0, R3
+0180   emplacement : 61740  (0xf12c)  ligne n° 120	JMP #4
+0004   emplacement : 61742  (0xf12e) 
+2301   emplacement : 61744  (0xf130)  ligne n° 121	LDQ 1, R3
+634f   emplacement : 61746  (0xf132)  ligne n° 122	STW R3, -(R15)
+63bf   emplacement : 61748  (0xf134)  ligne n° 124	LDW R3, (R15)+
 6180   emplacement : 61750  (0xf136)  ligne n° 126	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61752  (0xf138) 
-63a1   emplacement : 61754  (0xf13a)  ligne n° 127	LDW R3, (R1)
-6593   emplacement : 61756  (0xf13c)  ligne n° 128	LDW R5, R3
-260a   emplacement : 61758  (0xf13e)  ligne n° 129	LDQ 10, R6
-0a50   emplacement : 61760  (0xf140)  ligne n° 130	JSR @itoa
-f870   emplacement : 61762  (0xf142) 
-6093   emplacement : 61764  (0xf144)  ligne n° 131	LDW R0, R3
-0a50   emplacement : 61766  (0xf146)  ligne n° 132	JSR @printi
-f776   emplacement : 61768  (0xf148) 
-6380   emplacement : 61770  (0xf14a)  ligne n° 133	LDW R3, #10
-000a   emplacement : 61772  (0xf14c) 
-6293   emplacement : 61774  (0xf14e)  ligne n° 134	LDW R2, R3
-6380   emplacement : 61776  (0xf150)  ligne n° 135	LDW R3, #5
-0005   emplacement : 61778  (0xf152) 
-4f23   emplacement : 61780  (0xf154)  ligne n° 136	CMP R2, R3
-1704   emplacement : 61782  (0xf156)  ligne n° 137	BLW 4
-2300   emplacement : 61784  (0xf158)  ligne n° 138	LDQ 0, R3
-0180   emplacement : 61786  (0xf15a)  ligne n° 139	JMP #4
-0004   emplacement : 61788  (0xf15c) 
-2301   emplacement : 61790  (0xf15e)  ligne n° 140	LDQ 1, R3
-634f   emplacement : 61792  (0xf160)  ligne n° 141	STW R3, -(R15)
-63bf   emplacement : 61794  (0xf162)  ligne n° 143	LDW R3, (R15)+
-6180   emplacement : 61796  (0xf164)  ligne n° 145	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61798  (0xf166) 
-6321   emplacement : 61800  (0xf168)  ligne n° 146	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 61754  (0xf13a)  ligne n° 127	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61756  (0xf13c)  ligne n° 128	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61758  (0xf13e) 
+63a1   emplacement : 61760  (0xf140)  ligne n° 129	LDW R3, (R1)
+6593   emplacement : 61762  (0xf142)  ligne n° 130	LDW R5, R3
+260a   emplacement : 61764  (0xf144)  ligne n° 131	LDQ 10, R6
+0a50   emplacement : 61766  (0xf146)  ligne n° 132	JSR @itoa
+fa18   emplacement : 61768  (0xf148) 
+6093   emplacement : 61770  (0xf14a)  ligne n° 133	LDW R0, R3
+0a50   emplacement : 61772  (0xf14c)  ligne n° 134	JSR @printi
+f830   emplacement : 61774  (0xf14e) 
+6380   emplacement : 61776  (0xf150)  ligne n° 135	LDW R3, #10
+000a   emplacement : 61778  (0xf152) 
+6293   emplacement : 61780  (0xf154)  ligne n° 136	LDW R2, R3
+6380   emplacement : 61782  (0xf156)  ligne n° 137	LDW R3, #5
+0005   emplacement : 61784  (0xf158) 
+4f23   emplacement : 61786  (0xf15a)  ligne n° 138	CMP R2, R3
+1704   emplacement : 61788  (0xf15c)  ligne n° 139	BLW 4
+2300   emplacement : 61790  (0xf15e)  ligne n° 140	LDQ 0, R3
+0180   emplacement : 61792  (0xf160)  ligne n° 141	JMP #4
+0004   emplacement : 61794  (0xf162) 
+2301   emplacement : 61796  (0xf164)  ligne n° 142	LDQ 1, R3
+634f   emplacement : 61798  (0xf166)  ligne n° 143	STW R3, -(R15)
+63bf   emplacement : 61800  (0xf168)  ligne n° 145	LDW R3, (R15)+
 6180   emplacement : 61802  (0xf16a)  ligne n° 147	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61804  (0xf16c) 
-63a1   emplacement : 61806  (0xf16e)  ligne n° 148	LDW R3, (R1)
-6593   emplacement : 61808  (0xf170)  ligne n° 149	LDW R5, R3
-260a   emplacement : 61810  (0xf172)  ligne n° 150	LDQ 10, R6
-0a50   emplacement : 61812  (0xf174)  ligne n° 151	JSR @itoa
-f870   emplacement : 61814  (0xf176) 
-6093   emplacement : 61816  (0xf178)  ligne n° 152	LDW R0, R3
-0a50   emplacement : 61818  (0xf17a)  ligne n° 153	JSR @printi
-f776   emplacement : 61820  (0xf17c) 
-6380   emplacement : 61822  (0xf17e)  ligne n° 154	LDW R3, #5
-0005   emplacement : 61824  (0xf180) 
-6293   emplacement : 61826  (0xf182)  ligne n° 155	LDW R2, R3
-6380   emplacement : 61828  (0xf184)  ligne n° 156	LDW R3, #10
-000a   emplacement : 61830  (0xf186) 
-4f23   emplacement : 61832  (0xf188)  ligne n° 157	CMP R2, R3
-1704   emplacement : 61834  (0xf18a)  ligne n° 158	BLW 4
-2300   emplacement : 61836  (0xf18c)  ligne n° 159	LDQ 0, R3
-0180   emplacement : 61838  (0xf18e)  ligne n° 160	JMP #4
-0004   emplacement : 61840  (0xf190) 
-2301   emplacement : 61842  (0xf192)  ligne n° 161	LDQ 1, R3
-634f   emplacement : 61844  (0xf194)  ligne n° 162	STW R3, -(R15)
-63bf   emplacement : 61846  (0xf196)  ligne n° 164	LDW R3, (R15)+
-6180   emplacement : 61848  (0xf198)  ligne n° 166	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61850  (0xf19a) 
-6321   emplacement : 61852  (0xf19c)  ligne n° 167	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 61806  (0xf16e)  ligne n° 148	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61808  (0xf170)  ligne n° 149	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61810  (0xf172) 
+63a1   emplacement : 61812  (0xf174)  ligne n° 150	LDW R3, (R1)
+6593   emplacement : 61814  (0xf176)  ligne n° 151	LDW R5, R3
+260a   emplacement : 61816  (0xf178)  ligne n° 152	LDQ 10, R6
+0a50   emplacement : 61818  (0xf17a)  ligne n° 153	JSR @itoa
+fa18   emplacement : 61820  (0xf17c) 
+6093   emplacement : 61822  (0xf17e)  ligne n° 154	LDW R0, R3
+0a50   emplacement : 61824  (0xf180)  ligne n° 155	JSR @printi
+f830   emplacement : 61826  (0xf182) 
+6380   emplacement : 61828  (0xf184)  ligne n° 156	LDW R3, #5
+0005   emplacement : 61830  (0xf186) 
+6293   emplacement : 61832  (0xf188)  ligne n° 157	LDW R2, R3
+6380   emplacement : 61834  (0xf18a)  ligne n° 158	LDW R3, #10
+000a   emplacement : 61836  (0xf18c) 
+4f23   emplacement : 61838  (0xf18e)  ligne n° 159	CMP R2, R3
+1704   emplacement : 61840  (0xf190)  ligne n° 160	BLW 4
+2300   emplacement : 61842  (0xf192)  ligne n° 161	LDQ 0, R3
+0180   emplacement : 61844  (0xf194)  ligne n° 162	JMP #4
+0004   emplacement : 61846  (0xf196) 
+2301   emplacement : 61848  (0xf198)  ligne n° 163	LDQ 1, R3
+634f   emplacement : 61850  (0xf19a)  ligne n° 164	STW R3, -(R15)
+63bf   emplacement : 61852  (0xf19c)  ligne n° 166	LDW R3, (R15)+
 6180   emplacement : 61854  (0xf19e)  ligne n° 168	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61856  (0xf1a0) 
-63a1   emplacement : 61858  (0xf1a2)  ligne n° 169	LDW R3, (R1)
-6593   emplacement : 61860  (0xf1a4)  ligne n° 170	LDW R5, R3
-260a   emplacement : 61862  (0xf1a6)  ligne n° 171	LDQ 10, R6
-0a50   emplacement : 61864  (0xf1a8)  ligne n° 172	JSR @itoa
-f870   emplacement : 61866  (0xf1aa) 
-6093   emplacement : 61868  (0xf1ac)  ligne n° 173	LDW R0, R3
-0a50   emplacement : 61870  (0xf1ae)  ligne n° 174	JSR @printi
-f776   emplacement : 61872  (0xf1b0) 
-6380   emplacement : 61874  (0xf1b2)  ligne n° 175	LDW R3, #5
-0005   emplacement : 61876  (0xf1b4) 
-6293   emplacement : 61878  (0xf1b6)  ligne n° 176	LDW R2, R3
-6380   emplacement : 61880  (0xf1b8)  ligne n° 177	LDW R3, #10
-000a   emplacement : 61882  (0xf1ba) 
-4f23   emplacement : 61884  (0xf1bc)  ligne n° 178	CMP R2, R3
-1504   emplacement : 61886  (0xf1be)  ligne n° 179	BLE 4
-2300   emplacement : 61888  (0xf1c0)  ligne n° 180	LDQ 0, R3
-0180   emplacement : 61890  (0xf1c2)  ligne n° 181	JMP #4
-0004   emplacement : 61892  (0xf1c4) 
-2301   emplacement : 61894  (0xf1c6)  ligne n° 182	LDQ 1, R3
-634f   emplacement : 61896  (0xf1c8)  ligne n° 183	STW R3, -(R15)
-63bf   emplacement : 61898  (0xf1ca)  ligne n° 185	LDW R3, (R15)+
-6180   emplacement : 61900  (0xf1cc)  ligne n° 187	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61902  (0xf1ce) 
-6321   emplacement : 61904  (0xf1d0)  ligne n° 188	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 61858  (0xf1a2)  ligne n° 169	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61860  (0xf1a4)  ligne n° 170	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61862  (0xf1a6) 
+63a1   emplacement : 61864  (0xf1a8)  ligne n° 171	LDW R3, (R1)
+6593   emplacement : 61866  (0xf1aa)  ligne n° 172	LDW R5, R3
+260a   emplacement : 61868  (0xf1ac)  ligne n° 173	LDQ 10, R6
+0a50   emplacement : 61870  (0xf1ae)  ligne n° 174	JSR @itoa
+fa18   emplacement : 61872  (0xf1b0) 
+6093   emplacement : 61874  (0xf1b2)  ligne n° 175	LDW R0, R3
+0a50   emplacement : 61876  (0xf1b4)  ligne n° 176	JSR @printi
+f830   emplacement : 61878  (0xf1b6) 
+6380   emplacement : 61880  (0xf1b8)  ligne n° 177	LDW R3, #5
+0005   emplacement : 61882  (0xf1ba) 
+6293   emplacement : 61884  (0xf1bc)  ligne n° 178	LDW R2, R3
+6380   emplacement : 61886  (0xf1be)  ligne n° 179	LDW R3, #10
+000a   emplacement : 61888  (0xf1c0) 
+4f23   emplacement : 61890  (0xf1c2)  ligne n° 180	CMP R2, R3
+1504   emplacement : 61892  (0xf1c4)  ligne n° 181	BLE 4
+2300   emplacement : 61894  (0xf1c6)  ligne n° 182	LDQ 0, R3
+0180   emplacement : 61896  (0xf1c8)  ligne n° 183	JMP #4
+0004   emplacement : 61898  (0xf1ca) 
+2301   emplacement : 61900  (0xf1cc)  ligne n° 184	LDQ 1, R3
+634f   emplacement : 61902  (0xf1ce)  ligne n° 185	STW R3, -(R15)
+63bf   emplacement : 61904  (0xf1d0)  ligne n° 187	LDW R3, (R15)+
 6180   emplacement : 61906  (0xf1d2)  ligne n° 189	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61908  (0xf1d4) 
-63a1   emplacement : 61910  (0xf1d6)  ligne n° 190	LDW R3, (R1)
-6593   emplacement : 61912  (0xf1d8)  ligne n° 191	LDW R5, R3
-260a   emplacement : 61914  (0xf1da)  ligne n° 192	LDQ 10, R6
-0a50   emplacement : 61916  (0xf1dc)  ligne n° 193	JSR @itoa
-f870   emplacement : 61918  (0xf1de) 
-6093   emplacement : 61920  (0xf1e0)  ligne n° 194	LDW R0, R3
-0a50   emplacement : 61922  (0xf1e2)  ligne n° 195	JSR @printi
-f776   emplacement : 61924  (0xf1e4) 
-6380   emplacement : 61926  (0xf1e6)  ligne n° 196	LDW R3, #6
-0006   emplacement : 61928  (0xf1e8) 
-6293   emplacement : 61930  (0xf1ea)  ligne n° 197	LDW R2, R3
+6321   emplacement : 61910  (0xf1d6)  ligne n° 190	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61912  (0xf1d8)  ligne n° 191	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61914  (0xf1da) 
+63a1   emplacement : 61916  (0xf1dc)  ligne n° 192	LDW R3, (R1)
+6593   emplacement : 61918  (0xf1de)  ligne n° 193	LDW R5, R3
+260a   emplacement : 61920  (0xf1e0)  ligne n° 194	LDQ 10, R6
+0a50   emplacement : 61922  (0xf1e2)  ligne n° 195	JSR @itoa
+fa18   emplacement : 61924  (0xf1e4) 
+6093   emplacement : 61926  (0xf1e6)  ligne n° 196	LDW R0, R3
+0a50   emplacement : 61928  (0xf1e8)  ligne n° 197	JSR @printi
+f830   emplacement : 61930  (0xf1ea) 
 6380   emplacement : 61932  (0xf1ec)  ligne n° 198	LDW R3, #6
 0006   emplacement : 61934  (0xf1ee) 
-4f23   emplacement : 61936  (0xf1f0)  ligne n° 199	CMP R2, R3
-1504   emplacement : 61938  (0xf1f2)  ligne n° 200	BLE 4
-2300   emplacement : 61940  (0xf1f4)  ligne n° 201	LDQ 0, R3
-0180   emplacement : 61942  (0xf1f6)  ligne n° 202	JMP #4
-0004   emplacement : 61944  (0xf1f8) 
-2301   emplacement : 61946  (0xf1fa)  ligne n° 203	LDQ 1, R3
-634f   emplacement : 61948  (0xf1fc)  ligne n° 204	STW R3, -(R15)
-63bf   emplacement : 61950  (0xf1fe)  ligne n° 206	LDW R3, (R15)+
-6180   emplacement : 61952  (0xf200)  ligne n° 208	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 61954  (0xf202) 
-6321   emplacement : 61956  (0xf204)  ligne n° 209	STW R3, (R1) //On stocke le resultat dans la m}moire
+6293   emplacement : 61936  (0xf1f0)  ligne n° 199	LDW R2, R3
+6380   emplacement : 61938  (0xf1f2)  ligne n° 200	LDW R3, #6
+0006   emplacement : 61940  (0xf1f4) 
+4f23   emplacement : 61942  (0xf1f6)  ligne n° 201	CMP R2, R3
+1504   emplacement : 61944  (0xf1f8)  ligne n° 202	BLE 4
+2300   emplacement : 61946  (0xf1fa)  ligne n° 203	LDQ 0, R3
+0180   emplacement : 61948  (0xf1fc)  ligne n° 204	JMP #4
+0004   emplacement : 61950  (0xf1fe) 
+2301   emplacement : 61952  (0xf200)  ligne n° 205	LDQ 1, R3
+634f   emplacement : 61954  (0xf202)  ligne n° 206	STW R3, -(R15)
+63bf   emplacement : 61956  (0xf204)  ligne n° 208	LDW R3, (R15)+
 6180   emplacement : 61958  (0xf206)  ligne n° 210	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 61960  (0xf208) 
-63a1   emplacement : 61962  (0xf20a)  ligne n° 211	LDW R3, (R1)
-6593   emplacement : 61964  (0xf20c)  ligne n° 212	LDW R5, R3
-260a   emplacement : 61966  (0xf20e)  ligne n° 213	LDQ 10, R6
-0a50   emplacement : 61968  (0xf210)  ligne n° 214	JSR @itoa
-f870   emplacement : 61970  (0xf212) 
-6093   emplacement : 61972  (0xf214)  ligne n° 215	LDW R0, R3
-0a50   emplacement : 61974  (0xf216)  ligne n° 216	JSR @printi
-f776   emplacement : 61976  (0xf218) 
-6380   emplacement : 61978  (0xf21a)  ligne n° 217	LDW R3, #10
-000a   emplacement : 61980  (0xf21c) 
-6293   emplacement : 61982  (0xf21e)  ligne n° 218	LDW R2, R3
-6380   emplacement : 61984  (0xf220)  ligne n° 219	LDW R3, #5
-0005   emplacement : 61986  (0xf222) 
-4f23   emplacement : 61988  (0xf224)  ligne n° 220	CMP R2, R3
-1504   emplacement : 61990  (0xf226)  ligne n° 221	BLE 4
-2300   emplacement : 61992  (0xf228)  ligne n° 222	LDQ 0, R3
-0180   emplacement : 61994  (0xf22a)  ligne n° 223	JMP #4
-0004   emplacement : 61996  (0xf22c) 
-2301   emplacement : 61998  (0xf22e)  ligne n° 224	LDQ 1, R3
-634f   emplacement : 62000  (0xf230)  ligne n° 225	STW R3, -(R15)
-63bf   emplacement : 62002  (0xf232)  ligne n° 227	LDW R3, (R15)+
-6180   emplacement : 62004  (0xf234)  ligne n° 229	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62006  (0xf236) 
-6321   emplacement : 62008  (0xf238)  ligne n° 230	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 61962  (0xf20a)  ligne n° 211	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 61964  (0xf20c)  ligne n° 212	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 61966  (0xf20e) 
+63a1   emplacement : 61968  (0xf210)  ligne n° 213	LDW R3, (R1)
+6593   emplacement : 61970  (0xf212)  ligne n° 214	LDW R5, R3
+260a   emplacement : 61972  (0xf214)  ligne n° 215	LDQ 10, R6
+0a50   emplacement : 61974  (0xf216)  ligne n° 216	JSR @itoa
+fa18   emplacement : 61976  (0xf218) 
+6093   emplacement : 61978  (0xf21a)  ligne n° 217	LDW R0, R3
+0a50   emplacement : 61980  (0xf21c)  ligne n° 218	JSR @printi
+f830   emplacement : 61982  (0xf21e) 
+6380   emplacement : 61984  (0xf220)  ligne n° 219	LDW R3, #10
+000a   emplacement : 61986  (0xf222) 
+6293   emplacement : 61988  (0xf224)  ligne n° 220	LDW R2, R3
+6380   emplacement : 61990  (0xf226)  ligne n° 221	LDW R3, #5
+0005   emplacement : 61992  (0xf228) 
+4f23   emplacement : 61994  (0xf22a)  ligne n° 222	CMP R2, R3
+1504   emplacement : 61996  (0xf22c)  ligne n° 223	BLE 4
+2300   emplacement : 61998  (0xf22e)  ligne n° 224	LDQ 0, R3
+0180   emplacement : 62000  (0xf230)  ligne n° 225	JMP #4
+0004   emplacement : 62002  (0xf232) 
+2301   emplacement : 62004  (0xf234)  ligne n° 226	LDQ 1, R3
+634f   emplacement : 62006  (0xf236)  ligne n° 227	STW R3, -(R15)
+63bf   emplacement : 62008  (0xf238)  ligne n° 229	LDW R3, (R15)+
 6180   emplacement : 62010  (0xf23a)  ligne n° 231	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62012  (0xf23c) 
-63a1   emplacement : 62014  (0xf23e)  ligne n° 232	LDW R3, (R1)
-6593   emplacement : 62016  (0xf240)  ligne n° 233	LDW R5, R3
-260a   emplacement : 62018  (0xf242)  ligne n° 234	LDQ 10, R6
-0a50   emplacement : 62020  (0xf244)  ligne n° 235	JSR @itoa
-f870   emplacement : 62022  (0xf246) 
-6093   emplacement : 62024  (0xf248)  ligne n° 236	LDW R0, R3
-0a50   emplacement : 62026  (0xf24a)  ligne n° 237	JSR @printi
-f776   emplacement : 62028  (0xf24c) 
-6380   emplacement : 62030  (0xf24e)  ligne n° 238	LDW R3, #10
-000a   emplacement : 62032  (0xf250) 
-6293   emplacement : 62034  (0xf252)  ligne n° 239	LDW R2, R3
-6380   emplacement : 62036  (0xf254)  ligne n° 240	LDW R3, #5
-0005   emplacement : 62038  (0xf256) 
-4f23   emplacement : 62040  (0xf258)  ligne n° 241	CMP R2, R3
-1204   emplacement : 62042  (0xf25a)  ligne n° 242	BEQ 4
-2300   emplacement : 62044  (0xf25c)  ligne n° 243	LDQ 0, R3
-0180   emplacement : 62046  (0xf25e)  ligne n° 244	JMP #4
-0004   emplacement : 62048  (0xf260) 
-2301   emplacement : 62050  (0xf262)  ligne n° 245	LDQ 1, R3
-634f   emplacement : 62052  (0xf264)  ligne n° 246	STW R3, -(R15)
-63bf   emplacement : 62054  (0xf266)  ligne n° 248	LDW R3, (R15)+
-6180   emplacement : 62056  (0xf268)  ligne n° 250	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62058  (0xf26a) 
-6321   emplacement : 62060  (0xf26c)  ligne n° 251	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 62014  (0xf23e)  ligne n° 232	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62016  (0xf240)  ligne n° 233	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62018  (0xf242) 
+63a1   emplacement : 62020  (0xf244)  ligne n° 234	LDW R3, (R1)
+6593   emplacement : 62022  (0xf246)  ligne n° 235	LDW R5, R3
+260a   emplacement : 62024  (0xf248)  ligne n° 236	LDQ 10, R6
+0a50   emplacement : 62026  (0xf24a)  ligne n° 237	JSR @itoa
+fa18   emplacement : 62028  (0xf24c) 
+6093   emplacement : 62030  (0xf24e)  ligne n° 238	LDW R0, R3
+0a50   emplacement : 62032  (0xf250)  ligne n° 239	JSR @printi
+f830   emplacement : 62034  (0xf252) 
+6380   emplacement : 62036  (0xf254)  ligne n° 240	LDW R3, #10
+000a   emplacement : 62038  (0xf256) 
+6293   emplacement : 62040  (0xf258)  ligne n° 241	LDW R2, R3
+6380   emplacement : 62042  (0xf25a)  ligne n° 242	LDW R3, #5
+0005   emplacement : 62044  (0xf25c) 
+4f23   emplacement : 62046  (0xf25e)  ligne n° 243	CMP R2, R3
+1204   emplacement : 62048  (0xf260)  ligne n° 244	BEQ 4
+2300   emplacement : 62050  (0xf262)  ligne n° 245	LDQ 0, R3
+0180   emplacement : 62052  (0xf264)  ligne n° 246	JMP #4
+0004   emplacement : 62054  (0xf266) 
+2301   emplacement : 62056  (0xf268)  ligne n° 247	LDQ 1, R3
+634f   emplacement : 62058  (0xf26a)  ligne n° 248	STW R3, -(R15)
+63bf   emplacement : 62060  (0xf26c)  ligne n° 250	LDW R3, (R15)+
 6180   emplacement : 62062  (0xf26e)  ligne n° 252	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62064  (0xf270) 
-63a1   emplacement : 62066  (0xf272)  ligne n° 253	LDW R3, (R1)
-6593   emplacement : 62068  (0xf274)  ligne n° 254	LDW R5, R3
-260a   emplacement : 62070  (0xf276)  ligne n° 255	LDQ 10, R6
-0a50   emplacement : 62072  (0xf278)  ligne n° 256	JSR @itoa
-f870   emplacement : 62074  (0xf27a) 
-6093   emplacement : 62076  (0xf27c)  ligne n° 257	LDW R0, R3
-0a50   emplacement : 62078  (0xf27e)  ligne n° 258	JSR @printi
-f776   emplacement : 62080  (0xf280) 
-6380   emplacement : 62082  (0xf282)  ligne n° 259	LDW R3, #10
-000a   emplacement : 62084  (0xf284) 
-6293   emplacement : 62086  (0xf286)  ligne n° 260	LDW R2, R3
+6321   emplacement : 62066  (0xf272)  ligne n° 253	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62068  (0xf274)  ligne n° 254	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62070  (0xf276) 
+63a1   emplacement : 62072  (0xf278)  ligne n° 255	LDW R3, (R1)
+6593   emplacement : 62074  (0xf27a)  ligne n° 256	LDW R5, R3
+260a   emplacement : 62076  (0xf27c)  ligne n° 257	LDQ 10, R6
+0a50   emplacement : 62078  (0xf27e)  ligne n° 258	JSR @itoa
+fa18   emplacement : 62080  (0xf280) 
+6093   emplacement : 62082  (0xf282)  ligne n° 259	LDW R0, R3
+0a50   emplacement : 62084  (0xf284)  ligne n° 260	JSR @printi
+f830   emplacement : 62086  (0xf286) 
 6380   emplacement : 62088  (0xf288)  ligne n° 261	LDW R3, #10
 000a   emplacement : 62090  (0xf28a) 
-4f23   emplacement : 62092  (0xf28c)  ligne n° 262	CMP R2, R3
-1204   emplacement : 62094  (0xf28e)  ligne n° 263	BEQ 4
-2300   emplacement : 62096  (0xf290)  ligne n° 264	LDQ 0, R3
-0180   emplacement : 62098  (0xf292)  ligne n° 265	JMP #4
-0004   emplacement : 62100  (0xf294) 
-2301   emplacement : 62102  (0xf296)  ligne n° 266	LDQ 1, R3
-634f   emplacement : 62104  (0xf298)  ligne n° 267	STW R3, -(R15)
-63bf   emplacement : 62106  (0xf29a)  ligne n° 269	LDW R3, (R15)+
-6180   emplacement : 62108  (0xf29c)  ligne n° 271	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62110  (0xf29e) 
-6321   emplacement : 62112  (0xf2a0)  ligne n° 272	STW R3, (R1) //On stocke le resultat dans la m}moire
+6293   emplacement : 62092  (0xf28c)  ligne n° 262	LDW R2, R3
+6380   emplacement : 62094  (0xf28e)  ligne n° 263	LDW R3, #10
+000a   emplacement : 62096  (0xf290) 
+4f23   emplacement : 62098  (0xf292)  ligne n° 264	CMP R2, R3
+1204   emplacement : 62100  (0xf294)  ligne n° 265	BEQ 4
+2300   emplacement : 62102  (0xf296)  ligne n° 266	LDQ 0, R3
+0180   emplacement : 62104  (0xf298)  ligne n° 267	JMP #4
+0004   emplacement : 62106  (0xf29a) 
+2301   emplacement : 62108  (0xf29c)  ligne n° 268	LDQ 1, R3
+634f   emplacement : 62110  (0xf29e)  ligne n° 269	STW R3, -(R15)
+63bf   emplacement : 62112  (0xf2a0)  ligne n° 271	LDW R3, (R15)+
 6180   emplacement : 62114  (0xf2a2)  ligne n° 273	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62116  (0xf2a4) 
-63a1   emplacement : 62118  (0xf2a6)  ligne n° 274	LDW R3, (R1)
-6593   emplacement : 62120  (0xf2a8)  ligne n° 275	LDW R5, R3
-260a   emplacement : 62122  (0xf2aa)  ligne n° 276	LDQ 10, R6
-0a50   emplacement : 62124  (0xf2ac)  ligne n° 277	JSR @itoa
-f870   emplacement : 62126  (0xf2ae) 
-6093   emplacement : 62128  (0xf2b0)  ligne n° 278	LDW R0, R3
-0a50   emplacement : 62130  (0xf2b2)  ligne n° 279	JSR @printi
-f776   emplacement : 62132  (0xf2b4) 
-6380   emplacement : 62134  (0xf2b6)  ligne n° 280	LDW R3, #5
-0005   emplacement : 62136  (0xf2b8) 
-6293   emplacement : 62138  (0xf2ba)  ligne n° 281	LDW R2, R3
-6380   emplacement : 62140  (0xf2bc)  ligne n° 282	LDW R3, #10
-000a   emplacement : 62142  (0xf2be) 
-4f23   emplacement : 62144  (0xf2c0)  ligne n° 283	CMP R2, R3
-1504   emplacement : 62146  (0xf2c2)  ligne n° 284	BLE 4
-2300   emplacement : 62148  (0xf2c4)  ligne n° 285	LDQ 0, R3
-0180   emplacement : 62150  (0xf2c6)  ligne n° 286	JMP #4
-0004   emplacement : 62152  (0xf2c8) 
-2301   emplacement : 62154  (0xf2ca)  ligne n° 287	LDQ 1, R3
-634f   emplacement : 62156  (0xf2cc)  ligne n° 288	STW R3, -(R15)
-6380   emplacement : 62158  (0xf2ce)  ligne n° 290	LDW R3, #10
-000a   emplacement : 62160  (0xf2d0) 
-634f   emplacement : 62162  (0xf2d2)  ligne n° 291	STW R3, -(R15)
-62bf   emplacement : 62164  (0xf2d4)  ligne n° 292	LDW R2, (R15)+
-63bf   emplacement : 62166  (0xf2d6)  ligne n° 293	LDW R3, (R15)+
-0c12   emplacement : 62168  (0xf2d8)  ligne n° 294	TST R2
-1304   emplacement : 62170  (0xf2da)  ligne n° 295	BNE 4
-0c13   emplacement : 62172  (0xf2dc)  ligne n° 296	TST R3
-1202   emplacement : 62174  (0xf2de)  ligne n° 297	BEQ 2
-2301   emplacement : 62176  (0xf2e0)  ligne n° 298	LDQ 1, R3
-0180   emplacement : 62178  (0xf2e2)  ligne n° 299	JMP #4
-0004   emplacement : 62180  (0xf2e4) 
-2300   emplacement : 62182  (0xf2e6)  ligne n° 300	LDQ 0, R3
-634f   emplacement : 62184  (0xf2e8)  ligne n° 301	STW R3, -(R15)
-63bf   emplacement : 62186  (0xf2ea)  ligne n° 302	LDW R3, (R15)+
-6180   emplacement : 62188  (0xf2ec)  ligne n° 304	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62190  (0xf2ee) 
-6321   emplacement : 62192  (0xf2f0)  ligne n° 305	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 62118  (0xf2a6)  ligne n° 274	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62120  (0xf2a8)  ligne n° 275	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62122  (0xf2aa) 
+63a1   emplacement : 62124  (0xf2ac)  ligne n° 276	LDW R3, (R1)
+6593   emplacement : 62126  (0xf2ae)  ligne n° 277	LDW R5, R3
+260a   emplacement : 62128  (0xf2b0)  ligne n° 278	LDQ 10, R6
+0a50   emplacement : 62130  (0xf2b2)  ligne n° 279	JSR @itoa
+fa18   emplacement : 62132  (0xf2b4) 
+6093   emplacement : 62134  (0xf2b6)  ligne n° 280	LDW R0, R3
+0a50   emplacement : 62136  (0xf2b8)  ligne n° 281	JSR @printi
+f830   emplacement : 62138  (0xf2ba) 
+6380   emplacement : 62140  (0xf2bc)  ligne n° 282	LDW R3, #5
+0005   emplacement : 62142  (0xf2be) 
+6293   emplacement : 62144  (0xf2c0)  ligne n° 283	LDW R2, R3
+6380   emplacement : 62146  (0xf2c2)  ligne n° 284	LDW R3, #10
+000a   emplacement : 62148  (0xf2c4) 
+4f23   emplacement : 62150  (0xf2c6)  ligne n° 285	CMP R2, R3
+1504   emplacement : 62152  (0xf2c8)  ligne n° 286	BLE 4
+2300   emplacement : 62154  (0xf2ca)  ligne n° 287	LDQ 0, R3
+0180   emplacement : 62156  (0xf2cc)  ligne n° 288	JMP #4
+0004   emplacement : 62158  (0xf2ce) 
+2301   emplacement : 62160  (0xf2d0)  ligne n° 289	LDQ 1, R3
+634f   emplacement : 62162  (0xf2d2)  ligne n° 290	STW R3, -(R15)
+6380   emplacement : 62164  (0xf2d4)  ligne n° 292	LDW R3, #10
+000a   emplacement : 62166  (0xf2d6) 
+634f   emplacement : 62168  (0xf2d8)  ligne n° 293	STW R3, -(R15)
+62bf   emplacement : 62170  (0xf2da)  ligne n° 294	LDW R2, (R15)+
+63bf   emplacement : 62172  (0xf2dc)  ligne n° 295	LDW R3, (R15)+
+0c12   emplacement : 62174  (0xf2de)  ligne n° 296	TST R2
+1304   emplacement : 62176  (0xf2e0)  ligne n° 297	BNE 4
+0c13   emplacement : 62178  (0xf2e2)  ligne n° 298	TST R3
+1202   emplacement : 62180  (0xf2e4)  ligne n° 299	BEQ 2
+2301   emplacement : 62182  (0xf2e6)  ligne n° 300	LDQ 1, R3
+0180   emplacement : 62184  (0xf2e8)  ligne n° 301	JMP #4
+0004   emplacement : 62186  (0xf2ea) 
+2300   emplacement : 62188  (0xf2ec)  ligne n° 302	LDQ 0, R3
+634f   emplacement : 62190  (0xf2ee)  ligne n° 303	STW R3, -(R15)
+63bf   emplacement : 62192  (0xf2f0)  ligne n° 304	LDW R3, (R15)+
 6180   emplacement : 62194  (0xf2f2)  ligne n° 306	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62196  (0xf2f4) 
-63a1   emplacement : 62198  (0xf2f6)  ligne n° 307	LDW R3, (R1)
-6593   emplacement : 62200  (0xf2f8)  ligne n° 308	LDW R5, R3
-260a   emplacement : 62202  (0xf2fa)  ligne n° 309	LDQ 10, R6
-0a50   emplacement : 62204  (0xf2fc)  ligne n° 310	JSR @itoa
-f870   emplacement : 62206  (0xf2fe) 
-6093   emplacement : 62208  (0xf300)  ligne n° 311	LDW R0, R3
-0a50   emplacement : 62210  (0xf302)  ligne n° 312	JSR @printi
-f776   emplacement : 62212  (0xf304) 
-6380   emplacement : 62214  (0xf306)  ligne n° 313	LDW R3, #0
-0000   emplacement : 62216  (0xf308) 
-634f   emplacement : 62218  (0xf30a)  ligne n° 314	STW R3, -(R15)
-6380   emplacement : 62220  (0xf30c)  ligne n° 315	LDW R3, #10
-000a   emplacement : 62222  (0xf30e) 
+6321   emplacement : 62198  (0xf2f6)  ligne n° 307	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62200  (0xf2f8)  ligne n° 308	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62202  (0xf2fa) 
+63a1   emplacement : 62204  (0xf2fc)  ligne n° 309	LDW R3, (R1)
+6593   emplacement : 62206  (0xf2fe)  ligne n° 310	LDW R5, R3
+260a   emplacement : 62208  (0xf300)  ligne n° 311	LDQ 10, R6
+0a50   emplacement : 62210  (0xf302)  ligne n° 312	JSR @itoa
+fa18   emplacement : 62212  (0xf304) 
+6093   emplacement : 62214  (0xf306)  ligne n° 313	LDW R0, R3
+0a50   emplacement : 62216  (0xf308)  ligne n° 314	JSR @printi
+f830   emplacement : 62218  (0xf30a) 
+6380   emplacement : 62220  (0xf30c)  ligne n° 315	LDW R3, #0
+0000   emplacement : 62222  (0xf30e) 
 634f   emplacement : 62224  (0xf310)  ligne n° 316	STW R3, -(R15)
-62bf   emplacement : 62226  (0xf312)  ligne n° 317	LDW R2, (R15)+
-63bf   emplacement : 62228  (0xf314)  ligne n° 318	LDW R3, (R15)+
-0c12   emplacement : 62230  (0xf316)  ligne n° 319	TST R2
-1304   emplacement : 62232  (0xf318)  ligne n° 320	BNE 4
-0c13   emplacement : 62234  (0xf31a)  ligne n° 321	TST R3
-1202   emplacement : 62236  (0xf31c)  ligne n° 322	BEQ 2
-2301   emplacement : 62238  (0xf31e)  ligne n° 323	LDQ 1, R3
-0180   emplacement : 62240  (0xf320)  ligne n° 324	JMP #4
-0004   emplacement : 62242  (0xf322) 
-2300   emplacement : 62244  (0xf324)  ligne n° 325	LDQ 0, R3
-634f   emplacement : 62246  (0xf326)  ligne n° 326	STW R3, -(R15)
-63bf   emplacement : 62248  (0xf328)  ligne n° 327	LDW R3, (R15)+
-6180   emplacement : 62250  (0xf32a)  ligne n° 329	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62252  (0xf32c) 
-6321   emplacement : 62254  (0xf32e)  ligne n° 330	STW R3, (R1) //On stocke le resultat dans la m}moire
+6380   emplacement : 62226  (0xf312)  ligne n° 317	LDW R3, #10
+000a   emplacement : 62228  (0xf314) 
+634f   emplacement : 62230  (0xf316)  ligne n° 318	STW R3, -(R15)
+62bf   emplacement : 62232  (0xf318)  ligne n° 319	LDW R2, (R15)+
+63bf   emplacement : 62234  (0xf31a)  ligne n° 320	LDW R3, (R15)+
+0c12   emplacement : 62236  (0xf31c)  ligne n° 321	TST R2
+1304   emplacement : 62238  (0xf31e)  ligne n° 322	BNE 4
+0c13   emplacement : 62240  (0xf320)  ligne n° 323	TST R3
+1202   emplacement : 62242  (0xf322)  ligne n° 324	BEQ 2
+2301   emplacement : 62244  (0xf324)  ligne n° 325	LDQ 1, R3
+0180   emplacement : 62246  (0xf326)  ligne n° 326	JMP #4
+0004   emplacement : 62248  (0xf328) 
+2300   emplacement : 62250  (0xf32a)  ligne n° 327	LDQ 0, R3
+634f   emplacement : 62252  (0xf32c)  ligne n° 328	STW R3, -(R15)
+63bf   emplacement : 62254  (0xf32e)  ligne n° 329	LDW R3, (R15)+
 6180   emplacement : 62256  (0xf330)  ligne n° 331	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62258  (0xf332) 
-63a1   emplacement : 62260  (0xf334)  ligne n° 332	LDW R3, (R1)
-6593   emplacement : 62262  (0xf336)  ligne n° 333	LDW R5, R3
-260a   emplacement : 62264  (0xf338)  ligne n° 334	LDQ 10, R6
-0a50   emplacement : 62266  (0xf33a)  ligne n° 335	JSR @itoa
-f870   emplacement : 62268  (0xf33c) 
-6093   emplacement : 62270  (0xf33e)  ligne n° 336	LDW R0, R3
-0a50   emplacement : 62272  (0xf340)  ligne n° 337	JSR @printi
-f776   emplacement : 62274  (0xf342) 
-6380   emplacement : 62276  (0xf344)  ligne n° 338	LDW R3, #0
-0000   emplacement : 62278  (0xf346) 
-634f   emplacement : 62280  (0xf348)  ligne n° 339	STW R3, -(R15)
+6321   emplacement : 62260  (0xf334)  ligne n° 332	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62262  (0xf336)  ligne n° 333	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62264  (0xf338) 
+63a1   emplacement : 62266  (0xf33a)  ligne n° 334	LDW R3, (R1)
+6593   emplacement : 62268  (0xf33c)  ligne n° 335	LDW R5, R3
+260a   emplacement : 62270  (0xf33e)  ligne n° 336	LDQ 10, R6
+0a50   emplacement : 62272  (0xf340)  ligne n° 337	JSR @itoa
+fa18   emplacement : 62274  (0xf342) 
+6093   emplacement : 62276  (0xf344)  ligne n° 338	LDW R0, R3
+0a50   emplacement : 62278  (0xf346)  ligne n° 339	JSR @printi
+f830   emplacement : 62280  (0xf348) 
 6380   emplacement : 62282  (0xf34a)  ligne n° 340	LDW R3, #0
 0000   emplacement : 62284  (0xf34c) 
 634f   emplacement : 62286  (0xf34e)  ligne n° 341	STW R3, -(R15)
-62bf   emplacement : 62288  (0xf350)  ligne n° 342	LDW R2, (R15)+
-63bf   emplacement : 62290  (0xf352)  ligne n° 343	LDW R3, (R15)+
-0c12   emplacement : 62292  (0xf354)  ligne n° 344	TST R2
-1304   emplacement : 62294  (0xf356)  ligne n° 345	BNE 4
-0c13   emplacement : 62296  (0xf358)  ligne n° 346	TST R3
-1202   emplacement : 62298  (0xf35a)  ligne n° 347	BEQ 2
-2301   emplacement : 62300  (0xf35c)  ligne n° 348	LDQ 1, R3
-0180   emplacement : 62302  (0xf35e)  ligne n° 349	JMP #4
-0004   emplacement : 62304  (0xf360) 
-2300   emplacement : 62306  (0xf362)  ligne n° 350	LDQ 0, R3
-634f   emplacement : 62308  (0xf364)  ligne n° 351	STW R3, -(R15)
-63bf   emplacement : 62310  (0xf366)  ligne n° 352	LDW R3, (R15)+
-6180   emplacement : 62312  (0xf368)  ligne n° 354	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62314  (0xf36a) 
-6321   emplacement : 62316  (0xf36c)  ligne n° 355	STW R3, (R1) //On stocke le resultat dans la m}moire
+6380   emplacement : 62288  (0xf350)  ligne n° 342	LDW R3, #0
+0000   emplacement : 62290  (0xf352) 
+634f   emplacement : 62292  (0xf354)  ligne n° 343	STW R3, -(R15)
+62bf   emplacement : 62294  (0xf356)  ligne n° 344	LDW R2, (R15)+
+63bf   emplacement : 62296  (0xf358)  ligne n° 345	LDW R3, (R15)+
+0c12   emplacement : 62298  (0xf35a)  ligne n° 346	TST R2
+1304   emplacement : 62300  (0xf35c)  ligne n° 347	BNE 4
+0c13   emplacement : 62302  (0xf35e)  ligne n° 348	TST R3
+1202   emplacement : 62304  (0xf360)  ligne n° 349	BEQ 2
+2301   emplacement : 62306  (0xf362)  ligne n° 350	LDQ 1, R3
+0180   emplacement : 62308  (0xf364)  ligne n° 351	JMP #4
+0004   emplacement : 62310  (0xf366) 
+2300   emplacement : 62312  (0xf368)  ligne n° 352	LDQ 0, R3
+634f   emplacement : 62314  (0xf36a)  ligne n° 353	STW R3, -(R15)
+63bf   emplacement : 62316  (0xf36c)  ligne n° 354	LDW R3, (R15)+
 6180   emplacement : 62318  (0xf36e)  ligne n° 356	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62320  (0xf370) 
-63a1   emplacement : 62322  (0xf372)  ligne n° 357	LDW R3, (R1)
-6593   emplacement : 62324  (0xf374)  ligne n° 358	LDW R5, R3
-260a   emplacement : 62326  (0xf376)  ligne n° 359	LDQ 10, R6
-0a50   emplacement : 62328  (0xf378)  ligne n° 360	JSR @itoa
-f870   emplacement : 62330  (0xf37a) 
-6093   emplacement : 62332  (0xf37c)  ligne n° 361	LDW R0, R3
-0a50   emplacement : 62334  (0xf37e)  ligne n° 362	JSR @printi
-f776   emplacement : 62336  (0xf380) 
-6380   emplacement : 62338  (0xf382)  ligne n° 363	LDW R3, #5
-0005   emplacement : 62340  (0xf384) 
-6293   emplacement : 62342  (0xf386)  ligne n° 364	LDW R2, R3
-6380   emplacement : 62344  (0xf388)  ligne n° 365	LDW R3, #10
-000a   emplacement : 62346  (0xf38a) 
-4f23   emplacement : 62348  (0xf38c)  ligne n° 366	CMP R2, R3
-1504   emplacement : 62350  (0xf38e)  ligne n° 367	BLE 4
-2300   emplacement : 62352  (0xf390)  ligne n° 368	LDQ 0, R3
-0180   emplacement : 62354  (0xf392)  ligne n° 369	JMP #4
-0004   emplacement : 62356  (0xf394) 
-2301   emplacement : 62358  (0xf396)  ligne n° 370	LDQ 1, R3
-634f   emplacement : 62360  (0xf398)  ligne n° 371	STW R3, -(R15)
-6380   emplacement : 62362  (0xf39a)  ligne n° 373	LDW R3, #10
-000a   emplacement : 62364  (0xf39c) 
-634f   emplacement : 62366  (0xf39e)  ligne n° 374	STW R3, -(R15)
-62bf   emplacement : 62368  (0xf3a0)  ligne n° 375	LDW R2, (R15)+
-63bf   emplacement : 62370  (0xf3a2)  ligne n° 376	LDW R3, (R15)+
-0c12   emplacement : 62372  (0xf3a4)  ligne n° 377	TST R2
-1204   emplacement : 62374  (0xf3a6)  ligne n° 378	BEQ 4
-0c13   emplacement : 62376  (0xf3a8)  ligne n° 379	TST R3
-1304   emplacement : 62378  (0xf3aa)  ligne n° 380	BNE 4
-2300   emplacement : 62380  (0xf3ac)  ligne n° 381	LDQ 0, R3
-0180   emplacement : 62382  (0xf3ae)  ligne n° 382	JMP #4
-0004   emplacement : 62384  (0xf3b0) 
-2301   emplacement : 62386  (0xf3b2)  ligne n° 383	LDQ 1, R3
-634f   emplacement : 62388  (0xf3b4)  ligne n° 384	STW R3, -(R15)
-63bf   emplacement : 62390  (0xf3b6)  ligne n° 385	LDW R3, (R15)+
-6180   emplacement : 62392  (0xf3b8)  ligne n° 387	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62394  (0xf3ba) 
-6321   emplacement : 62396  (0xf3bc)  ligne n° 388	STW R3, (R1) //On stocke le resultat dans la m}moire
+6321   emplacement : 62322  (0xf372)  ligne n° 357	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62324  (0xf374)  ligne n° 358	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62326  (0xf376) 
+63a1   emplacement : 62328  (0xf378)  ligne n° 359	LDW R3, (R1)
+6593   emplacement : 62330  (0xf37a)  ligne n° 360	LDW R5, R3
+260a   emplacement : 62332  (0xf37c)  ligne n° 361	LDQ 10, R6
+0a50   emplacement : 62334  (0xf37e)  ligne n° 362	JSR @itoa
+fa18   emplacement : 62336  (0xf380) 
+6093   emplacement : 62338  (0xf382)  ligne n° 363	LDW R0, R3
+0a50   emplacement : 62340  (0xf384)  ligne n° 364	JSR @printi
+f830   emplacement : 62342  (0xf386) 
+6380   emplacement : 62344  (0xf388)  ligne n° 365	LDW R3, #5
+0005   emplacement : 62346  (0xf38a) 
+6293   emplacement : 62348  (0xf38c)  ligne n° 366	LDW R2, R3
+6380   emplacement : 62350  (0xf38e)  ligne n° 367	LDW R3, #10
+000a   emplacement : 62352  (0xf390) 
+4f23   emplacement : 62354  (0xf392)  ligne n° 368	CMP R2, R3
+1504   emplacement : 62356  (0xf394)  ligne n° 369	BLE 4
+2300   emplacement : 62358  (0xf396)  ligne n° 370	LDQ 0, R3
+0180   emplacement : 62360  (0xf398)  ligne n° 371	JMP #4
+0004   emplacement : 62362  (0xf39a) 
+2301   emplacement : 62364  (0xf39c)  ligne n° 372	LDQ 1, R3
+634f   emplacement : 62366  (0xf39e)  ligne n° 373	STW R3, -(R15)
+6380   emplacement : 62368  (0xf3a0)  ligne n° 375	LDW R3, #10
+000a   emplacement : 62370  (0xf3a2) 
+634f   emplacement : 62372  (0xf3a4)  ligne n° 376	STW R3, -(R15)
+62bf   emplacement : 62374  (0xf3a6)  ligne n° 377	LDW R2, (R15)+
+63bf   emplacement : 62376  (0xf3a8)  ligne n° 378	LDW R3, (R15)+
+0c12   emplacement : 62378  (0xf3aa)  ligne n° 379	TST R2
+1204   emplacement : 62380  (0xf3ac)  ligne n° 380	BEQ 4
+0c13   emplacement : 62382  (0xf3ae)  ligne n° 381	TST R3
+1304   emplacement : 62384  (0xf3b0)  ligne n° 382	BNE 4
+2300   emplacement : 62386  (0xf3b2)  ligne n° 383	LDQ 0, R3
+0180   emplacement : 62388  (0xf3b4)  ligne n° 384	JMP #4
+0004   emplacement : 62390  (0xf3b6) 
+2301   emplacement : 62392  (0xf3b8)  ligne n° 385	LDQ 1, R3
+634f   emplacement : 62394  (0xf3ba)  ligne n° 386	STW R3, -(R15)
+63bf   emplacement : 62396  (0xf3bc)  ligne n° 387	LDW R3, (R15)+
 6180   emplacement : 62398  (0xf3be)  ligne n° 389	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62400  (0xf3c0) 
-63a1   emplacement : 62402  (0xf3c2)  ligne n° 390	LDW R3, (R1)
-6593   emplacement : 62404  (0xf3c4)  ligne n° 391	LDW R5, R3
-260a   emplacement : 62406  (0xf3c6)  ligne n° 392	LDQ 10, R6
-0a50   emplacement : 62408  (0xf3c8)  ligne n° 393	JSR @itoa
-f870   emplacement : 62410  (0xf3ca) 
-6093   emplacement : 62412  (0xf3cc)  ligne n° 394	LDW R0, R3
-0a50   emplacement : 62414  (0xf3ce)  ligne n° 395	JSR @printi
-f776   emplacement : 62416  (0xf3d0) 
-6380   emplacement : 62418  (0xf3d2)  ligne n° 396	LDW R3, #0
-0000   emplacement : 62420  (0xf3d4) 
-634f   emplacement : 62422  (0xf3d6)  ligne n° 397	STW R3, -(R15)
-6380   emplacement : 62424  (0xf3d8)  ligne n° 398	LDW R3, #10
-000a   emplacement : 62426  (0xf3da) 
+6321   emplacement : 62402  (0xf3c2)  ligne n° 390	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62404  (0xf3c4)  ligne n° 391	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62406  (0xf3c6) 
+63a1   emplacement : 62408  (0xf3c8)  ligne n° 392	LDW R3, (R1)
+6593   emplacement : 62410  (0xf3ca)  ligne n° 393	LDW R5, R3
+260a   emplacement : 62412  (0xf3cc)  ligne n° 394	LDQ 10, R6
+0a50   emplacement : 62414  (0xf3ce)  ligne n° 395	JSR @itoa
+fa18   emplacement : 62416  (0xf3d0) 
+6093   emplacement : 62418  (0xf3d2)  ligne n° 396	LDW R0, R3
+0a50   emplacement : 62420  (0xf3d4)  ligne n° 397	JSR @printi
+f830   emplacement : 62422  (0xf3d6) 
+6380   emplacement : 62424  (0xf3d8)  ligne n° 398	LDW R3, #0
+0000   emplacement : 62426  (0xf3da) 
 634f   emplacement : 62428  (0xf3dc)  ligne n° 399	STW R3, -(R15)
-62bf   emplacement : 62430  (0xf3de)  ligne n° 400	LDW R2, (R15)+
-63bf   emplacement : 62432  (0xf3e0)  ligne n° 401	LDW R3, (R15)+
-0c12   emplacement : 62434  (0xf3e2)  ligne n° 402	TST R2
-1204   emplacement : 62436  (0xf3e4)  ligne n° 403	BEQ 4
-0c13   emplacement : 62438  (0xf3e6)  ligne n° 404	TST R3
-1304   emplacement : 62440  (0xf3e8)  ligne n° 405	BNE 4
-2300   emplacement : 62442  (0xf3ea)  ligne n° 406	LDQ 0, R3
-0180   emplacement : 62444  (0xf3ec)  ligne n° 407	JMP #4
-0004   emplacement : 62446  (0xf3ee) 
-2301   emplacement : 62448  (0xf3f0)  ligne n° 408	LDQ 1, R3
-634f   emplacement : 62450  (0xf3f2)  ligne n° 409	STW R3, -(R15)
-63bf   emplacement : 62452  (0xf3f4)  ligne n° 410	LDW R3, (R15)+
-6180   emplacement : 62454  (0xf3f6)  ligne n° 412	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62456  (0xf3f8) 
-6321   emplacement : 62458  (0xf3fa)  ligne n° 413	STW R3, (R1) //On stocke le resultat dans la m}moire
+6380   emplacement : 62430  (0xf3de)  ligne n° 400	LDW R3, #10
+000a   emplacement : 62432  (0xf3e0) 
+634f   emplacement : 62434  (0xf3e2)  ligne n° 401	STW R3, -(R15)
+62bf   emplacement : 62436  (0xf3e4)  ligne n° 402	LDW R2, (R15)+
+63bf   emplacement : 62438  (0xf3e6)  ligne n° 403	LDW R3, (R15)+
+0c12   emplacement : 62440  (0xf3e8)  ligne n° 404	TST R2
+1204   emplacement : 62442  (0xf3ea)  ligne n° 405	BEQ 4
+0c13   emplacement : 62444  (0xf3ec)  ligne n° 406	TST R3
+1304   emplacement : 62446  (0xf3ee)  ligne n° 407	BNE 4
+2300   emplacement : 62448  (0xf3f0)  ligne n° 408	LDQ 0, R3
+0180   emplacement : 62450  (0xf3f2)  ligne n° 409	JMP #4
+0004   emplacement : 62452  (0xf3f4) 
+2301   emplacement : 62454  (0xf3f6)  ligne n° 410	LDQ 1, R3
+634f   emplacement : 62456  (0xf3f8)  ligne n° 411	STW R3, -(R15)
+63bf   emplacement : 62458  (0xf3fa)  ligne n° 412	LDW R3, (R15)+
 6180   emplacement : 62460  (0xf3fc)  ligne n° 414	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62462  (0xf3fe) 
-63a1   emplacement : 62464  (0xf400)  ligne n° 415	LDW R3, (R1)
-6593   emplacement : 62466  (0xf402)  ligne n° 416	LDW R5, R3
-260a   emplacement : 62468  (0xf404)  ligne n° 417	LDQ 10, R6
-0a50   emplacement : 62470  (0xf406)  ligne n° 418	JSR @itoa
-f870   emplacement : 62472  (0xf408) 
-6093   emplacement : 62474  (0xf40a)  ligne n° 419	LDW R0, R3
-0a50   emplacement : 62476  (0xf40c)  ligne n° 420	JSR @printi
-f776   emplacement : 62478  (0xf40e) 
-6380   emplacement : 62480  (0xf410)  ligne n° 421	LDW R3, #0
-0000   emplacement : 62482  (0xf412) 
-634f   emplacement : 62484  (0xf414)  ligne n° 422	STW R3, -(R15)
+6321   emplacement : 62464  (0xf400)  ligne n° 415	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62466  (0xf402)  ligne n° 416	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62468  (0xf404) 
+63a1   emplacement : 62470  (0xf406)  ligne n° 417	LDW R3, (R1)
+6593   emplacement : 62472  (0xf408)  ligne n° 418	LDW R5, R3
+260a   emplacement : 62474  (0xf40a)  ligne n° 419	LDQ 10, R6
+0a50   emplacement : 62476  (0xf40c)  ligne n° 420	JSR @itoa
+fa18   emplacement : 62478  (0xf40e) 
+6093   emplacement : 62480  (0xf410)  ligne n° 421	LDW R0, R3
+0a50   emplacement : 62482  (0xf412)  ligne n° 422	JSR @printi
+f830   emplacement : 62484  (0xf414) 
 6380   emplacement : 62486  (0xf416)  ligne n° 423	LDW R3, #0
 0000   emplacement : 62488  (0xf418) 
 634f   emplacement : 62490  (0xf41a)  ligne n° 424	STW R3, -(R15)
-62bf   emplacement : 62492  (0xf41c)  ligne n° 425	LDW R2, (R15)+
-63bf   emplacement : 62494  (0xf41e)  ligne n° 426	LDW R3, (R15)+
-0c12   emplacement : 62496  (0xf420)  ligne n° 427	TST R2
-1204   emplacement : 62498  (0xf422)  ligne n° 428	BEQ 4
-0c13   emplacement : 62500  (0xf424)  ligne n° 429	TST R3
-1304   emplacement : 62502  (0xf426)  ligne n° 430	BNE 4
-2300   emplacement : 62504  (0xf428)  ligne n° 431	LDQ 0, R3
-0180   emplacement : 62506  (0xf42a)  ligne n° 432	JMP #4
-0004   emplacement : 62508  (0xf42c) 
-2301   emplacement : 62510  (0xf42e)  ligne n° 433	LDQ 1, R3
-634f   emplacement : 62512  (0xf430)  ligne n° 434	STW R3, -(R15)
-63bf   emplacement : 62514  (0xf432)  ligne n° 435	LDW R3, (R15)+
-6180   emplacement : 62516  (0xf434)  ligne n° 437	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62518  (0xf436) 
-6321   emplacement : 62520  (0xf438)  ligne n° 438	STW R3, (R1) //On stocke le resultat dans la m}moire
+6380   emplacement : 62492  (0xf41c)  ligne n° 425	LDW R3, #0
+0000   emplacement : 62494  (0xf41e) 
+634f   emplacement : 62496  (0xf420)  ligne n° 426	STW R3, -(R15)
+62bf   emplacement : 62498  (0xf422)  ligne n° 427	LDW R2, (R15)+
+63bf   emplacement : 62500  (0xf424)  ligne n° 428	LDW R3, (R15)+
+0c12   emplacement : 62502  (0xf426)  ligne n° 429	TST R2
+1204   emplacement : 62504  (0xf428)  ligne n° 430	BEQ 4
+0c13   emplacement : 62506  (0xf42a)  ligne n° 431	TST R3
+1304   emplacement : 62508  (0xf42c)  ligne n° 432	BNE 4
+2300   emplacement : 62510  (0xf42e)  ligne n° 433	LDQ 0, R3
+0180   emplacement : 62512  (0xf430)  ligne n° 434	JMP #4
+0004   emplacement : 62514  (0xf432) 
+2301   emplacement : 62516  (0xf434)  ligne n° 435	LDQ 1, R3
+634f   emplacement : 62518  (0xf436)  ligne n° 436	STW R3, -(R15)
+63bf   emplacement : 62520  (0xf438)  ligne n° 437	LDW R3, (R15)+
 6180   emplacement : 62522  (0xf43a)  ligne n° 439	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62524  (0xf43c) 
-63a1   emplacement : 62526  (0xf43e)  ligne n° 440	LDW R3, (R1)
-6593   emplacement : 62528  (0xf440)  ligne n° 441	LDW R5, R3
-260a   emplacement : 62530  (0xf442)  ligne n° 442	LDQ 10, R6
-0a50   emplacement : 62532  (0xf444)  ligne n° 443	JSR @itoa
-f870   emplacement : 62534  (0xf446) 
-6093   emplacement : 62536  (0xf448)  ligne n° 444	LDW R0, R3
-0a50   emplacement : 62538  (0xf44a)  ligne n° 445	JSR @printi
-f776   emplacement : 62540  (0xf44c) 
-6100   emplacement : 62542  (0xf44e)  ligne n° 446	STRING6 string "a"
-6380   emplacement : 62544  (0xf450)  ligne n° 447	LDW R3, #STRING6
-f44e   emplacement : 62546  (0xf452) 
-634f   emplacement : 62548  (0xf454)  ligne n° 448	STW R3, -(R15)
-6100   emplacement : 62550  (0xf456)  ligne n° 449	STRING7 string "a"
-6380   emplacement : 62552  (0xf458)  ligne n° 450	LDW R3, #STRING7
-f456   emplacement : 62554  (0xf45a) 
-65bf   emplacement : 62556  (0xf45c)  ligne n° 451	LDW R5, (R15)+
-6693   emplacement : 62558  (0xf45e)  ligne n° 452	LDW R6, R3
-62a5   emplacement : 62560  (0xf460)  ligne n° 453	LDW R2, (R5)
-63a6   emplacement : 62562  (0xf462)  ligne n° 454	LDW R3, (R6)
-4f23   emplacement : 62564  (0xf464)  ligne n° 455	CONDID0 CMP R2, R3
-1704   emplacement : 62566  (0xf466)  ligne n° 456	BLW 4
-2300   emplacement : 62568  (0xf468)  ligne n° 457	LDQ 0, R3
-0180   emplacement : 62570  (0xf46a)  ligne n° 458	JMP #20
-0014   emplacement : 62572  (0xf46c) 
-35fe   emplacement : 62574  (0xf46e)  ligne n° 459	ADQ -2, R5
-36fe   emplacement : 62576  (0xf470)  ligne n° 460	ADQ -2, R6
-62a5   emplacement : 62578  (0xf472)  ligne n° 461	LDW R2, (R5)
-63a6   emplacement : 62580  (0xf474)  ligne n° 462	LDW R3, (R6)
-0c12   emplacement : 62582  (0xf476)  ligne n° 463	TST R2
-13ea   emplacement : 62584  (0xf478)  ligne n° 464	BNE CONDID0-$-2
-0c13   emplacement : 62586  (0xf47a)  ligne n° 465	TST R3
-12f0   emplacement : 62588  (0xf47c)  ligne n° 466	BEQ -16
-2301   emplacement : 62590  (0xf47e)  ligne n° 467	LDQ 1, R3
-634f   emplacement : 62592  (0xf480)  ligne n° 468	STW R3, -(R15)
-6100   emplacement : 62594  (0xf482)  ligne n° 470	STRING8 string "a"
-6380   emplacement : 62596  (0xf484)  ligne n° 471	LDW R3, #STRING8
-f482   emplacement : 62598  (0xf486) 
-6293   emplacement : 62600  (0xf488)  ligne n° 472	LDW R2, R3
-6100   emplacement : 62602  (0xf48a)  ligne n° 473	STRING9 string "a"
-6380   emplacement : 62604  (0xf48c)  ligne n° 474	LDW R3, #STRING9
-f48a   emplacement : 62606  (0xf48e) 
-4f23   emplacement : 62608  (0xf490)  ligne n° 475	CMP R2, R3
-1704   emplacement : 62610  (0xf492)  ligne n° 476	BLW 4
-2300   emplacement : 62612  (0xf494)  ligne n° 477	LDQ 0, R3
-0180   emplacement : 62614  (0xf496)  ligne n° 478	JMP #4
-0004   emplacement : 62616  (0xf498) 
-2301   emplacement : 62618  (0xf49a)  ligne n° 479	LDQ 1, R3
-634f   emplacement : 62620  (0xf49c)  ligne n° 480	STW R3, -(R15)
-63bf   emplacement : 62622  (0xf49e)  ligne n° 482	LDW R3, (R15)+
-6180   emplacement : 62624  (0xf4a0)  ligne n° 484	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62626  (0xf4a2) 
-6321   emplacement : 62628  (0xf4a4)  ligne n° 485	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 62630  (0xf4a6)  ligne n° 486	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62632  (0xf4a8) 
-63a1   emplacement : 62634  (0xf4aa)  ligne n° 487	LDW R3, (R1)
-6593   emplacement : 62636  (0xf4ac)  ligne n° 488	LDW R5, R3
-260a   emplacement : 62638  (0xf4ae)  ligne n° 489	LDQ 10, R6
-0a50   emplacement : 62640  (0xf4b0)  ligne n° 490	JSR @itoa
-f870   emplacement : 62642  (0xf4b2) 
-6093   emplacement : 62644  (0xf4b4)  ligne n° 491	LDW R0, R3
-0a50   emplacement : 62646  (0xf4b6)  ligne n° 492	JSR @printi
-f776   emplacement : 62648  (0xf4b8) 
-6162   emplacement : 62650  (0xf4ba)  ligne n° 493	STRING10 string "abcd"
-6364   emplacement : 62652  (0xf4bc) 
-0000   emplacement : 62654  (0xf4be) 
-6380   emplacement : 62656  (0xf4c0)  ligne n° 494	LDW R3, #STRING10
-f4ba   emplacement : 62658  (0xf4c2) 
-634f   emplacement : 62660  (0xf4c4)  ligne n° 495	STW R3, -(R15)
-6263   emplacement : 62662  (0xf4c6)  ligne n° 496	STRING11 string "bcde"
-6465   emplacement : 62664  (0xf4c8) 
-0000   emplacement : 62666  (0xf4ca) 
-6380   emplacement : 62668  (0xf4cc)  ligne n° 497	LDW R3, #STRING11
-f4c6   emplacement : 62670  (0xf4ce) 
-65bf   emplacement : 62672  (0xf4d0)  ligne n° 498	LDW R5, (R15)+
-6693   emplacement : 62674  (0xf4d2)  ligne n° 499	LDW R6, R3
-62a5   emplacement : 62676  (0xf4d4)  ligne n° 500	LDW R2, (R5)
-63a6   emplacement : 62678  (0xf4d6)  ligne n° 501	LDW R3, (R6)
-4f23   emplacement : 62680  (0xf4d8)  ligne n° 502	CONDID1 CMP R2, R3
-1704   emplacement : 62682  (0xf4da)  ligne n° 503	BLW 4
-2300   emplacement : 62684  (0xf4dc)  ligne n° 504	LDQ 0, R3
-0180   emplacement : 62686  (0xf4de)  ligne n° 505	JMP #20
-0014   emplacement : 62688  (0xf4e0) 
-35fe   emplacement : 62690  (0xf4e2)  ligne n° 506	ADQ -2, R5
-36fe   emplacement : 62692  (0xf4e4)  ligne n° 507	ADQ -2, R6
-62a5   emplacement : 62694  (0xf4e6)  ligne n° 508	LDW R2, (R5)
-63a6   emplacement : 62696  (0xf4e8)  ligne n° 509	LDW R3, (R6)
-0c12   emplacement : 62698  (0xf4ea)  ligne n° 510	TST R2
-13ea   emplacement : 62700  (0xf4ec)  ligne n° 511	BNE CONDID1-$-2
-0c13   emplacement : 62702  (0xf4ee)  ligne n° 512	TST R3
-12f0   emplacement : 62704  (0xf4f0)  ligne n° 513	BEQ -16
-2301   emplacement : 62706  (0xf4f2)  ligne n° 514	LDQ 1, R3
-634f   emplacement : 62708  (0xf4f4)  ligne n° 515	STW R3, -(R15)
-6162   emplacement : 62710  (0xf4f6)  ligne n° 517	STRING12 string "abcd"
-6364   emplacement : 62712  (0xf4f8) 
-0000   emplacement : 62714  (0xf4fa) 
-6380   emplacement : 62716  (0xf4fc)  ligne n° 518	LDW R3, #STRING12
-f4f6   emplacement : 62718  (0xf4fe) 
-6293   emplacement : 62720  (0xf500)  ligne n° 519	LDW R2, R3
-6263   emplacement : 62722  (0xf502)  ligne n° 520	STRING13 string "bcde"
-6465   emplacement : 62724  (0xf504) 
-0000   emplacement : 62726  (0xf506) 
-6380   emplacement : 62728  (0xf508)  ligne n° 521	LDW R3, #STRING13
-f502   emplacement : 62730  (0xf50a) 
-4f23   emplacement : 62732  (0xf50c)  ligne n° 522	CMP R2, R3
-1704   emplacement : 62734  (0xf50e)  ligne n° 523	BLW 4
-2300   emplacement : 62736  (0xf510)  ligne n° 524	LDQ 0, R3
-0180   emplacement : 62738  (0xf512)  ligne n° 525	JMP #4
-0004   emplacement : 62740  (0xf514) 
-2301   emplacement : 62742  (0xf516)  ligne n° 526	LDQ 1, R3
-634f   emplacement : 62744  (0xf518)  ligne n° 527	STW R3, -(R15)
-63bf   emplacement : 62746  (0xf51a)  ligne n° 529	LDW R3, (R15)+
-6180   emplacement : 62748  (0xf51c)  ligne n° 531	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62750  (0xf51e) 
-6321   emplacement : 62752  (0xf520)  ligne n° 532	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 62754  (0xf522)  ligne n° 533	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62756  (0xf524) 
-63a1   emplacement : 62758  (0xf526)  ligne n° 534	LDW R3, (R1)
-6593   emplacement : 62760  (0xf528)  ligne n° 535	LDW R5, R3
-260a   emplacement : 62762  (0xf52a)  ligne n° 536	LDQ 10, R6
-0a50   emplacement : 62764  (0xf52c)  ligne n° 537	JSR @itoa
-f870   emplacement : 62766  (0xf52e) 
-6093   emplacement : 62768  (0xf530)  ligne n° 538	LDW R0, R3
-0a50   emplacement : 62770  (0xf532)  ligne n° 539	JSR @printi
-f776   emplacement : 62772  (0xf534) 
-6162   emplacement : 62774  (0xf536)  ligne n° 540	STRING14 string "abcd"
-6364   emplacement : 62776  (0xf538) 
-0000   emplacement : 62778  (0xf53a) 
-6380   emplacement : 62780  (0xf53c)  ligne n° 541	LDW R3, #STRING14
-f536   emplacement : 62782  (0xf53e) 
-634f   emplacement : 62784  (0xf540)  ligne n° 542	STW R3, -(R15)
-6263   emplacement : 62786  (0xf542)  ligne n° 543	STRING15 string "bcde"
-6465   emplacement : 62788  (0xf544) 
-0000   emplacement : 62790  (0xf546) 
-6380   emplacement : 62792  (0xf548)  ligne n° 544	LDW R3, #STRING15
-f542   emplacement : 62794  (0xf54a) 
-65bf   emplacement : 62796  (0xf54c)  ligne n° 545	LDW R5, (R15)+
-6693   emplacement : 62798  (0xf54e)  ligne n° 546	LDW R6, R3
-62a5   emplacement : 62800  (0xf550)  ligne n° 547	LDW R2, (R5)
-63a6   emplacement : 62802  (0xf552)  ligne n° 548	LDW R3, (R6)
-4f23   emplacement : 62804  (0xf554)  ligne n° 549	CONDID2 CMP R2, R3
-1604   emplacement : 62806  (0xf556)  ligne n° 550	BGT 4
-2300   emplacement : 62808  (0xf558)  ligne n° 551	LDQ 0, R3
-0180   emplacement : 62810  (0xf55a)  ligne n° 552	JMP #20
-0014   emplacement : 62812  (0xf55c) 
-35fe   emplacement : 62814  (0xf55e)  ligne n° 553	ADQ -2, R5
-36fe   emplacement : 62816  (0xf560)  ligne n° 554	ADQ -2, R6
-62a5   emplacement : 62818  (0xf562)  ligne n° 555	LDW R2, (R5)
-63a6   emplacement : 62820  (0xf564)  ligne n° 556	LDW R3, (R6)
-0c12   emplacement : 62822  (0xf566)  ligne n° 557	TST R2
-13ea   emplacement : 62824  (0xf568)  ligne n° 558	BNE CONDID2-$-2
-0c13   emplacement : 62826  (0xf56a)  ligne n° 559	TST R3
-12f0   emplacement : 62828  (0xf56c)  ligne n° 560	BEQ -16
-2301   emplacement : 62830  (0xf56e)  ligne n° 561	LDQ 1, R3
-634f   emplacement : 62832  (0xf570)  ligne n° 562	STW R3, -(R15)
-6162   emplacement : 62834  (0xf572)  ligne n° 564	STRING16 string "abcd"
-6364   emplacement : 62836  (0xf574) 
-0000   emplacement : 62838  (0xf576) 
-6380   emplacement : 62840  (0xf578)  ligne n° 565	LDW R3, #STRING16
-f572   emplacement : 62842  (0xf57a) 
-6293   emplacement : 62844  (0xf57c)  ligne n° 566	LDW R2, R3
-6263   emplacement : 62846  (0xf57e)  ligne n° 567	STRING17 string "bcde"
-6465   emplacement : 62848  (0xf580) 
-0000   emplacement : 62850  (0xf582) 
-6380   emplacement : 62852  (0xf584)  ligne n° 568	LDW R3, #STRING17
-f57e   emplacement : 62854  (0xf586) 
-4f23   emplacement : 62856  (0xf588)  ligne n° 569	CMP R2, R3
-1604   emplacement : 62858  (0xf58a)  ligne n° 570	BGT 4
-2300   emplacement : 62860  (0xf58c)  ligne n° 571	LDQ 0, R3
-0180   emplacement : 62862  (0xf58e)  ligne n° 572	JMP #4
-0004   emplacement : 62864  (0xf590) 
-2301   emplacement : 62866  (0xf592)  ligne n° 573	LDQ 1, R3
-634f   emplacement : 62868  (0xf594)  ligne n° 574	STW R3, -(R15)
-63bf   emplacement : 62870  (0xf596)  ligne n° 576	LDW R3, (R15)+
-6180   emplacement : 62872  (0xf598)  ligne n° 578	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+6321   emplacement : 62526  (0xf43e)  ligne n° 440	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62528  (0xf440)  ligne n° 441	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62530  (0xf442) 
+63a1   emplacement : 62532  (0xf444)  ligne n° 442	LDW R3, (R1)
+6593   emplacement : 62534  (0xf446)  ligne n° 443	LDW R5, R3
+260a   emplacement : 62536  (0xf448)  ligne n° 444	LDQ 10, R6
+0a50   emplacement : 62538  (0xf44a)  ligne n° 445	JSR @itoa
+fa18   emplacement : 62540  (0xf44c) 
+6093   emplacement : 62542  (0xf44e)  ligne n° 446	LDW R0, R3
+0a50   emplacement : 62544  (0xf450)  ligne n° 447	JSR @printi
+f830   emplacement : 62546  (0xf452) 
+6100   emplacement : 62548  (0xf454)  ligne n° 448	STRING7 string "a"
+6380   emplacement : 62550  (0xf456)  ligne n° 449	LDW R3, #STRING7
+f454   emplacement : 62552  (0xf458) 
+6593   emplacement : 62554  (0xf45a)  ligne n° 450	LDW R5, R3
+6100   emplacement : 62556  (0xf45c)  ligne n° 451	STRING8 string "a"
+6380   emplacement : 62558  (0xf45e)  ligne n° 452	LDW R3, #STRING8
+f45c   emplacement : 62560  (0xf460) 
+6b93   emplacement : 62562  (0xf462)  ligne n° 453	LDW R11, R3
+6693   emplacement : 62564  (0xf464)  ligne n° 454	LDW R6, R3
+62a5   emplacement : 62566  (0xf466)  ligne n° 455	LDW R2, (R5)
+63a6   emplacement : 62568  (0xf468)  ligne n° 456	LDW R3, (R6)
+4f23   emplacement : 62570  (0xf46a)  ligne n° 457	CONDID0 CMP R2, R3
+1704   emplacement : 62572  (0xf46c)  ligne n° 458	BLW 4
+2300   emplacement : 62574  (0xf46e)  ligne n° 459	LDQ 0, R3
+0180   emplacement : 62576  (0xf470)  ligne n° 460	JMP #20
+0014   emplacement : 62578  (0xf472) 
+3502   emplacement : 62580  (0xf474)  ligne n° 461	ADQ 2, R5
+3602   emplacement : 62582  (0xf476)  ligne n° 462	ADQ 2, R6
+62a5   emplacement : 62584  (0xf478)  ligne n° 463	LDW R2, (R5)
+63a6   emplacement : 62586  (0xf47a)  ligne n° 464	LDW R3, (R6)
+0c12   emplacement : 62588  (0xf47c)  ligne n° 465	TST R2
+13ea   emplacement : 62590  (0xf47e)  ligne n° 466	BNE CONDID0-$-2
+0c13   emplacement : 62592  (0xf480)  ligne n° 467	TST R3
+12f0   emplacement : 62594  (0xf482)  ligne n° 468	BEQ -16
+2301   emplacement : 62596  (0xf484)  ligne n° 469	LDQ 1, R3
+634f   emplacement : 62598  (0xf486)  ligne n° 470	STW R3, -(R15)
+63bf   emplacement : 62600  (0xf488)  ligne n° 472	LDW R3, (R15)+
+6180   emplacement : 62602  (0xf48a)  ligne n° 474	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62604  (0xf48c) 
+6321   emplacement : 62606  (0xf48e)  ligne n° 475	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62608  (0xf490)  ligne n° 476	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62610  (0xf492) 
+63a1   emplacement : 62612  (0xf494)  ligne n° 477	LDW R3, (R1)
+6593   emplacement : 62614  (0xf496)  ligne n° 478	LDW R5, R3
+260a   emplacement : 62616  (0xf498)  ligne n° 479	LDQ 10, R6
+0a50   emplacement : 62618  (0xf49a)  ligne n° 480	JSR @itoa
+fa18   emplacement : 62620  (0xf49c) 
+6093   emplacement : 62622  (0xf49e)  ligne n° 481	LDW R0, R3
+0a50   emplacement : 62624  (0xf4a0)  ligne n° 482	JSR @printi
+f830   emplacement : 62626  (0xf4a2) 
+6162   emplacement : 62628  (0xf4a4)  ligne n° 483	STRING9 string "abcd"
+6364   emplacement : 62630  (0xf4a6) 
+0000   emplacement : 62632  (0xf4a8) 
+6380   emplacement : 62634  (0xf4aa)  ligne n° 484	LDW R3, #STRING9
+f4a4   emplacement : 62636  (0xf4ac) 
+6593   emplacement : 62638  (0xf4ae)  ligne n° 485	LDW R5, R3
+6263   emplacement : 62640  (0xf4b0)  ligne n° 486	STRING10 string "bcde"
+6465   emplacement : 62642  (0xf4b2) 
+0000   emplacement : 62644  (0xf4b4) 
+6380   emplacement : 62646  (0xf4b6)  ligne n° 487	LDW R3, #STRING10
+f4b0   emplacement : 62648  (0xf4b8) 
+6b93   emplacement : 62650  (0xf4ba)  ligne n° 488	LDW R11, R3
+6693   emplacement : 62652  (0xf4bc)  ligne n° 489	LDW R6, R3
+62a5   emplacement : 62654  (0xf4be)  ligne n° 490	LDW R2, (R5)
+63a6   emplacement : 62656  (0xf4c0)  ligne n° 491	LDW R3, (R6)
+4f23   emplacement : 62658  (0xf4c2)  ligne n° 492	CONDID1 CMP R2, R3
+1704   emplacement : 62660  (0xf4c4)  ligne n° 493	BLW 4
+2300   emplacement : 62662  (0xf4c6)  ligne n° 494	LDQ 0, R3
+0180   emplacement : 62664  (0xf4c8)  ligne n° 495	JMP #20
+0014   emplacement : 62666  (0xf4ca) 
+3502   emplacement : 62668  (0xf4cc)  ligne n° 496	ADQ 2, R5
+3602   emplacement : 62670  (0xf4ce)  ligne n° 497	ADQ 2, R6
+62a5   emplacement : 62672  (0xf4d0)  ligne n° 498	LDW R2, (R5)
+63a6   emplacement : 62674  (0xf4d2)  ligne n° 499	LDW R3, (R6)
+0c12   emplacement : 62676  (0xf4d4)  ligne n° 500	TST R2
+13ea   emplacement : 62678  (0xf4d6)  ligne n° 501	BNE CONDID1-$-2
+0c13   emplacement : 62680  (0xf4d8)  ligne n° 502	TST R3
+12f0   emplacement : 62682  (0xf4da)  ligne n° 503	BEQ -16
+2301   emplacement : 62684  (0xf4dc)  ligne n° 504	LDQ 1, R3
+634f   emplacement : 62686  (0xf4de)  ligne n° 505	STW R3, -(R15)
+63bf   emplacement : 62688  (0xf4e0)  ligne n° 507	LDW R3, (R15)+
+6180   emplacement : 62690  (0xf4e2)  ligne n° 509	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62692  (0xf4e4) 
+6321   emplacement : 62694  (0xf4e6)  ligne n° 510	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62696  (0xf4e8)  ligne n° 511	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62698  (0xf4ea) 
+63a1   emplacement : 62700  (0xf4ec)  ligne n° 512	LDW R3, (R1)
+6593   emplacement : 62702  (0xf4ee)  ligne n° 513	LDW R5, R3
+260a   emplacement : 62704  (0xf4f0)  ligne n° 514	LDQ 10, R6
+0a50   emplacement : 62706  (0xf4f2)  ligne n° 515	JSR @itoa
+fa18   emplacement : 62708  (0xf4f4) 
+6093   emplacement : 62710  (0xf4f6)  ligne n° 516	LDW R0, R3
+0a50   emplacement : 62712  (0xf4f8)  ligne n° 517	JSR @printi
+f830   emplacement : 62714  (0xf4fa) 
+6162   emplacement : 62716  (0xf4fc)  ligne n° 518	STRING11 string "abcd"
+6364   emplacement : 62718  (0xf4fe) 
+0000   emplacement : 62720  (0xf500) 
+6380   emplacement : 62722  (0xf502)  ligne n° 519	LDW R3, #STRING11
+f4fc   emplacement : 62724  (0xf504) 
+6593   emplacement : 62726  (0xf506)  ligne n° 520	LDW R5, R3
+6263   emplacement : 62728  (0xf508)  ligne n° 521	STRING12 string "bcde"
+6465   emplacement : 62730  (0xf50a) 
+0000   emplacement : 62732  (0xf50c) 
+6380   emplacement : 62734  (0xf50e)  ligne n° 522	LDW R3, #STRING12
+f508   emplacement : 62736  (0xf510) 
+6b93   emplacement : 62738  (0xf512)  ligne n° 523	LDW R11, R3
+6693   emplacement : 62740  (0xf514)  ligne n° 524	LDW R6, R3
+62a5   emplacement : 62742  (0xf516)  ligne n° 525	LDW R2, (R5)
+63a6   emplacement : 62744  (0xf518)  ligne n° 526	LDW R3, (R6)
+4f23   emplacement : 62746  (0xf51a)  ligne n° 527	CONDID2 CMP R2, R3
+1604   emplacement : 62748  (0xf51c)  ligne n° 528	BGT 4
+2300   emplacement : 62750  (0xf51e)  ligne n° 529	LDQ 0, R3
+0180   emplacement : 62752  (0xf520)  ligne n° 530	JMP #20
+0014   emplacement : 62754  (0xf522) 
+3502   emplacement : 62756  (0xf524)  ligne n° 531	ADQ 2, R5
+3602   emplacement : 62758  (0xf526)  ligne n° 532	ADQ 2, R6
+62a5   emplacement : 62760  (0xf528)  ligne n° 533	LDW R2, (R5)
+63a6   emplacement : 62762  (0xf52a)  ligne n° 534	LDW R3, (R6)
+0c12   emplacement : 62764  (0xf52c)  ligne n° 535	TST R2
+13ea   emplacement : 62766  (0xf52e)  ligne n° 536	BNE CONDID2-$-2
+0c13   emplacement : 62768  (0xf530)  ligne n° 537	TST R3
+12f0   emplacement : 62770  (0xf532)  ligne n° 538	BEQ -16
+2301   emplacement : 62772  (0xf534)  ligne n° 539	LDQ 1, R3
+634f   emplacement : 62774  (0xf536)  ligne n° 540	STW R3, -(R15)
+63bf   emplacement : 62776  (0xf538)  ligne n° 542	LDW R3, (R15)+
+6180   emplacement : 62778  (0xf53a)  ligne n° 544	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62780  (0xf53c) 
+6321   emplacement : 62782  (0xf53e)  ligne n° 545	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62784  (0xf540)  ligne n° 546	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62786  (0xf542) 
+63a1   emplacement : 62788  (0xf544)  ligne n° 547	LDW R3, (R1)
+6593   emplacement : 62790  (0xf546)  ligne n° 548	LDW R5, R3
+260a   emplacement : 62792  (0xf548)  ligne n° 549	LDQ 10, R6
+0a50   emplacement : 62794  (0xf54a)  ligne n° 550	JSR @itoa
+fa18   emplacement : 62796  (0xf54c) 
+6093   emplacement : 62798  (0xf54e)  ligne n° 551	LDW R0, R3
+0a50   emplacement : 62800  (0xf550)  ligne n° 552	JSR @printi
+f830   emplacement : 62802  (0xf552) 
+6162   emplacement : 62804  (0xf554)  ligne n° 553	STRING13 string "abcd"
+6364   emplacement : 62806  (0xf556) 
+0000   emplacement : 62808  (0xf558) 
+6380   emplacement : 62810  (0xf55a)  ligne n° 554	LDW R3, #STRING13
+f554   emplacement : 62812  (0xf55c) 
+6593   emplacement : 62814  (0xf55e)  ligne n° 555	LDW R5, R3
+6667   emplacement : 62816  (0xf560)  ligne n° 556	STRING14 string "fger"
+6572   emplacement : 62818  (0xf562) 
+0000   emplacement : 62820  (0xf564) 
+6380   emplacement : 62822  (0xf566)  ligne n° 557	LDW R3, #STRING14
+f560   emplacement : 62824  (0xf568) 
+6b93   emplacement : 62826  (0xf56a)  ligne n° 558	LDW R11, R3
+6693   emplacement : 62828  (0xf56c)  ligne n° 559	LDW R6, R3
+62a5   emplacement : 62830  (0xf56e)  ligne n° 560	LDW R2, (R5)
+63a6   emplacement : 62832  (0xf570)  ligne n° 561	LDW R3, (R6)
+4f23   emplacement : 62834  (0xf572)  ligne n° 562	CONDID3 CMP R2, R3
+1204   emplacement : 62836  (0xf574)  ligne n° 563	BEQ 4
+2300   emplacement : 62838  (0xf576)  ligne n° 564	LDQ 0, R3
+0180   emplacement : 62840  (0xf578)  ligne n° 565	JMP #20
+0014   emplacement : 62842  (0xf57a) 
+3502   emplacement : 62844  (0xf57c)  ligne n° 566	ADQ 2, R5
+3602   emplacement : 62846  (0xf57e)  ligne n° 567	ADQ 2, R6
+62a5   emplacement : 62848  (0xf580)  ligne n° 568	LDW R2, (R5)
+63a6   emplacement : 62850  (0xf582)  ligne n° 569	LDW R3, (R6)
+0c12   emplacement : 62852  (0xf584)  ligne n° 570	TST R2
+13ea   emplacement : 62854  (0xf586)  ligne n° 571	BNE CONDID3-$-2
+0c13   emplacement : 62856  (0xf588)  ligne n° 572	TST R3
+12f0   emplacement : 62858  (0xf58a)  ligne n° 573	BEQ -16
+2301   emplacement : 62860  (0xf58c)  ligne n° 574	LDQ 1, R3
+634f   emplacement : 62862  (0xf58e)  ligne n° 575	STW R3, -(R15)
+63bf   emplacement : 62864  (0xf590)  ligne n° 577	LDW R3, (R15)+
+6180   emplacement : 62866  (0xf592)  ligne n° 579	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62868  (0xf594) 
+6321   emplacement : 62870  (0xf596)  ligne n° 580	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62872  (0xf598)  ligne n° 581	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 0ffa   emplacement : 62874  (0xf59a) 
-6321   emplacement : 62876  (0xf59c)  ligne n° 579	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 62878  (0xf59e)  ligne n° 580	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62880  (0xf5a0) 
-63a1   emplacement : 62882  (0xf5a2)  ligne n° 581	LDW R3, (R1)
-6593   emplacement : 62884  (0xf5a4)  ligne n° 582	LDW R5, R3
-260a   emplacement : 62886  (0xf5a6)  ligne n° 583	LDQ 10, R6
-0a50   emplacement : 62888  (0xf5a8)  ligne n° 584	JSR @itoa
-f870   emplacement : 62890  (0xf5aa) 
-6093   emplacement : 62892  (0xf5ac)  ligne n° 585	LDW R0, R3
-0a50   emplacement : 62894  (0xf5ae)  ligne n° 586	JSR @printi
-f776   emplacement : 62896  (0xf5b0) 
-6162   emplacement : 62898  (0xf5b2)  ligne n° 587	STRING18 string "abcd"
-6364   emplacement : 62900  (0xf5b4) 
-0000   emplacement : 62902  (0xf5b6) 
-6380   emplacement : 62904  (0xf5b8)  ligne n° 588	LDW R3, #STRING18
-f5b2   emplacement : 62906  (0xf5ba) 
-634f   emplacement : 62908  (0xf5bc)  ligne n° 589	STW R3, -(R15)
-6667   emplacement : 62910  (0xf5be)  ligne n° 590	STRING19 string "fger"
-6572   emplacement : 62912  (0xf5c0) 
-0000   emplacement : 62914  (0xf5c2) 
-6380   emplacement : 62916  (0xf5c4)  ligne n° 591	LDW R3, #STRING19
-f5be   emplacement : 62918  (0xf5c6) 
-65bf   emplacement : 62920  (0xf5c8)  ligne n° 592	LDW R5, (R15)+
-6693   emplacement : 62922  (0xf5ca)  ligne n° 593	LDW R6, R3
-62a5   emplacement : 62924  (0xf5cc)  ligne n° 594	LDW R2, (R5)
-63a6   emplacement : 62926  (0xf5ce)  ligne n° 595	LDW R3, (R6)
-4f23   emplacement : 62928  (0xf5d0)  ligne n° 596	CONDID3 CMP R2, R3
-1204   emplacement : 62930  (0xf5d2)  ligne n° 597	BEQ 4
-2300   emplacement : 62932  (0xf5d4)  ligne n° 598	LDQ 0, R3
-0180   emplacement : 62934  (0xf5d6)  ligne n° 599	JMP #20
-0014   emplacement : 62936  (0xf5d8) 
-35fe   emplacement : 62938  (0xf5da)  ligne n° 600	ADQ -2, R5
-36fe   emplacement : 62940  (0xf5dc)  ligne n° 601	ADQ -2, R6
-62a5   emplacement : 62942  (0xf5de)  ligne n° 602	LDW R2, (R5)
-63a6   emplacement : 62944  (0xf5e0)  ligne n° 603	LDW R3, (R6)
-0c12   emplacement : 62946  (0xf5e2)  ligne n° 604	TST R2
-13ea   emplacement : 62948  (0xf5e4)  ligne n° 605	BNE CONDID3-$-2
-0c13   emplacement : 62950  (0xf5e6)  ligne n° 606	TST R3
-12f0   emplacement : 62952  (0xf5e8)  ligne n° 607	BEQ -16
-2301   emplacement : 62954  (0xf5ea)  ligne n° 608	LDQ 1, R3
-634f   emplacement : 62956  (0xf5ec)  ligne n° 609	STW R3, -(R15)
-6162   emplacement : 62958  (0xf5ee)  ligne n° 611	STRING20 string "abcd"
-6364   emplacement : 62960  (0xf5f0) 
-0000   emplacement : 62962  (0xf5f2) 
-6380   emplacement : 62964  (0xf5f4)  ligne n° 612	LDW R3, #STRING20
-f5ee   emplacement : 62966  (0xf5f6) 
-6293   emplacement : 62968  (0xf5f8)  ligne n° 613	LDW R2, R3
-6667   emplacement : 62970  (0xf5fa)  ligne n° 614	STRING21 string "fger"
-6572   emplacement : 62972  (0xf5fc) 
-0000   emplacement : 62974  (0xf5fe) 
-6380   emplacement : 62976  (0xf600)  ligne n° 615	LDW R3, #STRING21
-f5fa   emplacement : 62978  (0xf602) 
-4f23   emplacement : 62980  (0xf604)  ligne n° 616	CMP R2, R3
-1204   emplacement : 62982  (0xf606)  ligne n° 617	BEQ 4
-2300   emplacement : 62984  (0xf608)  ligne n° 618	LDQ 0, R3
-0180   emplacement : 62986  (0xf60a)  ligne n° 619	JMP #4
-0004   emplacement : 62988  (0xf60c) 
-2301   emplacement : 62990  (0xf60e)  ligne n° 620	LDQ 1, R3
-634f   emplacement : 62992  (0xf610)  ligne n° 621	STW R3, -(R15)
-63bf   emplacement : 62994  (0xf612)  ligne n° 623	LDW R3, (R15)+
-6180   emplacement : 62996  (0xf614)  ligne n° 625	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 62998  (0xf616) 
-6321   emplacement : 63000  (0xf618)  ligne n° 626	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 63002  (0xf61a)  ligne n° 627	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 63004  (0xf61c) 
-63a1   emplacement : 63006  (0xf61e)  ligne n° 628	LDW R3, (R1)
-6593   emplacement : 63008  (0xf620)  ligne n° 629	LDW R5, R3
-260a   emplacement : 63010  (0xf622)  ligne n° 630	LDQ 10, R6
-0a50   emplacement : 63012  (0xf624)  ligne n° 631	JSR @itoa
-f870   emplacement : 63014  (0xf626) 
-6093   emplacement : 63016  (0xf628)  ligne n° 632	LDW R0, R3
-0a50   emplacement : 63018  (0xf62a)  ligne n° 633	JSR @printi
-f776   emplacement : 63020  (0xf62c) 
-6162   emplacement : 63022  (0xf62e)  ligne n° 634	STRING22 string "abcd"
-6364   emplacement : 63024  (0xf630) 
-0000   emplacement : 63026  (0xf632) 
-6380   emplacement : 63028  (0xf634)  ligne n° 635	LDW R3, #STRING22
-f62e   emplacement : 63030  (0xf636) 
-634f   emplacement : 63032  (0xf638)  ligne n° 636	STW R3, -(R15)
-6162   emplacement : 63034  (0xf63a)  ligne n° 637	STRING23 string "abcd"
-6364   emplacement : 63036  (0xf63c) 
-0000   emplacement : 63038  (0xf63e) 
-6380   emplacement : 63040  (0xf640)  ligne n° 638	LDW R3, #STRING23
-f63a   emplacement : 63042  (0xf642) 
-65bf   emplacement : 63044  (0xf644)  ligne n° 639	LDW R5, (R15)+
-6693   emplacement : 63046  (0xf646)  ligne n° 640	LDW R6, R3
-62a5   emplacement : 63048  (0xf648)  ligne n° 641	LDW R2, (R5)
-63a6   emplacement : 63050  (0xf64a)  ligne n° 642	LDW R3, (R6)
-4f23   emplacement : 63052  (0xf64c)  ligne n° 643	CONDID4 CMP R2, R3
-1304   emplacement : 63054  (0xf64e)  ligne n° 644	BNE 4
-2300   emplacement : 63056  (0xf650)  ligne n° 645	LDQ 0, R3
-0180   emplacement : 63058  (0xf652)  ligne n° 646	JMP #20
-0014   emplacement : 63060  (0xf654) 
-35fe   emplacement : 63062  (0xf656)  ligne n° 647	ADQ -2, R5
-36fe   emplacement : 63064  (0xf658)  ligne n° 648	ADQ -2, R6
-62a5   emplacement : 63066  (0xf65a)  ligne n° 649	LDW R2, (R5)
-63a6   emplacement : 63068  (0xf65c)  ligne n° 650	LDW R3, (R6)
-0c12   emplacement : 63070  (0xf65e)  ligne n° 651	TST R2
-13ea   emplacement : 63072  (0xf660)  ligne n° 652	BNE CONDID4-$-2
-0c13   emplacement : 63074  (0xf662)  ligne n° 653	TST R3
-12f0   emplacement : 63076  (0xf664)  ligne n° 654	BEQ -16
-2301   emplacement : 63078  (0xf666)  ligne n° 655	LDQ 1, R3
-634f   emplacement : 63080  (0xf668)  ligne n° 656	STW R3, -(R15)
-6162   emplacement : 63082  (0xf66a)  ligne n° 658	STRING24 string "abcd"
-6364   emplacement : 63084  (0xf66c) 
-0000   emplacement : 63086  (0xf66e) 
-6380   emplacement : 63088  (0xf670)  ligne n° 659	LDW R3, #STRING24
-f66a   emplacement : 63090  (0xf672) 
-6293   emplacement : 63092  (0xf674)  ligne n° 660	LDW R2, R3
-6162   emplacement : 63094  (0xf676)  ligne n° 661	STRING25 string "abcd"
-6364   emplacement : 63096  (0xf678) 
-0000   emplacement : 63098  (0xf67a) 
-6380   emplacement : 63100  (0xf67c)  ligne n° 662	LDW R3, #STRING25
-f676   emplacement : 63102  (0xf67e) 
-4f23   emplacement : 63104  (0xf680)  ligne n° 663	CMP R2, R3
-1304   emplacement : 63106  (0xf682)  ligne n° 664	BNE 4
-2300   emplacement : 63108  (0xf684)  ligne n° 665	LDQ 0, R3
-0180   emplacement : 63110  (0xf686)  ligne n° 666	JMP #4
-0004   emplacement : 63112  (0xf688) 
-2301   emplacement : 63114  (0xf68a)  ligne n° 667	LDQ 1, R3
-634f   emplacement : 63116  (0xf68c)  ligne n° 668	STW R3, -(R15)
-63bf   emplacement : 63118  (0xf68e)  ligne n° 670	LDW R3, (R15)+
-6180   emplacement : 63120  (0xf690)  ligne n° 672	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 63122  (0xf692) 
-6321   emplacement : 63124  (0xf694)  ligne n° 673	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 63126  (0xf696)  ligne n° 674	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 63128  (0xf698) 
-63a1   emplacement : 63130  (0xf69a)  ligne n° 675	LDW R3, (R1)
-6593   emplacement : 63132  (0xf69c)  ligne n° 676	LDW R5, R3
-260a   emplacement : 63134  (0xf69e)  ligne n° 677	LDQ 10, R6
-0a50   emplacement : 63136  (0xf6a0)  ligne n° 678	JSR @itoa
-f870   emplacement : 63138  (0xf6a2) 
-6093   emplacement : 63140  (0xf6a4)  ligne n° 679	LDW R0, R3
-0a50   emplacement : 63142  (0xf6a6)  ligne n° 680	JSR @printi
-f776   emplacement : 63144  (0xf6a8) 
-6162   emplacement : 63146  (0xf6aa)  ligne n° 681	STRING26 string "abcd"
-6364   emplacement : 63148  (0xf6ac) 
-0000   emplacement : 63150  (0xf6ae) 
-6380   emplacement : 63152  (0xf6b0)  ligne n° 682	LDW R3, #STRING26
-f6aa   emplacement : 63154  (0xf6b2) 
-634f   emplacement : 63156  (0xf6b4)  ligne n° 683	STW R3, -(R15)
-6162   emplacement : 63158  (0xf6b6)  ligne n° 684	STRING27 string "abcd"
-6364   emplacement : 63160  (0xf6b8) 
-0000   emplacement : 63162  (0xf6ba) 
-6380   emplacement : 63164  (0xf6bc)  ligne n° 685	LDW R3, #STRING27
-f6b6   emplacement : 63166  (0xf6be) 
-65bf   emplacement : 63168  (0xf6c0)  ligne n° 686	LDW R5, (R15)+
-6693   emplacement : 63170  (0xf6c2)  ligne n° 687	LDW R6, R3
-62a5   emplacement : 63172  (0xf6c4)  ligne n° 688	LDW R2, (R5)
-63a6   emplacement : 63174  (0xf6c6)  ligne n° 689	LDW R3, (R6)
-4f23   emplacement : 63176  (0xf6c8)  ligne n° 690	CONDID5 CMP R2, R3
-1204   emplacement : 63178  (0xf6ca)  ligne n° 691	BEQ 4
-2300   emplacement : 63180  (0xf6cc)  ligne n° 692	LDQ 0, R3
-0180   emplacement : 63182  (0xf6ce)  ligne n° 693	JMP #20
-0014   emplacement : 63184  (0xf6d0) 
-35fe   emplacement : 63186  (0xf6d2)  ligne n° 694	ADQ -2, R5
-36fe   emplacement : 63188  (0xf6d4)  ligne n° 695	ADQ -2, R6
-62a5   emplacement : 63190  (0xf6d6)  ligne n° 696	LDW R2, (R5)
-63a6   emplacement : 63192  (0xf6d8)  ligne n° 697	LDW R3, (R6)
-0c12   emplacement : 63194  (0xf6da)  ligne n° 698	TST R2
-13ea   emplacement : 63196  (0xf6dc)  ligne n° 699	BNE CONDID5-$-2
-0c13   emplacement : 63198  (0xf6de)  ligne n° 700	TST R3
-12f0   emplacement : 63200  (0xf6e0)  ligne n° 701	BEQ -16
-2301   emplacement : 63202  (0xf6e2)  ligne n° 702	LDQ 1, R3
-634f   emplacement : 63204  (0xf6e4)  ligne n° 703	STW R3, -(R15)
-6162   emplacement : 63206  (0xf6e6)  ligne n° 705	STRING28 string "abcd"
-6364   emplacement : 63208  (0xf6e8) 
-0000   emplacement : 63210  (0xf6ea) 
-6380   emplacement : 63212  (0xf6ec)  ligne n° 706	LDW R3, #STRING28
-f6e6   emplacement : 63214  (0xf6ee) 
-6293   emplacement : 63216  (0xf6f0)  ligne n° 707	LDW R2, R3
-6162   emplacement : 63218  (0xf6f2)  ligne n° 708	STRING29 string "abcd"
-6364   emplacement : 63220  (0xf6f4) 
-0000   emplacement : 63222  (0xf6f6) 
-6380   emplacement : 63224  (0xf6f8)  ligne n° 709	LDW R3, #STRING29
-f6f2   emplacement : 63226  (0xf6fa) 
-4f23   emplacement : 63228  (0xf6fc)  ligne n° 710	CMP R2, R3
-1204   emplacement : 63230  (0xf6fe)  ligne n° 711	BEQ 4
-2300   emplacement : 63232  (0xf700)  ligne n° 712	LDQ 0, R3
-0180   emplacement : 63234  (0xf702)  ligne n° 713	JMP #4
-0004   emplacement : 63236  (0xf704) 
-2301   emplacement : 63238  (0xf706)  ligne n° 714	LDQ 1, R3
-634f   emplacement : 63240  (0xf708)  ligne n° 715	STW R3, -(R15)
-63bf   emplacement : 63242  (0xf70a)  ligne n° 717	LDW R3, (R15)+
-6180   emplacement : 63244  (0xf70c)  ligne n° 719	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 63246  (0xf70e) 
-6321   emplacement : 63248  (0xf710)  ligne n° 720	STW R3, (R1) //On stocke le resultat dans la m}moire
-6180   emplacement : 63250  (0xf712)  ligne n° 721	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-0ffa   emplacement : 63252  (0xf714) 
-63a1   emplacement : 63254  (0xf716)  ligne n° 722	LDW R3, (R1)
-6593   emplacement : 63256  (0xf718)  ligne n° 723	LDW R5, R3
-260a   emplacement : 63258  (0xf71a)  ligne n° 724	LDQ 10, R6
-0a50   emplacement : 63260  (0xf71c)  ligne n° 725	JSR @itoa
-f870   emplacement : 63262  (0xf71e) 
-6093   emplacement : 63264  (0xf720)  ligne n° 726	LDW R0, R3
-0a50   emplacement : 63266  (0xf722)  ligne n° 727	JSR @printi
-f776   emplacement : 63268  (0xf724) 
-0b00   emplacement : 63270  (0xf726)  ligne n° 729	TRP #EXIT_TRP //On quitte l'ex}cution
-0040   emplacement : 63272  (0xf728) 
-604f   emplacement : 63274  (0xf72a)  ligne n° 738	STW R0, -(SP)
-614f   emplacement : 63276  (0xf72c)  ligne n° 739	STW R1, -(SP)
-624f   emplacement : 63278  (0xf72e)  ligne n° 740	STW R2, -(SP)
-644f   emplacement : 63280  (0xf730)  ligne n° 741	STW R4, -(SP)
-654f   emplacement : 63282  (0xf732)  ligne n° 742	STW R5, -(SP)
-664f   emplacement : 63284  (0xf734)  ligne n° 743	STW R6, -(SP)
-674f   emplacement : 63286  (0xf736)  ligne n° 744	STW R7, -(SP)
-684f   emplacement : 63288  (0xf738)  ligne n° 745	STW R8, -(SP)
-694f   emplacement : 63290  (0xf73a)  ligne n° 746	STW R9, -(SP)
-6a4f   emplacement : 63292  (0xf73c)  ligne n° 747	STW R10, -(SP)
-6b4f   emplacement : 63294  (0xf73e)  ligne n° 748	STW R11, -(SP)
-6c4f   emplacement : 63296  (0xf740)  ligne n° 749	STW R12, -(SP)
-6d4f   emplacement : 63298  (0xf742)  ligne n° 750	STW R13, -(SP)
-6e4f   emplacement : 63300  (0xf744)  ligne n° 751	STW R14, -(SP)
-6d4f   emplacement : 63302  (0xf746)  ligne n° 753	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-6d9f   emplacement : 63304  (0xf748)  ligne n° 754	LDW BP, SP //Le sommet de la pile devient la nouvelle base
-0b00   emplacement : 63306  (0xf74a)  ligne n° 755	TRP #WRITE_TRP //On l}ve la trappe
-0042   emplacement : 63308  (0xf74c) 
-2002   emplacement : 63310  (0xf74e)  ligne n° 756	LDQ SAUT_DE_LIGNE, R0
-0b00   emplacement : 63312  (0xf750)  ligne n° 757	TRP #WRITE_TRP
-0042   emplacement : 63314  (0xf752) 
-6f9d   emplacement : 63316  (0xf754)  ligne n° 759	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
-6dbf   emplacement : 63318  (0xf756)  ligne n° 760	LDW BP, (SP)+ //On d}pile l'ancienne base
-6ebf   emplacement : 63320  (0xf758)  ligne n° 762	LDW R14, (SP)+
-6dbf   emplacement : 63322  (0xf75a)  ligne n° 763	LDW R13, (SP)+
-6cbf   emplacement : 63324  (0xf75c)  ligne n° 764	LDW R12, (SP)+
-6bbf   emplacement : 63326  (0xf75e)  ligne n° 765	LDW R11, (SP)+
-6abf   emplacement : 63328  (0xf760)  ligne n° 766	LDW R10, (SP)+
-69bf   emplacement : 63330  (0xf762)  ligne n° 767	LDW R9, (SP)+
-68bf   emplacement : 63332  (0xf764)  ligne n° 768	LDW R8, (SP)+
-67bf   emplacement : 63334  (0xf766)  ligne n° 769	LDW R7, (SP)+
-66bf   emplacement : 63336  (0xf768)  ligne n° 770	LDW R6, (SP)+
-65bf   emplacement : 63338  (0xf76a)  ligne n° 771	LDW R5, (SP)+
-64bf   emplacement : 63340  (0xf76c)  ligne n° 772	LDW R4, (SP)+
-62bf   emplacement : 63342  (0xf76e)  ligne n° 773	LDW R2, (SP)+
-61bf   emplacement : 63344  (0xf770)  ligne n° 774	LDW R1, (SP)+
-60bf   emplacement : 63346  (0xf772)  ligne n° 775	LDW R0, (SP)+
-0200   emplacement : 63348  (0xf774)  ligne n° 776	RTS //On retourne dans la suite de l'ex}cution
-604f   emplacement : 63350  (0xf776)  ligne n° 780	STW R0, -(SP)
-614f   emplacement : 63352  (0xf778)  ligne n° 781	STW R1, -(SP)
-624f   emplacement : 63354  (0xf77a)  ligne n° 782	STW R2, -(SP)
-644f   emplacement : 63356  (0xf77c)  ligne n° 783	STW R4, -(SP)
-654f   emplacement : 63358  (0xf77e)  ligne n° 784	STW R5, -(SP)
-664f   emplacement : 63360  (0xf780)  ligne n° 785	STW R6, -(SP)
-674f   emplacement : 63362  (0xf782)  ligne n° 786	STW R7, -(SP)
-684f   emplacement : 63364  (0xf784)  ligne n° 787	STW R8, -(SP)
-694f   emplacement : 63366  (0xf786)  ligne n° 788	STW R9, -(SP)
-6a4f   emplacement : 63368  (0xf788)  ligne n° 789	STW R10, -(SP)
-6b4f   emplacement : 63370  (0xf78a)  ligne n° 790	STW R11, -(SP)
-6c4f   emplacement : 63372  (0xf78c)  ligne n° 791	STW R12, -(SP)
-6d4f   emplacement : 63374  (0xf78e)  ligne n° 792	STW R13, -(SP)
-6e4f   emplacement : 63376  (0xf790)  ligne n° 793	STW R14, -(SP)
-6d4f   emplacement : 63378  (0xf792)  ligne n° 795	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-6d9f   emplacement : 63380  (0xf794)  ligne n° 796	LDW BP, SP //Le sommet de la pile devient la nouvelle base
-0b00   emplacement : 63382  (0xf796)  ligne n° 797	TRP #WRITE_TRP //On l}ve la trappe
-0042   emplacement : 63384  (0xf798) 
-2002   emplacement : 63386  (0xf79a)  ligne n° 798	LDQ SAUT_DE_LIGNE, R0
-0b00   emplacement : 63388  (0xf79c)  ligne n° 799	TRP #WRITE_TRP
-0042   emplacement : 63390  (0xf79e) 
-6f9d   emplacement : 63392  (0xf7a0)  ligne n° 801	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
-6dbf   emplacement : 63394  (0xf7a2)  ligne n° 802	LDW BP, (SP)+ //On d}pile l'ancienne base
-6ebf   emplacement : 63396  (0xf7a4)  ligne n° 804	LDW R14, (SP)+
-6dbf   emplacement : 63398  (0xf7a6)  ligne n° 805	LDW R13, (SP)+
-6cbf   emplacement : 63400  (0xf7a8)  ligne n° 806	LDW R12, (SP)+
-6bbf   emplacement : 63402  (0xf7aa)  ligne n° 807	LDW R11, (SP)+
-6abf   emplacement : 63404  (0xf7ac)  ligne n° 808	LDW R10, (SP)+
-69bf   emplacement : 63406  (0xf7ae)  ligne n° 809	LDW R9, (SP)+
-68bf   emplacement : 63408  (0xf7b0)  ligne n° 810	LDW R8, (SP)+
-67bf   emplacement : 63410  (0xf7b2)  ligne n° 811	LDW R7, (SP)+
-66bf   emplacement : 63412  (0xf7b4)  ligne n° 812	LDW R6, (SP)+
-65bf   emplacement : 63414  (0xf7b6)  ligne n° 813	LDW R5, (SP)+
-64bf   emplacement : 63416  (0xf7b8)  ligne n° 814	LDW R4, (SP)+
-62bf   emplacement : 63418  (0xf7ba)  ligne n° 815	LDW R2, (SP)+
-61bf   emplacement : 63420  (0xf7bc)  ligne n° 816	LDW R1, (SP)+
-60bf   emplacement : 63422  (0xf7be)  ligne n° 817	LDW R0, (SP)+
-0200   emplacement : 63424  (0xf7c0)  ligne n° 818	RTS //On retourne dans la suite de l'ex}cution
-604f   emplacement : 63426  (0xf7c2)  ligne n° 822	STW R0, -(SP)
-614f   emplacement : 63428  (0xf7c4)  ligne n° 823	STW R1, -(SP)
-624f   emplacement : 63430  (0xf7c6)  ligne n° 824	STW R2, -(SP)
-644f   emplacement : 63432  (0xf7c8)  ligne n° 825	STW R4, -(SP)
-654f   emplacement : 63434  (0xf7ca)  ligne n° 826	STW R5, -(SP)
-664f   emplacement : 63436  (0xf7cc)  ligne n° 827	STW R6, -(SP)
-674f   emplacement : 63438  (0xf7ce)  ligne n° 828	STW R7, -(SP)
-684f   emplacement : 63440  (0xf7d0)  ligne n° 829	STW R8, -(SP)
-694f   emplacement : 63442  (0xf7d2)  ligne n° 830	STW R9, -(SP)
-6a4f   emplacement : 63444  (0xf7d4)  ligne n° 831	STW R10, -(SP)
-6b4f   emplacement : 63446  (0xf7d6)  ligne n° 832	STW R11, -(SP)
-6c4f   emplacement : 63448  (0xf7d8)  ligne n° 833	STW R12, -(SP)
-6d4f   emplacement : 63450  (0xf7da)  ligne n° 834	STW R13, -(SP)
-6e4f   emplacement : 63452  (0xf7dc)  ligne n° 835	STW R14, -(SP)
-6d4f   emplacement : 63454  (0xf7de)  ligne n° 837	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-6d9f   emplacement : 63456  (0xf7e0)  ligne n° 838	LDW BP, SP //Le sommet de la pile devient la nouvelle base
-0000   emplacement : 63458  (0xf7e2)  ligne n° 839	STRING0 RSB 100 //On cr}e la chaine de retour (100 caract}res max)
-0000   emplacement : 63460  (0xf7e4) 
-0000   emplacement : 63462  (0xf7e6) 
-0000   emplacement : 63464  (0xf7e8) 
-0000   emplacement : 63466  (0xf7ea) 
-0000   emplacement : 63468  (0xf7ec) 
-0000   emplacement : 63470  (0xf7ee) 
-0000   emplacement : 63472  (0xf7f0) 
-0000   emplacement : 63474  (0xf7f2) 
-0000   emplacement : 63476  (0xf7f4) 
-0000   emplacement : 63478  (0xf7f6) 
-0000   emplacement : 63480  (0xf7f8) 
-0000   emplacement : 63482  (0xf7fa) 
-0000   emplacement : 63484  (0xf7fc) 
-0000   emplacement : 63486  (0xf7fe) 
-0000   emplacement : 63488  (0xf800) 
-0000   emplacement : 63490  (0xf802) 
-0000   emplacement : 63492  (0xf804) 
-0000   emplacement : 63494  (0xf806) 
-0000   emplacement : 63496  (0xf808) 
-0000   emplacement : 63498  (0xf80a) 
-0000   emplacement : 63500  (0xf80c) 
-0000   emplacement : 63502  (0xf80e) 
-0000   emplacement : 63504  (0xf810) 
-0000   emplacement : 63506  (0xf812) 
-0000   emplacement : 63508  (0xf814) 
-0000   emplacement : 63510  (0xf816) 
-0000   emplacement : 63512  (0xf818) 
-0000   emplacement : 63514  (0xf81a) 
-0000   emplacement : 63516  (0xf81c) 
-0000   emplacement : 63518  (0xf81e) 
-0000   emplacement : 63520  (0xf820) 
-0000   emplacement : 63522  (0xf822) 
-0000   emplacement : 63524  (0xf824) 
-0000   emplacement : 63526  (0xf826) 
-0000   emplacement : 63528  (0xf828) 
-0000   emplacement : 63530  (0xf82a) 
-0000   emplacement : 63532  (0xf82c) 
-0000   emplacement : 63534  (0xf82e) 
-0000   emplacement : 63536  (0xf830) 
-0000   emplacement : 63538  (0xf832) 
-0000   emplacement : 63540  (0xf834) 
-0000   emplacement : 63542  (0xf836) 
-0000   emplacement : 63544  (0xf838) 
-0000   emplacement : 63546  (0xf83a) 
-0000   emplacement : 63548  (0xf83c) 
-0000   emplacement : 63550  (0xf83e) 
-0000   emplacement : 63552  (0xf840) 
-0000   emplacement : 63554  (0xf842) 
-0000   emplacement : 63556  (0xf844) 
-20e2   emplacement : 63558  (0xf846)  ligne n° 840	LDQ STRING0, R0 //On met cette adresse en lecture
-0b00   emplacement : 63560  (0xf848)  ligne n° 841	TRP #READ_TRP //On l}ve la trappe
-0041   emplacement : 63562  (0xf84a) 
-6390   emplacement : 63564  (0xf84c)  ligne n° 842	LDW R3, R0 //On met le r}sultat dans R3
-6f9d   emplacement : 63566  (0xf84e)  ligne n° 844	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
-6dbf   emplacement : 63568  (0xf850)  ligne n° 845	LDW BP, (SP)+ //On d}pile l'ancienne base
-6ebf   emplacement : 63570  (0xf852)  ligne n° 847	LDW R14, (SP)+
-6dbf   emplacement : 63572  (0xf854)  ligne n° 848	LDW R13, (SP)+
-6cbf   emplacement : 63574  (0xf856)  ligne n° 849	LDW R12, (SP)+
-6bbf   emplacement : 63576  (0xf858)  ligne n° 850	LDW R11, (SP)+
-6abf   emplacement : 63578  (0xf85a)  ligne n° 851	LDW R10, (SP)+
-69bf   emplacement : 63580  (0xf85c)  ligne n° 852	LDW R9, (SP)+
-68bf   emplacement : 63582  (0xf85e)  ligne n° 853	LDW R8, (SP)+
-67bf   emplacement : 63584  (0xf860)  ligne n° 854	LDW R7, (SP)+
-66bf   emplacement : 63586  (0xf862)  ligne n° 855	LDW R6, (SP)+
-65bf   emplacement : 63588  (0xf864)  ligne n° 856	LDW R5, (SP)+
-64bf   emplacement : 63590  (0xf866)  ligne n° 857	LDW R4, (SP)+
-62bf   emplacement : 63592  (0xf868)  ligne n° 858	LDW R2, (SP)+
-61bf   emplacement : 63594  (0xf86a)  ligne n° 859	LDW R1, (SP)+
-60bf   emplacement : 63596  (0xf86c)  ligne n° 860	LDW R0, (SP)+
-0200   emplacement : 63598  (0xf86e)  ligne n° 861	RTS //On retourne dans le programme
-604f   emplacement : 63600  (0xf870)  ligne n° 864	STW R0, -(SP)
-614f   emplacement : 63602  (0xf872)  ligne n° 865	STW R1, -(SP)
-624f   emplacement : 63604  (0xf874)  ligne n° 866	STW R2, -(SP)
-644f   emplacement : 63606  (0xf876)  ligne n° 867	STW R4, -(SP)
-654f   emplacement : 63608  (0xf878)  ligne n° 868	STW R5, -(SP)
-664f   emplacement : 63610  (0xf87a)  ligne n° 869	STW R6, -(SP)
-674f   emplacement : 63612  (0xf87c)  ligne n° 870	STW R7, -(SP)
-684f   emplacement : 63614  (0xf87e)  ligne n° 871	STW R8, -(SP)
-694f   emplacement : 63616  (0xf880)  ligne n° 872	STW R9, -(SP)
-6a4f   emplacement : 63618  (0xf882)  ligne n° 873	STW R10, -(SP)
-6b4f   emplacement : 63620  (0xf884)  ligne n° 874	STW R11, -(SP)
-6c4f   emplacement : 63622  (0xf886)  ligne n° 875	STW R12, -(SP)
-6d4f   emplacement : 63624  (0xf888)  ligne n° 876	STW R13, -(SP)
-6e4f   emplacement : 63626  (0xf88a)  ligne n° 877	STW R14, -(SP)
-6d4f   emplacement : 63628  (0xf88c)  ligne n° 879	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-6d9f   emplacement : 63630  (0xf88e)  ligne n° 880	LDW BP, SP //Le sommet de la pile devient la nouvelle base
-0000   emplacement : 63632  (0xf890)  ligne n° 881	STRING1 RSB 100 //On cr}e la chaine de retour (100 octets max)
-0000   emplacement : 63634  (0xf892) 
-0000   emplacement : 63636  (0xf894) 
-0000   emplacement : 63638  (0xf896) 
+63a1   emplacement : 62876  (0xf59c)  ligne n° 582	LDW R3, (R1)
+6593   emplacement : 62878  (0xf59e)  ligne n° 583	LDW R5, R3
+260a   emplacement : 62880  (0xf5a0)  ligne n° 584	LDQ 10, R6
+0a50   emplacement : 62882  (0xf5a2)  ligne n° 585	JSR @itoa
+fa18   emplacement : 62884  (0xf5a4) 
+6093   emplacement : 62886  (0xf5a6)  ligne n° 586	LDW R0, R3
+0a50   emplacement : 62888  (0xf5a8)  ligne n° 587	JSR @printi
+f830   emplacement : 62890  (0xf5aa) 
+6162   emplacement : 62892  (0xf5ac)  ligne n° 588	STRING15 string "abcd"
+6364   emplacement : 62894  (0xf5ae) 
+0000   emplacement : 62896  (0xf5b0) 
+6380   emplacement : 62898  (0xf5b2)  ligne n° 589	LDW R3, #STRING15
+f5ac   emplacement : 62900  (0xf5b4) 
+6593   emplacement : 62902  (0xf5b6)  ligne n° 590	LDW R5, R3
+6162   emplacement : 62904  (0xf5b8)  ligne n° 591	STRING16 string "abcd"
+6364   emplacement : 62906  (0xf5ba) 
+0000   emplacement : 62908  (0xf5bc) 
+6380   emplacement : 62910  (0xf5be)  ligne n° 592	LDW R3, #STRING16
+f5b8   emplacement : 62912  (0xf5c0) 
+6b93   emplacement : 62914  (0xf5c2)  ligne n° 593	LDW R11, R3
+6693   emplacement : 62916  (0xf5c4)  ligne n° 594	LDW R6, R3
+62a5   emplacement : 62918  (0xf5c6)  ligne n° 595	LDW R2, (R5)
+63a6   emplacement : 62920  (0xf5c8)  ligne n° 596	LDW R3, (R6)
+4f23   emplacement : 62922  (0xf5ca)  ligne n° 597	CONDID4 CMP R2, R3
+1304   emplacement : 62924  (0xf5cc)  ligne n° 598	BNE 4
+2300   emplacement : 62926  (0xf5ce)  ligne n° 599	LDQ 0, R3
+0180   emplacement : 62928  (0xf5d0)  ligne n° 600	JMP #20
+0014   emplacement : 62930  (0xf5d2) 
+3502   emplacement : 62932  (0xf5d4)  ligne n° 601	ADQ 2, R5
+3602   emplacement : 62934  (0xf5d6)  ligne n° 602	ADQ 2, R6
+62a5   emplacement : 62936  (0xf5d8)  ligne n° 603	LDW R2, (R5)
+63a6   emplacement : 62938  (0xf5da)  ligne n° 604	LDW R3, (R6)
+0c12   emplacement : 62940  (0xf5dc)  ligne n° 605	TST R2
+13ea   emplacement : 62942  (0xf5de)  ligne n° 606	BNE CONDID4-$-2
+0c13   emplacement : 62944  (0xf5e0)  ligne n° 607	TST R3
+12f0   emplacement : 62946  (0xf5e2)  ligne n° 608	BEQ -16
+2301   emplacement : 62948  (0xf5e4)  ligne n° 609	LDQ 1, R3
+634f   emplacement : 62950  (0xf5e6)  ligne n° 610	STW R3, -(R15)
+63bf   emplacement : 62952  (0xf5e8)  ligne n° 612	LDW R3, (R15)+
+6180   emplacement : 62954  (0xf5ea)  ligne n° 614	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62956  (0xf5ec) 
+6321   emplacement : 62958  (0xf5ee)  ligne n° 615	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 62960  (0xf5f0)  ligne n° 616	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 62962  (0xf5f2) 
+63a1   emplacement : 62964  (0xf5f4)  ligne n° 617	LDW R3, (R1)
+6593   emplacement : 62966  (0xf5f6)  ligne n° 618	LDW R5, R3
+260a   emplacement : 62968  (0xf5f8)  ligne n° 619	LDQ 10, R6
+0a50   emplacement : 62970  (0xf5fa)  ligne n° 620	JSR @itoa
+fa18   emplacement : 62972  (0xf5fc) 
+6093   emplacement : 62974  (0xf5fe)  ligne n° 621	LDW R0, R3
+0a50   emplacement : 62976  (0xf600)  ligne n° 622	JSR @printi
+f830   emplacement : 62978  (0xf602) 
+6162   emplacement : 62980  (0xf604)  ligne n° 623	STRING17 string "abcd"
+6364   emplacement : 62982  (0xf606) 
+0000   emplacement : 62984  (0xf608) 
+6380   emplacement : 62986  (0xf60a)  ligne n° 624	LDW R3, #STRING17
+f604   emplacement : 62988  (0xf60c) 
+6593   emplacement : 62990  (0xf60e)  ligne n° 625	LDW R5, R3
+6162   emplacement : 62992  (0xf610)  ligne n° 626	STRING18 string "abcd"
+6364   emplacement : 62994  (0xf612) 
+0000   emplacement : 62996  (0xf614) 
+6380   emplacement : 62998  (0xf616)  ligne n° 627	LDW R3, #STRING18
+f610   emplacement : 63000  (0xf618) 
+6b93   emplacement : 63002  (0xf61a)  ligne n° 628	LDW R11, R3
+6693   emplacement : 63004  (0xf61c)  ligne n° 629	LDW R6, R3
+62a5   emplacement : 63006  (0xf61e)  ligne n° 630	LDW R2, (R5)
+63a6   emplacement : 63008  (0xf620)  ligne n° 631	LDW R3, (R6)
+4f23   emplacement : 63010  (0xf622)  ligne n° 632	CONDID5 CMP R2, R3
+1204   emplacement : 63012  (0xf624)  ligne n° 633	BEQ 4
+2300   emplacement : 63014  (0xf626)  ligne n° 634	LDQ 0, R3
+0180   emplacement : 63016  (0xf628)  ligne n° 635	JMP #20
+0014   emplacement : 63018  (0xf62a) 
+3502   emplacement : 63020  (0xf62c)  ligne n° 636	ADQ 2, R5
+3602   emplacement : 63022  (0xf62e)  ligne n° 637	ADQ 2, R6
+62a5   emplacement : 63024  (0xf630)  ligne n° 638	LDW R2, (R5)
+63a6   emplacement : 63026  (0xf632)  ligne n° 639	LDW R3, (R6)
+0c12   emplacement : 63028  (0xf634)  ligne n° 640	TST R2
+13ea   emplacement : 63030  (0xf636)  ligne n° 641	BNE CONDID5-$-2
+0c13   emplacement : 63032  (0xf638)  ligne n° 642	TST R3
+12f0   emplacement : 63034  (0xf63a)  ligne n° 643	BEQ -16
+2301   emplacement : 63036  (0xf63c)  ligne n° 644	LDQ 1, R3
+634f   emplacement : 63038  (0xf63e)  ligne n° 645	STW R3, -(R15)
+63bf   emplacement : 63040  (0xf640)  ligne n° 647	LDW R3, (R15)+
+6180   emplacement : 63042  (0xf642)  ligne n° 649	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63044  (0xf644) 
+6321   emplacement : 63046  (0xf646)  ligne n° 650	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63048  (0xf648)  ligne n° 651	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63050  (0xf64a) 
+63a1   emplacement : 63052  (0xf64c)  ligne n° 652	LDW R3, (R1)
+6593   emplacement : 63054  (0xf64e)  ligne n° 653	LDW R5, R3
+260a   emplacement : 63056  (0xf650)  ligne n° 654	LDQ 10, R6
+0a50   emplacement : 63058  (0xf652)  ligne n° 655	JSR @itoa
+fa18   emplacement : 63060  (0xf654) 
+6093   emplacement : 63062  (0xf656)  ligne n° 656	LDW R0, R3
+0a50   emplacement : 63064  (0xf658)  ligne n° 657	JSR @printi
+f830   emplacement : 63066  (0xf65a) 
+6380   emplacement : 63068  (0xf65c)  ligne n° 658	LDW R3, #2
+0002   emplacement : 63070  (0xf65e) 
+6293   emplacement : 63072  (0xf660)  ligne n° 659	LDW R2, R3
+6380   emplacement : 63074  (0xf662)  ligne n° 660	LDW R3, #4
+0004   emplacement : 63076  (0xf664) 
+4f23   emplacement : 63078  (0xf666)  ligne n° 661	CMP R2, R3
+1704   emplacement : 63080  (0xf668)  ligne n° 662	BLW 4
+2300   emplacement : 63082  (0xf66a)  ligne n° 663	LDQ 0, R3
+0180   emplacement : 63084  (0xf66c)  ligne n° 664	JMP #4
+0004   emplacement : 63086  (0xf66e) 
+2301   emplacement : 63088  (0xf670)  ligne n° 665	LDQ 1, R3
+634f   emplacement : 63090  (0xf672)  ligne n° 666	STW R3, -(R15)
+63bf   emplacement : 63092  (0xf674)  ligne n° 668	LDW R3, (R15)+
+0c13   emplacement : 63094  (0xf676)  ligne n° 670	TST R3
+120c   emplacement : 63096  (0xf678)  ligne n° 671	BEQ else1-$-2
+6380   emplacement : 63098  (0xf67a)  ligne n° 673	LDW R3, #8
+0008   emplacement : 63100  (0xf67c) 
+6180   emplacement : 63102  (0xf67e)  ligne n° 674	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63104  (0xf680) 
+6321   emplacement : 63106  (0xf682)  ligne n° 675	STW R3, (R1) //On stocke le resultat dans la m}moire
+110c   emplacement : 63108  (0xf684)  ligne n° 676	BMP endif1-$-2
+6380   emplacement : 63110  (0xf686)  ligne n° 678	LDW R3, #1
+0001   emplacement : 63112  (0xf688) 
+4733   emplacement : 63114  (0xf68a)  ligne n° 679	NEG R3, R3
+6180   emplacement : 63116  (0xf68c)  ligne n° 680	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63118  (0xf68e) 
+6321   emplacement : 63120  (0xf690)  ligne n° 681	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63122  (0xf692)  ligne n° 683	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63124  (0xf694) 
+6321   emplacement : 63126  (0xf696)  ligne n° 684	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63128  (0xf698)  ligne n° 685	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63130  (0xf69a) 
+63a1   emplacement : 63132  (0xf69c)  ligne n° 686	LDW R3, (R1)
+6593   emplacement : 63134  (0xf69e)  ligne n° 687	LDW R5, R3
+260a   emplacement : 63136  (0xf6a0)  ligne n° 688	LDQ 10, R6
+0a50   emplacement : 63138  (0xf6a2)  ligne n° 689	JSR @itoa
+fa18   emplacement : 63140  (0xf6a4) 
+6093   emplacement : 63142  (0xf6a6)  ligne n° 690	LDW R0, R3
+0a50   emplacement : 63144  (0xf6a8)  ligne n° 691	JSR @printi
+f830   emplacement : 63146  (0xf6aa) 
+6380   emplacement : 63148  (0xf6ac)  ligne n° 692	LDW R3, #2
+0002   emplacement : 63150  (0xf6ae) 
+6293   emplacement : 63152  (0xf6b0)  ligne n° 693	LDW R2, R3
+6380   emplacement : 63154  (0xf6b2)  ligne n° 694	LDW R3, #4
+0004   emplacement : 63156  (0xf6b4) 
+4f23   emplacement : 63158  (0xf6b6)  ligne n° 695	CMP R2, R3
+1604   emplacement : 63160  (0xf6b8)  ligne n° 696	BGT 4
+2300   emplacement : 63162  (0xf6ba)  ligne n° 697	LDQ 0, R3
+0180   emplacement : 63164  (0xf6bc)  ligne n° 698	JMP #4
+0004   emplacement : 63166  (0xf6be) 
+2301   emplacement : 63168  (0xf6c0)  ligne n° 699	LDQ 1, R3
+634f   emplacement : 63170  (0xf6c2)  ligne n° 700	STW R3, -(R15)
+63bf   emplacement : 63172  (0xf6c4)  ligne n° 702	LDW R3, (R15)+
+0c13   emplacement : 63174  (0xf6c6)  ligne n° 704	TST R3
+120c   emplacement : 63176  (0xf6c8)  ligne n° 705	BEQ else2-$-2
+6380   emplacement : 63178  (0xf6ca)  ligne n° 707	LDW R3, #8
+0008   emplacement : 63180  (0xf6cc) 
+6180   emplacement : 63182  (0xf6ce)  ligne n° 708	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63184  (0xf6d0) 
+6321   emplacement : 63186  (0xf6d2)  ligne n° 709	STW R3, (R1) //On stocke le resultat dans la m}moire
+110c   emplacement : 63188  (0xf6d4)  ligne n° 710	BMP endif2-$-2
+6380   emplacement : 63190  (0xf6d6)  ligne n° 712	LDW R3, #1
+0001   emplacement : 63192  (0xf6d8) 
+4733   emplacement : 63194  (0xf6da)  ligne n° 713	NEG R3, R3
+6180   emplacement : 63196  (0xf6dc)  ligne n° 714	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63198  (0xf6de) 
+6321   emplacement : 63200  (0xf6e0)  ligne n° 715	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63202  (0xf6e2)  ligne n° 717	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63204  (0xf6e4) 
+6321   emplacement : 63206  (0xf6e6)  ligne n° 718	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63208  (0xf6e8)  ligne n° 719	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63210  (0xf6ea) 
+63a1   emplacement : 63212  (0xf6ec)  ligne n° 720	LDW R3, (R1)
+6593   emplacement : 63214  (0xf6ee)  ligne n° 721	LDW R5, R3
+260a   emplacement : 63216  (0xf6f0)  ligne n° 722	LDQ 10, R6
+0a50   emplacement : 63218  (0xf6f2)  ligne n° 723	JSR @itoa
+fa18   emplacement : 63220  (0xf6f4) 
+6093   emplacement : 63222  (0xf6f6)  ligne n° 724	LDW R0, R3
+0a50   emplacement : 63224  (0xf6f8)  ligne n° 725	JSR @printi
+f830   emplacement : 63226  (0xf6fa) 
+6180   emplacement : 63228  (0xf6fc)  ligne n° 726	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63230  (0xf6fe) 
+63a1   emplacement : 63232  (0xf700)  ligne n° 727	LDW R3, (R1)
+6293   emplacement : 63234  (0xf702)  ligne n° 728	LDW R2, R3
+6380   emplacement : 63236  (0xf704)  ligne n° 729	LDW R3, #8
+0008   emplacement : 63238  (0xf706) 
+4f23   emplacement : 63240  (0xf708)  ligne n° 730	CMP R2, R3
+1304   emplacement : 63242  (0xf70a)  ligne n° 731	BNE 4
+2300   emplacement : 63244  (0xf70c)  ligne n° 732	LDQ 0, R3
+0180   emplacement : 63246  (0xf70e)  ligne n° 733	JMP #4
+0004   emplacement : 63248  (0xf710) 
+2301   emplacement : 63250  (0xf712)  ligne n° 734	LDQ 1, R3
+634f   emplacement : 63252  (0xf714)  ligne n° 735	STW R3, -(R15)
+63bf   emplacement : 63254  (0xf716)  ligne n° 737	LDW R3, (R15)+
+0c13   emplacement : 63256  (0xf718)  ligne n° 739	TST R3
+120c   emplacement : 63258  (0xf71a)  ligne n° 740	BEQ else3-$-2
+6380   emplacement : 63260  (0xf71c)  ligne n° 742	LDW R3, #8
+0008   emplacement : 63262  (0xf71e) 
+6180   emplacement : 63264  (0xf720)  ligne n° 743	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63266  (0xf722) 
+6321   emplacement : 63268  (0xf724)  ligne n° 744	STW R3, (R1) //On stocke le resultat dans la m}moire
+110c   emplacement : 63270  (0xf726)  ligne n° 745	BMP endif3-$-2
+6380   emplacement : 63272  (0xf728)  ligne n° 747	LDW R3, #1
+0001   emplacement : 63274  (0xf72a) 
+4733   emplacement : 63276  (0xf72c)  ligne n° 748	NEG R3, R3
+6180   emplacement : 63278  (0xf72e)  ligne n° 749	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63280  (0xf730) 
+6321   emplacement : 63282  (0xf732)  ligne n° 750	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63284  (0xf734)  ligne n° 752	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63286  (0xf736) 
+6321   emplacement : 63288  (0xf738)  ligne n° 753	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63290  (0xf73a)  ligne n° 754	LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+0ffa   emplacement : 63292  (0xf73c) 
+63a1   emplacement : 63294  (0xf73e)  ligne n° 755	LDW R3, (R1)
+6593   emplacement : 63296  (0xf740)  ligne n° 756	LDW R5, R3
+260a   emplacement : 63298  (0xf742)  ligne n° 757	LDQ 10, R6
+0a50   emplacement : 63300  (0xf744)  ligne n° 758	JSR @itoa
+fa18   emplacement : 63302  (0xf746) 
+6093   emplacement : 63304  (0xf748)  ligne n° 759	LDW R0, R3
+0a50   emplacement : 63306  (0xf74a)  ligne n° 760	JSR @printi
+f830   emplacement : 63308  (0xf74c) 
+0b00   emplacement : 63310  (0xf74e)  ligne n° 762	TRP #EXIT_TRP //On quitte l'ex}cution
+0040   emplacement : 63312  (0xf750) 
+604f   emplacement : 63314  (0xf752)  ligne n° 771	STW R0, -(SP)
+614f   emplacement : 63316  (0xf754)  ligne n° 772	STW R1, -(SP)
+624f   emplacement : 63318  (0xf756)  ligne n° 773	STW R2, -(SP)
+644f   emplacement : 63320  (0xf758)  ligne n° 774	STW R4, -(SP)
+654f   emplacement : 63322  (0xf75a)  ligne n° 775	STW R5, -(SP)
+664f   emplacement : 63324  (0xf75c)  ligne n° 776	STW R6, -(SP)
+674f   emplacement : 63326  (0xf75e)  ligne n° 777	STW R7, -(SP)
+684f   emplacement : 63328  (0xf760)  ligne n° 778	STW R8, -(SP)
+694f   emplacement : 63330  (0xf762)  ligne n° 779	STW R9, -(SP)
+6a4f   emplacement : 63332  (0xf764)  ligne n° 780	STW R10, -(SP)
+6b4f   emplacement : 63334  (0xf766)  ligne n° 781	STW R11, -(SP)
+6c4f   emplacement : 63336  (0xf768)  ligne n° 782	STW R12, -(SP)
+6d4f   emplacement : 63338  (0xf76a)  ligne n° 783	STW R13, -(SP)
+6e4f   emplacement : 63340  (0xf76c)  ligne n° 784	STW R14, -(SP)
+6d4f   emplacement : 63342  (0xf76e)  ligne n° 786	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63344  (0xf770)  ligne n° 787	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63346  (0xf772)  ligne n° 788	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63348  (0xf774) 
+2002   emplacement : 63350  (0xf776)  ligne n° 789	LDQ SAUT_DE_LIGNE, R0
+0b00   emplacement : 63352  (0xf778)  ligne n° 790	TRP #WRITE_TRP
+0042   emplacement : 63354  (0xf77a) 
+6f9d   emplacement : 63356  (0xf77c)  ligne n° 792	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63358  (0xf77e)  ligne n° 793	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63360  (0xf780)  ligne n° 795	LDW R14, (SP)+
+6dbf   emplacement : 63362  (0xf782)  ligne n° 796	LDW R13, (SP)+
+6cbf   emplacement : 63364  (0xf784)  ligne n° 797	LDW R12, (SP)+
+6bbf   emplacement : 63366  (0xf786)  ligne n° 798	LDW R11, (SP)+
+6abf   emplacement : 63368  (0xf788)  ligne n° 799	LDW R10, (SP)+
+69bf   emplacement : 63370  (0xf78a)  ligne n° 800	LDW R9, (SP)+
+68bf   emplacement : 63372  (0xf78c)  ligne n° 801	LDW R8, (SP)+
+67bf   emplacement : 63374  (0xf78e)  ligne n° 802	LDW R7, (SP)+
+66bf   emplacement : 63376  (0xf790)  ligne n° 803	LDW R6, (SP)+
+65bf   emplacement : 63378  (0xf792)  ligne n° 804	LDW R5, (SP)+
+64bf   emplacement : 63380  (0xf794)  ligne n° 805	LDW R4, (SP)+
+62bf   emplacement : 63382  (0xf796)  ligne n° 806	LDW R2, (SP)+
+61bf   emplacement : 63384  (0xf798)  ligne n° 807	LDW R1, (SP)+
+60bf   emplacement : 63386  (0xf79a)  ligne n° 808	LDW R0, (SP)+
+0200   emplacement : 63388  (0xf79c)  ligne n° 809	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63390  (0xf79e)  ligne n° 814	STW R0, -(SP)
+614f   emplacement : 63392  (0xf7a0)  ligne n° 815	STW R1, -(SP)
+624f   emplacement : 63394  (0xf7a2)  ligne n° 816	STW R2, -(SP)
+644f   emplacement : 63396  (0xf7a4)  ligne n° 817	STW R4, -(SP)
+654f   emplacement : 63398  (0xf7a6)  ligne n° 818	STW R5, -(SP)
+664f   emplacement : 63400  (0xf7a8)  ligne n° 819	STW R6, -(SP)
+674f   emplacement : 63402  (0xf7aa)  ligne n° 820	STW R7, -(SP)
+684f   emplacement : 63404  (0xf7ac)  ligne n° 821	STW R8, -(SP)
+694f   emplacement : 63406  (0xf7ae)  ligne n° 822	STW R9, -(SP)
+6a4f   emplacement : 63408  (0xf7b0)  ligne n° 823	STW R10, -(SP)
+6b4f   emplacement : 63410  (0xf7b2)  ligne n° 824	STW R11, -(SP)
+6c4f   emplacement : 63412  (0xf7b4)  ligne n° 825	STW R12, -(SP)
+6d4f   emplacement : 63414  (0xf7b6)  ligne n° 826	STW R13, -(SP)
+6e4f   emplacement : 63416  (0xf7b8)  ligne n° 827	STW R14, -(SP)
+6d4f   emplacement : 63418  (0xf7ba)  ligne n° 829	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63420  (0xf7bc)  ligne n° 830	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63422  (0xf7be)  ligne n° 831	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63424  (0xf7c0) 
+6f9d   emplacement : 63426  (0xf7c2)  ligne n° 833	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63428  (0xf7c4)  ligne n° 834	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63430  (0xf7c6)  ligne n° 836	LDW R14, (SP)+
+6dbf   emplacement : 63432  (0xf7c8)  ligne n° 837	LDW R13, (SP)+
+6cbf   emplacement : 63434  (0xf7ca)  ligne n° 838	LDW R12, (SP)+
+6bbf   emplacement : 63436  (0xf7cc)  ligne n° 839	LDW R11, (SP)+
+6abf   emplacement : 63438  (0xf7ce)  ligne n° 840	LDW R10, (SP)+
+69bf   emplacement : 63440  (0xf7d0)  ligne n° 841	LDW R9, (SP)+
+68bf   emplacement : 63442  (0xf7d2)  ligne n° 842	LDW R8, (SP)+
+67bf   emplacement : 63444  (0xf7d4)  ligne n° 843	LDW R7, (SP)+
+66bf   emplacement : 63446  (0xf7d6)  ligne n° 844	LDW R6, (SP)+
+65bf   emplacement : 63448  (0xf7d8)  ligne n° 845	LDW R5, (SP)+
+64bf   emplacement : 63450  (0xf7da)  ligne n° 846	LDW R4, (SP)+
+62bf   emplacement : 63452  (0xf7dc)  ligne n° 847	LDW R2, (SP)+
+61bf   emplacement : 63454  (0xf7de)  ligne n° 848	LDW R1, (SP)+
+60bf   emplacement : 63456  (0xf7e0)  ligne n° 849	LDW R0, (SP)+
+0200   emplacement : 63458  (0xf7e2)  ligne n° 850	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63460  (0xf7e4)  ligne n° 855	STW R0, -(SP)
+614f   emplacement : 63462  (0xf7e6)  ligne n° 856	STW R1, -(SP)
+624f   emplacement : 63464  (0xf7e8)  ligne n° 857	STW R2, -(SP)
+644f   emplacement : 63466  (0xf7ea)  ligne n° 858	STW R4, -(SP)
+654f   emplacement : 63468  (0xf7ec)  ligne n° 859	STW R5, -(SP)
+664f   emplacement : 63470  (0xf7ee)  ligne n° 860	STW R6, -(SP)
+674f   emplacement : 63472  (0xf7f0)  ligne n° 861	STW R7, -(SP)
+684f   emplacement : 63474  (0xf7f2)  ligne n° 862	STW R8, -(SP)
+694f   emplacement : 63476  (0xf7f4)  ligne n° 863	STW R9, -(SP)
+6a4f   emplacement : 63478  (0xf7f6)  ligne n° 864	STW R10, -(SP)
+6b4f   emplacement : 63480  (0xf7f8)  ligne n° 865	STW R11, -(SP)
+6c4f   emplacement : 63482  (0xf7fa)  ligne n° 866	STW R12, -(SP)
+6d4f   emplacement : 63484  (0xf7fc)  ligne n° 867	STW R13, -(SP)
+6e4f   emplacement : 63486  (0xf7fe)  ligne n° 868	STW R14, -(SP)
+6d4f   emplacement : 63488  (0xf800)  ligne n° 870	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63490  (0xf802)  ligne n° 871	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63492  (0xf804)  ligne n° 872	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63494  (0xf806) 
+2002   emplacement : 63496  (0xf808)  ligne n° 873	LDQ SAUT_DE_LIGNE, R0
+0b00   emplacement : 63498  (0xf80a)  ligne n° 874	TRP #WRITE_TRP
+0042   emplacement : 63500  (0xf80c) 
+6f9d   emplacement : 63502  (0xf80e)  ligne n° 876	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63504  (0xf810)  ligne n° 877	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63506  (0xf812)  ligne n° 879	LDW R14, (SP)+
+6dbf   emplacement : 63508  (0xf814)  ligne n° 880	LDW R13, (SP)+
+6cbf   emplacement : 63510  (0xf816)  ligne n° 881	LDW R12, (SP)+
+6bbf   emplacement : 63512  (0xf818)  ligne n° 882	LDW R11, (SP)+
+6abf   emplacement : 63514  (0xf81a)  ligne n° 883	LDW R10, (SP)+
+69bf   emplacement : 63516  (0xf81c)  ligne n° 884	LDW R9, (SP)+
+68bf   emplacement : 63518  (0xf81e)  ligne n° 885	LDW R8, (SP)+
+67bf   emplacement : 63520  (0xf820)  ligne n° 886	LDW R7, (SP)+
+66bf   emplacement : 63522  (0xf822)  ligne n° 887	LDW R6, (SP)+
+65bf   emplacement : 63524  (0xf824)  ligne n° 888	LDW R5, (SP)+
+64bf   emplacement : 63526  (0xf826)  ligne n° 889	LDW R4, (SP)+
+62bf   emplacement : 63528  (0xf828)  ligne n° 890	LDW R2, (SP)+
+61bf   emplacement : 63530  (0xf82a)  ligne n° 891	LDW R1, (SP)+
+60bf   emplacement : 63532  (0xf82c)  ligne n° 892	LDW R0, (SP)+
+0200   emplacement : 63534  (0xf82e)  ligne n° 893	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63536  (0xf830)  ligne n° 898	STW R0, -(SP)
+614f   emplacement : 63538  (0xf832)  ligne n° 899	STW R1, -(SP)
+624f   emplacement : 63540  (0xf834)  ligne n° 900	STW R2, -(SP)
+644f   emplacement : 63542  (0xf836)  ligne n° 901	STW R4, -(SP)
+654f   emplacement : 63544  (0xf838)  ligne n° 902	STW R5, -(SP)
+664f   emplacement : 63546  (0xf83a)  ligne n° 903	STW R6, -(SP)
+674f   emplacement : 63548  (0xf83c)  ligne n° 904	STW R7, -(SP)
+684f   emplacement : 63550  (0xf83e)  ligne n° 905	STW R8, -(SP)
+694f   emplacement : 63552  (0xf840)  ligne n° 906	STW R9, -(SP)
+6a4f   emplacement : 63554  (0xf842)  ligne n° 907	STW R10, -(SP)
+6b4f   emplacement : 63556  (0xf844)  ligne n° 908	STW R11, -(SP)
+6c4f   emplacement : 63558  (0xf846)  ligne n° 909	STW R12, -(SP)
+6d4f   emplacement : 63560  (0xf848)  ligne n° 910	STW R13, -(SP)
+6e4f   emplacement : 63562  (0xf84a)  ligne n° 911	STW R14, -(SP)
+6d4f   emplacement : 63564  (0xf84c)  ligne n° 913	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63566  (0xf84e)  ligne n° 914	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63568  (0xf850)  ligne n° 915	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63570  (0xf852) 
+6f9d   emplacement : 63572  (0xf854)  ligne n° 917	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63574  (0xf856)  ligne n° 918	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63576  (0xf858)  ligne n° 920	LDW R14, (SP)+
+6dbf   emplacement : 63578  (0xf85a)  ligne n° 921	LDW R13, (SP)+
+6cbf   emplacement : 63580  (0xf85c)  ligne n° 922	LDW R12, (SP)+
+6bbf   emplacement : 63582  (0xf85e)  ligne n° 923	LDW R11, (SP)+
+6abf   emplacement : 63584  (0xf860)  ligne n° 924	LDW R10, (SP)+
+69bf   emplacement : 63586  (0xf862)  ligne n° 925	LDW R9, (SP)+
+68bf   emplacement : 63588  (0xf864)  ligne n° 926	LDW R8, (SP)+
+67bf   emplacement : 63590  (0xf866)  ligne n° 927	LDW R7, (SP)+
+66bf   emplacement : 63592  (0xf868)  ligne n° 928	LDW R6, (SP)+
+65bf   emplacement : 63594  (0xf86a)  ligne n° 929	LDW R5, (SP)+
+64bf   emplacement : 63596  (0xf86c)  ligne n° 930	LDW R4, (SP)+
+62bf   emplacement : 63598  (0xf86e)  ligne n° 931	LDW R2, (SP)+
+61bf   emplacement : 63600  (0xf870)  ligne n° 932	LDW R1, (SP)+
+60bf   emplacement : 63602  (0xf872)  ligne n° 933	LDW R0, (SP)+
+0200   emplacement : 63604  (0xf874)  ligne n° 934	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63606  (0xf876)  ligne n° 939	STW R0, -(SP)
+614f   emplacement : 63608  (0xf878)  ligne n° 940	STW R1, -(SP)
+624f   emplacement : 63610  (0xf87a)  ligne n° 941	STW R2, -(SP)
+644f   emplacement : 63612  (0xf87c)  ligne n° 942	STW R4, -(SP)
+654f   emplacement : 63614  (0xf87e)  ligne n° 943	STW R5, -(SP)
+664f   emplacement : 63616  (0xf880)  ligne n° 944	STW R6, -(SP)
+674f   emplacement : 63618  (0xf882)  ligne n° 945	STW R7, -(SP)
+684f   emplacement : 63620  (0xf884)  ligne n° 946	STW R8, -(SP)
+694f   emplacement : 63622  (0xf886)  ligne n° 947	STW R9, -(SP)
+6a4f   emplacement : 63624  (0xf888)  ligne n° 948	STW R10, -(SP)
+6b4f   emplacement : 63626  (0xf88a)  ligne n° 949	STW R11, -(SP)
+6c4f   emplacement : 63628  (0xf88c)  ligne n° 950	STW R12, -(SP)
+6d4f   emplacement : 63630  (0xf88e)  ligne n° 951	STW R13, -(SP)
+6e4f   emplacement : 63632  (0xf890)  ligne n° 952	STW R14, -(SP)
+6d4f   emplacement : 63634  (0xf892)  ligne n° 954	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63636  (0xf894)  ligne n° 955	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 63638  (0xf896)  ligne n° 956	STRING0 RSB 100 //On cr}e la chaine de retour (100 caract}res max)
 0000   emplacement : 63640  (0xf898) 
 0000   emplacement : 63642  (0xf89a) 
 0000   emplacement : 63644  (0xf89c) 
@@ -1149,59 +1149,271 @@ f776   emplacement : 63268  (0xf724)
 0000   emplacement : 63726  (0xf8ee) 
 0000   emplacement : 63728  (0xf8f0) 
 0000   emplacement : 63730  (0xf8f2) 
-2390   emplacement : 63732  (0xf8f4)  ligne n° 882	LDQ STRING1, R3 //On charge l'adresse dans R0
-280a   emplacement : 63734  (0xf8f6)  ligne n° 890	LDQ 10, R8  
-4f68   emplacement : 63736  (0xf8f8)  ligne n° 891	CMP R6, R8  
-130c   emplacement : 63738  (0xf8fa)  ligne n° 892	BNE NOSIGN-$-2 //Si b==10, on calcule le signe
-272b   emplacement : 63740  (0xf8fc)  ligne n° 893	LDQ ASCII_PLUS, R7 //R7 contiendra le symbole de la conversion
-0c15   emplacement : 63742  (0xf8fe)  ligne n° 894	TST R5
-1404   emplacement : 63744  (0xf900)  ligne n° 895	BGE POSIT-$-2 //On saute si (R5) >= 0
-4755   emplacement : 63746  (0xf902)  ligne n° 896	NEG R5, R5
-272d   emplacement : 63748  (0xf904)  ligne n° 897	LDQ ASCII_MINUS, R7
-0000   emplacement : 63750  (0xf906)  ligne n° 898	POSIT NOP
-6895   emplacement : 63752  (0xf908)  ligne n° 900	NOSIGN  LDW R8, R5 //R8 <- entier } convertir
-6598   emplacement : 63754  (0xf90a)  ligne n° 901	CNVLOOP ldw R5, R8
-4266   emplacement : 63756  (0xf90c)  ligne n° 903	SRL R6, R6
-4c59   emplacement : 63758  (0xf90e)  ligne n° 905	ANI R5, R9, #1 //ANd Imm}diate entre r0 et 00...01 vers r4
-0001   emplacement : 63760  (0xf910) 
-4255   emplacement : 63762  (0xf912)  ligne n° 906	SRL R5, R5 //on divise l'entier par 2
-a568   emplacement : 63764  (0xf914)  ligne n° 907	DIV R5, R6, R8
-4655   emplacement : 63766  (0xf916)  ligne n° 908	SHL R5, R5
-e595   emplacement : 63768  (0xf918)  ligne n° 909	ADD R5, R9, R5
-4666   emplacement : 63770  (0xf91a)  ligne n° 910	SHL R6, R6
-35f6   emplacement : 63772  (0xf91c)  ligne n° 912	ADQ -10, R5 //entier -10 -> R5
-1404   emplacement : 63774  (0xf91e)  ligne n° 913	BGE LETTER-$-2
-353a   emplacement : 63776  (0xf920)  ligne n° 914	ADQ 10+ASCII_0, R5
-1102   emplacement : 63778  (0xf922)  ligne n° 916	BMP STKCHR-$-2
-3541   emplacement : 63780  (0xf924)  ligne n° 918	LETTER ADQ ASCII_A, R5
-654f   emplacement : 63782  (0xf926)  ligne n° 920	STKCHR STW R5, -(SP)
-0c18   emplacement : 63784  (0xf928)  ligne n° 921	TST R8
-13de   emplacement : 63786  (0xf92a)  ligne n° 922	BNE CNVLOOP-$-2
-6293   emplacement : 63788  (0xf92c)  ligne n° 926	LDW R2, R3
-2a00   emplacement : 63790  (0xf92e)  ligne n° 927	LDQ 0, R10
-4f7a   emplacement : 63792  (0xf930)  ligne n° 928	CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
-1202   emplacement : 63794  (0xf932)  ligne n° 929	BEQ CPYLOOP-$-2
-5732   emplacement : 63796  (0xf934)  ligne n° 930	STB R7, (R2)+ //On copie le signe dans le tampon
-65bf   emplacement : 63798  (0xf936)  ligne n° 931	CPYLOOP LDW R5, (SP)+//On d}pile le chiffre
-5532   emplacement : 63800  (0xf938)  ligne n° 932	STB R5, (R2)+
-4ffd   emplacement : 63802  (0xf93a)  ligne n° 933	CMP SP, BP
-13f8   emplacement : 63804  (0xf93c)  ligne n° 934	BNE CPYLOOP-$-2
-2500   emplacement : 63806  (0xf93e)  ligne n° 935	LDQ NUL, R5
-5532   emplacement : 63808  (0xf940)  ligne n° 936	STB R5, (R2)+//On termine la chaine par NUL
-6f9d   emplacement : 63810  (0xf942)  ligne n° 938	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
-6dbf   emplacement : 63812  (0xf944)  ligne n° 939	LDW BP, (SP)+ //On d}pile l'ancienne base
-6ebf   emplacement : 63814  (0xf946)  ligne n° 941	LDW R14, (SP)+
-6dbf   emplacement : 63816  (0xf948)  ligne n° 942	LDW R13, (SP)+
-6cbf   emplacement : 63818  (0xf94a)  ligne n° 943	LDW R12, (SP)+
-6bbf   emplacement : 63820  (0xf94c)  ligne n° 944	LDW R11, (SP)+
-6abf   emplacement : 63822  (0xf94e)  ligne n° 945	LDW R10, (SP)+
-69bf   emplacement : 63824  (0xf950)  ligne n° 946	LDW R9, (SP)+
-68bf   emplacement : 63826  (0xf952)  ligne n° 947	LDW R8, (SP)+
-67bf   emplacement : 63828  (0xf954)  ligne n° 948	LDW R7, (SP)+
-66bf   emplacement : 63830  (0xf956)  ligne n° 949	LDW R6, (SP)+
-65bf   emplacement : 63832  (0xf958)  ligne n° 950	LDW R5, (SP)+
-64bf   emplacement : 63834  (0xf95a)  ligne n° 951	LDW R4, (SP)+
-62bf   emplacement : 63836  (0xf95c)  ligne n° 952	LDW R2, (SP)+
-61bf   emplacement : 63838  (0xf95e)  ligne n° 953	LDW R1, (SP)+
-60bf   emplacement : 63840  (0xf960)  ligne n° 954	LDW R0, (SP)+
-0200   emplacement : 63842  (0xf962)  ligne n° 955	RTS
+0000   emplacement : 63732  (0xf8f4) 
+0000   emplacement : 63734  (0xf8f6) 
+0000   emplacement : 63736  (0xf8f8) 
+2096   emplacement : 63738  (0xf8fa)  ligne n° 957	LDQ STRING0, R0 //On met cette adresse en lecture
+0b00   emplacement : 63740  (0xf8fc)  ligne n° 958	TRP #READ_TRP //On l}ve la trappe
+0041   emplacement : 63742  (0xf8fe) 
+6390   emplacement : 63744  (0xf900)  ligne n° 959	LDW R3, R0 //On met le r}sultat dans R3
+6f9d   emplacement : 63746  (0xf902)  ligne n° 961	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63748  (0xf904)  ligne n° 962	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63750  (0xf906)  ligne n° 964	LDW R14, (SP)+
+6dbf   emplacement : 63752  (0xf908)  ligne n° 965	LDW R13, (SP)+
+6cbf   emplacement : 63754  (0xf90a)  ligne n° 966	LDW R12, (SP)+
+6bbf   emplacement : 63756  (0xf90c)  ligne n° 967	LDW R11, (SP)+
+6abf   emplacement : 63758  (0xf90e)  ligne n° 968	LDW R10, (SP)+
+69bf   emplacement : 63760  (0xf910)  ligne n° 969	LDW R9, (SP)+
+68bf   emplacement : 63762  (0xf912)  ligne n° 970	LDW R8, (SP)+
+67bf   emplacement : 63764  (0xf914)  ligne n° 971	LDW R7, (SP)+
+66bf   emplacement : 63766  (0xf916)  ligne n° 972	LDW R6, (SP)+
+65bf   emplacement : 63768  (0xf918)  ligne n° 973	LDW R5, (SP)+
+64bf   emplacement : 63770  (0xf91a)  ligne n° 974	LDW R4, (SP)+
+62bf   emplacement : 63772  (0xf91c)  ligne n° 975	LDW R2, (SP)+
+61bf   emplacement : 63774  (0xf91e)  ligne n° 976	LDW R1, (SP)+
+60bf   emplacement : 63776  (0xf920)  ligne n° 977	LDW R0, (SP)+
+0200   emplacement : 63778  (0xf922)  ligne n° 978	RTS //On retourne dans le programme
+604f   emplacement : 63780  (0xf924)  ligne n° 983	STW R0, -(SP)
+614f   emplacement : 63782  (0xf926)  ligne n° 984	STW R1, -(SP)
+624f   emplacement : 63784  (0xf928)  ligne n° 985	STW R2, -(SP)
+644f   emplacement : 63786  (0xf92a)  ligne n° 986	STW R4, -(SP)
+654f   emplacement : 63788  (0xf92c)  ligne n° 987	STW R5, -(SP)
+664f   emplacement : 63790  (0xf92e)  ligne n° 988	STW R6, -(SP)
+674f   emplacement : 63792  (0xf930)  ligne n° 989	STW R7, -(SP)
+684f   emplacement : 63794  (0xf932)  ligne n° 990	STW R8, -(SP)
+694f   emplacement : 63796  (0xf934)  ligne n° 991	STW R9, -(SP)
+6a4f   emplacement : 63798  (0xf936)  ligne n° 992	STW R10, -(SP)
+6b4f   emplacement : 63800  (0xf938)  ligne n° 993	STW R11, -(SP)
+6c4f   emplacement : 63802  (0xf93a)  ligne n° 994	STW R12, -(SP)
+6d4f   emplacement : 63804  (0xf93c)  ligne n° 995	STW R13, -(SP)
+6e4f   emplacement : 63806  (0xf93e)  ligne n° 996	STW R14, -(SP)
+6d4f   emplacement : 63808  (0xf940)  ligne n° 998	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63810  (0xf942)  ligne n° 999	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 63812  (0xf944)  ligne n° 1001	STRING1 RSB 100 //On cr}e la chaine de retour (100 caract}res max)
+0000   emplacement : 63814  (0xf946) 
+0000   emplacement : 63816  (0xf948) 
+0000   emplacement : 63818  (0xf94a) 
+0000   emplacement : 63820  (0xf94c) 
+0000   emplacement : 63822  (0xf94e) 
+0000   emplacement : 63824  (0xf950) 
+0000   emplacement : 63826  (0xf952) 
+0000   emplacement : 63828  (0xf954) 
+0000   emplacement : 63830  (0xf956) 
+0000   emplacement : 63832  (0xf958) 
+0000   emplacement : 63834  (0xf95a) 
+0000   emplacement : 63836  (0xf95c) 
+0000   emplacement : 63838  (0xf95e) 
+0000   emplacement : 63840  (0xf960) 
+0000   emplacement : 63842  (0xf962) 
+0000   emplacement : 63844  (0xf964) 
+0000   emplacement : 63846  (0xf966) 
+0000   emplacement : 63848  (0xf968) 
+0000   emplacement : 63850  (0xf96a) 
+0000   emplacement : 63852  (0xf96c) 
+0000   emplacement : 63854  (0xf96e) 
+0000   emplacement : 63856  (0xf970) 
+0000   emplacement : 63858  (0xf972) 
+0000   emplacement : 63860  (0xf974) 
+0000   emplacement : 63862  (0xf976) 
+0000   emplacement : 63864  (0xf978) 
+0000   emplacement : 63866  (0xf97a) 
+0000   emplacement : 63868  (0xf97c) 
+0000   emplacement : 63870  (0xf97e) 
+0000   emplacement : 63872  (0xf980) 
+0000   emplacement : 63874  (0xf982) 
+0000   emplacement : 63876  (0xf984) 
+0000   emplacement : 63878  (0xf986) 
+0000   emplacement : 63880  (0xf988) 
+0000   emplacement : 63882  (0xf98a) 
+0000   emplacement : 63884  (0xf98c) 
+0000   emplacement : 63886  (0xf98e) 
+0000   emplacement : 63888  (0xf990) 
+0000   emplacement : 63890  (0xf992) 
+0000   emplacement : 63892  (0xf994) 
+0000   emplacement : 63894  (0xf996) 
+0000   emplacement : 63896  (0xf998) 
+0000   emplacement : 63898  (0xf99a) 
+0000   emplacement : 63900  (0xf99c) 
+0000   emplacement : 63902  (0xf99e) 
+0000   emplacement : 63904  (0xf9a0) 
+0000   emplacement : 63906  (0xf9a2) 
+0000   emplacement : 63908  (0xf9a4) 
+0000   emplacement : 63910  (0xf9a6) 
+2044   emplacement : 63912  (0xf9a8)  ligne n° 1002	LDQ STRING1, R0 //On met cette adresse en lecture
+0b00   emplacement : 63914  (0xf9aa)  ligne n° 1003	TRP #READ_TRP //On l}ve la trappe
+0041   emplacement : 63916  (0xf9ac) 
+6590   emplacement : 63918  (0xf9ae)  ligne n° 1004	LDW R5, R0 //On met le r}sultat dans R5
+0a50   emplacement : 63920  (0xf9b0)  ligne n° 1005	JSR @atoi //On convertit en entier. R}sultat dans R3
+f9d6   emplacement : 63922  (0xf9b2) 
+6f9d   emplacement : 63924  (0xf9b4)  ligne n° 1007	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63926  (0xf9b6)  ligne n° 1008	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63928  (0xf9b8)  ligne n° 1010	LDW R14, (SP)+
+6dbf   emplacement : 63930  (0xf9ba)  ligne n° 1011	LDW R13, (SP)+
+6cbf   emplacement : 63932  (0xf9bc)  ligne n° 1012	LDW R12, (SP)+
+6bbf   emplacement : 63934  (0xf9be)  ligne n° 1013	LDW R11, (SP)+
+6abf   emplacement : 63936  (0xf9c0)  ligne n° 1014	LDW R10, (SP)+
+69bf   emplacement : 63938  (0xf9c2)  ligne n° 1015	LDW R9, (SP)+
+68bf   emplacement : 63940  (0xf9c4)  ligne n° 1016	LDW R8, (SP)+
+67bf   emplacement : 63942  (0xf9c6)  ligne n° 1017	LDW R7, (SP)+
+66bf   emplacement : 63944  (0xf9c8)  ligne n° 1018	LDW R6, (SP)+
+65bf   emplacement : 63946  (0xf9ca)  ligne n° 1019	LDW R5, (SP)+
+64bf   emplacement : 63948  (0xf9cc)  ligne n° 1020	LDW R4, (SP)+
+62bf   emplacement : 63950  (0xf9ce)  ligne n° 1021	LDW R2, (SP)+
+61bf   emplacement : 63952  (0xf9d0)  ligne n° 1022	LDW R1, (SP)+
+60bf   emplacement : 63954  (0xf9d2)  ligne n° 1023	LDW R0, (SP)+
+0200   emplacement : 63956  (0xf9d4)  ligne n° 1024	RTS //On retourne dans le programme
+604f   emplacement : 63958  (0xf9d6)  ligne n° 1029	STW R0, -(SP)
+614f   emplacement : 63960  (0xf9d8)  ligne n° 1030	STW R1, -(SP)
+624f   emplacement : 63962  (0xf9da)  ligne n° 1031	STW R2, -(SP)
+644f   emplacement : 63964  (0xf9dc)  ligne n° 1032	STW R4, -(SP)
+654f   emplacement : 63966  (0xf9de)  ligne n° 1033	STW R5, -(SP)
+664f   emplacement : 63968  (0xf9e0)  ligne n° 1034	STW R6, -(SP)
+674f   emplacement : 63970  (0xf9e2)  ligne n° 1035	STW R7, -(SP)
+684f   emplacement : 63972  (0xf9e4)  ligne n° 1036	STW R8, -(SP)
+694f   emplacement : 63974  (0xf9e6)  ligne n° 1037	STW R9, -(SP)
+6a4f   emplacement : 63976  (0xf9e8)  ligne n° 1038	STW R10, -(SP)
+6b4f   emplacement : 63978  (0xf9ea)  ligne n° 1039	STW R11, -(SP)
+6c4f   emplacement : 63980  (0xf9ec)  ligne n° 1040	STW R12, -(SP)
+6d4f   emplacement : 63982  (0xf9ee)  ligne n° 1041	STW R13, -(SP)
+6e4f   emplacement : 63984  (0xf9f0)  ligne n° 1042	STW R14, -(SP)
+6d4f   emplacement : 63986  (0xf9f2)  ligne n° 1044	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63988  (0xf9f4)  ligne n° 1045	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+6f9d   emplacement : 63990  (0xf9f6)  ligne n° 1047	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 63992  (0xf9f8)  ligne n° 1048	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 63994  (0xf9fa)  ligne n° 1050	LDW R14, (SP)+
+6dbf   emplacement : 63996  (0xf9fc)  ligne n° 1051	LDW R13, (SP)+
+6cbf   emplacement : 63998  (0xf9fe)  ligne n° 1052	LDW R12, (SP)+
+6bbf   emplacement : 64000  (0xfa00)  ligne n° 1053	LDW R11, (SP)+
+6abf   emplacement : 64002  (0xfa02)  ligne n° 1054	LDW R10, (SP)+
+69bf   emplacement : 64004  (0xfa04)  ligne n° 1055	LDW R9, (SP)+
+68bf   emplacement : 64006  (0xfa06)  ligne n° 1056	LDW R8, (SP)+
+67bf   emplacement : 64008  (0xfa08)  ligne n° 1057	LDW R7, (SP)+
+66bf   emplacement : 64010  (0xfa0a)  ligne n° 1058	LDW R6, (SP)+
+65bf   emplacement : 64012  (0xfa0c)  ligne n° 1059	LDW R5, (SP)+
+64bf   emplacement : 64014  (0xfa0e)  ligne n° 1060	LDW R4, (SP)+
+62bf   emplacement : 64016  (0xfa10)  ligne n° 1061	LDW R2, (SP)+
+61bf   emplacement : 64018  (0xfa12)  ligne n° 1062	LDW R1, (SP)+
+60bf   emplacement : 64020  (0xfa14)  ligne n° 1063	LDW R0, (SP)+
+0200   emplacement : 64022  (0xfa16)  ligne n° 1064	RTS //On retourne dans le programme
+604f   emplacement : 64024  (0xfa18)  ligne n° 1068	STW R0, -(SP)
+614f   emplacement : 64026  (0xfa1a)  ligne n° 1069	STW R1, -(SP)
+624f   emplacement : 64028  (0xfa1c)  ligne n° 1070	STW R2, -(SP)
+644f   emplacement : 64030  (0xfa1e)  ligne n° 1071	STW R4, -(SP)
+654f   emplacement : 64032  (0xfa20)  ligne n° 1072	STW R5, -(SP)
+664f   emplacement : 64034  (0xfa22)  ligne n° 1073	STW R6, -(SP)
+674f   emplacement : 64036  (0xfa24)  ligne n° 1074	STW R7, -(SP)
+684f   emplacement : 64038  (0xfa26)  ligne n° 1075	STW R8, -(SP)
+694f   emplacement : 64040  (0xfa28)  ligne n° 1076	STW R9, -(SP)
+6a4f   emplacement : 64042  (0xfa2a)  ligne n° 1077	STW R10, -(SP)
+6b4f   emplacement : 64044  (0xfa2c)  ligne n° 1078	STW R11, -(SP)
+6c4f   emplacement : 64046  (0xfa2e)  ligne n° 1079	STW R12, -(SP)
+6d4f   emplacement : 64048  (0xfa30)  ligne n° 1080	STW R13, -(SP)
+6e4f   emplacement : 64050  (0xfa32)  ligne n° 1081	STW R14, -(SP)
+6d4f   emplacement : 64052  (0xfa34)  ligne n° 1083	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64054  (0xfa36)  ligne n° 1084	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 64056  (0xfa38)  ligne n° 1085	STRING2 RSB 100 //On cr}e la chaine de retour (100 octets max)
+0000   emplacement : 64058  (0xfa3a) 
+0000   emplacement : 64060  (0xfa3c) 
+0000   emplacement : 64062  (0xfa3e) 
+0000   emplacement : 64064  (0xfa40) 
+0000   emplacement : 64066  (0xfa42) 
+0000   emplacement : 64068  (0xfa44) 
+0000   emplacement : 64070  (0xfa46) 
+0000   emplacement : 64072  (0xfa48) 
+0000   emplacement : 64074  (0xfa4a) 
+0000   emplacement : 64076  (0xfa4c) 
+0000   emplacement : 64078  (0xfa4e) 
+0000   emplacement : 64080  (0xfa50) 
+0000   emplacement : 64082  (0xfa52) 
+0000   emplacement : 64084  (0xfa54) 
+0000   emplacement : 64086  (0xfa56) 
+0000   emplacement : 64088  (0xfa58) 
+0000   emplacement : 64090  (0xfa5a) 
+0000   emplacement : 64092  (0xfa5c) 
+0000   emplacement : 64094  (0xfa5e) 
+0000   emplacement : 64096  (0xfa60) 
+0000   emplacement : 64098  (0xfa62) 
+0000   emplacement : 64100  (0xfa64) 
+0000   emplacement : 64102  (0xfa66) 
+0000   emplacement : 64104  (0xfa68) 
+0000   emplacement : 64106  (0xfa6a) 
+0000   emplacement : 64108  (0xfa6c) 
+0000   emplacement : 64110  (0xfa6e) 
+0000   emplacement : 64112  (0xfa70) 
+0000   emplacement : 64114  (0xfa72) 
+0000   emplacement : 64116  (0xfa74) 
+0000   emplacement : 64118  (0xfa76) 
+0000   emplacement : 64120  (0xfa78) 
+0000   emplacement : 64122  (0xfa7a) 
+0000   emplacement : 64124  (0xfa7c) 
+0000   emplacement : 64126  (0xfa7e) 
+0000   emplacement : 64128  (0xfa80) 
+0000   emplacement : 64130  (0xfa82) 
+0000   emplacement : 64132  (0xfa84) 
+0000   emplacement : 64134  (0xfa86) 
+0000   emplacement : 64136  (0xfa88) 
+0000   emplacement : 64138  (0xfa8a) 
+0000   emplacement : 64140  (0xfa8c) 
+0000   emplacement : 64142  (0xfa8e) 
+0000   emplacement : 64144  (0xfa90) 
+0000   emplacement : 64146  (0xfa92) 
+0000   emplacement : 64148  (0xfa94) 
+0000   emplacement : 64150  (0xfa96) 
+0000   emplacement : 64152  (0xfa98) 
+0000   emplacement : 64154  (0xfa9a) 
+2338   emplacement : 64156  (0xfa9c)  ligne n° 1086	LDQ STRING2, R3 //On charge l'adresse dans R0
+280a   emplacement : 64158  (0xfa9e)  ligne n° 1094	LDQ 10, R8  
+4f68   emplacement : 64160  (0xfaa0)  ligne n° 1095	CMP R6, R8  
+130c   emplacement : 64162  (0xfaa2)  ligne n° 1096	BNE NOSIGN-$-2 //Si b==10, on calcule le signe
+272b   emplacement : 64164  (0xfaa4)  ligne n° 1097	LDQ ASCII_PLUS, R7 //R7 contiendra le symbole de la conversion
+0c15   emplacement : 64166  (0xfaa6)  ligne n° 1098	TST R5
+1404   emplacement : 64168  (0xfaa8)  ligne n° 1099	BGE POSIT-$-2 //On saute si (R5) >= 0
+4755   emplacement : 64170  (0xfaaa)  ligne n° 1100	NEG R5, R5
+272d   emplacement : 64172  (0xfaac)  ligne n° 1101	LDQ ASCII_MINUS, R7
+0000   emplacement : 64174  (0xfaae)  ligne n° 1102	POSIT NOP
+6895   emplacement : 64176  (0xfab0)  ligne n° 1104	NOSIGN  LDW R8, R5 //R8 <- entier } convertir
+6598   emplacement : 64178  (0xfab2)  ligne n° 1105	CNVLOOP ldw R5, R8
+4266   emplacement : 64180  (0xfab4)  ligne n° 1107	SRL R6, R6
+4c59   emplacement : 64182  (0xfab6)  ligne n° 1109	ANI R5, R9, #1 //ANd Imm}diate entre r0 et 00...01 vers r4
+0001   emplacement : 64184  (0xfab8) 
+4255   emplacement : 64186  (0xfaba)  ligne n° 1110	SRL R5, R5 //on divise l'entier par 2
+a568   emplacement : 64188  (0xfabc)  ligne n° 1111	DIV R5, R6, R8
+4655   emplacement : 64190  (0xfabe)  ligne n° 1112	SHL R5, R5
+e595   emplacement : 64192  (0xfac0)  ligne n° 1113	ADD R5, R9, R5
+4666   emplacement : 64194  (0xfac2)  ligne n° 1114	SHL R6, R6
+35f6   emplacement : 64196  (0xfac4)  ligne n° 1116	ADQ -10, R5 //entier -10 -> R5
+1404   emplacement : 64198  (0xfac6)  ligne n° 1117	BGE LETTER-$-2
+353a   emplacement : 64200  (0xfac8)  ligne n° 1118	ADQ 10+ASCII_0, R5
+1102   emplacement : 64202  (0xfaca)  ligne n° 1120	BMP STKCHR-$-2
+3541   emplacement : 64204  (0xfacc)  ligne n° 1122	LETTER ADQ ASCII_A, R5
+654f   emplacement : 64206  (0xface)  ligne n° 1124	STKCHR STW R5, -(SP)
+0c18   emplacement : 64208  (0xfad0)  ligne n° 1125	TST R8
+13de   emplacement : 64210  (0xfad2)  ligne n° 1126	BNE CNVLOOP-$-2
+6293   emplacement : 64212  (0xfad4)  ligne n° 1130	LDW R2, R3
+2a00   emplacement : 64214  (0xfad6)  ligne n° 1131	LDQ 0, R10
+4f7a   emplacement : 64216  (0xfad8)  ligne n° 1132	CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
+1202   emplacement : 64218  (0xfada)  ligne n° 1133	BEQ CPYLOOP-$-2
+5732   emplacement : 64220  (0xfadc)  ligne n° 1134	STB R7, (R2)+ //On copie le signe dans le tampon
+65bf   emplacement : 64222  (0xfade)  ligne n° 1135	CPYLOOP LDW R5, (SP)+//On d}pile le chiffre
+5532   emplacement : 64224  (0xfae0)  ligne n° 1136	STB R5, (R2)+
+4ffd   emplacement : 64226  (0xfae2)  ligne n° 1137	CMP SP, BP
+13f8   emplacement : 64228  (0xfae4)  ligne n° 1138	BNE CPYLOOP-$-2
+2500   emplacement : 64230  (0xfae6)  ligne n° 1139	LDQ NUL, R5
+5532   emplacement : 64232  (0xfae8)  ligne n° 1140	STB R5, (R2)+//On termine la chaine par NUL
+6f9d   emplacement : 64234  (0xfaea)  ligne n° 1142	LDW SP, BP //On r}intiialise le sommet de la pile } la base courante
+6dbf   emplacement : 64236  (0xfaec)  ligne n° 1143	LDW BP, (SP)+ //On d}pile l'ancienne base
+6ebf   emplacement : 64238  (0xfaee)  ligne n° 1145	LDW R14, (SP)+
+6dbf   emplacement : 64240  (0xfaf0)  ligne n° 1146	LDW R13, (SP)+
+6cbf   emplacement : 64242  (0xfaf2)  ligne n° 1147	LDW R12, (SP)+
+6bbf   emplacement : 64244  (0xfaf4)  ligne n° 1148	LDW R11, (SP)+
+6abf   emplacement : 64246  (0xfaf6)  ligne n° 1149	LDW R10, (SP)+
+69bf   emplacement : 64248  (0xfaf8)  ligne n° 1150	LDW R9, (SP)+
+68bf   emplacement : 64250  (0xfafa)  ligne n° 1151	LDW R8, (SP)+
+67bf   emplacement : 64252  (0xfafc)  ligne n° 1152	LDW R7, (SP)+
+66bf   emplacement : 64254  (0xfafe)  ligne n° 1153	LDW R6, (SP)+
+65bf   emplacement : 64256  (0xfb00)  ligne n° 1154	LDW R5, (SP)+
+64bf   emplacement : 64258  (0xfb02)  ligne n° 1155	LDW R4, (SP)+
+62bf   emplacement : 64260  (0xfb04)  ligne n° 1156	LDW R2, (SP)+
+61bf   emplacement : 64262  (0xfb06)  ligne n° 1157	LDW R1, (SP)+
+60bf   emplacement : 64264  (0xfb08)  ligne n° 1158	LDW R0, (SP)+
+0200   emplacement : 64266  (0xfb0a)  ligne n° 1159	RTS
