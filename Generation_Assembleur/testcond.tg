@@ -1,7 +1,5 @@
 let
 
-	var x : int := 7
-
 in
 	
 	printi("a" < "b")

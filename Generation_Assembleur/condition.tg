@@ -3,6 +3,7 @@ let
 	var s := "ceci est une string"
 	var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 0
+	var y : int := 1
 
 in
 
@@ -56,5 +57,10 @@ in
 	x:= "abcd" <> "abcd";
 	printi(x);
 	x:= "abcd" = "abcd";
+	printi(x);
+	x:= if 2<4 then
+		(y:=8)
+	else
+		(y:=-1);
 	printi(x)
 end
