@@ -36,7 +36,6 @@ public class Condition extends Instruction{
 	
 	private void generateCodeComp(ArrayList<TDS> pile, CodeAss codeass, CommonTree node){
 		
-		boolean isString = false;
 		boolean isNumb = true;
 		
 		try{
@@ -81,10 +80,10 @@ public class Condition extends Instruction{
 				if(node.getChild(0).getText().matches("\".*\"")){
 					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0));
 					op1.genererCode(pile);
-					codeass.append("LDW R11, R3");
 					codeass.append("LDW R5, R3");
 					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1));
-					op2.genererCode(pile);
+					op2.genererCode(pile);			
+					codeass.append("LDW R11, R3");
 					codeass.append("LDW R6, R3");
 					codeass.append("LDW R2, (R5)");
 					codeass.append("LDW R3, (R6)");
@@ -110,8 +109,8 @@ public class Condition extends Instruction{
 							break;
 					}
 
-					buffer += "LDW R3, R5\n"
-					/*+"JMP #20\n"
+					buffer += "LDQ 0, R3\n"
+					+"JMP #20\n"
 					+"ADQ 2, R5\n"
 					+"ADQ 2, R6\n"
 					+"LDW R2, (R5)\n"
@@ -121,7 +120,7 @@ public class Condition extends Instruction{
 					+"TST R3\n"
 					+"BEQ -16\n"
 					+"LDQ 1, R3\n"
-					*/+"STW R3, -(R15)\n";
+					+"STW R3, -(R15)\n";
 					codeass.append(buffer);
 					nb_condid++;
 				}else{

@@ -33,20 +33,28 @@ LDQ 10, R3 //Saut de ligne
 LDQ NUL, R4 //Fin de chaine
 STB R3, (R2)+
 STB R4, (R2)
-LDW R3, #7
-STW R3, -(R15) //On empile la valeur d�clar�e
 STRING2 string "a"
 LDW R3, #STRING2
-LDW R11, R3
 LDW R5, R3
 STRING3 string "b"
 LDW R3, #STRING3
+LDW R11, R3
 LDW R6, R3
 LDW R2, (R5)
 LDW R3, (R6)
 CONDID0 CMP R2, R3
 BLW 4
-LDW R3, R5
+LDQ 0, R3
+JMP #20
+ADQ 2, R5
+ADQ 2, R6
+LDW R2, (R5)
+LDW R3, (R6)
+TST R2
+BNE CONDID0-$-2
+TST R3
+BEQ -16
+LDQ 1, R3
 STW R3, -(R15)
 
 LDW R3, (R15)+
