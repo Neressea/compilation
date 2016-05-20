@@ -76,51 +76,49 @@ public class Condition extends Instruction{
 				codeass.append("LDQ 0, R3");
 				codeass.append("STW R3, -(R15)");
 			}else{
-				System.out.println(node.getChild(0).getText()+node.getChild(0).getText().matches("\".*\""));
 				if(node.getChild(0).getText().matches("\".*\"")){
 					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
 					op1.genererCode(pile);
-					codeass.append("LDW R5, R3");
+					codeass.append("LDW R5, R3");	
 					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 					op2.genererCode(pile);			
-					codeass.append("LDW R11, R3");
 					codeass.append("LDW R6, R3");
-					codeass.append("LDW R2, (R5)");
-					codeass.append("LDW R3, (R6)");
+					codeass.append("LDB R2, (R5)");
+					codeass.append("LDB R3, (R6)");
 					String buffer = "CONDID"+nb_condid+" CMP R2, R3\n";
 					switch (node.getText()){
 						case "<":
-							buffer+="BLW 4\n";
+							buffer+="BLW CONDSUC"+nb_condid+"-$-2\n";
 							break;
 						case "<=":
-							buffer += "BLE 4\n";
+							buffer+= "BLE CONDSUC"+nb_condid+"-$-2\n";
 							break;
 						case "=":
-							buffer+="BEQ 4\n";
+							buffer+="BEQ CONDSUC"+nb_condid+"-$-2\n";
 							break;
 						case ">":
-							buffer+="BGT 4\n";
+							buffer+="BGT CONDSUC"+nb_condid+"-$-2\n";
 							break;
 						case ">=":
-							buffer+="BGE 4\n";
+							buffer+="BGE CONDSUC"+nb_condid+"-$-2\n";
 							break;
 						case "<>":
-							buffer+="BNE 4\n";
+							buffer+="BNE CONDSUC"+nb_condid+"-$-2\n";
 							break;
 					}
 
-					buffer += "LDQ 0, R3\n"
-					+"JMP #20\n"
-					+"ADQ 2, R5\n"
-					+"ADQ 2, R6\n"
-					+"LDW R2, (R5)\n"
-					+"LDW R3, (R6)\n"
+					buffer += "CONDFAIL"+nb_condid+" LDQ 0, R3\n"
+					+"BMP CONDF"+nb_condid+"-$-2\n"
+					+"CONDSUC"+nb_condid+" ADQ 1, R5\n"
+					+"ADQ 1, R6\n"
+					+"LDB R2, (R5)\n"
+					+"LDB R3, (R6)\n"
 					+"TST R2\n"
 					+"BNE CONDID"+nb_condid+"-$-2\n"
 					+"TST R3\n"
-					+"BEQ -16\n"
+					+"BNE CONDFAIL"+nb_condid+"-$-2\n"
 					+"LDQ 1, R3\n"
-					+"STW R3, -(R15)\n";
+					+"CONDF"+nb_condid+" STW R3, -(R15)\n";
 					codeass.append(buffer);
 					nb_condid++;
 				}else{
