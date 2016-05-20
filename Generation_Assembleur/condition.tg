@@ -72,5 +72,10 @@ in
 		(y:=8)
 	else
 		(y:=-1);
+	printi(x);
+	x:= if x=8 then
+		(y:=2)
+	else
+		(y:=-1);
 	printi(x)
 end
