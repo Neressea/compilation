@@ -8,6 +8,8 @@ import analyse.TDS;
 
 public class TableauDeclaration extends Instruction{
 
+	private static int nb_tab_decl = 0; 
+	
 	public TableauDeclaration(CommonTree node, SupaHackaGenerator generator) {
 		super(node, generator);
 	}
@@ -27,11 +29,12 @@ public class TableauDeclaration extends Instruction{
 		init.genererCode(pile);
 		codeass.append("LDW R6, R3");
 		codeass.append("LDW R7, #"+name);
-		codeass.append("LDW (R7), R6");
+		codeass.append("RETOUR"+nb_tab_decl+" LDW (R7), R6");
 		codeass.append("ADQ -1,  R5");
 		codeass.append("ADQ 2,  R7");
 		codeass.append("TST R5");
-		codeass.append("BNE -6");
+		codeass.append("BNE RETOUR"+nb_tab_decl+"-$-2");
+		nb_tab_decl++;
 		
 	}
 
