@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import com.sun.rowset.WebRowSetImpl;
 
 /**
  * 
@@ -14,12 +17,17 @@ public class CodeAss {
 	
 	private String code;
 	private String code_fonctions_utilisateurs; //Le code des fonctions définies par les utilisateurs
+	private ArrayList<String> code_lets;
 	private int base_pile = 0x1000;
 	private boolean writing_func = false;
+	int writing_let = 0;
 
 	private CodeAss() {
 		
 		code_fonctions_utilisateurs = "/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////\n\n";
+		
+		code_lets = new ArrayList<String>();
+		code_lets.add("/////// ------------------------------  Lets imbriqués  ------------------------------ ///////\n\n");
 		
 		code =	"/////// ------------------------------  En-tete du programme  ------------------------------ ///////\n\n"
 				+"//*** On définit les adresses utiles ***//\n"
@@ -68,6 +76,12 @@ public class CodeAss {
 	
 	public void addUserFuncs(){
 		this.code += code_fonctions_utilisateurs;
+	}
+	
+	public void addLets(){
+		for (String c_l : code_lets) {
+			this.code += c_l + "\n";
+		}
 	}
 	
 	public void addLanguageFuncs(){
@@ -237,10 +251,19 @@ public class CodeAss {
 	 * @param block Bloc de code de 1 à N lignes
 	 */
 	public void append(String block) {
-		if(!writing_func)
-			code+=block+"\n";
-		else
+		
+		if(writing_func){
 			code_fonctions_utilisateurs+=block+"\n";
+		}else if(writing_let != 0){
+			if(writing_let >= code_lets.size())
+				code_lets.add("");
+			
+			code_lets.set(writing_let, code_lets.get(writing_let) + block + "\n");
+			
+		}else{
+			code+=block+"\n";
+		}
+			
 	}
 	
 	/**
@@ -249,6 +272,14 @@ public class CodeAss {
 	 */
 	public void setWritingFunc(boolean writing){
 		writing_func = writing;
+	}
+	
+	/**
+	 * Indique si on écrit dans un let ou dans le bloc principal
+	 * @param writing
+	 */
+	public void setWritingLet(int let){
+		writing_let = let;
 	}
 	
 	/**
@@ -267,6 +298,9 @@ public class CodeAss {
 	public void write(String path) throws IOException {
 		
 		closeCode();
+		
+		//On ajoute les lets imbriqués
+		this.addLets();
 		
 		//On ajoute les focntions définies par l'utilisateur
 		this.addUserFuncs();

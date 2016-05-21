@@ -7,6 +7,8 @@ import org.antlr.runtime.tree.CommonTree;
 import analyse.TDS;
 
 public class Let extends Instruction{
+	
+	public static int nb_let = 0;
 
 	public Let(CommonTree node, SupaHackaGenerator generator) {
 		super(node, generator);
@@ -15,16 +17,47 @@ public class Let extends Instruction{
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
 		CodeAss ca = CodeAss.getCodeSingleton();
-		ca.append(Fonction.openEnv());
+		generator.openTDS();
 		
-		//On génère le bloc des déclarations
-		generator.genererChild((CommonTree) node.getChild(0));
-		
-		//On génère le bloc d'exécution s'il y en a un 
-		if(node.getChildCount() == 2)
-			generator.genererChild((CommonTree) node.getChild(1));
-		
-		ca.append(Fonction.closeEnv());
+		if(nb_let == 0){
+			nb_let++;
+			
+			ca.append(Fonction.openEnv());
+			
+			//On génère le bloc des déclarations
+			generator.genererChild((CommonTree) node.getChild(0));
+			
+			//On génère le bloc d'exécution s'il y en a un 
+			if(node.getChildCount() == 2)
+				generator.genererChild((CommonTree) node.getChild(1));
+			
+			ca.append(Fonction.closeEnv());
+			generator.closeTDS();
+									
+		}else{
+			
+			ca.setWritingLet(nb_let);
+			ca.append("//DEBUT LET");
+			ca.append("let"+(nb_let++));
+			ca.append(Fonction.openEnv());
+			
+			//On génère le bloc des déclarations
+			generator.genererChild((CommonTree) node.getChild(0));
+			
+			//On génère le bloc d'exécution s'il y en a un 
+			if(node.getChildCount() == 2)
+				generator.genererChild((CommonTree) node.getChild(1));
+			
+			ca.setWritingLet(nb_let - 1);
+			ca.append(Fonction.closeEnv());
+			ca.append("RTS");
+			ca.append("//FIN LET");
+			generator.closeTDS();
+			
+			ca.setWritingLet(0);
+			
+			ca.append("JSR @let"+(nb_let-1));
+		}
 	}
 
 }

@@ -116,6 +116,7 @@ public abstract class TDS {
 			for (int j = 0; j < field_type.length; j++) {
 				saut += 6; //On compte les 3@ à sauter
 				if((f=tds.existIn(ID, field_type[j]))!=null){
+					if(ID.equals("toto")) System.out.println(saut);
 					return saut; 
 				}
 			}

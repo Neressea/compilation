@@ -123,7 +123,6 @@ public class Fonction extends Instruction{
 			
 			//On charge le chainage statique dans R12
 			ca.append("//On charge le chainage statique dans R12");
-			ca.append("");
 			
 			//On appelle la fonction
 			ca.append("JSR @"+function_name);

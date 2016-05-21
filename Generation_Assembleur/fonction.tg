@@ -39,14 +39,14 @@ in
 	printiln(x);
 
 	print("Entrez un entier : ");
-	printiln(readi())
+	printiln(readi());
 
-	/*x := let
+	x := let
 			var toto := "78"
 		 in 
-		 	atoi(toto)
+		 	atoi(toto) //atoi(faux_entier)
 		 end;
 
-	printiln(x)*/
+	printiln(x)
 
 end

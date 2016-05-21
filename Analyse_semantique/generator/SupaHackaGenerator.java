@@ -124,10 +124,8 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "let":
-						openTDS();
 						Let let = new Let(node, this);
 						let.genererCode(pile);
-						closeTDS();
 						break;
 						
 					// Boucle for
@@ -204,13 +202,13 @@ public class SupaHackaGenerator {
 		
 	}
 	
-	private void closeTDS() {
+	public void closeTDS() {
 		this.pile.remove(this.pile.size()-1);
 	}
 
 
 
-	private void openTDS() {
+	public void openTDS() {
 		liste_cursor++;
 		TDS tmp = TDSs.get(liste_cursor);
 		pile.add(tmp);

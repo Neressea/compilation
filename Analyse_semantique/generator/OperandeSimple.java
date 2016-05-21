@@ -26,7 +26,6 @@ public class OperandeSimple extends Instruction {
 		String et;
 		
 		ArrayList<String> comparateurs_associateurs = new ArrayList<>(Arrays.asList(new String[]{"<",">","=",">=", "<=", "<>", "&", "|"}));
-		
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
 			
 			//Si le nombre de caractères ets impair, on ajoute un blanc arbitraire en fin de chaine pour le rendre pair.
@@ -52,8 +51,12 @@ public class OperandeSimple extends Instruction {
 		}else if(token.equals("if")){
 			If iffunc = new If(node, this.generator);
 			iffunc.genererCode(pile);
-		}
-		else {
+		}else if(token.equals("let")){
+			
+			Let let = new Let(node, this.generator);
+			let.genererCode(pile);
+			
+		}else{
 			boolean is_digit = true;
 			int value = 0;
 			
