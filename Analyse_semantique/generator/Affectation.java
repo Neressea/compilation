@@ -26,6 +26,9 @@ public class Affectation extends Instruction{
 		ExpressionArithmetique expr = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
 		expr.genererCode(pile);
 		
+		//On sauvegarde l'adresse pouur les affectations de structures
+		ca.append("LDW R5, R1");
+		
 		Field f = TDS.findIn(pile, node.getChild(0).getText(), FieldType.FieldVariable, FieldType.FieldTableau, FieldType.FieldStructure);
 		
 		//On calcule l'adresse de la variable dans la pile : adresse chargée dans R1
@@ -60,9 +63,8 @@ public class Affectation extends Instruction{
 			//On restaure R3
 			ca.append("LDW R3, R4");
 		
-		//Si on affecte à un champ de structure (si nb_fils == 0, on affecte toute la structure comme une var normale)
+		//Si on affecte à un champ de structure (si nb_fils == 0, on affecte toute la structure)
 		}else if(f.getFieldType().equals(FieldType.FieldStructure) && node.getChild(0).getChildCount() > 0){
-
 			//On récupère le vrai noeud
 			String field = node.getChild(0).getChild(0).getChild(0).getText();
 			FieldStructure fs = (FieldStructure) f;
@@ -82,11 +84,32 @@ public class Affectation extends Instruction{
 				ca.append("//Calcul de l'adresse du champ");
 				saut_to_champ*=2;
 				ca.append("ADQ -"+saut_to_champ+", R1");
-				ca.append("//On fout le tout dans R3");
 			}
 		}
 		
-		//On affecte la valeur de retour (R3) dans la mémoire
-		ca.append("STW R3, (R1) //On stocke le resultat dans la mémoire");
+		//On affecte des structures entre elles
+		if(f.getFieldType().equals(FieldType.FieldStructure)  && node.getChild(0).getChildCount() == 0){
+			//On récupère le vrai noeud
+			FieldStructure fs = (FieldStructure) f;
+			int saut_to_champ = 0;
+			
+			//On recherche le champ
+			for (Couple<String, CommonTree> couple : fs.getFieldsAndValues()) {
+				//On recopie tous les champs
+				ca.append("//Copie de "+couple.getLeft());
+				ca.append("LDW R4, (R5) //On charge la valeur à copier");
+				ca.append("STW R4, (R1)");
+				ca.append("LDW R9, R4");
+				
+				saut_to_champ += 2;
+				ca.append("ADQ -"+saut_to_champ+", R5");
+				ca.append("ADQ -"+saut_to_champ+", R1");
+			}
+		}else{
+			//On affecte la valeur de retour (R3) dans la mémoire
+			ca.append("STW R3, (R1) //On stocke le resultat dans la mémoire");
+		}
+		
+		
 	}
 }

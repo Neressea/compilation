@@ -35,19 +35,18 @@ public class Structure extends Instruction{
 			saut_to_champ++;
 		}
 		
-		if(val != null){
-			ExpressionArithmetique ea = new ExpressionArithmetique(val, generator);
-			ca.append("//Calcul de la valeur initiale du champ de structure --> dans R3");
-			ea.genererCode(pile);
-			ca.append("//Calcul de l'adresse de la variable structure");
-			Identifiant id = new Identifiant((CommonTree) node.getParent(), generator);
-			id.genererCode(pile);
-			ca.append("//Calcul de l'adresse du champ");
-			saut_to_champ*=2;
-			ca.append("ADQ -"+saut_to_champ+", R1");
-			ca.append("//On fout le tout dans R3");
-			ca.append("LDW R3, (R1)");
-		}
+		ExpressionArithmetique ea = new ExpressionArithmetique(val, generator);
+		ca.append("//Calcul de la valeur initiale du champ de structure --> dans R3");
+		ea.genererCode(pile);
+		ca.append("//Calcul de l'adresse de la variable structure");
+		Identifiant id = new Identifiant((CommonTree) node.getParent(), generator);
+		id.genererCode(pile);
+
+		ca.append("//Calcul de l'adresse du champ");
+		saut_to_champ*=2;
+		ca.append("ADQ -"+saut_to_champ+", R1");
+		ca.append("//On fout le tout dans R3");
+		ca.append("LDW R3, (R1)");
 	}
 
 }

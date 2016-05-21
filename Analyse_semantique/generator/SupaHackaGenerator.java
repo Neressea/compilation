@@ -206,9 +206,19 @@ public class SupaHackaGenerator {
 						}else{
 							Field ff = TDS.findIn(pile, node.getText(), FieldType.FieldVariable, FieldType.FieldStructure, FieldType.FieldTableau);
 							if(ff!=null){
-								Identifiant idf = new Identifiant(node, this);
-								idf.genererCode(pile); //On calcule l'adresse de l'idf dans R1
-								CodeAss.getCodeSingleton().append("LDW R3, (R1)");
+								
+								if(ff.getFieldType().equals(FieldType.FieldVariable)){
+									Identifiant idf = new Identifiant(node, this);
+									idf.genererCode(pile); //On calcule l'adresse de l'idf dans R1
+									CodeAss.getCodeSingleton().append("LDW R3, (R1)");
+								}else if(ff.getFieldType().equals(FieldType.FieldVariable)){
+									Structure stc = new Structure(node, this);
+									stc.genererCode(pile);
+								}else if(ff.getFieldType().equals(FieldType.FieldVariable)){
+									TableauAcces tab = new TableauAcces(node, this);
+									tab.genererCode(pile);
+								}
+
 							}else{
 								genererChild(node);
 							}

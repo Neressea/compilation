@@ -4,8 +4,11 @@ let
 	var faux_entier := "42"
 	var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 5
+	type strArray = array of string
+	var strs := strArray [10] of "chapeau !"
 	type intArray = array of int
 	var row := intArray [28] of 10
+	var col := intArray [10] of 5
 	type structure = {i:int, s:string, j:int}
 	var test_affect := structure{i:=54, s:="eh ouais", j:=10}
 
@@ -23,8 +26,16 @@ let
 	)
 
 in
+	strs[x] := "pacheau.";
+	println(strs[x+1]);
+	println(strs[x]);
+	printiln(col[9]);
+	col := row;
+	printiln(col[15]);
 	test_affect.j := row[x];
 	printiln(test_affect.j);
+	println(test_affect.s);
+	test_affect.s := "ah bon ?";
 	println(test_affect.s);
 	row[x] := 92;
 	printiln(row[x + 1]);
@@ -59,8 +70,7 @@ in
 			)
 		 in 
 		 	another_struct := retour_struct();
-		 	test_struct.i := test_struct.j + another_struct.i;
-		 	test_struct.j //atoi(faux_entier)
+		 	another_struct.i
 		 end;
 
 	printiln(x);
