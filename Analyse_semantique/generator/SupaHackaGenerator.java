@@ -74,7 +74,8 @@ public class SupaHackaGenerator {
 						
 						//On a un tableau
 						if(node.getChild(1).getChildCount() == 2 && node.getChild(1).getChild(0).getText().equals("SIZE")){
-							
+							TableauDeclaration tabdecl = new TableauDeclaration(node, this);
+							tabdecl.genererCode(pile);
 							//On a une variable
 						}else if((node.getChildCount() == 2 && TDS.findIn(pile, node.getChild(1).getText(), FieldType.FieldTypeDefStructure)==null) || (node.getChildCount() == 3)){	
 							Declaration decl = new Declaration(node, this);
