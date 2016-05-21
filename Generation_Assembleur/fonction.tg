@@ -25,7 +25,10 @@ let
 		"I like kebabs."
 	)
 
+	function get_tab() : string = strs[5]
+
 in
+	println(get_tab());
 	strs[x] := "pacheau.";
 	println(strs[x+1]);
 	println(strs[x]);
@@ -70,20 +73,20 @@ in
 			)
 		 in 
 		 	another_struct := retour_struct();
-		 	another_struct.i
+		 	test_struct.j
 		 end;
 
 	printiln(x);
 
-	s := let
+	row[0] := let
 			var toto := "46"
 		 in 
 		 	toto := "64";
 		 	x := 3 + 666;
-		 	toto //atoi(toto) //atoi(faux_entier)
+		 	atoi(toto) //atoi(faux_entier)
 		 end;
 
-	println(s);
+	printiln(row[0]);
 
 	printiln(x);
 

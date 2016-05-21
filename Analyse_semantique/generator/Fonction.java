@@ -120,9 +120,6 @@ public class Fonction extends Instruction{
 				}
 			}
 			
-			//On charge le chainage statique dans R12
-			ca.append("//On charge le chainage statique dans R12");
-			
 			//On appelle la fonction
 			ca.append("JSR @"+function_name);
 			
@@ -130,7 +127,7 @@ public class Fonction extends Instruction{
 			if(params_effectifs != null){
 				for (int i = 0; i < params_effectifs.getChildCount(); i++) {
 					//On dépile le paramètre
-					ca.append("LDW R5, (R15)+ //On empile le paramètre");
+					ca.append("ADQ 2, R15 //On dépile le paramètre");
 				}
 			}
 		}
