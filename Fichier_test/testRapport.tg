@@ -1,0 +1,27 @@
+let
+	var n : int := 10
+	type intArray = array of int
+	var tab := intArray [n] of 0
+	var cpt : int := 0
+	var nom : int := 3
+	type abc = {a:int, b:string, c:int}
+	var w := abc{a:=50, b:="♥Compilation♥", c:=0}
+	
+	function printAll(s:string) = 
+		(
+			for i := 0 to N-1
+			do (printi(tab[i]);
+				print("\n");
+				print(s);
+				print("\n"))
+		)
+
+in	
+	while cpt<5
+	do (
+		print("coucou ");
+		printi(cpt);
+		cpt := cpt + 1
+		);
+	printAll("--------------")
+end
