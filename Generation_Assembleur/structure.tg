@@ -1,0 +1,8 @@
+let
+	type structure = {i:int, s:string, j:int}
+	var test_struct := structure{i:=3, s:="coucou", j:=5}
+in
+	printiln(test_struct.i);
+	println(test_struct.s);
+	printiln(test_struct.j)
+end
