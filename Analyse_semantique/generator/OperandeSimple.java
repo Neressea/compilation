@@ -47,9 +47,9 @@ public class OperandeSimple extends Instruction {
 			Fonction func = new Fonction(node, this.generator);
 			func.genererCode(pile);
 			
-		}else if(node.getChildCount() > 0 && node.getChild(0).equals("FIELD")){
+		}else if(node.getChildCount() > 0 && node.getChild(0).getText().equals("FIELD")){
 			
-			Structure st = new Structure(node, generator);
+			Structure st = new Structure((CommonTree) node.getChild(0), generator);
 			st.genererCode(pile);
 			
 		}else if(token.equals("if")){

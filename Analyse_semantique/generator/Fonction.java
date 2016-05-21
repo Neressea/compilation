@@ -24,7 +24,6 @@ public class Fonction extends Instruction{
 		CommonTree params_effectifs = (node.getChildCount() == 1) ? null : (CommonTree) node.getChild(1);
 		
 		if(function_name.equals("print") || function_name.equals("println")){
-			
 			//On récupère le paramètre que veut afficher le programmeur
 			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			

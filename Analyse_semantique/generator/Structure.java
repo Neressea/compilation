@@ -22,7 +22,6 @@ public class Structure extends Instruction{
 		//On récupère le vrai noeud
 		String var_name = node.getParent().getText();
 		String field = node.getChild(0).getText();
-		
 		FieldStructure fs = (FieldStructure) TDS.findIn(pile, var_name, FieldType.FieldStructure);
 		int saut_to_champ=0;
 		
@@ -42,9 +41,12 @@ public class Structure extends Instruction{
 			ea.genererCode(pile);
 			ca.append("//Calcul de l'adresse de la variable structure");
 			Identifiant id = new Identifiant((CommonTree) node.getParent(), generator);
+			id.genererCode(pile);
 			ca.append("//Calcul de l'adresse du champ");
 			saut_to_champ*=2;
 			ca.append("ADQ -"+saut_to_champ+", R1");
+			ca.append("//On fout le tout dans R3");
+			ca.append("LDW R3, (R1)");
 		}
 	}
 
