@@ -4,10 +4,13 @@ let
 	var faux_entier := "42"
 	var what_did_I_just_read := "ceci en est une autre"
 	var x : int := 5
+	type intArray = array of int
+	//var row := intArray [34] of 3
 
 	function double_print(a : int, b : string) = (
 		println(b);
 		printiln(a)
+		//printiln(row[5])
 	)
 
 	function get_int() : int = (
@@ -44,8 +47,15 @@ in
 	x := let
 			type structure = {i:int, s:string, j:int}
 			var test_struct := structure{i:=1+2, s:="78", j:=5}
+			var another_struct := structure{i:=0, s:="0", j:=0}
+
+			function retour_struct() : structure = (
+				test_struct
+			)
 		 in 
-		 	atoi(test_struct.s) //atoi(faux_entier)
+		 	another_struct := retour_struct();
+		 	test_struct.i := test_struct.j + another_struct.i;
+		 	test_struct.j //atoi(faux_entier)
 		 end;
 
 	printiln(x);
@@ -53,9 +63,17 @@ in
 	s := let
 			var toto := "46"
 		 in 
+		 	toto := "64";
+		 	x := 3 + 666;
 		 	toto //atoi(toto) //atoi(faux_entier)
 		 end;
 
-	println(s)
+	println(s);
+
+	printiln(x);
+
+	s := "ceci est une chaine beaucoup plus longue que la chaine initiale, n'est-ce pas ?";
+
+	print(s)
 
 end

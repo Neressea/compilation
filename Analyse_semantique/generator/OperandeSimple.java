@@ -42,6 +42,9 @@ public class OperandeSimple extends Instruction {
 			Condition cond = new Condition(node, this.generator);
 			cond.genererCode(pile);
 			
+		}else if(node.getChildCount() > 0 && node.getChild(0).getText().equals("CELL")){
+			TableauAcces ta = new TableauAcces((CommonTree) node, generator);
+			ta.genererCode(pile);
 		}else if (token.equals("FUNC_CALL")){
 			
 			Fonction func = new Fonction(node, this.generator);
@@ -75,7 +78,7 @@ public class OperandeSimple extends Instruction {
 				value = Integer.parseInt(node.getChild(0).getText());
 				value = -value;
 			}
-			
+						
 			if (is_digit) { // C'est une constante entiere
 				ca.append("LDW R3, #" + value);
 			} else { // Il s'agit d'un identifiant

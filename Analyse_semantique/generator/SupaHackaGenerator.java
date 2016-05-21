@@ -7,6 +7,7 @@ import org.antlr.runtime.tree.CommonTree;
 
 import com.sun.org.apache.xpath.internal.functions.Function;
 
+import analyse.Field;
 import analyse.FieldType;
 import analyse.TDS;
 
@@ -173,7 +174,8 @@ public class SupaHackaGenerator {
 						
 					//Acc�s � une case d'un tableau
 					case "CELL":
-						genererChild(node);
+						TableauAcces ta = new TableauAcces((CommonTree) node.getParent(), this);
+						ta.genererCode(pile);
 						break;
 					
 					//D�finition dela taille d'un tableau
@@ -203,7 +205,15 @@ public class SupaHackaGenerator {
 							OperandeSimple os = new OperandeSimple(node, this);
 							os.genererCode(pile);
 						}else{
-							genererChild(node);
+							Field ff = TDS.findIn(pile, node.getText(), FieldType.FieldVariable, FieldType.FieldStructure, FieldType.FieldTableau);
+							if(ff!=null){
+								System.out.println(node);
+								Identifiant idf = new Identifiant(node, this);
+								idf.genererCode(pile); //On calcule l'adresse de l'idf dans R1
+								CodeAss.getCodeSingleton().append("LDW R3, (R1)");
+							}else{
+								genererChild(node);
+							}
 						}
 				}
 		

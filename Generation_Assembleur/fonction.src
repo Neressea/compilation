@@ -222,6 +222,22 @@ LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @println
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
+STRING15 string "ceci est une chaine beaucoup plus longue que la chaine initiale, n'est-ce pas ? "
+LDQ 0, R3
+LDW R3, #STRING15
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @print
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -240,6 +256,8 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 LDW R3, #1
 STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #2
@@ -252,18 +270,42 @@ LDW R3, #STRING11
 STW R3, -(R15)
 LDW R3, #5
 STW R3, -(R15)
-//Calcul de la nouvelle valeur du champ de structure --> dans R3
-STRING12 string "78"
+LDW R3, #0
+STW R3, -(R15)
+STRING12 string "0 "
 LDQ 0, R3
 LDW R3, #STRING12
+STW R3, -(R15)
+LDW R3, #0
+STW R3, -(R15)
+//CALL : retour_struct
+//On charge le chainage statique dans R12
+JSR @retour_struct
+LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//Calcul de la nouvelle valeur du champ de structure --> dans R3
+LDW R3, #5
 //Calcul de l'adresse de la variable structure
 LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
 //Calcul de l'adresse du champ
-ADQ -2, R1
+ADQ -4, R1
 //On fout le tout dans R3
 LDW R3, (R1)
-LDW R5, R3
-JSR @atoi
+STW R3, -(R15) //On empile le resultat de l'operande droite
+//Calcul de la nouvelle valeur du champ de structure --> dans R3
+LDW R3, #0
+//Calcul de l'adresse de la variable structure
+LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -0, R1
+//On fout le tout dans R3
+LDW R3, (R1)
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -283,6 +325,20 @@ STRING13 string "46"
 LDQ 0, R3
 LDW R3, #STRING13
 STW R3, -(R15) //On empile la valeur déclarée
+STRING14 string "64"
+LDQ 0, R3
+LDW R3, #STRING14
+LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R3, #3
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #666
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -431,6 +487,50 @@ LDW BP, SP //Le sommet de la pile devient la nouvelle base
 STRING3 string "I like kebabs."
 LDQ 0, R3
 LDW R3, #STRING3
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+retour_struct
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -642,8 +742,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING14 RSB 50 //On crée la chaine de retour (100 caractères max)
-LDQ STRING14, R0 //On met cette adresse en lecture
+STRING16 RSB 50 //On crée la chaine de retour (100 caractères max)
+LDQ STRING16, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R3, R0 //On met le résultat dans R3
 //On ferme l'environnement courant
@@ -687,8 +787,8 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 //On commence par lire la chaine
-STRING15 RSB 100 //On crée la chaine de retour (100 caractères max)
-LDQ STRING15, R0 //On met cette adresse en lecture
+STRING17 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING17, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R5, R0 //On met le résultat dans R5
 JSR @atoi //On convertit en entier. Résultat dans R3
@@ -787,8 +887,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING16 RSB 100 //On crée la chaine de retour (100 octets max)
-LDQ STRING16, R3 //On charge l'adresse dans R0
+STRING18 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING18, R3 //On charge l'adresse dans R0
 //R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
 LDQ 10, R8  
 CMP R6, R8  
