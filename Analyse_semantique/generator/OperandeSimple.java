@@ -29,6 +29,10 @@ public class OperandeSimple extends Instruction {
 		
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
 			
+			//Si le nombre de caractères ets impair, on ajoute un blanc arbitraire en fin de chaine pour le rendre pair.
+			if(token.length() % 2 != 0)
+				token = token.substring(0, token.length() - 1) + " " +token.substring(token.length() - 1, token.length());
+			
 			et="STRING".concat(Integer.toString(counter));
 			ca.append(et+" string "+token);
 			counter++;
