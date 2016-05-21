@@ -17,20 +17,40 @@ public class TableauDeclaration extends Instruction{
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
 		CodeAss codeass = CodeAss.getCodeSingleton();
-		
 		String name = node.getChild(0).getText();
-		ExpressionArithmetique size = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(0).getChild(0), generator); 
-		size.genererCode(pile);
-		codeass.append("LDW R5, R3");
-		codeass.append("LOOPTAB"+nb_tab_decl+" TST R5");
-		codeass.append("BEQ ENDTAB"+nb_tab_decl+"-$-2");
-		ExpressionArithmetique init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0), generator);
-		init.genererCode(pile);
-		codeass.append("STW R3, -(R15)");
-		codeass.append("ADQ -1, R5");
-		codeass.append("BMP LOOPTAB"+nb_tab_decl+"-$-2");
-		codeass.append("ENDTAB"+nb_tab_decl);
-		nb_tab_decl++;
+		boolean isNumb = true;
+		
+		try{
+			Integer.parseInt(node.getChild(1).getChild(0).getChild(0).getText());
+		}catch(Exception e){
+			isNumb = false;
+		}
+		
+		if (isNumb){
+			int size = Integer.parseInt(node.getChild(1).getChild(0).getChild(0).getText());
+			size = size*2;
+			codeass.append(name+" RSB "+size);
+			codeass.append("LDW R7, #"+name);
+			codeass.append("STW R7, -(R15)");
+			codeass.append("LDW R7, #"+size);
+			codeass.append("LDW R8, #0");
+			codeass.append("LDW R5, #"+name);
+			ExpressionArithmetique init = new ExpressionArithmetique((CommonTree) node.getChild(1).getChild(1).getChild(0), generator);
+			init.genererCode(pile);
+			codeass.append("LDW R6, R3");
+			codeass.append("LOOPTAB"+nb_tab_decl+" STW R6, (R5)");
+			codeass.append("ADQ 1, R5");
+			codeass.append("ADQ 1, R8");
+			codeass.append("CMP R7, R8");
+			codeass.append("BEQ ENDTAB"+nb_tab_decl+"-$-2");
+			codeass.append("BMP LOOPTAB"+nb_tab_decl+"-$-2");
+			codeass.append("ENDTAB"+nb_tab_decl);
+			nb_tab_decl++;
+		}else{
+			
+		}
+		
+		
 		
 	}
 

@@ -1,7 +1,7 @@
 let
 	var N :int := 8
 	type intArray = array of int
-	var row := intArray [ N-1 ] of 3
+	var row := intArray [34] of 3
 in
-
+	printi(row[0])
 end
