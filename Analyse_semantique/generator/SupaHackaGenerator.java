@@ -82,7 +82,8 @@ public class SupaHackaGenerator {
 							decl.genererCode(pile);
 						//On a une structure
 						}else {
-							
+							StructureDeclaration sds = new StructureDeclaration(node, this);
+							sds.genererCode(pile);
 						}
 						
 						break;
@@ -104,6 +105,11 @@ public class SupaHackaGenerator {
 					case "BLOCK":
 						//Quand on entre dans un bloc on augmente l'imbrication
 						genererChild(node);
+						break;
+						
+					case "FIELD":
+						Structure sds = new Structure(node, this);
+						sds.genererCode(pile);
 						break;
 					
 					//Appel d'une fonction

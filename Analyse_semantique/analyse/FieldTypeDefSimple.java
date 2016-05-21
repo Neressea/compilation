@@ -8,7 +8,7 @@ public class FieldTypeDefSimple extends FieldTypeDef{
 	private String type;
 
 	public FieldTypeDefSimple(String ID, int taille_du_saut, int taille, String type) {
-		super(ID, taille_du_saut, taille);
+		super(ID, taille_du_saut, taille, 0);
 		this.type=type;
 	}
 	

@@ -6,9 +6,9 @@ public class FieldTypeDefTableau extends FieldTypeDef{
 	 * Type des objets du tableau.
 	 */
 	private String type;
-
+	
 	public FieldTypeDefTableau(String ID, int taille_du_saut, int taille, String type) {
-		super(ID, taille_du_saut, taille);
+		super(ID, taille_du_saut, 0, taille);
 		this.type=type;
 	}
 	
