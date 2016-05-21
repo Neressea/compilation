@@ -42,9 +42,10 @@ in
 	printiln(readi());
 
 	x := let
-			var toto := "78"
+			type structure = {i:int, s:string, j:int}
+			var test_struct := structure{i:=1+2, s:="78", j:=5}
 		 in 
-		 	atoi(toto) //atoi(faux_entier)
+		 	atoi(test_struct.s) //atoi(faux_entier)
 		 end;
 
 	printiln(x);

@@ -240,11 +240,27 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
+LDW R3, #1
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #2
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+STW R3, -(R15)
 STRING11 string "78"
 LDQ 0, R3
 LDW R3, #STRING11
-STW R3, -(R15) //On empile la valeur diclarie
+STW R3, -(R15)
+LDW R3, #5
+STW R3, -(R15)
+//Calcul de la nouvelle valeur du champ de structure --> dans R3
+STRING12 string "78"
+LDQ 0, R3
+LDW R3, #STRING12
+//Calcul de l'adresse de la variable structure
 LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -2, R1
+//On fout le tout dans R3
 LDW R3, (R1)
 LDW R5, R3
 JSR @atoi
@@ -263,9 +279,9 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-STRING12 string "46"
+STRING13 string "46"
 LDQ 0, R3
-LDW R3, #STRING12
+LDW R3, #STRING13
 STW R3, -(R15) //On empile la valeur diclarie
 //On ferme l'environnement courant
 LDW SP, BP //On riintialise le sommet de la pile ` la base courante
@@ -626,8 +642,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING13 RSB 50 //On crie la chaine de retour (100 caracthres max)
-LDQ STRING13, R0 //On met cette adresse en lecture
+STRING14 RSB 50 //On crie la chaine de retour (100 caracthres max)
+LDQ STRING14, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lhve la trappe
 LDW R3, R0 //On met le risultat dans R3
 //On ferme l'environnement courant
@@ -671,8 +687,8 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 //On commence par lire la chaine
-STRING14 RSB 100 //On crie la chaine de retour (100 caracthres max)
-LDQ STRING14, R0 //On met cette adresse en lecture
+STRING15 RSB 100 //On crie la chaine de retour (100 caracthres max)
+LDQ STRING15, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lhve la trappe
 LDW R5, R0 //On met le risultat dans R5
 JSR @atoi //On convertit en entier. Risultat dans R3
@@ -771,8 +787,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING15 RSB 100 //On crie la chaine de retour (100 octets max)
-LDQ STRING15, R3 //On charge l'adresse dans R0
+STRING16 RSB 100 //On crie la chaine de retour (100 octets max)
+LDQ STRING16, R3 //On charge l'adresse dans R0
 //R5 -> entier ` convertir, R6 -> base de conversion, R3 -> adresse de la chaine risultat
 LDQ 10, R8  
 CMP R6, R8  
