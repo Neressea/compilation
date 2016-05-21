@@ -113,10 +113,10 @@ public abstract class TDS {
 		
 		for(int i=1; i<tds_list.size(); i++){
 			TDS tds = tds_list.get(i);
-			for (int j = 0; j < field_type.length; j++) {
+			if(!(tds instanceof TDSFor))
 				saut += 6; //On compte les 3@ à sauter
+			for (int j = 0; j < field_type.length; j++) {
 				if((f=tds.existIn(ID, field_type[j]))!=null){
-					if(ID.equals("toto")) System.out.println(saut);
 					return saut; 
 				}
 			}

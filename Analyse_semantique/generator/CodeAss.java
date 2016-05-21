@@ -130,7 +130,7 @@ public class CodeAss {
 				+"read \n"
 				+ Fonction.saveRegisters()
 				+ Fonction.openEnv()
-				+ "STRING"+(OperandeSimple.counter++)+" RSB 100 //On crée la chaine de retour (100 caractères max)\n"
+				+ "STRING"+(OperandeSimple.counter++)+" RSB 50 //On crée la chaine de retour (100 caractères max)\n"
 				+ "LDQ STRING"+(OperandeSimple.counter-1)+", R0 //On met cette adresse en lecture\n"
 				+ "TRP #READ_TRP //On lève la trappe\n"
 				+ "LDW R3, R0 //On met le résultat dans R3\n"

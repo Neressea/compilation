@@ -18,7 +18,7 @@ public class For extends Instruction {
 	public void genererCode(ArrayList<TDS> pile) {
 		int nb = nb_for++;
 		CodeAss ca = CodeAss.getCodeSingleton();
-		
+				
 		/*On calcule la valeur initiale du compteur et on l'empile*/
 		CommonTree var_compteur = (CommonTree) node.getChild(0);
 		CommonTree expr_begin = (CommonTree) var_compteur.getChild(0).getChild(0);
