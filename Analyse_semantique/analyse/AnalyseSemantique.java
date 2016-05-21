@@ -527,7 +527,7 @@ public class AnalyseSemantique {
 			default:
 				FieldTypeDef ftd = (FieldTypeDef) TDS.findIn(pile, id, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
 				if(ftd == null) return 0;
-				size = ftd.getTaille();
+				size = ftd.getTailleDesElems();
 				break;
 		}
 				
