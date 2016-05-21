@@ -45,6 +45,7 @@ STB R4, (R2)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
 STRING0 string "ceci est une chaine "
 LDQ 0, R3
 LDW R3, #STRING0
@@ -194,11 +195,12 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-//*** On exit le programme principal ***//
 //On ferme l'environnement courant
 LDW SP, BP //On riintialise le sommet de la pile ` la base courante
 LDW BP, (SP)+ //On dipile l'ancienne base
 LDW STAT, (SP)+//On dipile le chainage statique
+
+//*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exicution
 
 /////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////

@@ -125,7 +125,8 @@ public class SupaHackaGenerator {
 						
 					case "let":
 						openTDS();
-						genererChild(node);	
+						Let let = new Let(node, this);
+						let.genererCode(pile);
 						closeTDS();
 						break;
 						

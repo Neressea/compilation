@@ -61,8 +61,7 @@ public class CodeAss {
 				+"LDQ 10, R3 //Saut de ligne\n"
 				+"LDQ NUL, R4 //Fin de chaine\n"
 				+"STB R3, (R2)+\n"
-				+"STB R4, (R2)\n\n"
-				+Fonction.openEnv();
+				+"STB R4, (R2)\n\n";
 	}
 	
 	private static CodeAss codeAss = new CodeAss();
@@ -257,7 +256,6 @@ public class CodeAss {
 	 */
 	private void closeCode(){
 		code+=  "//*** On exit le programme principal ***//\n"
-				+Fonction.closeEnv()
 				+"TRP #EXIT_TRP //On quitte l'exécution\n\n";
 	}
 	
