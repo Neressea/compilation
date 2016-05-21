@@ -36,6 +36,7 @@ public class Let extends Instruction{
 									
 		}else{
 			
+			int current = nb_let;
 			ca.setWritingLet(nb_let);
 			ca.append("//DEBUT LET");
 			ca.append("let"+(nb_let++));
@@ -48,7 +49,7 @@ public class Let extends Instruction{
 			if(node.getChildCount() == 2)
 				generator.genererChild((CommonTree) node.getChild(1));
 			
-			ca.setWritingLet(nb_let - 1);
+			ca.setWritingLet(current);
 			ca.append(Fonction.closeEnv());
 			ca.append("RTS");
 			ca.append("//FIN LET");
@@ -56,7 +57,7 @@ public class Let extends Instruction{
 			
 			ca.setWritingLet(0);
 			
-			ca.append("JSR @let"+(nb_let-1));
+			ca.append("JSR @let"+current);
 		}
 	}
 
