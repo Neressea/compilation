@@ -32,18 +32,18 @@ public class TableauAcces extends Instruction{
 		ExpressionArithmetique ea = new ExpressionArithmetique(num_case, generator);
 		ea.genererCode(pile);
 		
+		//on multiplie le saut par 2 pour retomber sur des mots
+		codeass.append("ADD R3, R3, R3");
+		
 		//On calcule l'adresse de la base du tableau (identifiant)
 		Identifiant idf = new Identifiant(node, generator);
 		idf.genererCode(pile);
-		
-		//on multiplie le saut par 2 pour retomber sur des mots
-		codeass.append("ADD R3, R3, R3");
 		
 		//On récupère l'adresse du tableau, qui est stockée dans la case pointée par R1
 		codeass.append("LDW R1, (R1)");
 		
 		//On modifie l'adresse de R1 par le saut
-		codeass.append("SUB R1, R3, R1");
+		codeass.append("ADD R1, R3, R1");
 		
 		//Enfin on charge le contenu du tableau
 		if(f_type.getTypeElements().equals("string"))

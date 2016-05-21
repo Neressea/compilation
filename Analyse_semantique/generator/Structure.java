@@ -37,7 +37,7 @@ public class Structure extends Instruction{
 		
 		if(val != null){
 			ExpressionArithmetique ea = new ExpressionArithmetique(val, generator);
-			ca.append("//Calcul de la nouvelle valeur du champ de structure --> dans R3");
+			ca.append("//Calcul de la valeur initiale du champ de structure --> dans R3");
 			ea.genererCode(pile);
 			ca.append("//Calcul de l'adresse de la variable structure");
 			Identifiant id = new Identifiant((CommonTree) node.getParent(), generator);

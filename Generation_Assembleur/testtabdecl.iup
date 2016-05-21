@@ -54,18 +54,18 @@ f01a   emplacement : 61522  (0xf052)
 f054   emplacement : 61536  (0xf060) 
 6693   emplacement : 61538  (0xf062)  ligne n° 60	LDW R6, R3
 6625   emplacement : 61540  (0xf064)  ligne n° 61	LOOPTAB0 STW R6, (R5)
-35fe   emplacement : 61542  (0xf066)  ligne n° 62	ADQ -2, R5
+3502   emplacement : 61542  (0xf066)  ligne n° 62	ADQ 2, R5
 3801   emplacement : 61544  (0xf068)  ligne n° 63	ADQ 1, R8
 4f78   emplacement : 61546  (0xf06a)  ligne n° 64	CMP R7, R8
 1202   emplacement : 61548  (0xf06c)  ligne n° 65	BEQ ENDTAB0-$-2
 11f4   emplacement : 61550  (0xf06e)  ligne n° 66	BMP LOOPTAB0-$-2
-6380   emplacement : 61552  (0xf070)  ligne n° 69	LDW R3, #19
-0013   emplacement : 61554  (0xf072) 
+6380   emplacement : 61552  (0xf070)  ligne n° 69	LDW R3, #20
+0014   emplacement : 61554  (0xf072) 
 6180   emplacement : 61556  (0xf074)  ligne n° 70	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
 0ff8   emplacement : 61558  (0xf076) 
 e333   emplacement : 61560  (0xf078)  ligne n° 71	ADD R3, R3, R3
 61a1   emplacement : 61562  (0xf07a)  ligne n° 72	LDW R1, (R1)
-f131   emplacement : 61564  (0xf07c)  ligne n° 73	SUB R1, R3, R1
+e131   emplacement : 61564  (0xf07c)  ligne n° 73	ADD R1, R3, R1
 63a1   emplacement : 61566  (0xf07e)  ligne n° 74	LDW R3, (R1)
 6093   emplacement : 61568  (0xf080)  ligne n° 76	LDW R0, R3
 0a50   emplacement : 61570  (0xf082)  ligne n° 77	JSR @println

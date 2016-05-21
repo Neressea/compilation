@@ -19,7 +19,6 @@ public class StructureDeclaration extends Instruction{
 		
 		CommonTree elems = (CommonTree) node.getChild(1);
 		//On parcours tous les champs
-		System.out.println(elems);
 		for (int i = 0; i < elems.getChildCount(); i++) {
 			CommonTree current = (CommonTree) elems.getChild(i).getChild(0);
 			

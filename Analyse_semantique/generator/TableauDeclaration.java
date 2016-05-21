@@ -28,8 +28,7 @@ public class TableauDeclaration extends Instruction{
 		
 		if (isNumb){
 			int size = Integer.parseInt(node.getChild(1).getChild(0).getChild(0).getText());
-			System.out.println(size);
-			codeass.append(name+" RSW "+size);
+			codeass.append(name+" RSB "+(size*2));
 			codeass.append("LDW R7, #"+name);
 			codeass.append("STW R7, -(R15)");
 			codeass.append("LDW R7, #"+size);
@@ -39,7 +38,7 @@ public class TableauDeclaration extends Instruction{
 			init.genererCode(pile);
 			codeass.append("LDW R6, R3");
 			codeass.append("LOOPTAB"+nb_tab_decl+" STW R6, (R5)");
-			codeass.append("ADQ -2, R5");
+			codeass.append("ADQ 2, R5");
 			codeass.append("ADQ 1, R8");
 			codeass.append("CMP R7, R8");
 			codeass.append("BEQ ENDTAB"+nb_tab_decl+"-$-2");

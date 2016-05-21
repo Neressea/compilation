@@ -60,14 +60,122 @@ LDW R3, #STRING2
 STW R3, -(R15) //On empile la valeur déclarée
 LDW R3, #5
 STW R3, -(R15) //On empile la valeur déclarée
-STRING4 string "SALUT "
+row RSB 56
+LDW R7, #row
+STW R7, -(R15)
+LDW R7, #28
+LDW R8, #0
+LDW R5, #row
+LDW R3, #10
+LDW R6, R3
+LOOPTAB0 STW R6, (R5)
+ADQ 2, R5
+ADQ 1, R8
+CMP R7, R8
+BEQ ENDTAB0-$-2
+BMP LOOPTAB0-$-2
+ENDTAB0
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R3, #54
+STW R3, -(R15)
+STRING3 string "eh ouais"
 LDQ 0, R3
-LDW R3, #STRING4
+LDW R3, #STRING3
+STW R3, -(R15)
+LDW R3, #10
+STW R3, -(R15)
+//Début de l'accès au tableau
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+ADD R3, R3, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -4, R1
+//On fout le tout dans R3
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//Calcul de la valeur initiale du champ de structure --> dans R3
+LDW R3, #10
+//Calcul de l'adresse de la variable structure
+LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -4, R1
+//On fout le tout dans R3
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
 LDW R0, R3
-JSR @println
-STRING5 string "a "
+JSR @printiln
+//Calcul de la valeur initiale du champ de structure --> dans R3
+STRING5 string "eh ouais"
 LDQ 0, R3
 LDW R3, #STRING5
+//Calcul de l'adresse de la variable structure
+LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -2, R1
+//On fout le tout dans R3
+LDW R3, (R1)
+LDW R0, R3
+JSR @println
+LDW R3, #92
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//Début de l'accès au tableau
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #1
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+ADD R3, R3, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
+//Début de l'accès au tableau
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+ADD R3, R3, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
+STRING6 string "SALUT "
+LDQ 0, R3
+LDW R3, #STRING6
+LDW R0, R3
+JSR @println
+STRING7 string "a "
+LDQ 0, R3
+LDW R3, #STRING7
 LDW R0, R3
 JSR @println
 LDW R3, #7689
@@ -88,7 +196,7 @@ LDW R3, (R1)
 LDW R0, R3
 JSR @println
 LDW R3, #10
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
 LDW R2, (R1) //On charge le compteur dans R2
 SUB R3, R2, R3
 BEQ sortie_boucle0-$-2
@@ -97,9 +205,9 @@ STW R2, (R1) //On met a jour le compteur en memoire
 BMP boucle0-$-2
 sortie_boucle0
 LDW R3, (R15)+ //on dépile le compteur
-STRING6 string "Entrez une chaine : "
+STRING8 string "Entrez une chaine : "
 LDQ 0, R3
-LDW R3, #STRING6
+LDW R3, #STRING8
 LDW R0, R3
 JSR @print
 JSR @read
@@ -120,21 +228,21 @@ LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @println
-STRING7 string "Entrez une nouvelle chaine :  "
+STRING9 string "Entrez une nouvelle chaine :  "
 LDQ 0, R3
-LDW R3, #STRING7
+LDW R3, #STRING9
 LDW R0, R3
 JSR @print
 JSR @read
 LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
-STRING8 string "a "
+STRING10 string "a "
 LDQ 0, R3
-LDW R3, #STRING8
+LDW R3, #STRING10
 LDW R5, R3
-STRING9 string "a "
+STRING11 string "a "
 LDQ 0, R3
-LDW R3, #STRING9
+LDW R3, #STRING11
 LDW R6, R3
 LDB R2, (R5)
 LDB R3, (R6)
@@ -161,8 +269,15 @@ STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 STW R3, -(R15) //On empile le paramètre
+//Début de l'accès au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
+ADD R3, R3, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
 STW R3, -(R15) //On empile le paramètre
 //On charge le chainage statique dans R12
 JSR @double_print
@@ -194,9 +309,9 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-STRING10 string "Entrez un entier :  "
+STRING12 string "Entrez un entier :  "
 LDQ 0, R3
-LDW R3, #STRING10
+LDW R3, #STRING12
 LDW R0, R3
 JSR @print
 JSR @readi
@@ -229,9 +344,9 @@ LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-STRING15 string "ceci est une chaine beaucoup plus longue que la chaine initiale, n'est-ce pas ? "
+STRING17 string "ceci est une chaine beaucoup plus longue que la chaine initiale, n'est-ce pas ? "
 LDQ 0, R3
-LDW R3, #STRING15
+LDW R3, #STRING17
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
@@ -256,55 +371,56 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
 LDW R3, #1
 STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #2
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
 STW R3, -(R15)
-STRING11 string "78"
+STRING13 string "78"
 LDQ 0, R3
-LDW R3, #STRING11
+LDW R3, #STRING13
 STW R3, -(R15)
 LDW R3, #5
 STW R3, -(R15)
 LDW R3, #0
 STW R3, -(R15)
-STRING12 string "0 "
+STRING14 string "0 "
 LDQ 0, R3
-LDW R3, #STRING12
+LDW R3, #STRING14
 STW R3, -(R15)
 LDW R3, #0
 STW R3, -(R15)
 //CALL : retour_struct
 //On charge le chainage statique dans R12
 JSR @retour_struct
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fde //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
-//Calcul de la nouvelle valeur du champ de structure --> dans R3
+//Calcul de la valeur initiale du champ de structure --> dans R3
 LDW R3, #5
 //Calcul de l'adresse de la variable structure
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
 //Calcul de l'adresse du champ
 ADQ -4, R1
 //On fout le tout dans R3
 LDW R3, (R1)
 STW R3, -(R15) //On empile le resultat de l'operande droite
-//Calcul de la nouvelle valeur du champ de structure --> dans R3
+//Calcul de la valeur initiale du champ de structure --> dans R3
 LDW R3, #0
 //Calcul de l'adresse de la variable structure
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fde //On charge l'adresse de l'idf dans R1
 //Calcul de l'adresse du champ
 ADQ -0, R1
 //On fout le tout dans R3
 LDW R3, (R1)
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -0, R1
+//On fout le tout dans R3
 STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
@@ -321,14 +437,14 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-STRING13 string "46"
+STRING15 string "46"
 LDQ 0, R3
-LDW R3, #STRING13
+LDW R3, #STRING15
 STW R3, -(R15) //On empile la valeur déclarée
-STRING14 string "64"
+STRING16 string "64"
 LDQ 0, R3
-LDW R3, #STRING14
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R3, #STRING16
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R3, #3
 STW R3, -(R15) //On empile le resultat de l'operande droite
@@ -337,7 +453,7 @@ LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
@@ -370,11 +486,11 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R0, R3
 JSR @println
-LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe8 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
@@ -484,9 +600,9 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-STRING3 string "I like kebabs."
+STRING4 string "I like kebabs."
 LDQ 0, R3
-LDW R3, #STRING3
+LDW R3, #STRING4
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
 LDW BP, (SP)+ //On dépile l'ancienne base
@@ -529,7 +645,7 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 //On ferme l'environnement courant
 LDW SP, BP //On réintialise le sommet de la pile à la base courante
@@ -742,8 +858,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING16 RSB 50 //On crée la chaine de retour (100 caractères max)
-LDQ STRING16, R0 //On met cette adresse en lecture
+STRING18 RSB 50 //On crée la chaine de retour (100 caractères max)
+LDQ STRING18, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R3, R0 //On met le résultat dans R3
 //On ferme l'environnement courant
@@ -787,8 +903,8 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 //On commence par lire la chaine
-STRING17 RSB 100 //On crée la chaine de retour (100 caractères max)
-LDQ STRING17, R0 //On met cette adresse en lecture
+STRING19 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING19, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R5, R0 //On met le résultat dans R5
 JSR @atoi //On convertit en entier. Résultat dans R3
@@ -887,8 +1003,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING18 RSB 100 //On crée la chaine de retour (100 octets max)
-LDQ STRING18, R3 //On charge l'adresse dans R0
+STRING20 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING20, R3 //On charge l'adresse dans R0
 //R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
 LDQ 10, R8  
 CMP R6, R8  

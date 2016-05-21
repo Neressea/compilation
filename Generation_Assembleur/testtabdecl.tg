@@ -3,5 +3,5 @@ let
 	type intArray = array of string
 	var row := intArray [20] of "salut"
 in
-	println(row[19])
+	println(row[0])
 end

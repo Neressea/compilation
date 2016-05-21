@@ -59,18 +59,18 @@ LDQ 0, R3
 LDW R3, #STRING0
 LDW R6, R3
 LOOPTAB0 STW R6, (R5)
-ADQ -2, R5
+ADQ 2, R5
 ADQ 1, R8
 CMP R7, R8
 BEQ ENDTAB0-$-2
 BMP LOOPTAB0-$-2
 ENDTAB0
 //Début de l'accès au tableau
-LDW R3, #19
+LDW R3, #20
 LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
 ADD R3, R3, R3
 LDW R1, (R1)
-SUB R1, R3, R1
+ADD R1, R3, R1
 LDW R3, (R1)
 //Fin de l'accès au tableau
 LDW R0, R3

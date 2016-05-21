@@ -34,7 +34,6 @@ public class Identifiant extends Instruction{
 		//On y ajoute le saut de la base de l'environnement jusqu'à la variable
 		
 		//On range l'adresse dans R4
-		System.out.println(sautTDS+"  "+sautVar);
 		String hex = Integer.toHexString(base - sautTDS - sautVar);
 		while(hex.length() < 4) hex = "0" + hex;
 		ca.append("LDW R1, #0x"+hex+" //On charge l'adresse de l'idf dans R1");

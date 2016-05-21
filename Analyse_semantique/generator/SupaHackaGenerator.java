@@ -184,7 +184,6 @@ public class SupaHackaGenerator {
 						break;
 						
 					case "PARAMSFORM":
-						System.out.println("COUCOU");
 						genererChild(node);
 						break;
 						
@@ -207,7 +206,6 @@ public class SupaHackaGenerator {
 						}else{
 							Field ff = TDS.findIn(pile, node.getText(), FieldType.FieldVariable, FieldType.FieldStructure, FieldType.FieldTableau);
 							if(ff!=null){
-								System.out.println(node);
 								Identifiant idf = new Identifiant(node, this);
 								idf.genererCode(pile); //On calcule l'adresse de l'idf dans R1
 								CodeAss.getCodeSingleton().append("LDW R3, (R1)");

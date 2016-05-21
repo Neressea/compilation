@@ -8,7 +8,7 @@ public class FieldTypeDefTableau extends FieldTypeDef{
 	private String type;
 	
 	public FieldTypeDefTableau(String ID, int taille_du_saut, int taille, String type) {
-		super(ID, taille_du_saut, 0, taille);
+		super(ID, taille_du_saut, 0, 2);
 		this.type=type;
 	}
 	
