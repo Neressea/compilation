@@ -14,7 +14,8 @@ public class Structure extends Instruction{
 
 	@Override
 	public void genererCode(ArrayList<TDS> pile) {
-		// TODO Auto-generated method stub
+		//On récupère le vrai noeud
+		node = (CommonTree) node.getParent();
 	}
 
 }
