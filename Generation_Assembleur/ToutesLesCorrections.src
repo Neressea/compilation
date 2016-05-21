@@ -1,0 +1,983 @@
+/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+
+//*** On définit les adresses utiles ***//
+RESETA 	equ 0xEFFA 	// adresse de lancement du programme
+LOADA  	equ 0xEFFA      // adresse de chargement du programme
+STACKA equ 4096 //Adresse de base de la pile
+
+//*** On définit les registres usuels ***//
+SP equ R15 //Reigstre de sommet de pile
+WR equ R14 //Registre pour lever les traps
+BP equ R13 //Registre de base de l'environnement courant
+STAT equ R12 //Registre pour le passage du chainage statique
+
+ASCII_MINUS equ 45
+ASCII_PLUS  equ 43
+ASCII_SP    equ 32 
+ASCII_0     equ 48 
+ASCII_A     equ 65 
+
+//*** On définit les trappes usuelles ***//
+EXIT_TRP equ 64 //Trappe pour quitter le programme
+READ_TRP equ 65 //Trappe de lecture sur l'entrée standard
+WRITE_TRP equ 66 //Trappe d'écriture sur la sortie standard
+
+NIL equ 0 //Base initiale
+NUL equ 0 //Caractère de fin de chaine
+
+ORG   LOADA	// chargement en LOADA
+START main	// demarre à main
+
+/////// ------------------------------  Programme principal  ------------------------------ ///////
+
+main LDW SP, #STACKA //On charge la base de la pile
+LDW BP, #STACKA //Base initiale nulle
+
+//*** Saut de ligne ***//
+SAUT_DE_LIGNE string ""
+LDQ SAUT_DE_LIGNE, R2
+LDQ 10, R3 //Saut de ligne
+LDQ NUL, R4 //Fin de chaine
+STB R3, (R2)+
+STB R4, (R2)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+STRING0 string "5 "
+LDQ 0, R3
+LDW R3, #STRING0
+STW R3, -(R15) //On empile la valeur déclarée
+stringtab1 RSB 40
+LDW R7, #stringtab1
+STW R7, -(R15)
+LDW R7, #20
+LDW R8, #0
+LDW R5, #stringtab1
+STRING1 string "coucou"
+LDQ 0, R3
+LDW R3, #STRING1
+LDW R6, R3
+LOOPTAB0 STW R6, (R5)
+ADQ 2, R5
+ADQ 1, R8
+CMP R7, R8
+BEQ ENDTAB0-$-2
+BMP LOOPTAB0-$-2
+ENDTAB0
+stringtab2 RSB 100
+LDW R7, #stringtab2
+STW R7, -(R15)
+LDW R7, #50
+LDW R8, #0
+LDW R5, #stringtab2
+STRING2 string "salut "
+LDQ 0, R3
+LDW R3, #STRING2
+LDW R6, R3
+LOOPTAB1 STW R6, (R5)
+ADQ 2, R5
+ADQ 1, R8
+CMP R7, R8
+BEQ ENDTAB1-$-2
+BMP LOOPTAB1-$-2
+ENDTAB1
+LDW R3, #5
+STW R3, -(R15)
+STRING3 string "abc "
+LDQ 0, R3
+LDW R3, #STRING3
+STW R3, -(R15)
+STRING4 string "une chaine"
+LDQ 0, R3
+LDW R3, #STRING4
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #777
+STW R3, -(R15)
+STRING5 string "Le kebab le kebab c'est gÃ©nial "
+LDQ 0, R3
+LDW R3, #STRING5
+STW R3, -(R15)
+LDW R3, #666
+STW R3, -(R15)
+STRING6 string "Le DrPepper c'est encore meilleur "
+LDQ 0, R3
+LDW R3, #STRING6
+STW R3, -(R15)
+LDW R3, #3
+LDW R2, R3
+LDW R3, #5
+CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+//Calcul de l'adresse de la variable structure
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -0, R1
+//On fout le tout dans R3
+LDW R3, (R1)
+TST R3
+BEQ 4
+LDQ 1, R3
+JMP #2
+LDQ 0, R3
+STW R3, -(R15)
+LDW R2, (R15)+
+LDW R3, (R15)+
+TST R2
+BEQ 4
+TST R3
+BNE 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+LDW R3, (R15)+
+
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #3
+STW R3, -(R15) //On empile la valeur déclarée
+//CALL : void
+JSR @void
+LDW R5, R1
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @println
+LDW R3, #0
+STW R3, -(R15) //On empile valeur initiale du compteur de boucle
+boucle1 //Etiquette de la boucle
+//CALL : calculer
+STRING9 string "abc "
+LDQ 0, R3
+LDW R3, #STRING9
+STW R3, -(R15) //On empile le paramètre
+LDW R3, #20
+STW R3, -(R15) //On empile le paramètre
+LDW R3, #100
+STW R3, -(R15) //On empile le paramètre
+JSR @calculer
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+LDW R1, #0x0fe2 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #3
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R2, R3
+LDW R3, #10
+CMP R2, R3
+BLW 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R1, #0x0fe2 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+TST R3
+BEQ 4
+LDQ 1, R3
+JMP #2
+LDQ 0, R3
+STW R3, -(R15)
+LDW R2, (R15)+
+LDW R3, (R15)+
+TST R2
+BEQ 4
+TST R3
+BNE 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+LDW R3, (R15)+
+
+TST R3
+BEQ endif1-$-2
+then1 //etiquette then
+LDW R3, #5
+LDW R5, R1
+LDW R1, #0x0fe2 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+BMP endif1-$-2
+endif1 //etiquette fin de if
+LDW R1, #0x0fe2 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
+//CALL : entiere
+JSR @entiere
+TST R3
+BEQ 4
+LDQ 1, R3
+JMP #2
+LDQ 0, R3
+STW R3, -(R15)
+LDW R3, (R15)+
+
+TST R3
+BEQ endif2-$-2
+then2 //etiquette then
+STRING10 string "pas 0 "
+LDQ 0, R3
+LDW R3, #STRING10
+LDW R0, R3
+JSR @print
+BMP endif2-$-2
+endif2 //etiquette fin de if
+LDW R3, #2
+STW R3, -(R15) //On empile le resultat de l'operande droite
+//Calcul de l'adresse de la variable structure
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+//Calcul de l'adresse du champ
+ADQ -0, R1
+//On fout le tout dans R3
+LDW R3, (R1)
+LDW R2, (R15)+ //On depile l'operande droite
+MUL R2, R3, R3
+LDW R1, #0x0fe2 //On charge l'adresse de l'idf dans R1
+LDW R2, (R1) //On charge le compteur dans R2
+SUB R3, R2, R3
+BEQ sortie_boucle1-$-2
+ADQ 1, R2 //on incrémente le compteur
+STW R2, (R1) //On met a jour le compteur en memoire
+BMP boucle1-$-2
+sortie_boucle1
+LDW R3, (R15)+ //on dépile le compteur
+LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R1
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R1
+LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
+//Copie de a
+LDW R4, (R5) //On charge la valeur à copier
+STW R4, (R1)
+LDW R9, R4
+ADQ -2, R5
+ADQ -2, R1
+//Copie de b
+LDW R4, (R5) //On charge la valeur à copier
+STW R4, (R1)
+LDW R9, R4
+ADQ -4, R5
+ADQ -4, R1
+JSR @let1
+LDW R5, R1
+LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+JSR @let2
+TST R3
+BEQ 4
+LDQ 1, R3
+JMP #2
+LDQ 0, R3
+STW R3, -(R15)
+LDW R3, (R15)+
+
+TST R3
+BEQ endif3-$-2
+then3 //etiquette then
+STRING13 string "Je fais de la magie noire "
+LDQ 0, R3
+LDW R3, #STRING13
+LDW R0, R3
+JSR @println
+BMP endif3-$-2
+endif3 //etiquette fin de if
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//*** On exit le programme principal ***//
+TRP #EXIT_TRP //On quitte l'exécution
+
+/////// ------------------------------  Lets imbriqués  ------------------------------ ///////
+
+
+//DEBUT LET
+let1
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R3, #3
+STW R3, -(R15) //On empile la valeur déclarée
+//CALL : calculer
+STRING11 string "cba "
+LDQ 0, R3
+LDW R3, #STRING11
+STW R3, -(R15) //On empile le paramètre
+LDW R3, #10
+STW R3, -(R15) //On empile le paramètre
+LDW R1, #0x0fdc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le paramètre
+JSR @calculer
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+RTS
+//FIN LET
+
+//DEBUT LET
+let2
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R3, #3
+STW R3, -(R15) //On empile la valeur déclarée
+//CALL : calculer
+STRING12 string "xyz "
+LDQ 0, R3
+LDW R3, #STRING12
+STW R3, -(R15) //On empile le paramètre
+LDW R3, #10
+STW R3, -(R15) //On empile le paramètre
+LDW R1, #0x0fdc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le paramètre
+JSR @calculer
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+ADQ 2, R15 //On dépile le paramètre
+LDW R0, R3
+JSR @println
+LDW R1, #0x0fdc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+RTS
+//FIN LET
+
+/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
+
+void
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R3, #0
+STW R3, -(R15) //On empile valeur initiale du compteur de boucle
+boucle0 //Etiquette de la boucle
+STRING7 string "Coucou"
+LDQ 0, R3
+LDW R3, #STRING7
+LDW R0, R3
+JSR @println
+LDW R3, #10
+LDW R1, #0x0fdc //On charge l'adresse de l'idf dans R1
+LDW R2, (R1) //On charge le compteur dans R2
+SUB R3, R2, R3
+BEQ sortie_boucle0-$-2
+ADQ 1, R2 //on incrémente le compteur
+STW R2, (R1) //On met a jour le compteur en memoire
+BMP boucle0-$-2
+sortie_boucle0
+LDW R3, (R15)+ //on dépile le compteur
+STRING8 string "C'est le neant"
+LDQ 0, R3
+LDW R3, #STRING8
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+calculer
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+vraiment_rien
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R1, #0x0fe0 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @print
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+entiere
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+
+LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+/////// ------------------------------  Fonctions du langage  ------------------------------ ///////
+
+//*** println(string) : affiche le texte passé en paramètre et fait un saut de ligne ***//
+println 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+
+//*** print(string) : affiche le texte passé en paramètre ***//
+print 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+
+//*** printiln(int) : affiche l'entier passé en paramètre ***//
+printiln 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+
+//*** printi(int) : affiche l'entier passé en paramètre ***//
+printi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+
+//*** string read() : lit une chaine sur l'entrée standard ***//
+read 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+STRING14 RSB 50 //On crée la chaine de retour (100 caractères max)
+LDQ STRING14, R0 //On met cette adresse en lecture
+TRP #READ_TRP //On lève la trappe
+LDW R3, R0 //On met le résultat dans R3
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
+//*** int readi() : lit un entier sur l'entrée standard ***//
+readi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+//On commence par lire la chaine
+STRING15 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING15, R0 //On met cette adresse en lecture
+TRP #READ_TRP //On lève la trappe
+LDW R5, R0 //On met le résultat dans R5
+JSR @atoi //On convertit en entier. Résultat dans R3
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
+//*** int atoi(string) : convertit une chaine en entier base 10. R5 = adresse de la chaine. ***//
+atoi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+LDQ 0, R3 //On initialise R3
+LDQ ASCII_0, R6 //On charge lavaleur ASCII de 0 
+LDQ 10, R7 //On charge la valeur ASCII de 0 
+LOOP_ATOI 
+//On charge le caractère courant dans R4
+LDB R4, (R5)
+TST R4
+BEQ END_LOOP_ATOI-$-2 //Si le caractère courant est égal à 0, on saute à la fin de la boucle
+
+MUL R3, R7, R3//On multiplie par 10 la valeur de l'entier
+SUB R4, R6, R4 //On calcule la valeur décimale de R4
+ADD R3, R4, R3 //On ajoute cette valeur à R3
+
+ADQ 1, R5//On se déplace dans la chaine
+BMP LOOP_ATOI-$-2
+END_LOOP_ATOI
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+
+//*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passée en paramètre ***//
+itoa //On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW STAT, -(SP) //On empile le chainage statique
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+STRING16 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING16, R3 //On charge l'adresse dans R0
+//R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
+LDQ 10, R8  
+CMP R6, R8  
+BNE NOSIGN-$-2 //Si b==10, on calcule le signe
+LDQ 0, R7 //R7 contiendra le symbole de la conversion
+TST R5
+BGE POSIT-$-2 //On saute si (R5) >= 0
+NEG R5, R5
+LDQ ASCII_MINUS, R7
+POSIT NOP
+
+NOSIGN  LDW R8, R5 //R8 <- entier à convertir
+CNVLOOP ldw R5, R8
+
+SRL R6, R6
+//On divise la base par 2
+ANI R5, R9, #1 //ANd Immédiate entre r0 et 00...01 vers r4
+SRL R5, R5 //on divise l'entier par 2
+DIV R5, R6, R8
+SHL R5, R5
+ADD R5, R9, R5
+SHL R6, R6
+
+ADQ -10, R5 //entier -10 -> R5
+BGE LETTER-$-2
+ADQ 10+ASCII_0, R5
+
+BMP STKCHR-$-2
+
+LETTER ADQ ASCII_A, R5
+
+STKCHR STW R5, -(SP)
+TST R8
+BNE CNVLOOP-$-2
+ //Boucle si quotient non nul
+
+//On empile maintenant les caractères dans le bon ordre
+LDW R2, R3
+LDQ 0, R10
+CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
+BEQ CPYLOOP-$-2
+STB R7, (R2)+ //On copie le signe dans le tampon
+CPYLOOP LDW R5, (SP)+//On dépile le chiffre
+STB R5, (R2)+
+CMP SP, BP
+BNE CPYLOOP-$-2
+LDQ NUL, R5
+STB R5, (R2)+//On termine la chaine par NUL
+//On ferme l'environnement courant
+LDW SP, BP //On réintialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+LDW STAT, (SP)+//On dépile le chainage statique
+//On recharge les registres
+LDW R14, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS
+

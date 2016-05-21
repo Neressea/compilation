@@ -8,8 +8,8 @@ let
 	type str = {a:int, b:string}
 	type strArray = {a:int, b:stringArray, c:int}
 	type str2 = {a:int, b:str}
-	type structArray = array of strArray
-	type stringArray2D = array of structArray
+	//type structArray = array of strArray
+	//type stringArray2D = array of structArray
 
 	var v2 : alias := "5"
 
@@ -17,13 +17,13 @@ let
 	var stringtab2 := stringArray[50] of "salut"
 
 	//Tableau 2D
-	var structure := strArray{a:=666, b:=stringtab1, c:=12000}
-	var tabStruct := structArray[100] of structure
-	var tab2D := stringArray2D[100] of tabStruct
+	//var structure := strArray{a:=666, b:=stringtab1, c:=12000}
+	//var tabStruct := structArray[100] of structure
+	//var tab2D := stringArray2D[100] of tabStruct
 
 	//Structure de tableaux
-	type strTab = {a:stringArray2D}
-	var str_tab := strTab{a:=tab2D}
+	//type strTab = {a:stringArray2D}
+	//var str_tab := strTab{a:=tab2D}
 
 	var chaine := "une chaine"
 
@@ -31,17 +31,18 @@ let
 	var structure2 := str{a:=777, b:="Le kebab le kebab c'est génial"}
 	var structure3 := str{a:=666, b:="Le DrPepper c'est encore meilleur"}
 
-	var struct_folle := str2{a:=777, b:=structure2}
+	//var struct_folle := str2{a:=777, b:=structure2}
 
-	type StructDeTab = {tab:structArray}
-	var struct_qui_contient_des_tableaux_de_struct := StructDeTab{tab:=tabStruct}
+	//type StructDeTab = {tab:structArray}
+	//var struct_qui_contient_des_tableaux_de_struct := StructDeTab{tab:=tabStruct}
 
 	var casse := 3 < 5 & structure.a
 
 	function void() : string = (
 		for i := 0 to 10 do 
 			"Coucou";
-		"C'est le néant")
+		"C'est le néant"
+	)
 
 	function calculer(premier:int, second:int, troisieme:string) : string = (
 
@@ -84,10 +85,10 @@ in
 	);
 	
 	//Accès à des champs en cascades
-	struct_folle.b.a := 5;
+	//struct_folle.b.a := 5;
 
 	//Accès à des tableaux à N dimensions
-	tab2D[10][5].b[50] := v2;
+	//tab2D[10][5].b[50] := v2;
 
 	//Affectation de tableau
 	stringtab1:=stringtab2;
@@ -102,7 +103,7 @@ in
 		calculer(BG, 10, "cba")
 	end;
 
-	//Let dans uen condition
+	//Let dans une condition
 	if let
 		var BG : int  := 3
 	in

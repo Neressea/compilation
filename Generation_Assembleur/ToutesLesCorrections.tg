@@ -1,0 +1,112 @@
+let
+
+	type kebab = string
+
+	//Alias d'alias
+	type alias = kebab
+	type stringArray = array of string
+	type str = {a:int, b:string}
+	type strArray = {a:int, b:stringArray, c:int}
+	type str2 = {a:int, b:str}
+	//type structArray = array of strArray
+	//type stringArray2D = array of structArray
+
+	var v2 : alias := "5"
+
+	var stringtab1 := stringArray[20] of "coucou"
+	var stringtab2 := stringArray[50] of "salut"
+
+	var structInt := str{a := 5, b := "abc"}
+
+	//Tableau 2D
+	//var structure := strArray{a:=666, b:=stringtab1, c:=12000}
+	//var tabStruct := structArray[100] of structure
+	//var tab2D := stringArray2D[100] of tabStruct
+
+	//Structure de tableaux
+	//type strTab = {a:stringArray2D}
+	//var str_tab := strTab{a:=tab2D}
+
+	var chaine := "une chaine"
+
+	
+	var structure2 := str{a:=777, b:="Le kebab le kebab c'est génial"}
+	var structure3 := str{a:=666, b:="Le DrPepper c'est encore meilleur"}
+
+	//var struct_folle := str2{a:=777, b:=structure2}
+
+	//type StructDeTab = {tab:structArray}
+	//var struct_qui_contient_des_tableaux_de_struct := StructDeTab{tab:=tabStruct}
+
+	var casse := 3 < 5 & structInt.a
+
+	function void() : string = (
+		for i := 0 to 10 do 
+			println("Coucou");
+		"C'est le neant"
+	)
+
+	function calculer(premier:int, second:int, troisieme:string) : string = (
+
+		v2 := void();
+
+		if premier > second & "abc" >= troisieme then
+			chaine := "cool"
+		else (
+			50;
+			chaine := "pas cool"
+		)
+	)
+
+	function vraiment_rien(inutile:string) = print(inutile)
+
+	var void2 := 3
+
+	function entiere() : int = void2
+
+in 
+	
+	v2 := void();
+
+	println(v2);
+
+	for k := 0 to 2 * structInt.a do (
+
+		calculer(100, 20, "abc");
+
+		//Condition avec une condition non-booléenne
+		if k + 3 < 10 & k then k := 5;
+
+		printiln(k);
+
+		//Utilisation d'un entier dans uen condition
+		if entiere() then print("pas 0")
+	);
+	
+	//Accès à des champs en cascades
+	//struct_folle.b.a := 5;
+
+	//Accès à des tableaux à N dimensions
+	//tab2D[10][5].b[50] := v2;
+
+	//Affectation de tableau
+	stringtab1:=stringtab2;
+
+	//Affectation de structures
+	structure2 := structure3;
+
+	//Affectation de retour de let
+	chaine := let
+		var BG : int  := 3
+	in
+		calculer(BG, 10, "cba")
+	end;
+
+	//Let dans une condition
+	if let
+		var BG : int  := 3
+	in
+		println(calculer(BG, 10, "xyz"));
+		BG
+	end then println("Je fais de la magie noire")
+end

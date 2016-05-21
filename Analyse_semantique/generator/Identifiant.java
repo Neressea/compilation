@@ -21,10 +21,8 @@ public class Identifiant extends Instruction{
 		CodeAss ca = CodeAss.getCodeSingleton();
 		
 		CommonTree idf = node;
-				
 		//On récupère les infos dans les TDS.
 		Field infos = TDS.findIn(pile, idf.getText(), FieldType.FieldVariable, FieldType.FieldStructure, FieldType.FieldTableau); //Pour l'instant on ne gère que les identifiants de variables simples
-
 		//On calcule l'adresse de la variable (dans R4).
 		int base = ca.getBasePile();
 		//On calcule le saut de la base de la pile jusqu'à la TDS contenant l'identifiant

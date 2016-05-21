@@ -76,7 +76,7 @@ public class Condition extends Instruction{
 				codeass.append("LDQ 0, R3");
 				codeass.append("STW R3, -(R15)");
 			}else{
-				if(node.getChild(0).getText().matches("\".*\"")){
+				if(node.getChildCount() > 0 && node.getChild(0).getText().matches("\".*\"")){
 					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
 					op1.genererCode(pile);
 					codeass.append("LDW R5, R3");	
@@ -122,38 +122,52 @@ public class Condition extends Instruction{
 					codeass.append(buffer);
 					nb_condid++;
 				}else{
-					ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
-					op1.genererCode(pile);
-					codeass.append("LDW R2, R3");
-					ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
-					op2.genererCode(pile);
-					String buffer = "CMP R2, R3\n";
-					switch (node.getText()){
-						case "<":
-							buffer+="BLW 4\n";
-							break;
-						case "<=":
-							buffer += "BLE 4\n";
-							break;
-						case "=":
-							buffer+="BEQ 4\n";
-							break;
-						case ">":
-							buffer+="BGT 4\n";
-							break;
-						case ">=":
-							buffer+="BGE 4\n";
-							break;
-						case "<>":
-							buffer+="BNE 4\n";
-							break;
-					}
+					
+					if(operande.contains(node.getText())){
+						ExpressionArithmetique op1 = new ExpressionArithmetique((CommonTree) node.getChild(0), this.generator);
+						op1.genererCode(pile);
+						codeass.append("LDW R2, R3");
+						ExpressionArithmetique op2 = new ExpressionArithmetique((CommonTree) node.getChild(1), this.generator);
+						op2.genererCode(pile);
+						String buffer = "CMP R2, R3\n";
+						switch (node.getText()){
+							case "<":
+								buffer+="BLW 4\n";
+								break;
+							case "<=":
+								buffer += "BLE 4\n";
+								break;
+							case "=":
+								buffer+="BEQ 4\n";
+								break;
+							case ">":
+								buffer+="BGT 4\n";
+								break;
+							case ">=":
+								buffer+="BGE 4\n";
+								break;
+							case "<>":
+								buffer+="BNE 4\n";
+								break;
+						}
 
-					buffer += "LDQ 0, R3\n"
-					+"JMP #4\n"
-					+"LDQ 1, R3\n"
-					+"STW R3, -(R15)\n";
-					codeass.append(buffer);
+						buffer += "LDQ 0, R3\n"
+						+"JMP #4\n"
+						+"LDQ 1, R3\n"
+						+"STW R3, -(R15)\n";
+						codeass.append(buffer);
+					}else{
+						ExpressionArithmetique op = new ExpressionArithmetique(node, this.generator);
+						op.genererCode(pile);
+						codeass.append("TST R3");
+						codeass.append("BEQ 4");
+						codeass.append("LDQ 1, R3");
+						codeass.append("JMP #2");
+						codeass.append("LDQ 0, R3");
+						codeass.append("STW R3, -(R15)");
+					}
+					
+					
 				}
 				
 
