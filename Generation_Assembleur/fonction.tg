@@ -41,4 +41,12 @@ in
 	print("Entrez un entier : ");
 	printiln(readi())
 
+	/*x := let
+			var toto := "78"
+		 in 
+		 	atoi(toto)
+		 end;
+
+	printiln(x)*/
+
 end
