@@ -205,7 +205,7 @@ public class AnalyseSemantique {
 							err_messages+=e.getMessage()+"\n";
 							is_ok=false;
 						}
-						fs.addChamp(ct.getText(), ct.getChild(0).getText());
+						fs.addChamp(ct.getText(), (CommonTree) ct.getChild(0));
 					}
 					
 					current.add(fs);

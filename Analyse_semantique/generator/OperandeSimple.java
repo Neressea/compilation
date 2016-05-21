@@ -24,7 +24,6 @@ public class OperandeSimple extends Instruction {
 		String token = node.getText();
 		CodeAss ca = CodeAss.getCodeSingleton();
 		String et;
-		
 		ArrayList<String> comparateurs_associateurs = new ArrayList<>(Arrays.asList(new String[]{"<",">","=",">=", "<=", "<>", "&", "|"}));
 		if (token.matches("\".*\"")) { // Chaine de caracteres constante
 			
@@ -47,6 +46,11 @@ public class OperandeSimple extends Instruction {
 			
 			Fonction func = new Fonction(node, this.generator);
 			func.genererCode(pile);
+			
+		}else if(node.getChildCount() > 0 && node.getChild(0).equals("FIELD")){
+			
+			Structure st = new Structure(node, generator);
+			st.genererCode(pile);
 			
 		}else if(token.equals("if")){
 			If iffunc = new If(node, this.generator);
