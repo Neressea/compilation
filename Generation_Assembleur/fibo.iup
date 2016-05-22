@@ -1,0 +1,1673 @@
+effa  origine
+effa  debut d'execution
+6f80   emplacement : 61434  (0xeffa)  ligne n° 33	main LDW SP, #STACKA //On charge la base de la pile
+1000   emplacement : 61436  (0xeffc) 
+6d80   emplacement : 61438  (0xeffe)  ligne n° 34	LDW BP, #STACKA //Base initiale nulle
+1000   emplacement : 61440  (0xf000) 
+0000   emplacement : 61442  (0xf002)  ligne n° 37	SAUT_DE_LIGNE string ""
+2202   emplacement : 61444  (0xf004)  ligne n° 38	LDQ SAUT_DE_LIGNE, R2
+230a   emplacement : 61446  (0xf006)  ligne n° 39	LDQ 10, R3 //Saut de ligne
+2400   emplacement : 61448  (0xf008)  ligne n° 40	LDQ NUL, R4 //Fin de chaine
+5332   emplacement : 61450  (0xf00a)  ligne n° 41	STB R3, (R2)+
+5422   emplacement : 61452  (0xf00c)  ligne n° 42	STB R4, (R2)
+6c4f   emplacement : 61454  (0xf00e)  ligne n° 45	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 61456  (0xf010)  ligne n° 46	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 61458  (0xf012)  ligne n° 47	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+6380   emplacement : 61460  (0xf014)  ligne n° 49	LDW R3, #1000
+03e8   emplacement : 61462  (0xf016) 
+634f   emplacement : 61464  (0xf018)  ligne n° 50	STW R3, -(R15) //On empile la valeur d}clar}e
+0000   emplacement : 61466  (0xf01a)  ligne n° 51	tab RSB 2000
+0000   emplacement : 61468  (0xf01c) 
+0000   emplacement : 61470  (0xf01e) 
+0000   emplacement : 61472  (0xf020) 
+0000   emplacement : 61474  (0xf022) 
+0000   emplacement : 61476  (0xf024) 
+0000   emplacement : 61478  (0xf026) 
+0000   emplacement : 61480  (0xf028) 
+0000   emplacement : 61482  (0xf02a) 
+0000   emplacement : 61484  (0xf02c) 
+0000   emplacement : 61486  (0xf02e) 
+0000   emplacement : 61488  (0xf030) 
+0000   emplacement : 61490  (0xf032) 
+0000   emplacement : 61492  (0xf034) 
+0000   emplacement : 61494  (0xf036) 
+0000   emplacement : 61496  (0xf038) 
+0000   emplacement : 61498  (0xf03a) 
+0000   emplacement : 61500  (0xf03c) 
+0000   emplacement : 61502  (0xf03e) 
+0000   emplacement : 61504  (0xf040) 
+0000   emplacement : 61506  (0xf042) 
+0000   emplacement : 61508  (0xf044) 
+0000   emplacement : 61510  (0xf046) 
+0000   emplacement : 61512  (0xf048) 
+0000   emplacement : 61514  (0xf04a) 
+0000   emplacement : 61516  (0xf04c) 
+0000   emplacement : 61518  (0xf04e) 
+0000   emplacement : 61520  (0xf050) 
+0000   emplacement : 61522  (0xf052) 
+0000   emplacement : 61524  (0xf054) 
+0000   emplacement : 61526  (0xf056) 
+0000   emplacement : 61528  (0xf058) 
+0000   emplacement : 61530  (0xf05a) 
+0000   emplacement : 61532  (0xf05c) 
+0000   emplacement : 61534  (0xf05e) 
+0000   emplacement : 61536  (0xf060) 
+0000   emplacement : 61538  (0xf062) 
+0000   emplacement : 61540  (0xf064) 
+0000   emplacement : 61542  (0xf066) 
+0000   emplacement : 61544  (0xf068) 
+0000   emplacement : 61546  (0xf06a) 
+0000   emplacement : 61548  (0xf06c) 
+0000   emplacement : 61550  (0xf06e) 
+0000   emplacement : 61552  (0xf070) 
+0000   emplacement : 61554  (0xf072) 
+0000   emplacement : 61556  (0xf074) 
+0000   emplacement : 61558  (0xf076) 
+0000   emplacement : 61560  (0xf078) 
+0000   emplacement : 61562  (0xf07a) 
+0000   emplacement : 61564  (0xf07c) 
+0000   emplacement : 61566  (0xf07e) 
+0000   emplacement : 61568  (0xf080) 
+0000   emplacement : 61570  (0xf082) 
+0000   emplacement : 61572  (0xf084) 
+0000   emplacement : 61574  (0xf086) 
+0000   emplacement : 61576  (0xf088) 
+0000   emplacement : 61578  (0xf08a) 
+0000   emplacement : 61580  (0xf08c) 
+0000   emplacement : 61582  (0xf08e) 
+0000   emplacement : 61584  (0xf090) 
+0000   emplacement : 61586  (0xf092) 
+0000   emplacement : 61588  (0xf094) 
+0000   emplacement : 61590  (0xf096) 
+0000   emplacement : 61592  (0xf098) 
+0000   emplacement : 61594  (0xf09a) 
+0000   emplacement : 61596  (0xf09c) 
+0000   emplacement : 61598  (0xf09e) 
+0000   emplacement : 61600  (0xf0a0) 
+0000   emplacement : 61602  (0xf0a2) 
+0000   emplacement : 61604  (0xf0a4) 
+0000   emplacement : 61606  (0xf0a6) 
+0000   emplacement : 61608  (0xf0a8) 
+0000   emplacement : 61610  (0xf0aa) 
+0000   emplacement : 61612  (0xf0ac) 
+0000   emplacement : 61614  (0xf0ae) 
+0000   emplacement : 61616  (0xf0b0) 
+0000   emplacement : 61618  (0xf0b2) 
+0000   emplacement : 61620  (0xf0b4) 
+0000   emplacement : 61622  (0xf0b6) 
+0000   emplacement : 61624  (0xf0b8) 
+0000   emplacement : 61626  (0xf0ba) 
+0000   emplacement : 61628  (0xf0bc) 
+0000   emplacement : 61630  (0xf0be) 
+0000   emplacement : 61632  (0xf0c0) 
+0000   emplacement : 61634  (0xf0c2) 
+0000   emplacement : 61636  (0xf0c4) 
+0000   emplacement : 61638  (0xf0c6) 
+0000   emplacement : 61640  (0xf0c8) 
+0000   emplacement : 61642  (0xf0ca) 
+0000   emplacement : 61644  (0xf0cc) 
+0000   emplacement : 61646  (0xf0ce) 
+0000   emplacement : 61648  (0xf0d0) 
+0000   emplacement : 61650  (0xf0d2) 
+0000   emplacement : 61652  (0xf0d4) 
+0000   emplacement : 61654  (0xf0d6) 
+0000   emplacement : 61656  (0xf0d8) 
+0000   emplacement : 61658  (0xf0da) 
+0000   emplacement : 61660  (0xf0dc) 
+0000   emplacement : 61662  (0xf0de) 
+0000   emplacement : 61664  (0xf0e0) 
+0000   emplacement : 61666  (0xf0e2) 
+0000   emplacement : 61668  (0xf0e4) 
+0000   emplacement : 61670  (0xf0e6) 
+0000   emplacement : 61672  (0xf0e8) 
+0000   emplacement : 61674  (0xf0ea) 
+0000   emplacement : 61676  (0xf0ec) 
+0000   emplacement : 61678  (0xf0ee) 
+0000   emplacement : 61680  (0xf0f0) 
+0000   emplacement : 61682  (0xf0f2) 
+0000   emplacement : 61684  (0xf0f4) 
+0000   emplacement : 61686  (0xf0f6) 
+0000   emplacement : 61688  (0xf0f8) 
+0000   emplacement : 61690  (0xf0fa) 
+0000   emplacement : 61692  (0xf0fc) 
+0000   emplacement : 61694  (0xf0fe) 
+0000   emplacement : 61696  (0xf100) 
+0000   emplacement : 61698  (0xf102) 
+0000   emplacement : 61700  (0xf104) 
+0000   emplacement : 61702  (0xf106) 
+0000   emplacement : 61704  (0xf108) 
+0000   emplacement : 61706  (0xf10a) 
+0000   emplacement : 61708  (0xf10c) 
+0000   emplacement : 61710  (0xf10e) 
+0000   emplacement : 61712  (0xf110) 
+0000   emplacement : 61714  (0xf112) 
+0000   emplacement : 61716  (0xf114) 
+0000   emplacement : 61718  (0xf116) 
+0000   emplacement : 61720  (0xf118) 
+0000   emplacement : 61722  (0xf11a) 
+0000   emplacement : 61724  (0xf11c) 
+0000   emplacement : 61726  (0xf11e) 
+0000   emplacement : 61728  (0xf120) 
+0000   emplacement : 61730  (0xf122) 
+0000   emplacement : 61732  (0xf124) 
+0000   emplacement : 61734  (0xf126) 
+0000   emplacement : 61736  (0xf128) 
+0000   emplacement : 61738  (0xf12a) 
+0000   emplacement : 61740  (0xf12c) 
+0000   emplacement : 61742  (0xf12e) 
+0000   emplacement : 61744  (0xf130) 
+0000   emplacement : 61746  (0xf132) 
+0000   emplacement : 61748  (0xf134) 
+0000   emplacement : 61750  (0xf136) 
+0000   emplacement : 61752  (0xf138) 
+0000   emplacement : 61754  (0xf13a) 
+0000   emplacement : 61756  (0xf13c) 
+0000   emplacement : 61758  (0xf13e) 
+0000   emplacement : 61760  (0xf140) 
+0000   emplacement : 61762  (0xf142) 
+0000   emplacement : 61764  (0xf144) 
+0000   emplacement : 61766  (0xf146) 
+0000   emplacement : 61768  (0xf148) 
+0000   emplacement : 61770  (0xf14a) 
+0000   emplacement : 61772  (0xf14c) 
+0000   emplacement : 61774  (0xf14e) 
+0000   emplacement : 61776  (0xf150) 
+0000   emplacement : 61778  (0xf152) 
+0000   emplacement : 61780  (0xf154) 
+0000   emplacement : 61782  (0xf156) 
+0000   emplacement : 61784  (0xf158) 
+0000   emplacement : 61786  (0xf15a) 
+0000   emplacement : 61788  (0xf15c) 
+0000   emplacement : 61790  (0xf15e) 
+0000   emplacement : 61792  (0xf160) 
+0000   emplacement : 61794  (0xf162) 
+0000   emplacement : 61796  (0xf164) 
+0000   emplacement : 61798  (0xf166) 
+0000   emplacement : 61800  (0xf168) 
+0000   emplacement : 61802  (0xf16a) 
+0000   emplacement : 61804  (0xf16c) 
+0000   emplacement : 61806  (0xf16e) 
+0000   emplacement : 61808  (0xf170) 
+0000   emplacement : 61810  (0xf172) 
+0000   emplacement : 61812  (0xf174) 
+0000   emplacement : 61814  (0xf176) 
+0000   emplacement : 61816  (0xf178) 
+0000   emplacement : 61818  (0xf17a) 
+0000   emplacement : 61820  (0xf17c) 
+0000   emplacement : 61822  (0xf17e) 
+0000   emplacement : 61824  (0xf180) 
+0000   emplacement : 61826  (0xf182) 
+0000   emplacement : 61828  (0xf184) 
+0000   emplacement : 61830  (0xf186) 
+0000   emplacement : 61832  (0xf188) 
+0000   emplacement : 61834  (0xf18a) 
+0000   emplacement : 61836  (0xf18c) 
+0000   emplacement : 61838  (0xf18e) 
+0000   emplacement : 61840  (0xf190) 
+0000   emplacement : 61842  (0xf192) 
+0000   emplacement : 61844  (0xf194) 
+0000   emplacement : 61846  (0xf196) 
+0000   emplacement : 61848  (0xf198) 
+0000   emplacement : 61850  (0xf19a) 
+0000   emplacement : 61852  (0xf19c) 
+0000   emplacement : 61854  (0xf19e) 
+0000   emplacement : 61856  (0xf1a0) 
+0000   emplacement : 61858  (0xf1a2) 
+0000   emplacement : 61860  (0xf1a4) 
+0000   emplacement : 61862  (0xf1a6) 
+0000   emplacement : 61864  (0xf1a8) 
+0000   emplacement : 61866  (0xf1aa) 
+0000   emplacement : 61868  (0xf1ac) 
+0000   emplacement : 61870  (0xf1ae) 
+0000   emplacement : 61872  (0xf1b0) 
+0000   emplacement : 61874  (0xf1b2) 
+0000   emplacement : 61876  (0xf1b4) 
+0000   emplacement : 61878  (0xf1b6) 
+0000   emplacement : 61880  (0xf1b8) 
+0000   emplacement : 61882  (0xf1ba) 
+0000   emplacement : 61884  (0xf1bc) 
+0000   emplacement : 61886  (0xf1be) 
+0000   emplacement : 61888  (0xf1c0) 
+0000   emplacement : 61890  (0xf1c2) 
+0000   emplacement : 61892  (0xf1c4) 
+0000   emplacement : 61894  (0xf1c6) 
+0000   emplacement : 61896  (0xf1c8) 
+0000   emplacement : 61898  (0xf1ca) 
+0000   emplacement : 61900  (0xf1cc) 
+0000   emplacement : 61902  (0xf1ce) 
+0000   emplacement : 61904  (0xf1d0) 
+0000   emplacement : 61906  (0xf1d2) 
+0000   emplacement : 61908  (0xf1d4) 
+0000   emplacement : 61910  (0xf1d6) 
+0000   emplacement : 61912  (0xf1d8) 
+0000   emplacement : 61914  (0xf1da) 
+0000   emplacement : 61916  (0xf1dc) 
+0000   emplacement : 61918  (0xf1de) 
+0000   emplacement : 61920  (0xf1e0) 
+0000   emplacement : 61922  (0xf1e2) 
+0000   emplacement : 61924  (0xf1e4) 
+0000   emplacement : 61926  (0xf1e6) 
+0000   emplacement : 61928  (0xf1e8) 
+0000   emplacement : 61930  (0xf1ea) 
+0000   emplacement : 61932  (0xf1ec) 
+0000   emplacement : 61934  (0xf1ee) 
+0000   emplacement : 61936  (0xf1f0) 
+0000   emplacement : 61938  (0xf1f2) 
+0000   emplacement : 61940  (0xf1f4) 
+0000   emplacement : 61942  (0xf1f6) 
+0000   emplacement : 61944  (0xf1f8) 
+0000   emplacement : 61946  (0xf1fa) 
+0000   emplacement : 61948  (0xf1fc) 
+0000   emplacement : 61950  (0xf1fe) 
+0000   emplacement : 61952  (0xf200) 
+0000   emplacement : 61954  (0xf202) 
+0000   emplacement : 61956  (0xf204) 
+0000   emplacement : 61958  (0xf206) 
+0000   emplacement : 61960  (0xf208) 
+0000   emplacement : 61962  (0xf20a) 
+0000   emplacement : 61964  (0xf20c) 
+0000   emplacement : 61966  (0xf20e) 
+0000   emplacement : 61968  (0xf210) 
+0000   emplacement : 61970  (0xf212) 
+0000   emplacement : 61972  (0xf214) 
+0000   emplacement : 61974  (0xf216) 
+0000   emplacement : 61976  (0xf218) 
+0000   emplacement : 61978  (0xf21a) 
+0000   emplacement : 61980  (0xf21c) 
+0000   emplacement : 61982  (0xf21e) 
+0000   emplacement : 61984  (0xf220) 
+0000   emplacement : 61986  (0xf222) 
+0000   emplacement : 61988  (0xf224) 
+0000   emplacement : 61990  (0xf226) 
+0000   emplacement : 61992  (0xf228) 
+0000   emplacement : 61994  (0xf22a) 
+0000   emplacement : 61996  (0xf22c) 
+0000   emplacement : 61998  (0xf22e) 
+0000   emplacement : 62000  (0xf230) 
+0000   emplacement : 62002  (0xf232) 
+0000   emplacement : 62004  (0xf234) 
+0000   emplacement : 62006  (0xf236) 
+0000   emplacement : 62008  (0xf238) 
+0000   emplacement : 62010  (0xf23a) 
+0000   emplacement : 62012  (0xf23c) 
+0000   emplacement : 62014  (0xf23e) 
+0000   emplacement : 62016  (0xf240) 
+0000   emplacement : 62018  (0xf242) 
+0000   emplacement : 62020  (0xf244) 
+0000   emplacement : 62022  (0xf246) 
+0000   emplacement : 62024  (0xf248) 
+0000   emplacement : 62026  (0xf24a) 
+0000   emplacement : 62028  (0xf24c) 
+0000   emplacement : 62030  (0xf24e) 
+0000   emplacement : 62032  (0xf250) 
+0000   emplacement : 62034  (0xf252) 
+0000   emplacement : 62036  (0xf254) 
+0000   emplacement : 62038  (0xf256) 
+0000   emplacement : 62040  (0xf258) 
+0000   emplacement : 62042  (0xf25a) 
+0000   emplacement : 62044  (0xf25c) 
+0000   emplacement : 62046  (0xf25e) 
+0000   emplacement : 62048  (0xf260) 
+0000   emplacement : 62050  (0xf262) 
+0000   emplacement : 62052  (0xf264) 
+0000   emplacement : 62054  (0xf266) 
+0000   emplacement : 62056  (0xf268) 
+0000   emplacement : 62058  (0xf26a) 
+0000   emplacement : 62060  (0xf26c) 
+0000   emplacement : 62062  (0xf26e) 
+0000   emplacement : 62064  (0xf270) 
+0000   emplacement : 62066  (0xf272) 
+0000   emplacement : 62068  (0xf274) 
+0000   emplacement : 62070  (0xf276) 
+0000   emplacement : 62072  (0xf278) 
+0000   emplacement : 62074  (0xf27a) 
+0000   emplacement : 62076  (0xf27c) 
+0000   emplacement : 62078  (0xf27e) 
+0000   emplacement : 62080  (0xf280) 
+0000   emplacement : 62082  (0xf282) 
+0000   emplacement : 62084  (0xf284) 
+0000   emplacement : 62086  (0xf286) 
+0000   emplacement : 62088  (0xf288) 
+0000   emplacement : 62090  (0xf28a) 
+0000   emplacement : 62092  (0xf28c) 
+0000   emplacement : 62094  (0xf28e) 
+0000   emplacement : 62096  (0xf290) 
+0000   emplacement : 62098  (0xf292) 
+0000   emplacement : 62100  (0xf294) 
+0000   emplacement : 62102  (0xf296) 
+0000   emplacement : 62104  (0xf298) 
+0000   emplacement : 62106  (0xf29a) 
+0000   emplacement : 62108  (0xf29c) 
+0000   emplacement : 62110  (0xf29e) 
+0000   emplacement : 62112  (0xf2a0) 
+0000   emplacement : 62114  (0xf2a2) 
+0000   emplacement : 62116  (0xf2a4) 
+0000   emplacement : 62118  (0xf2a6) 
+0000   emplacement : 62120  (0xf2a8) 
+0000   emplacement : 62122  (0xf2aa) 
+0000   emplacement : 62124  (0xf2ac) 
+0000   emplacement : 62126  (0xf2ae) 
+0000   emplacement : 62128  (0xf2b0) 
+0000   emplacement : 62130  (0xf2b2) 
+0000   emplacement : 62132  (0xf2b4) 
+0000   emplacement : 62134  (0xf2b6) 
+0000   emplacement : 62136  (0xf2b8) 
+0000   emplacement : 62138  (0xf2ba) 
+0000   emplacement : 62140  (0xf2bc) 
+0000   emplacement : 62142  (0xf2be) 
+0000   emplacement : 62144  (0xf2c0) 
+0000   emplacement : 62146  (0xf2c2) 
+0000   emplacement : 62148  (0xf2c4) 
+0000   emplacement : 62150  (0xf2c6) 
+0000   emplacement : 62152  (0xf2c8) 
+0000   emplacement : 62154  (0xf2ca) 
+0000   emplacement : 62156  (0xf2cc) 
+0000   emplacement : 62158  (0xf2ce) 
+0000   emplacement : 62160  (0xf2d0) 
+0000   emplacement : 62162  (0xf2d2) 
+0000   emplacement : 62164  (0xf2d4) 
+0000   emplacement : 62166  (0xf2d6) 
+0000   emplacement : 62168  (0xf2d8) 
+0000   emplacement : 62170  (0xf2da) 
+0000   emplacement : 62172  (0xf2dc) 
+0000   emplacement : 62174  (0xf2de) 
+0000   emplacement : 62176  (0xf2e0) 
+0000   emplacement : 62178  (0xf2e2) 
+0000   emplacement : 62180  (0xf2e4) 
+0000   emplacement : 62182  (0xf2e6) 
+0000   emplacement : 62184  (0xf2e8) 
+0000   emplacement : 62186  (0xf2ea) 
+0000   emplacement : 62188  (0xf2ec) 
+0000   emplacement : 62190  (0xf2ee) 
+0000   emplacement : 62192  (0xf2f0) 
+0000   emplacement : 62194  (0xf2f2) 
+0000   emplacement : 62196  (0xf2f4) 
+0000   emplacement : 62198  (0xf2f6) 
+0000   emplacement : 62200  (0xf2f8) 
+0000   emplacement : 62202  (0xf2fa) 
+0000   emplacement : 62204  (0xf2fc) 
+0000   emplacement : 62206  (0xf2fe) 
+0000   emplacement : 62208  (0xf300) 
+0000   emplacement : 62210  (0xf302) 
+0000   emplacement : 62212  (0xf304) 
+0000   emplacement : 62214  (0xf306) 
+0000   emplacement : 62216  (0xf308) 
+0000   emplacement : 62218  (0xf30a) 
+0000   emplacement : 62220  (0xf30c) 
+0000   emplacement : 62222  (0xf30e) 
+0000   emplacement : 62224  (0xf310) 
+0000   emplacement : 62226  (0xf312) 
+0000   emplacement : 62228  (0xf314) 
+0000   emplacement : 62230  (0xf316) 
+0000   emplacement : 62232  (0xf318) 
+0000   emplacement : 62234  (0xf31a) 
+0000   emplacement : 62236  (0xf31c) 
+0000   emplacement : 62238  (0xf31e) 
+0000   emplacement : 62240  (0xf320) 
+0000   emplacement : 62242  (0xf322) 
+0000   emplacement : 62244  (0xf324) 
+0000   emplacement : 62246  (0xf326) 
+0000   emplacement : 62248  (0xf328) 
+0000   emplacement : 62250  (0xf32a) 
+0000   emplacement : 62252  (0xf32c) 
+0000   emplacement : 62254  (0xf32e) 
+0000   emplacement : 62256  (0xf330) 
+0000   emplacement : 62258  (0xf332) 
+0000   emplacement : 62260  (0xf334) 
+0000   emplacement : 62262  (0xf336) 
+0000   emplacement : 62264  (0xf338) 
+0000   emplacement : 62266  (0xf33a) 
+0000   emplacement : 62268  (0xf33c) 
+0000   emplacement : 62270  (0xf33e) 
+0000   emplacement : 62272  (0xf340) 
+0000   emplacement : 62274  (0xf342) 
+0000   emplacement : 62276  (0xf344) 
+0000   emplacement : 62278  (0xf346) 
+0000   emplacement : 62280  (0xf348) 
+0000   emplacement : 62282  (0xf34a) 
+0000   emplacement : 62284  (0xf34c) 
+0000   emplacement : 62286  (0xf34e) 
+0000   emplacement : 62288  (0xf350) 
+0000   emplacement : 62290  (0xf352) 
+0000   emplacement : 62292  (0xf354) 
+0000   emplacement : 62294  (0xf356) 
+0000   emplacement : 62296  (0xf358) 
+0000   emplacement : 62298  (0xf35a) 
+0000   emplacement : 62300  (0xf35c) 
+0000   emplacement : 62302  (0xf35e) 
+0000   emplacement : 62304  (0xf360) 
+0000   emplacement : 62306  (0xf362) 
+0000   emplacement : 62308  (0xf364) 
+0000   emplacement : 62310  (0xf366) 
+0000   emplacement : 62312  (0xf368) 
+0000   emplacement : 62314  (0xf36a) 
+0000   emplacement : 62316  (0xf36c) 
+0000   emplacement : 62318  (0xf36e) 
+0000   emplacement : 62320  (0xf370) 
+0000   emplacement : 62322  (0xf372) 
+0000   emplacement : 62324  (0xf374) 
+0000   emplacement : 62326  (0xf376) 
+0000   emplacement : 62328  (0xf378) 
+0000   emplacement : 62330  (0xf37a) 
+0000   emplacement : 62332  (0xf37c) 
+0000   emplacement : 62334  (0xf37e) 
+0000   emplacement : 62336  (0xf380) 
+0000   emplacement : 62338  (0xf382) 
+0000   emplacement : 62340  (0xf384) 
+0000   emplacement : 62342  (0xf386) 
+0000   emplacement : 62344  (0xf388) 
+0000   emplacement : 62346  (0xf38a) 
+0000   emplacement : 62348  (0xf38c) 
+0000   emplacement : 62350  (0xf38e) 
+0000   emplacement : 62352  (0xf390) 
+0000   emplacement : 62354  (0xf392) 
+0000   emplacement : 62356  (0xf394) 
+0000   emplacement : 62358  (0xf396) 
+0000   emplacement : 62360  (0xf398) 
+0000   emplacement : 62362  (0xf39a) 
+0000   emplacement : 62364  (0xf39c) 
+0000   emplacement : 62366  (0xf39e) 
+0000   emplacement : 62368  (0xf3a0) 
+0000   emplacement : 62370  (0xf3a2) 
+0000   emplacement : 62372  (0xf3a4) 
+0000   emplacement : 62374  (0xf3a6) 
+0000   emplacement : 62376  (0xf3a8) 
+0000   emplacement : 62378  (0xf3aa) 
+0000   emplacement : 62380  (0xf3ac) 
+0000   emplacement : 62382  (0xf3ae) 
+0000   emplacement : 62384  (0xf3b0) 
+0000   emplacement : 62386  (0xf3b2) 
+0000   emplacement : 62388  (0xf3b4) 
+0000   emplacement : 62390  (0xf3b6) 
+0000   emplacement : 62392  (0xf3b8) 
+0000   emplacement : 62394  (0xf3ba) 
+0000   emplacement : 62396  (0xf3bc) 
+0000   emplacement : 62398  (0xf3be) 
+0000   emplacement : 62400  (0xf3c0) 
+0000   emplacement : 62402  (0xf3c2) 
+0000   emplacement : 62404  (0xf3c4) 
+0000   emplacement : 62406  (0xf3c6) 
+0000   emplacement : 62408  (0xf3c8) 
+0000   emplacement : 62410  (0xf3ca) 
+0000   emplacement : 62412  (0xf3cc) 
+0000   emplacement : 62414  (0xf3ce) 
+0000   emplacement : 62416  (0xf3d0) 
+0000   emplacement : 62418  (0xf3d2) 
+0000   emplacement : 62420  (0xf3d4) 
+0000   emplacement : 62422  (0xf3d6) 
+0000   emplacement : 62424  (0xf3d8) 
+0000   emplacement : 62426  (0xf3da) 
+0000   emplacement : 62428  (0xf3dc) 
+0000   emplacement : 62430  (0xf3de) 
+0000   emplacement : 62432  (0xf3e0) 
+0000   emplacement : 62434  (0xf3e2) 
+0000   emplacement : 62436  (0xf3e4) 
+0000   emplacement : 62438  (0xf3e6) 
+0000   emplacement : 62440  (0xf3e8) 
+0000   emplacement : 62442  (0xf3ea) 
+0000   emplacement : 62444  (0xf3ec) 
+0000   emplacement : 62446  (0xf3ee) 
+0000   emplacement : 62448  (0xf3f0) 
+0000   emplacement : 62450  (0xf3f2) 
+0000   emplacement : 62452  (0xf3f4) 
+0000   emplacement : 62454  (0xf3f6) 
+0000   emplacement : 62456  (0xf3f8) 
+0000   emplacement : 62458  (0xf3fa) 
+0000   emplacement : 62460  (0xf3fc) 
+0000   emplacement : 62462  (0xf3fe) 
+0000   emplacement : 62464  (0xf400) 
+0000   emplacement : 62466  (0xf402) 
+0000   emplacement : 62468  (0xf404) 
+0000   emplacement : 62470  (0xf406) 
+0000   emplacement : 62472  (0xf408) 
+0000   emplacement : 62474  (0xf40a) 
+0000   emplacement : 62476  (0xf40c) 
+0000   emplacement : 62478  (0xf40e) 
+0000   emplacement : 62480  (0xf410) 
+0000   emplacement : 62482  (0xf412) 
+0000   emplacement : 62484  (0xf414) 
+0000   emplacement : 62486  (0xf416) 
+0000   emplacement : 62488  (0xf418) 
+0000   emplacement : 62490  (0xf41a) 
+0000   emplacement : 62492  (0xf41c) 
+0000   emplacement : 62494  (0xf41e) 
+0000   emplacement : 62496  (0xf420) 
+0000   emplacement : 62498  (0xf422) 
+0000   emplacement : 62500  (0xf424) 
+0000   emplacement : 62502  (0xf426) 
+0000   emplacement : 62504  (0xf428) 
+0000   emplacement : 62506  (0xf42a) 
+0000   emplacement : 62508  (0xf42c) 
+0000   emplacement : 62510  (0xf42e) 
+0000   emplacement : 62512  (0xf430) 
+0000   emplacement : 62514  (0xf432) 
+0000   emplacement : 62516  (0xf434) 
+0000   emplacement : 62518  (0xf436) 
+0000   emplacement : 62520  (0xf438) 
+0000   emplacement : 62522  (0xf43a) 
+0000   emplacement : 62524  (0xf43c) 
+0000   emplacement : 62526  (0xf43e) 
+0000   emplacement : 62528  (0xf440) 
+0000   emplacement : 62530  (0xf442) 
+0000   emplacement : 62532  (0xf444) 
+0000   emplacement : 62534  (0xf446) 
+0000   emplacement : 62536  (0xf448) 
+0000   emplacement : 62538  (0xf44a) 
+0000   emplacement : 62540  (0xf44c) 
+0000   emplacement : 62542  (0xf44e) 
+0000   emplacement : 62544  (0xf450) 
+0000   emplacement : 62546  (0xf452) 
+0000   emplacement : 62548  (0xf454) 
+0000   emplacement : 62550  (0xf456) 
+0000   emplacement : 62552  (0xf458) 
+0000   emplacement : 62554  (0xf45a) 
+0000   emplacement : 62556  (0xf45c) 
+0000   emplacement : 62558  (0xf45e) 
+0000   emplacement : 62560  (0xf460) 
+0000   emplacement : 62562  (0xf462) 
+0000   emplacement : 62564  (0xf464) 
+0000   emplacement : 62566  (0xf466) 
+0000   emplacement : 62568  (0xf468) 
+0000   emplacement : 62570  (0xf46a) 
+0000   emplacement : 62572  (0xf46c) 
+0000   emplacement : 62574  (0xf46e) 
+0000   emplacement : 62576  (0xf470) 
+0000   emplacement : 62578  (0xf472) 
+0000   emplacement : 62580  (0xf474) 
+0000   emplacement : 62582  (0xf476) 
+0000   emplacement : 62584  (0xf478) 
+0000   emplacement : 62586  (0xf47a) 
+0000   emplacement : 62588  (0xf47c) 
+0000   emplacement : 62590  (0xf47e) 
+0000   emplacement : 62592  (0xf480) 
+0000   emplacement : 62594  (0xf482) 
+0000   emplacement : 62596  (0xf484) 
+0000   emplacement : 62598  (0xf486) 
+0000   emplacement : 62600  (0xf488) 
+0000   emplacement : 62602  (0xf48a) 
+0000   emplacement : 62604  (0xf48c) 
+0000   emplacement : 62606  (0xf48e) 
+0000   emplacement : 62608  (0xf490) 
+0000   emplacement : 62610  (0xf492) 
+0000   emplacement : 62612  (0xf494) 
+0000   emplacement : 62614  (0xf496) 
+0000   emplacement : 62616  (0xf498) 
+0000   emplacement : 62618  (0xf49a) 
+0000   emplacement : 62620  (0xf49c) 
+0000   emplacement : 62622  (0xf49e) 
+0000   emplacement : 62624  (0xf4a0) 
+0000   emplacement : 62626  (0xf4a2) 
+0000   emplacement : 62628  (0xf4a4) 
+0000   emplacement : 62630  (0xf4a6) 
+0000   emplacement : 62632  (0xf4a8) 
+0000   emplacement : 62634  (0xf4aa) 
+0000   emplacement : 62636  (0xf4ac) 
+0000   emplacement : 62638  (0xf4ae) 
+0000   emplacement : 62640  (0xf4b0) 
+0000   emplacement : 62642  (0xf4b2) 
+0000   emplacement : 62644  (0xf4b4) 
+0000   emplacement : 62646  (0xf4b6) 
+0000   emplacement : 62648  (0xf4b8) 
+0000   emplacement : 62650  (0xf4ba) 
+0000   emplacement : 62652  (0xf4bc) 
+0000   emplacement : 62654  (0xf4be) 
+0000   emplacement : 62656  (0xf4c0) 
+0000   emplacement : 62658  (0xf4c2) 
+0000   emplacement : 62660  (0xf4c4) 
+0000   emplacement : 62662  (0xf4c6) 
+0000   emplacement : 62664  (0xf4c8) 
+0000   emplacement : 62666  (0xf4ca) 
+0000   emplacement : 62668  (0xf4cc) 
+0000   emplacement : 62670  (0xf4ce) 
+0000   emplacement : 62672  (0xf4d0) 
+0000   emplacement : 62674  (0xf4d2) 
+0000   emplacement : 62676  (0xf4d4) 
+0000   emplacement : 62678  (0xf4d6) 
+0000   emplacement : 62680  (0xf4d8) 
+0000   emplacement : 62682  (0xf4da) 
+0000   emplacement : 62684  (0xf4dc) 
+0000   emplacement : 62686  (0xf4de) 
+0000   emplacement : 62688  (0xf4e0) 
+0000   emplacement : 62690  (0xf4e2) 
+0000   emplacement : 62692  (0xf4e4) 
+0000   emplacement : 62694  (0xf4e6) 
+0000   emplacement : 62696  (0xf4e8) 
+0000   emplacement : 62698  (0xf4ea) 
+0000   emplacement : 62700  (0xf4ec) 
+0000   emplacement : 62702  (0xf4ee) 
+0000   emplacement : 62704  (0xf4f0) 
+0000   emplacement : 62706  (0xf4f2) 
+0000   emplacement : 62708  (0xf4f4) 
+0000   emplacement : 62710  (0xf4f6) 
+0000   emplacement : 62712  (0xf4f8) 
+0000   emplacement : 62714  (0xf4fa) 
+0000   emplacement : 62716  (0xf4fc) 
+0000   emplacement : 62718  (0xf4fe) 
+0000   emplacement : 62720  (0xf500) 
+0000   emplacement : 62722  (0xf502) 
+0000   emplacement : 62724  (0xf504) 
+0000   emplacement : 62726  (0xf506) 
+0000   emplacement : 62728  (0xf508) 
+0000   emplacement : 62730  (0xf50a) 
+0000   emplacement : 62732  (0xf50c) 
+0000   emplacement : 62734  (0xf50e) 
+0000   emplacement : 62736  (0xf510) 
+0000   emplacement : 62738  (0xf512) 
+0000   emplacement : 62740  (0xf514) 
+0000   emplacement : 62742  (0xf516) 
+0000   emplacement : 62744  (0xf518) 
+0000   emplacement : 62746  (0xf51a) 
+0000   emplacement : 62748  (0xf51c) 
+0000   emplacement : 62750  (0xf51e) 
+0000   emplacement : 62752  (0xf520) 
+0000   emplacement : 62754  (0xf522) 
+0000   emplacement : 62756  (0xf524) 
+0000   emplacement : 62758  (0xf526) 
+0000   emplacement : 62760  (0xf528) 
+0000   emplacement : 62762  (0xf52a) 
+0000   emplacement : 62764  (0xf52c) 
+0000   emplacement : 62766  (0xf52e) 
+0000   emplacement : 62768  (0xf530) 
+0000   emplacement : 62770  (0xf532) 
+0000   emplacement : 62772  (0xf534) 
+0000   emplacement : 62774  (0xf536) 
+0000   emplacement : 62776  (0xf538) 
+0000   emplacement : 62778  (0xf53a) 
+0000   emplacement : 62780  (0xf53c) 
+0000   emplacement : 62782  (0xf53e) 
+0000   emplacement : 62784  (0xf540) 
+0000   emplacement : 62786  (0xf542) 
+0000   emplacement : 62788  (0xf544) 
+0000   emplacement : 62790  (0xf546) 
+0000   emplacement : 62792  (0xf548) 
+0000   emplacement : 62794  (0xf54a) 
+0000   emplacement : 62796  (0xf54c) 
+0000   emplacement : 62798  (0xf54e) 
+0000   emplacement : 62800  (0xf550) 
+0000   emplacement : 62802  (0xf552) 
+0000   emplacement : 62804  (0xf554) 
+0000   emplacement : 62806  (0xf556) 
+0000   emplacement : 62808  (0xf558) 
+0000   emplacement : 62810  (0xf55a) 
+0000   emplacement : 62812  (0xf55c) 
+0000   emplacement : 62814  (0xf55e) 
+0000   emplacement : 62816  (0xf560) 
+0000   emplacement : 62818  (0xf562) 
+0000   emplacement : 62820  (0xf564) 
+0000   emplacement : 62822  (0xf566) 
+0000   emplacement : 62824  (0xf568) 
+0000   emplacement : 62826  (0xf56a) 
+0000   emplacement : 62828  (0xf56c) 
+0000   emplacement : 62830  (0xf56e) 
+0000   emplacement : 62832  (0xf570) 
+0000   emplacement : 62834  (0xf572) 
+0000   emplacement : 62836  (0xf574) 
+0000   emplacement : 62838  (0xf576) 
+0000   emplacement : 62840  (0xf578) 
+0000   emplacement : 62842  (0xf57a) 
+0000   emplacement : 62844  (0xf57c) 
+0000   emplacement : 62846  (0xf57e) 
+0000   emplacement : 62848  (0xf580) 
+0000   emplacement : 62850  (0xf582) 
+0000   emplacement : 62852  (0xf584) 
+0000   emplacement : 62854  (0xf586) 
+0000   emplacement : 62856  (0xf588) 
+0000   emplacement : 62858  (0xf58a) 
+0000   emplacement : 62860  (0xf58c) 
+0000   emplacement : 62862  (0xf58e) 
+0000   emplacement : 62864  (0xf590) 
+0000   emplacement : 62866  (0xf592) 
+0000   emplacement : 62868  (0xf594) 
+0000   emplacement : 62870  (0xf596) 
+0000   emplacement : 62872  (0xf598) 
+0000   emplacement : 62874  (0xf59a) 
+0000   emplacement : 62876  (0xf59c) 
+0000   emplacement : 62878  (0xf59e) 
+0000   emplacement : 62880  (0xf5a0) 
+0000   emplacement : 62882  (0xf5a2) 
+0000   emplacement : 62884  (0xf5a4) 
+0000   emplacement : 62886  (0xf5a6) 
+0000   emplacement : 62888  (0xf5a8) 
+0000   emplacement : 62890  (0xf5aa) 
+0000   emplacement : 62892  (0xf5ac) 
+0000   emplacement : 62894  (0xf5ae) 
+0000   emplacement : 62896  (0xf5b0) 
+0000   emplacement : 62898  (0xf5b2) 
+0000   emplacement : 62900  (0xf5b4) 
+0000   emplacement : 62902  (0xf5b6) 
+0000   emplacement : 62904  (0xf5b8) 
+0000   emplacement : 62906  (0xf5ba) 
+0000   emplacement : 62908  (0xf5bc) 
+0000   emplacement : 62910  (0xf5be) 
+0000   emplacement : 62912  (0xf5c0) 
+0000   emplacement : 62914  (0xf5c2) 
+0000   emplacement : 62916  (0xf5c4) 
+0000   emplacement : 62918  (0xf5c6) 
+0000   emplacement : 62920  (0xf5c8) 
+0000   emplacement : 62922  (0xf5ca) 
+0000   emplacement : 62924  (0xf5cc) 
+0000   emplacement : 62926  (0xf5ce) 
+0000   emplacement : 62928  (0xf5d0) 
+0000   emplacement : 62930  (0xf5d2) 
+0000   emplacement : 62932  (0xf5d4) 
+0000   emplacement : 62934  (0xf5d6) 
+0000   emplacement : 62936  (0xf5d8) 
+0000   emplacement : 62938  (0xf5da) 
+0000   emplacement : 62940  (0xf5dc) 
+0000   emplacement : 62942  (0xf5de) 
+0000   emplacement : 62944  (0xf5e0) 
+0000   emplacement : 62946  (0xf5e2) 
+0000   emplacement : 62948  (0xf5e4) 
+0000   emplacement : 62950  (0xf5e6) 
+0000   emplacement : 62952  (0xf5e8) 
+0000   emplacement : 62954  (0xf5ea) 
+0000   emplacement : 62956  (0xf5ec) 
+0000   emplacement : 62958  (0xf5ee) 
+0000   emplacement : 62960  (0xf5f0) 
+0000   emplacement : 62962  (0xf5f2) 
+0000   emplacement : 62964  (0xf5f4) 
+0000   emplacement : 62966  (0xf5f6) 
+0000   emplacement : 62968  (0xf5f8) 
+0000   emplacement : 62970  (0xf5fa) 
+0000   emplacement : 62972  (0xf5fc) 
+0000   emplacement : 62974  (0xf5fe) 
+0000   emplacement : 62976  (0xf600) 
+0000   emplacement : 62978  (0xf602) 
+0000   emplacement : 62980  (0xf604) 
+0000   emplacement : 62982  (0xf606) 
+0000   emplacement : 62984  (0xf608) 
+0000   emplacement : 62986  (0xf60a) 
+0000   emplacement : 62988  (0xf60c) 
+0000   emplacement : 62990  (0xf60e) 
+0000   emplacement : 62992  (0xf610) 
+0000   emplacement : 62994  (0xf612) 
+0000   emplacement : 62996  (0xf614) 
+0000   emplacement : 62998  (0xf616) 
+0000   emplacement : 63000  (0xf618) 
+0000   emplacement : 63002  (0xf61a) 
+0000   emplacement : 63004  (0xf61c) 
+0000   emplacement : 63006  (0xf61e) 
+0000   emplacement : 63008  (0xf620) 
+0000   emplacement : 63010  (0xf622) 
+0000   emplacement : 63012  (0xf624) 
+0000   emplacement : 63014  (0xf626) 
+0000   emplacement : 63016  (0xf628) 
+0000   emplacement : 63018  (0xf62a) 
+0000   emplacement : 63020  (0xf62c) 
+0000   emplacement : 63022  (0xf62e) 
+0000   emplacement : 63024  (0xf630) 
+0000   emplacement : 63026  (0xf632) 
+0000   emplacement : 63028  (0xf634) 
+0000   emplacement : 63030  (0xf636) 
+0000   emplacement : 63032  (0xf638) 
+0000   emplacement : 63034  (0xf63a) 
+0000   emplacement : 63036  (0xf63c) 
+0000   emplacement : 63038  (0xf63e) 
+0000   emplacement : 63040  (0xf640) 
+0000   emplacement : 63042  (0xf642) 
+0000   emplacement : 63044  (0xf644) 
+0000   emplacement : 63046  (0xf646) 
+0000   emplacement : 63048  (0xf648) 
+0000   emplacement : 63050  (0xf64a) 
+0000   emplacement : 63052  (0xf64c) 
+0000   emplacement : 63054  (0xf64e) 
+0000   emplacement : 63056  (0xf650) 
+0000   emplacement : 63058  (0xf652) 
+0000   emplacement : 63060  (0xf654) 
+0000   emplacement : 63062  (0xf656) 
+0000   emplacement : 63064  (0xf658) 
+0000   emplacement : 63066  (0xf65a) 
+0000   emplacement : 63068  (0xf65c) 
+0000   emplacement : 63070  (0xf65e) 
+0000   emplacement : 63072  (0xf660) 
+0000   emplacement : 63074  (0xf662) 
+0000   emplacement : 63076  (0xf664) 
+0000   emplacement : 63078  (0xf666) 
+0000   emplacement : 63080  (0xf668) 
+0000   emplacement : 63082  (0xf66a) 
+0000   emplacement : 63084  (0xf66c) 
+0000   emplacement : 63086  (0xf66e) 
+0000   emplacement : 63088  (0xf670) 
+0000   emplacement : 63090  (0xf672) 
+0000   emplacement : 63092  (0xf674) 
+0000   emplacement : 63094  (0xf676) 
+0000   emplacement : 63096  (0xf678) 
+0000   emplacement : 63098  (0xf67a) 
+0000   emplacement : 63100  (0xf67c) 
+0000   emplacement : 63102  (0xf67e) 
+0000   emplacement : 63104  (0xf680) 
+0000   emplacement : 63106  (0xf682) 
+0000   emplacement : 63108  (0xf684) 
+0000   emplacement : 63110  (0xf686) 
+0000   emplacement : 63112  (0xf688) 
+0000   emplacement : 63114  (0xf68a) 
+0000   emplacement : 63116  (0xf68c) 
+0000   emplacement : 63118  (0xf68e) 
+0000   emplacement : 63120  (0xf690) 
+0000   emplacement : 63122  (0xf692) 
+0000   emplacement : 63124  (0xf694) 
+0000   emplacement : 63126  (0xf696) 
+0000   emplacement : 63128  (0xf698) 
+0000   emplacement : 63130  (0xf69a) 
+0000   emplacement : 63132  (0xf69c) 
+0000   emplacement : 63134  (0xf69e) 
+0000   emplacement : 63136  (0xf6a0) 
+0000   emplacement : 63138  (0xf6a2) 
+0000   emplacement : 63140  (0xf6a4) 
+0000   emplacement : 63142  (0xf6a6) 
+0000   emplacement : 63144  (0xf6a8) 
+0000   emplacement : 63146  (0xf6aa) 
+0000   emplacement : 63148  (0xf6ac) 
+0000   emplacement : 63150  (0xf6ae) 
+0000   emplacement : 63152  (0xf6b0) 
+0000   emplacement : 63154  (0xf6b2) 
+0000   emplacement : 63156  (0xf6b4) 
+0000   emplacement : 63158  (0xf6b6) 
+0000   emplacement : 63160  (0xf6b8) 
+0000   emplacement : 63162  (0xf6ba) 
+0000   emplacement : 63164  (0xf6bc) 
+0000   emplacement : 63166  (0xf6be) 
+0000   emplacement : 63168  (0xf6c0) 
+0000   emplacement : 63170  (0xf6c2) 
+0000   emplacement : 63172  (0xf6c4) 
+0000   emplacement : 63174  (0xf6c6) 
+0000   emplacement : 63176  (0xf6c8) 
+0000   emplacement : 63178  (0xf6ca) 
+0000   emplacement : 63180  (0xf6cc) 
+0000   emplacement : 63182  (0xf6ce) 
+0000   emplacement : 63184  (0xf6d0) 
+0000   emplacement : 63186  (0xf6d2) 
+0000   emplacement : 63188  (0xf6d4) 
+0000   emplacement : 63190  (0xf6d6) 
+0000   emplacement : 63192  (0xf6d8) 
+0000   emplacement : 63194  (0xf6da) 
+0000   emplacement : 63196  (0xf6dc) 
+0000   emplacement : 63198  (0xf6de) 
+0000   emplacement : 63200  (0xf6e0) 
+0000   emplacement : 63202  (0xf6e2) 
+0000   emplacement : 63204  (0xf6e4) 
+0000   emplacement : 63206  (0xf6e6) 
+0000   emplacement : 63208  (0xf6e8) 
+0000   emplacement : 63210  (0xf6ea) 
+0000   emplacement : 63212  (0xf6ec) 
+0000   emplacement : 63214  (0xf6ee) 
+0000   emplacement : 63216  (0xf6f0) 
+0000   emplacement : 63218  (0xf6f2) 
+0000   emplacement : 63220  (0xf6f4) 
+0000   emplacement : 63222  (0xf6f6) 
+0000   emplacement : 63224  (0xf6f8) 
+0000   emplacement : 63226  (0xf6fa) 
+0000   emplacement : 63228  (0xf6fc) 
+0000   emplacement : 63230  (0xf6fe) 
+0000   emplacement : 63232  (0xf700) 
+0000   emplacement : 63234  (0xf702) 
+0000   emplacement : 63236  (0xf704) 
+0000   emplacement : 63238  (0xf706) 
+0000   emplacement : 63240  (0xf708) 
+0000   emplacement : 63242  (0xf70a) 
+0000   emplacement : 63244  (0xf70c) 
+0000   emplacement : 63246  (0xf70e) 
+0000   emplacement : 63248  (0xf710) 
+0000   emplacement : 63250  (0xf712) 
+0000   emplacement : 63252  (0xf714) 
+0000   emplacement : 63254  (0xf716) 
+0000   emplacement : 63256  (0xf718) 
+0000   emplacement : 63258  (0xf71a) 
+0000   emplacement : 63260  (0xf71c) 
+0000   emplacement : 63262  (0xf71e) 
+0000   emplacement : 63264  (0xf720) 
+0000   emplacement : 63266  (0xf722) 
+0000   emplacement : 63268  (0xf724) 
+0000   emplacement : 63270  (0xf726) 
+0000   emplacement : 63272  (0xf728) 
+0000   emplacement : 63274  (0xf72a) 
+0000   emplacement : 63276  (0xf72c) 
+0000   emplacement : 63278  (0xf72e) 
+0000   emplacement : 63280  (0xf730) 
+0000   emplacement : 63282  (0xf732) 
+0000   emplacement : 63284  (0xf734) 
+0000   emplacement : 63286  (0xf736) 
+0000   emplacement : 63288  (0xf738) 
+0000   emplacement : 63290  (0xf73a) 
+0000   emplacement : 63292  (0xf73c) 
+0000   emplacement : 63294  (0xf73e) 
+0000   emplacement : 63296  (0xf740) 
+0000   emplacement : 63298  (0xf742) 
+0000   emplacement : 63300  (0xf744) 
+0000   emplacement : 63302  (0xf746) 
+0000   emplacement : 63304  (0xf748) 
+0000   emplacement : 63306  (0xf74a) 
+0000   emplacement : 63308  (0xf74c) 
+0000   emplacement : 63310  (0xf74e) 
+0000   emplacement : 63312  (0xf750) 
+0000   emplacement : 63314  (0xf752) 
+0000   emplacement : 63316  (0xf754) 
+0000   emplacement : 63318  (0xf756) 
+0000   emplacement : 63320  (0xf758) 
+0000   emplacement : 63322  (0xf75a) 
+0000   emplacement : 63324  (0xf75c) 
+0000   emplacement : 63326  (0xf75e) 
+0000   emplacement : 63328  (0xf760) 
+0000   emplacement : 63330  (0xf762) 
+0000   emplacement : 63332  (0xf764) 
+0000   emplacement : 63334  (0xf766) 
+0000   emplacement : 63336  (0xf768) 
+0000   emplacement : 63338  (0xf76a) 
+0000   emplacement : 63340  (0xf76c) 
+0000   emplacement : 63342  (0xf76e) 
+0000   emplacement : 63344  (0xf770) 
+0000   emplacement : 63346  (0xf772) 
+0000   emplacement : 63348  (0xf774) 
+0000   emplacement : 63350  (0xf776) 
+0000   emplacement : 63352  (0xf778) 
+0000   emplacement : 63354  (0xf77a) 
+0000   emplacement : 63356  (0xf77c) 
+0000   emplacement : 63358  (0xf77e) 
+0000   emplacement : 63360  (0xf780) 
+0000   emplacement : 63362  (0xf782) 
+0000   emplacement : 63364  (0xf784) 
+0000   emplacement : 63366  (0xf786) 
+0000   emplacement : 63368  (0xf788) 
+0000   emplacement : 63370  (0xf78a) 
+0000   emplacement : 63372  (0xf78c) 
+0000   emplacement : 63374  (0xf78e) 
+0000   emplacement : 63376  (0xf790) 
+0000   emplacement : 63378  (0xf792) 
+0000   emplacement : 63380  (0xf794) 
+0000   emplacement : 63382  (0xf796) 
+0000   emplacement : 63384  (0xf798) 
+0000   emplacement : 63386  (0xf79a) 
+0000   emplacement : 63388  (0xf79c) 
+0000   emplacement : 63390  (0xf79e) 
+0000   emplacement : 63392  (0xf7a0) 
+0000   emplacement : 63394  (0xf7a2) 
+0000   emplacement : 63396  (0xf7a4) 
+0000   emplacement : 63398  (0xf7a6) 
+0000   emplacement : 63400  (0xf7a8) 
+0000   emplacement : 63402  (0xf7aa) 
+0000   emplacement : 63404  (0xf7ac) 
+0000   emplacement : 63406  (0xf7ae) 
+0000   emplacement : 63408  (0xf7b0) 
+0000   emplacement : 63410  (0xf7b2) 
+0000   emplacement : 63412  (0xf7b4) 
+0000   emplacement : 63414  (0xf7b6) 
+0000   emplacement : 63416  (0xf7b8) 
+0000   emplacement : 63418  (0xf7ba) 
+0000   emplacement : 63420  (0xf7bc) 
+0000   emplacement : 63422  (0xf7be) 
+0000   emplacement : 63424  (0xf7c0) 
+0000   emplacement : 63426  (0xf7c2) 
+0000   emplacement : 63428  (0xf7c4) 
+0000   emplacement : 63430  (0xf7c6) 
+0000   emplacement : 63432  (0xf7c8) 
+0000   emplacement : 63434  (0xf7ca) 
+0000   emplacement : 63436  (0xf7cc) 
+0000   emplacement : 63438  (0xf7ce) 
+0000   emplacement : 63440  (0xf7d0) 
+0000   emplacement : 63442  (0xf7d2) 
+0000   emplacement : 63444  (0xf7d4) 
+0000   emplacement : 63446  (0xf7d6) 
+0000   emplacement : 63448  (0xf7d8) 
+0000   emplacement : 63450  (0xf7da) 
+0000   emplacement : 63452  (0xf7dc) 
+0000   emplacement : 63454  (0xf7de) 
+0000   emplacement : 63456  (0xf7e0) 
+0000   emplacement : 63458  (0xf7e2) 
+0000   emplacement : 63460  (0xf7e4) 
+0000   emplacement : 63462  (0xf7e6) 
+0000   emplacement : 63464  (0xf7e8) 
+6780   emplacement : 63466  (0xf7ea)  ligne n° 52	LDW R7, #tab
+f01a   emplacement : 63468  (0xf7ec) 
+674f   emplacement : 63470  (0xf7ee)  ligne n° 53	STW R7, -(R15)
+6780   emplacement : 63472  (0xf7f0)  ligne n° 54	LDW R7, #1000
+03e8   emplacement : 63474  (0xf7f2) 
+6880   emplacement : 63476  (0xf7f4)  ligne n° 55	LDW R8, #0
+0000   emplacement : 63478  (0xf7f6) 
+6580   emplacement : 63480  (0xf7f8)  ligne n° 56	LDW R5, #tab
+f01a   emplacement : 63482  (0xf7fa) 
+6380   emplacement : 63484  (0xf7fc)  ligne n° 57	LDW R3, #1
+0001   emplacement : 63486  (0xf7fe) 
+6693   emplacement : 63488  (0xf800)  ligne n° 58	LDW R6, R3
+6625   emplacement : 63490  (0xf802)  ligne n° 59	LOOPTAB0 STW R6, (R5)
+3502   emplacement : 63492  (0xf804)  ligne n° 60	ADQ 2, R5
+3801   emplacement : 63494  (0xf806)  ligne n° 61	ADQ 1, R8
+4f78   emplacement : 63496  (0xf808)  ligne n° 62	CMP R7, R8
+1202   emplacement : 63498  (0xf80a)  ligne n° 63	BEQ ENDTAB0-$-2
+11f4   emplacement : 63500  (0xf80c)  ligne n° 64	BMP LOOPTAB0-$-2
+6380   emplacement : 63502  (0xf80e)  ligne n° 67	LDW R3, #0
+0000   emplacement : 63504  (0xf810) 
+634f   emplacement : 63506  (0xf812)  ligne n° 68	STW R3, -(R15) //On empile le param}tre
+6380   emplacement : 63508  (0xf814)  ligne n° 69	LDW R3, #4
+0004   emplacement : 63510  (0xf816) 
+634f   emplacement : 63512  (0xf818)  ligne n° 70	STW R3, -(R15) //On empile le param}tre
+0a50   emplacement : 63514  (0xf81a)  ligne n° 71	JSR @fibo
+f82c   emplacement : 63516  (0xf81c) 
+3f02   emplacement : 63518  (0xf81e)  ligne n° 72	ADQ 2, R15 //On d}pile le param}tre
+3f02   emplacement : 63520  (0xf820)  ligne n° 73	ADQ 2, R15 //On d}pile le param}tre
+6f9d   emplacement : 63522  (0xf822)  ligne n° 75	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 63524  (0xf824)  ligne n° 76	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 63526  (0xf826)  ligne n° 77	LDW STAT, (SP)+//On d}pile le chainage statique
+0b00   emplacement : 63528  (0xf828)  ligne n° 80	TRP #EXIT_TRP //On quitte l'ex}cution
+0040   emplacement : 63530  (0xf82a) 
+604f   emplacement : 63532  (0xf82c)  ligne n° 89	STW R0, -(SP)
+614f   emplacement : 63534  (0xf82e)  ligne n° 90	STW R1, -(SP)
+624f   emplacement : 63536  (0xf830)  ligne n° 91	STW R2, -(SP)
+644f   emplacement : 63538  (0xf832)  ligne n° 92	STW R4, -(SP)
+654f   emplacement : 63540  (0xf834)  ligne n° 93	STW R5, -(SP)
+664f   emplacement : 63542  (0xf836)  ligne n° 94	STW R6, -(SP)
+674f   emplacement : 63544  (0xf838)  ligne n° 95	STW R7, -(SP)
+684f   emplacement : 63546  (0xf83a)  ligne n° 96	STW R8, -(SP)
+694f   emplacement : 63548  (0xf83c)  ligne n° 97	STW R9, -(SP)
+6a4f   emplacement : 63550  (0xf83e)  ligne n° 98	STW R10, -(SP)
+6b4f   emplacement : 63552  (0xf840)  ligne n° 99	STW R11, -(SP)
+6c4f   emplacement : 63554  (0xf842)  ligne n° 100	STW R12, -(SP)
+6e4f   emplacement : 63556  (0xf844)  ligne n° 101	STW R14, -(SP)
+6c4f   emplacement : 63558  (0xf846)  ligne n° 104	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 63560  (0xf848)  ligne n° 105	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63562  (0xf84a)  ligne n° 106	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+6180   emplacement : 63564  (0xf84c)  ligne n° 108	LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+0ff4   emplacement : 63566  (0xf84e) 
+63a1   emplacement : 63568  (0xf850)  ligne n° 109	LDW R3, (R1)
+6293   emplacement : 63570  (0xf852)  ligne n° 110	LDW R2, R3
+6380   emplacement : 63572  (0xf854)  ligne n° 111	LDW R3, #0
+0000   emplacement : 63574  (0xf856) 
+4f23   emplacement : 63576  (0xf858)  ligne n° 112	CMP R2, R3
+1204   emplacement : 63578  (0xf85a)  ligne n° 113	BEQ 4
+2300   emplacement : 63580  (0xf85c)  ligne n° 114	LDQ 0, R3
+0180   emplacement : 63582  (0xf85e)  ligne n° 115	JMP #4
+0004   emplacement : 63584  (0xf860) 
+2301   emplacement : 63586  (0xf862)  ligne n° 116	LDQ 1, R3
+634f   emplacement : 63588  (0xf864)  ligne n° 117	STW R3, -(R15)
+6180   emplacement : 63590  (0xf866)  ligne n° 119	LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+0ff4   emplacement : 63592  (0xf868) 
+63a1   emplacement : 63594  (0xf86a)  ligne n° 120	LDW R3, (R1)
+6293   emplacement : 63596  (0xf86c)  ligne n° 121	LDW R2, R3
+6380   emplacement : 63598  (0xf86e)  ligne n° 122	LDW R3, #1
+0001   emplacement : 63600  (0xf870) 
+4f23   emplacement : 63602  (0xf872)  ligne n° 123	CMP R2, R3
+1204   emplacement : 63604  (0xf874)  ligne n° 124	BEQ 4
+2300   emplacement : 63606  (0xf876)  ligne n° 125	LDQ 0, R3
+0180   emplacement : 63608  (0xf878)  ligne n° 126	JMP #4
+0004   emplacement : 63610  (0xf87a) 
+2301   emplacement : 63612  (0xf87c)  ligne n° 127	LDQ 1, R3
+634f   emplacement : 63614  (0xf87e)  ligne n° 128	STW R3, -(R15)
+62bf   emplacement : 63616  (0xf880)  ligne n° 130	LDW R2, (R15)+
+63bf   emplacement : 63618  (0xf882)  ligne n° 131	LDW R3, (R15)+
+0c12   emplacement : 63620  (0xf884)  ligne n° 132	TST R2
+1304   emplacement : 63622  (0xf886)  ligne n° 133	BNE 4
+0c13   emplacement : 63624  (0xf888)  ligne n° 134	TST R3
+1202   emplacement : 63626  (0xf88a)  ligne n° 135	BEQ 2
+2301   emplacement : 63628  (0xf88c)  ligne n° 136	LDQ 1, R3
+0180   emplacement : 63630  (0xf88e)  ligne n° 137	JMP #4
+0004   emplacement : 63632  (0xf890) 
+2300   emplacement : 63634  (0xf892)  ligne n° 138	LDQ 0, R3
+634f   emplacement : 63636  (0xf894)  ligne n° 139	STW R3, -(R15)
+63bf   emplacement : 63638  (0xf896)  ligne n° 140	LDW R3, (R15)+
+0c13   emplacement : 63640  (0xf898)  ligne n° 142	TST R3
+1214   emplacement : 63642  (0xf89a)  ligne n° 143	BEQ else0-$-2
+6380   emplacement : 63644  (0xf89c)  ligne n° 145	LDW R3, #1
+0001   emplacement : 63646  (0xf89e) 
+6593   emplacement : 63648  (0xf8a0)  ligne n° 146	LDW R5, R3
+260a   emplacement : 63650  (0xf8a2)  ligne n° 147	LDQ 10, R6
+0a50   emplacement : 63652  (0xf8a4)  ligne n° 148	JSR @itoa
+fc14   emplacement : 63654  (0xf8a6) 
+6093   emplacement : 63656  (0xf8a8)  ligne n° 149	LDW R0, R3
+0a50   emplacement : 63658  (0xf8aa)  ligne n° 150	JSR @printiln
+f9fc   emplacement : 63660  (0xf8ac) 
+1178   emplacement : 63662  (0xf8ae)  ligne n° 151	BMP endif0-$-2
+6380   emplacement : 63664  (0xf8b0)  ligne n° 153	LDW R3, #2
+0002   emplacement : 63666  (0xf8b2) 
+634f   emplacement : 63668  (0xf8b4)  ligne n° 154	STW R3, -(R15) //On empile valeur initiale du compteur de boucle
+6180   emplacement : 63670  (0xf8b6)  ligne n° 157	LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+0fec   emplacement : 63672  (0xf8b8) 
+63a1   emplacement : 63674  (0xf8ba)  ligne n° 158	LDW R3, (R1)
+634f   emplacement : 63676  (0xf8bc)  ligne n° 159	STW R3, -(R15) //On empile le resultat de l'operande droite
+6380   emplacement : 63678  (0xf8be)  ligne n° 160	LDW R3, #1
+0001   emplacement : 63680  (0xf8c0) 
+62bf   emplacement : 63682  (0xf8c2)  ligne n° 161	LDW R2, (R15)+ //On depile l'operande droite
+f233   emplacement : 63684  (0xf8c4)  ligne n° 162	SUB R2, R3, R3
+e333   emplacement : 63686  (0xf8c6)  ligne n° 163	ADD R3, R3, R3
+6180   emplacement : 63688  (0xf8c8)  ligne n° 164	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63690  (0xf8ca) 
+61a1   emplacement : 63692  (0xf8cc)  ligne n° 165	LDW R1, (R1)
+e131   emplacement : 63694  (0xf8ce)  ligne n° 166	ADD R1, R3, R1
+63a1   emplacement : 63696  (0xf8d0)  ligne n° 167	LDW R3, (R1)
+634f   emplacement : 63698  (0xf8d2)  ligne n° 169	STW R3, -(R15) //On empile le resultat de l'operande droite
+6180   emplacement : 63700  (0xf8d4)  ligne n° 171	LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+0fec   emplacement : 63702  (0xf8d6) 
+63a1   emplacement : 63704  (0xf8d8)  ligne n° 172	LDW R3, (R1)
+634f   emplacement : 63706  (0xf8da)  ligne n° 173	STW R3, -(R15) //On empile le resultat de l'operande droite
+6380   emplacement : 63708  (0xf8dc)  ligne n° 174	LDW R3, #2
+0002   emplacement : 63710  (0xf8de) 
+62bf   emplacement : 63712  (0xf8e0)  ligne n° 175	LDW R2, (R15)+ //On depile l'operande droite
+f233   emplacement : 63714  (0xf8e2)  ligne n° 176	SUB R2, R3, R3
+e333   emplacement : 63716  (0xf8e4)  ligne n° 177	ADD R3, R3, R3
+6180   emplacement : 63718  (0xf8e6)  ligne n° 178	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63720  (0xf8e8) 
+61a1   emplacement : 63722  (0xf8ea)  ligne n° 179	LDW R1, (R1)
+e131   emplacement : 63724  (0xf8ec)  ligne n° 180	ADD R1, R3, R1
+63a1   emplacement : 63726  (0xf8ee)  ligne n° 181	LDW R3, (R1)
+62bf   emplacement : 63728  (0xf8f0)  ligne n° 183	LDW R2, (R15)+ //On depile l'operande droite
+e233   emplacement : 63730  (0xf8f2)  ligne n° 184	ADD R2, R3, R3
+6591   emplacement : 63732  (0xf8f4)  ligne n° 185	LDW R5, R1
+6180   emplacement : 63734  (0xf8f6)  ligne n° 186	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63736  (0xf8f8) 
+6493   emplacement : 63738  (0xf8fa)  ligne n° 187	LDW R4, R3
+6591   emplacement : 63740  (0xf8fc)  ligne n° 188	LDW R5, R1
+6180   emplacement : 63742  (0xf8fe)  ligne n° 189	LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+0fec   emplacement : 63744  (0xf900) 
+63a1   emplacement : 63746  (0xf902)  ligne n° 190	LDW R3, (R1)
+6195   emplacement : 63748  (0xf904)  ligne n° 191	LDW R1, R5
+e333   emplacement : 63750  (0xf906)  ligne n° 192	ADD R3, R3, R3
+61a1   emplacement : 63752  (0xf908)  ligne n° 193	LDW R1, (R1)
+e131   emplacement : 63754  (0xf90a)  ligne n° 194	ADD R1, R3, R1
+6394   emplacement : 63756  (0xf90c)  ligne n° 195	LDW R3, R4
+6321   emplacement : 63758  (0xf90e)  ligne n° 196	STW R3, (R1) //On stocke le resultat dans la m}moire
+6180   emplacement : 63760  (0xf910)  ligne n° 197	LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+0ff4   emplacement : 63762  (0xf912) 
+63a1   emplacement : 63764  (0xf914)  ligne n° 198	LDW R3, (R1)
+6180   emplacement : 63766  (0xf916)  ligne n° 199	LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+0fec   emplacement : 63768  (0xf918) 
+62a1   emplacement : 63770  (0xf91a)  ligne n° 200	LDW R2, (R1) //On charge le compteur dans R2
+f323   emplacement : 63772  (0xf91c)  ligne n° 201	SUB R3, R2, R3
+1206   emplacement : 63774  (0xf91e)  ligne n° 202	BEQ sortie_boucle0-$-2
+3201   emplacement : 63776  (0xf920)  ligne n° 203	ADQ 1, R2 //on incr}mente le compteur
+6221   emplacement : 63778  (0xf922)  ligne n° 204	STW R2, (R1) //On met a jour le compteur en memoire
+1190   emplacement : 63780  (0xf924)  ligne n° 205	BMP boucle0-$-2
+63bf   emplacement : 63782  (0xf926)  ligne n° 207	LDW R3, (R15)+ //on d}pile le compteur
+6180   emplacement : 63784  (0xf928)  ligne n° 210	LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+0ff4   emplacement : 63786  (0xf92a) 
+63a1   emplacement : 63788  (0xf92c)  ligne n° 211	LDW R3, (R1)
+e333   emplacement : 63790  (0xf92e)  ligne n° 212	ADD R3, R3, R3
+6180   emplacement : 63792  (0xf930)  ligne n° 213	LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+0ff8   emplacement : 63794  (0xf932) 
+61a1   emplacement : 63796  (0xf934)  ligne n° 214	LDW R1, (R1)
+e131   emplacement : 63798  (0xf936)  ligne n° 215	ADD R1, R3, R1
+63a1   emplacement : 63800  (0xf938)  ligne n° 216	LDW R3, (R1)
+6593   emplacement : 63802  (0xf93a)  ligne n° 218	LDW R5, R3
+260a   emplacement : 63804  (0xf93c)  ligne n° 219	LDQ 10, R6
+0a50   emplacement : 63806  (0xf93e)  ligne n° 220	JSR @itoa
+fc14   emplacement : 63808  (0xf940) 
+6093   emplacement : 63810  (0xf942)  ligne n° 221	LDW R0, R3
+0a50   emplacement : 63812  (0xf944)  ligne n° 222	JSR @printiln
+f9fc   emplacement : 63814  (0xf946) 
+6f9d   emplacement : 63816  (0xf948)  ligne n° 224	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 63818  (0xf94a)  ligne n° 225	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 63820  (0xf94c)  ligne n° 226	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 63822  (0xf94e)  ligne n° 229	LDW R14, (SP)+
+6cbf   emplacement : 63824  (0xf950)  ligne n° 230	LDW R12, (SP)+
+6bbf   emplacement : 63826  (0xf952)  ligne n° 231	LDW R11, (SP)+
+6abf   emplacement : 63828  (0xf954)  ligne n° 232	LDW R10, (SP)+
+69bf   emplacement : 63830  (0xf956)  ligne n° 233	LDW R9, (SP)+
+68bf   emplacement : 63832  (0xf958)  ligne n° 234	LDW R8, (SP)+
+67bf   emplacement : 63834  (0xf95a)  ligne n° 235	LDW R7, (SP)+
+66bf   emplacement : 63836  (0xf95c)  ligne n° 236	LDW R6, (SP)+
+65bf   emplacement : 63838  (0xf95e)  ligne n° 237	LDW R5, (SP)+
+64bf   emplacement : 63840  (0xf960)  ligne n° 238	LDW R4, (SP)+
+62bf   emplacement : 63842  (0xf962)  ligne n° 239	LDW R2, (SP)+
+61bf   emplacement : 63844  (0xf964)  ligne n° 240	LDW R1, (SP)+
+60bf   emplacement : 63846  (0xf966)  ligne n° 241	LDW R0, (SP)+
+0200   emplacement : 63848  (0xf968)  ligne n° 243	RTS
+604f   emplacement : 63850  (0xf96a)  ligne n° 249	STW R0, -(SP)
+614f   emplacement : 63852  (0xf96c)  ligne n° 250	STW R1, -(SP)
+624f   emplacement : 63854  (0xf96e)  ligne n° 251	STW R2, -(SP)
+644f   emplacement : 63856  (0xf970)  ligne n° 252	STW R4, -(SP)
+654f   emplacement : 63858  (0xf972)  ligne n° 253	STW R5, -(SP)
+664f   emplacement : 63860  (0xf974)  ligne n° 254	STW R6, -(SP)
+674f   emplacement : 63862  (0xf976)  ligne n° 255	STW R7, -(SP)
+684f   emplacement : 63864  (0xf978)  ligne n° 256	STW R8, -(SP)
+694f   emplacement : 63866  (0xf97a)  ligne n° 257	STW R9, -(SP)
+6a4f   emplacement : 63868  (0xf97c)  ligne n° 258	STW R10, -(SP)
+6b4f   emplacement : 63870  (0xf97e)  ligne n° 259	STW R11, -(SP)
+6c4f   emplacement : 63872  (0xf980)  ligne n° 260	STW R12, -(SP)
+6e4f   emplacement : 63874  (0xf982)  ligne n° 261	STW R14, -(SP)
+6c4f   emplacement : 63876  (0xf984)  ligne n° 263	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 63878  (0xf986)  ligne n° 264	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63880  (0xf988)  ligne n° 265	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63882  (0xf98a)  ligne n° 266	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63884  (0xf98c) 
+2002   emplacement : 63886  (0xf98e)  ligne n° 267	LDQ SAUT_DE_LIGNE, R0
+0b00   emplacement : 63888  (0xf990)  ligne n° 268	TRP #WRITE_TRP
+0042   emplacement : 63890  (0xf992) 
+6f9d   emplacement : 63892  (0xf994)  ligne n° 270	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 63894  (0xf996)  ligne n° 271	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 63896  (0xf998)  ligne n° 272	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 63898  (0xf99a)  ligne n° 274	LDW R14, (SP)+
+6cbf   emplacement : 63900  (0xf99c)  ligne n° 275	LDW R12, (SP)+
+6bbf   emplacement : 63902  (0xf99e)  ligne n° 276	LDW R11, (SP)+
+6abf   emplacement : 63904  (0xf9a0)  ligne n° 277	LDW R10, (SP)+
+69bf   emplacement : 63906  (0xf9a2)  ligne n° 278	LDW R9, (SP)+
+68bf   emplacement : 63908  (0xf9a4)  ligne n° 279	LDW R8, (SP)+
+67bf   emplacement : 63910  (0xf9a6)  ligne n° 280	LDW R7, (SP)+
+66bf   emplacement : 63912  (0xf9a8)  ligne n° 281	LDW R6, (SP)+
+65bf   emplacement : 63914  (0xf9aa)  ligne n° 282	LDW R5, (SP)+
+64bf   emplacement : 63916  (0xf9ac)  ligne n° 283	LDW R4, (SP)+
+62bf   emplacement : 63918  (0xf9ae)  ligne n° 284	LDW R2, (SP)+
+61bf   emplacement : 63920  (0xf9b0)  ligne n° 285	LDW R1, (SP)+
+60bf   emplacement : 63922  (0xf9b2)  ligne n° 286	LDW R0, (SP)+
+0200   emplacement : 63924  (0xf9b4)  ligne n° 287	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63926  (0xf9b6)  ligne n° 292	STW R0, -(SP)
+614f   emplacement : 63928  (0xf9b8)  ligne n° 293	STW R1, -(SP)
+624f   emplacement : 63930  (0xf9ba)  ligne n° 294	STW R2, -(SP)
+644f   emplacement : 63932  (0xf9bc)  ligne n° 295	STW R4, -(SP)
+654f   emplacement : 63934  (0xf9be)  ligne n° 296	STW R5, -(SP)
+664f   emplacement : 63936  (0xf9c0)  ligne n° 297	STW R6, -(SP)
+674f   emplacement : 63938  (0xf9c2)  ligne n° 298	STW R7, -(SP)
+684f   emplacement : 63940  (0xf9c4)  ligne n° 299	STW R8, -(SP)
+694f   emplacement : 63942  (0xf9c6)  ligne n° 300	STW R9, -(SP)
+6a4f   emplacement : 63944  (0xf9c8)  ligne n° 301	STW R10, -(SP)
+6b4f   emplacement : 63946  (0xf9ca)  ligne n° 302	STW R11, -(SP)
+6c4f   emplacement : 63948  (0xf9cc)  ligne n° 303	STW R12, -(SP)
+6e4f   emplacement : 63950  (0xf9ce)  ligne n° 304	STW R14, -(SP)
+6c4f   emplacement : 63952  (0xf9d0)  ligne n° 306	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 63954  (0xf9d2)  ligne n° 307	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 63956  (0xf9d4)  ligne n° 308	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 63958  (0xf9d6)  ligne n° 309	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 63960  (0xf9d8) 
+6f9d   emplacement : 63962  (0xf9da)  ligne n° 311	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 63964  (0xf9dc)  ligne n° 312	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 63966  (0xf9de)  ligne n° 313	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 63968  (0xf9e0)  ligne n° 315	LDW R14, (SP)+
+6cbf   emplacement : 63970  (0xf9e2)  ligne n° 316	LDW R12, (SP)+
+6bbf   emplacement : 63972  (0xf9e4)  ligne n° 317	LDW R11, (SP)+
+6abf   emplacement : 63974  (0xf9e6)  ligne n° 318	LDW R10, (SP)+
+69bf   emplacement : 63976  (0xf9e8)  ligne n° 319	LDW R9, (SP)+
+68bf   emplacement : 63978  (0xf9ea)  ligne n° 320	LDW R8, (SP)+
+67bf   emplacement : 63980  (0xf9ec)  ligne n° 321	LDW R7, (SP)+
+66bf   emplacement : 63982  (0xf9ee)  ligne n° 322	LDW R6, (SP)+
+65bf   emplacement : 63984  (0xf9f0)  ligne n° 323	LDW R5, (SP)+
+64bf   emplacement : 63986  (0xf9f2)  ligne n° 324	LDW R4, (SP)+
+62bf   emplacement : 63988  (0xf9f4)  ligne n° 325	LDW R2, (SP)+
+61bf   emplacement : 63990  (0xf9f6)  ligne n° 326	LDW R1, (SP)+
+60bf   emplacement : 63992  (0xf9f8)  ligne n° 327	LDW R0, (SP)+
+0200   emplacement : 63994  (0xf9fa)  ligne n° 328	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 63996  (0xf9fc)  ligne n° 333	STW R0, -(SP)
+614f   emplacement : 63998  (0xf9fe)  ligne n° 334	STW R1, -(SP)
+624f   emplacement : 64000  (0xfa00)  ligne n° 335	STW R2, -(SP)
+644f   emplacement : 64002  (0xfa02)  ligne n° 336	STW R4, -(SP)
+654f   emplacement : 64004  (0xfa04)  ligne n° 337	STW R5, -(SP)
+664f   emplacement : 64006  (0xfa06)  ligne n° 338	STW R6, -(SP)
+674f   emplacement : 64008  (0xfa08)  ligne n° 339	STW R7, -(SP)
+684f   emplacement : 64010  (0xfa0a)  ligne n° 340	STW R8, -(SP)
+694f   emplacement : 64012  (0xfa0c)  ligne n° 341	STW R9, -(SP)
+6a4f   emplacement : 64014  (0xfa0e)  ligne n° 342	STW R10, -(SP)
+6b4f   emplacement : 64016  (0xfa10)  ligne n° 343	STW R11, -(SP)
+6c4f   emplacement : 64018  (0xfa12)  ligne n° 344	STW R12, -(SP)
+6e4f   emplacement : 64020  (0xfa14)  ligne n° 345	STW R14, -(SP)
+6c4f   emplacement : 64022  (0xfa16)  ligne n° 347	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64024  (0xfa18)  ligne n° 348	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64026  (0xfa1a)  ligne n° 349	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 64028  (0xfa1c)  ligne n° 350	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 64030  (0xfa1e) 
+2002   emplacement : 64032  (0xfa20)  ligne n° 351	LDQ SAUT_DE_LIGNE, R0
+0b00   emplacement : 64034  (0xfa22)  ligne n° 352	TRP #WRITE_TRP
+0042   emplacement : 64036  (0xfa24) 
+6f9d   emplacement : 64038  (0xfa26)  ligne n° 354	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64040  (0xfa28)  ligne n° 355	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64042  (0xfa2a)  ligne n° 356	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64044  (0xfa2c)  ligne n° 358	LDW R14, (SP)+
+6cbf   emplacement : 64046  (0xfa2e)  ligne n° 359	LDW R12, (SP)+
+6bbf   emplacement : 64048  (0xfa30)  ligne n° 360	LDW R11, (SP)+
+6abf   emplacement : 64050  (0xfa32)  ligne n° 361	LDW R10, (SP)+
+69bf   emplacement : 64052  (0xfa34)  ligne n° 362	LDW R9, (SP)+
+68bf   emplacement : 64054  (0xfa36)  ligne n° 363	LDW R8, (SP)+
+67bf   emplacement : 64056  (0xfa38)  ligne n° 364	LDW R7, (SP)+
+66bf   emplacement : 64058  (0xfa3a)  ligne n° 365	LDW R6, (SP)+
+65bf   emplacement : 64060  (0xfa3c)  ligne n° 366	LDW R5, (SP)+
+64bf   emplacement : 64062  (0xfa3e)  ligne n° 367	LDW R4, (SP)+
+62bf   emplacement : 64064  (0xfa40)  ligne n° 368	LDW R2, (SP)+
+61bf   emplacement : 64066  (0xfa42)  ligne n° 369	LDW R1, (SP)+
+60bf   emplacement : 64068  (0xfa44)  ligne n° 370	LDW R0, (SP)+
+0200   emplacement : 64070  (0xfa46)  ligne n° 371	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 64072  (0xfa48)  ligne n° 376	STW R0, -(SP)
+614f   emplacement : 64074  (0xfa4a)  ligne n° 377	STW R1, -(SP)
+624f   emplacement : 64076  (0xfa4c)  ligne n° 378	STW R2, -(SP)
+644f   emplacement : 64078  (0xfa4e)  ligne n° 379	STW R4, -(SP)
+654f   emplacement : 64080  (0xfa50)  ligne n° 380	STW R5, -(SP)
+664f   emplacement : 64082  (0xfa52)  ligne n° 381	STW R6, -(SP)
+674f   emplacement : 64084  (0xfa54)  ligne n° 382	STW R7, -(SP)
+684f   emplacement : 64086  (0xfa56)  ligne n° 383	STW R8, -(SP)
+694f   emplacement : 64088  (0xfa58)  ligne n° 384	STW R9, -(SP)
+6a4f   emplacement : 64090  (0xfa5a)  ligne n° 385	STW R10, -(SP)
+6b4f   emplacement : 64092  (0xfa5c)  ligne n° 386	STW R11, -(SP)
+6c4f   emplacement : 64094  (0xfa5e)  ligne n° 387	STW R12, -(SP)
+6e4f   emplacement : 64096  (0xfa60)  ligne n° 388	STW R14, -(SP)
+6c4f   emplacement : 64098  (0xfa62)  ligne n° 390	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64100  (0xfa64)  ligne n° 391	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64102  (0xfa66)  ligne n° 392	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0b00   emplacement : 64104  (0xfa68)  ligne n° 393	TRP #WRITE_TRP //On l}ve la trappe
+0042   emplacement : 64106  (0xfa6a) 
+6f9d   emplacement : 64108  (0xfa6c)  ligne n° 395	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64110  (0xfa6e)  ligne n° 396	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64112  (0xfa70)  ligne n° 397	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64114  (0xfa72)  ligne n° 399	LDW R14, (SP)+
+6cbf   emplacement : 64116  (0xfa74)  ligne n° 400	LDW R12, (SP)+
+6bbf   emplacement : 64118  (0xfa76)  ligne n° 401	LDW R11, (SP)+
+6abf   emplacement : 64120  (0xfa78)  ligne n° 402	LDW R10, (SP)+
+69bf   emplacement : 64122  (0xfa7a)  ligne n° 403	LDW R9, (SP)+
+68bf   emplacement : 64124  (0xfa7c)  ligne n° 404	LDW R8, (SP)+
+67bf   emplacement : 64126  (0xfa7e)  ligne n° 405	LDW R7, (SP)+
+66bf   emplacement : 64128  (0xfa80)  ligne n° 406	LDW R6, (SP)+
+65bf   emplacement : 64130  (0xfa82)  ligne n° 407	LDW R5, (SP)+
+64bf   emplacement : 64132  (0xfa84)  ligne n° 408	LDW R4, (SP)+
+62bf   emplacement : 64134  (0xfa86)  ligne n° 409	LDW R2, (SP)+
+61bf   emplacement : 64136  (0xfa88)  ligne n° 410	LDW R1, (SP)+
+60bf   emplacement : 64138  (0xfa8a)  ligne n° 411	LDW R0, (SP)+
+0200   emplacement : 64140  (0xfa8c)  ligne n° 412	RTS //On retourne dans la suite de l'ex}cution
+604f   emplacement : 64142  (0xfa8e)  ligne n° 417	STW R0, -(SP)
+614f   emplacement : 64144  (0xfa90)  ligne n° 418	STW R1, -(SP)
+624f   emplacement : 64146  (0xfa92)  ligne n° 419	STW R2, -(SP)
+644f   emplacement : 64148  (0xfa94)  ligne n° 420	STW R4, -(SP)
+654f   emplacement : 64150  (0xfa96)  ligne n° 421	STW R5, -(SP)
+664f   emplacement : 64152  (0xfa98)  ligne n° 422	STW R6, -(SP)
+674f   emplacement : 64154  (0xfa9a)  ligne n° 423	STW R7, -(SP)
+684f   emplacement : 64156  (0xfa9c)  ligne n° 424	STW R8, -(SP)
+694f   emplacement : 64158  (0xfa9e)  ligne n° 425	STW R9, -(SP)
+6a4f   emplacement : 64160  (0xfaa0)  ligne n° 426	STW R10, -(SP)
+6b4f   emplacement : 64162  (0xfaa2)  ligne n° 427	STW R11, -(SP)
+6c4f   emplacement : 64164  (0xfaa4)  ligne n° 428	STW R12, -(SP)
+6e4f   emplacement : 64166  (0xfaa6)  ligne n° 429	STW R14, -(SP)
+6c4f   emplacement : 64168  (0xfaa8)  ligne n° 431	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64170  (0xfaaa)  ligne n° 432	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64172  (0xfaac)  ligne n° 433	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 64174  (0xfaae)  ligne n° 434	STRING0 RSB 50 //On cr}e la chaine de retour (100 caract}res max)
+0000   emplacement : 64176  (0xfab0) 
+0000   emplacement : 64178  (0xfab2) 
+0000   emplacement : 64180  (0xfab4) 
+0000   emplacement : 64182  (0xfab6) 
+0000   emplacement : 64184  (0xfab8) 
+0000   emplacement : 64186  (0xfaba) 
+0000   emplacement : 64188  (0xfabc) 
+0000   emplacement : 64190  (0xfabe) 
+0000   emplacement : 64192  (0xfac0) 
+0000   emplacement : 64194  (0xfac2) 
+0000   emplacement : 64196  (0xfac4) 
+0000   emplacement : 64198  (0xfac6) 
+0000   emplacement : 64200  (0xfac8) 
+0000   emplacement : 64202  (0xfaca) 
+0000   emplacement : 64204  (0xfacc) 
+0000   emplacement : 64206  (0xface) 
+0000   emplacement : 64208  (0xfad0) 
+0000   emplacement : 64210  (0xfad2) 
+0000   emplacement : 64212  (0xfad4) 
+0000   emplacement : 64214  (0xfad6) 
+0000   emplacement : 64216  (0xfad8) 
+0000   emplacement : 64218  (0xfada) 
+0000   emplacement : 64220  (0xfadc) 
+0000   emplacement : 64222  (0xfade) 
+20ae   emplacement : 64224  (0xfae0)  ligne n° 435	LDQ STRING0, R0 //On met cette adresse en lecture
+0b00   emplacement : 64226  (0xfae2)  ligne n° 436	TRP #READ_TRP //On l}ve la trappe
+0041   emplacement : 64228  (0xfae4) 
+6390   emplacement : 64230  (0xfae6)  ligne n° 437	LDW R3, R0 //On met le r}sultat dans R3
+6f9d   emplacement : 64232  (0xfae8)  ligne n° 439	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64234  (0xfaea)  ligne n° 440	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64236  (0xfaec)  ligne n° 441	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64238  (0xfaee)  ligne n° 443	LDW R14, (SP)+
+6cbf   emplacement : 64240  (0xfaf0)  ligne n° 444	LDW R12, (SP)+
+6bbf   emplacement : 64242  (0xfaf2)  ligne n° 445	LDW R11, (SP)+
+6abf   emplacement : 64244  (0xfaf4)  ligne n° 446	LDW R10, (SP)+
+69bf   emplacement : 64246  (0xfaf6)  ligne n° 447	LDW R9, (SP)+
+68bf   emplacement : 64248  (0xfaf8)  ligne n° 448	LDW R8, (SP)+
+67bf   emplacement : 64250  (0xfafa)  ligne n° 449	LDW R7, (SP)+
+66bf   emplacement : 64252  (0xfafc)  ligne n° 450	LDW R6, (SP)+
+65bf   emplacement : 64254  (0xfafe)  ligne n° 451	LDW R5, (SP)+
+64bf   emplacement : 64256  (0xfb00)  ligne n° 452	LDW R4, (SP)+
+62bf   emplacement : 64258  (0xfb02)  ligne n° 453	LDW R2, (SP)+
+61bf   emplacement : 64260  (0xfb04)  ligne n° 454	LDW R1, (SP)+
+60bf   emplacement : 64262  (0xfb06)  ligne n° 455	LDW R0, (SP)+
+0200   emplacement : 64264  (0xfb08)  ligne n° 456	RTS //On retourne dans le programme
+604f   emplacement : 64266  (0xfb0a)  ligne n° 461	STW R0, -(SP)
+614f   emplacement : 64268  (0xfb0c)  ligne n° 462	STW R1, -(SP)
+624f   emplacement : 64270  (0xfb0e)  ligne n° 463	STW R2, -(SP)
+644f   emplacement : 64272  (0xfb10)  ligne n° 464	STW R4, -(SP)
+654f   emplacement : 64274  (0xfb12)  ligne n° 465	STW R5, -(SP)
+664f   emplacement : 64276  (0xfb14)  ligne n° 466	STW R6, -(SP)
+674f   emplacement : 64278  (0xfb16)  ligne n° 467	STW R7, -(SP)
+684f   emplacement : 64280  (0xfb18)  ligne n° 468	STW R8, -(SP)
+694f   emplacement : 64282  (0xfb1a)  ligne n° 469	STW R9, -(SP)
+6a4f   emplacement : 64284  (0xfb1c)  ligne n° 470	STW R10, -(SP)
+6b4f   emplacement : 64286  (0xfb1e)  ligne n° 471	STW R11, -(SP)
+6c4f   emplacement : 64288  (0xfb20)  ligne n° 472	STW R12, -(SP)
+6e4f   emplacement : 64290  (0xfb22)  ligne n° 473	STW R14, -(SP)
+6c4f   emplacement : 64292  (0xfb24)  ligne n° 475	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64294  (0xfb26)  ligne n° 476	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64296  (0xfb28)  ligne n° 477	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 64298  (0xfb2a)  ligne n° 479	STRING1 RSB 100 //On cr}e la chaine de retour (100 caract}res max)
+0000   emplacement : 64300  (0xfb2c) 
+0000   emplacement : 64302  (0xfb2e) 
+0000   emplacement : 64304  (0xfb30) 
+0000   emplacement : 64306  (0xfb32) 
+0000   emplacement : 64308  (0xfb34) 
+0000   emplacement : 64310  (0xfb36) 
+0000   emplacement : 64312  (0xfb38) 
+0000   emplacement : 64314  (0xfb3a) 
+0000   emplacement : 64316  (0xfb3c) 
+0000   emplacement : 64318  (0xfb3e) 
+0000   emplacement : 64320  (0xfb40) 
+0000   emplacement : 64322  (0xfb42) 
+0000   emplacement : 64324  (0xfb44) 
+0000   emplacement : 64326  (0xfb46) 
+0000   emplacement : 64328  (0xfb48) 
+0000   emplacement : 64330  (0xfb4a) 
+0000   emplacement : 64332  (0xfb4c) 
+0000   emplacement : 64334  (0xfb4e) 
+0000   emplacement : 64336  (0xfb50) 
+0000   emplacement : 64338  (0xfb52) 
+0000   emplacement : 64340  (0xfb54) 
+0000   emplacement : 64342  (0xfb56) 
+0000   emplacement : 64344  (0xfb58) 
+0000   emplacement : 64346  (0xfb5a) 
+0000   emplacement : 64348  (0xfb5c) 
+0000   emplacement : 64350  (0xfb5e) 
+0000   emplacement : 64352  (0xfb60) 
+0000   emplacement : 64354  (0xfb62) 
+0000   emplacement : 64356  (0xfb64) 
+0000   emplacement : 64358  (0xfb66) 
+0000   emplacement : 64360  (0xfb68) 
+0000   emplacement : 64362  (0xfb6a) 
+0000   emplacement : 64364  (0xfb6c) 
+0000   emplacement : 64366  (0xfb6e) 
+0000   emplacement : 64368  (0xfb70) 
+0000   emplacement : 64370  (0xfb72) 
+0000   emplacement : 64372  (0xfb74) 
+0000   emplacement : 64374  (0xfb76) 
+0000   emplacement : 64376  (0xfb78) 
+0000   emplacement : 64378  (0xfb7a) 
+0000   emplacement : 64380  (0xfb7c) 
+0000   emplacement : 64382  (0xfb7e) 
+0000   emplacement : 64384  (0xfb80) 
+0000   emplacement : 64386  (0xfb82) 
+0000   emplacement : 64388  (0xfb84) 
+0000   emplacement : 64390  (0xfb86) 
+0000   emplacement : 64392  (0xfb88) 
+0000   emplacement : 64394  (0xfb8a) 
+0000   emplacement : 64396  (0xfb8c) 
+202a   emplacement : 64398  (0xfb8e)  ligne n° 480	LDQ STRING1, R0 //On met cette adresse en lecture
+0b00   emplacement : 64400  (0xfb90)  ligne n° 481	TRP #READ_TRP //On l}ve la trappe
+0041   emplacement : 64402  (0xfb92) 
+6590   emplacement : 64404  (0xfb94)  ligne n° 482	LDW R5, R0 //On met le r}sultat dans R5
+0a50   emplacement : 64406  (0xfb96)  ligne n° 483	JSR @atoi //On convertit en entier. R}sultat dans R3
+fbbc   emplacement : 64408  (0xfb98) 
+6f9d   emplacement : 64410  (0xfb9a)  ligne n° 485	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64412  (0xfb9c)  ligne n° 486	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64414  (0xfb9e)  ligne n° 487	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64416  (0xfba0)  ligne n° 489	LDW R14, (SP)+
+6cbf   emplacement : 64418  (0xfba2)  ligne n° 490	LDW R12, (SP)+
+6bbf   emplacement : 64420  (0xfba4)  ligne n° 491	LDW R11, (SP)+
+6abf   emplacement : 64422  (0xfba6)  ligne n° 492	LDW R10, (SP)+
+69bf   emplacement : 64424  (0xfba8)  ligne n° 493	LDW R9, (SP)+
+68bf   emplacement : 64426  (0xfbaa)  ligne n° 494	LDW R8, (SP)+
+67bf   emplacement : 64428  (0xfbac)  ligne n° 495	LDW R7, (SP)+
+66bf   emplacement : 64430  (0xfbae)  ligne n° 496	LDW R6, (SP)+
+65bf   emplacement : 64432  (0xfbb0)  ligne n° 497	LDW R5, (SP)+
+64bf   emplacement : 64434  (0xfbb2)  ligne n° 498	LDW R4, (SP)+
+62bf   emplacement : 64436  (0xfbb4)  ligne n° 499	LDW R2, (SP)+
+61bf   emplacement : 64438  (0xfbb6)  ligne n° 500	LDW R1, (SP)+
+60bf   emplacement : 64440  (0xfbb8)  ligne n° 501	LDW R0, (SP)+
+0200   emplacement : 64442  (0xfbba)  ligne n° 502	RTS //On retourne dans le programme
+604f   emplacement : 64444  (0xfbbc)  ligne n° 507	STW R0, -(SP)
+614f   emplacement : 64446  (0xfbbe)  ligne n° 508	STW R1, -(SP)
+624f   emplacement : 64448  (0xfbc0)  ligne n° 509	STW R2, -(SP)
+644f   emplacement : 64450  (0xfbc2)  ligne n° 510	STW R4, -(SP)
+654f   emplacement : 64452  (0xfbc4)  ligne n° 511	STW R5, -(SP)
+664f   emplacement : 64454  (0xfbc6)  ligne n° 512	STW R6, -(SP)
+674f   emplacement : 64456  (0xfbc8)  ligne n° 513	STW R7, -(SP)
+684f   emplacement : 64458  (0xfbca)  ligne n° 514	STW R8, -(SP)
+694f   emplacement : 64460  (0xfbcc)  ligne n° 515	STW R9, -(SP)
+6a4f   emplacement : 64462  (0xfbce)  ligne n° 516	STW R10, -(SP)
+6b4f   emplacement : 64464  (0xfbd0)  ligne n° 517	STW R11, -(SP)
+6c4f   emplacement : 64466  (0xfbd2)  ligne n° 518	STW R12, -(SP)
+6e4f   emplacement : 64468  (0xfbd4)  ligne n° 519	STW R14, -(SP)
+6c4f   emplacement : 64470  (0xfbd6)  ligne n° 521	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64472  (0xfbd8)  ligne n° 522	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64474  (0xfbda)  ligne n° 523	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+2300   emplacement : 64476  (0xfbdc)  ligne n° 524	LDQ 0, R3 //On initialise R3
+2630   emplacement : 64478  (0xfbde)  ligne n° 525	LDQ ASCII_0, R6 //On charge lavaleur ASCII de 0 
+270a   emplacement : 64480  (0xfbe0)  ligne n° 526	LDQ 10, R7 //On charge la valeur ASCII de 0 
+54a5   emplacement : 64482  (0xfbe2)  ligne n° 529	LDB R4, (R5)
+0c14   emplacement : 64484  (0xfbe4)  ligne n° 530	TST R4
+120a   emplacement : 64486  (0xfbe6)  ligne n° 531	BEQ END_LOOP_ATOI-$-2 //Si le caract}re courant est }gal } 0, on saute } la fin de la boucle
+b373   emplacement : 64488  (0xfbe8)  ligne n° 533	MUL R3, R7, R3//On multiplie par 10 la valeur de l'entier
+f464   emplacement : 64490  (0xfbea)  ligne n° 534	SUB R4, R6, R4 //On calcule la valeur d}cimale de R4
+e343   emplacement : 64492  (0xfbec)  ligne n° 535	ADD R3, R4, R3 //On ajoute cette valeur } R3
+3501   emplacement : 64494  (0xfbee)  ligne n° 537	ADQ 1, R5//On se d}place dans la chaine
+11f0   emplacement : 64496  (0xfbf0)  ligne n° 538	BMP LOOP_ATOI-$-2
+6f9d   emplacement : 64498  (0xfbf2)  ligne n° 541	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64500  (0xfbf4)  ligne n° 542	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64502  (0xfbf6)  ligne n° 543	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64504  (0xfbf8)  ligne n° 545	LDW R14, (SP)+
+6cbf   emplacement : 64506  (0xfbfa)  ligne n° 546	LDW R12, (SP)+
+6bbf   emplacement : 64508  (0xfbfc)  ligne n° 547	LDW R11, (SP)+
+6abf   emplacement : 64510  (0xfbfe)  ligne n° 548	LDW R10, (SP)+
+69bf   emplacement : 64512  (0xfc00)  ligne n° 549	LDW R9, (SP)+
+68bf   emplacement : 64514  (0xfc02)  ligne n° 550	LDW R8, (SP)+
+67bf   emplacement : 64516  (0xfc04)  ligne n° 551	LDW R7, (SP)+
+66bf   emplacement : 64518  (0xfc06)  ligne n° 552	LDW R6, (SP)+
+65bf   emplacement : 64520  (0xfc08)  ligne n° 553	LDW R5, (SP)+
+64bf   emplacement : 64522  (0xfc0a)  ligne n° 554	LDW R4, (SP)+
+62bf   emplacement : 64524  (0xfc0c)  ligne n° 555	LDW R2, (SP)+
+61bf   emplacement : 64526  (0xfc0e)  ligne n° 556	LDW R1, (SP)+
+60bf   emplacement : 64528  (0xfc10)  ligne n° 557	LDW R0, (SP)+
+0200   emplacement : 64530  (0xfc12)  ligne n° 558	RTS //On retourne dans le programme
+604f   emplacement : 64532  (0xfc14)  ligne n° 562	STW R0, -(SP)
+614f   emplacement : 64534  (0xfc16)  ligne n° 563	STW R1, -(SP)
+624f   emplacement : 64536  (0xfc18)  ligne n° 564	STW R2, -(SP)
+644f   emplacement : 64538  (0xfc1a)  ligne n° 565	STW R4, -(SP)
+654f   emplacement : 64540  (0xfc1c)  ligne n° 566	STW R5, -(SP)
+664f   emplacement : 64542  (0xfc1e)  ligne n° 567	STW R6, -(SP)
+674f   emplacement : 64544  (0xfc20)  ligne n° 568	STW R7, -(SP)
+684f   emplacement : 64546  (0xfc22)  ligne n° 569	STW R8, -(SP)
+694f   emplacement : 64548  (0xfc24)  ligne n° 570	STW R9, -(SP)
+6a4f   emplacement : 64550  (0xfc26)  ligne n° 571	STW R10, -(SP)
+6b4f   emplacement : 64552  (0xfc28)  ligne n° 572	STW R11, -(SP)
+6c4f   emplacement : 64554  (0xfc2a)  ligne n° 573	STW R12, -(SP)
+6e4f   emplacement : 64556  (0xfc2c)  ligne n° 574	STW R14, -(SP)
+6c4f   emplacement : 64558  (0xfc2e)  ligne n° 576	STW STAT, -(SP) //On empile le chainage statique
+6d4f   emplacement : 64560  (0xfc30)  ligne n° 577	STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+6d9f   emplacement : 64562  (0xfc32)  ligne n° 578	LDW BP, SP //Le sommet de la pile devient la nouvelle base
+0000   emplacement : 64564  (0xfc34)  ligne n° 579	STRING2 RSB 100 //On cr}e la chaine de retour (100 octets max)
+0000   emplacement : 64566  (0xfc36) 
+0000   emplacement : 64568  (0xfc38) 
+0000   emplacement : 64570  (0xfc3a) 
+0000   emplacement : 64572  (0xfc3c) 
+0000   emplacement : 64574  (0xfc3e) 
+0000   emplacement : 64576  (0xfc40) 
+0000   emplacement : 64578  (0xfc42) 
+0000   emplacement : 64580  (0xfc44) 
+0000   emplacement : 64582  (0xfc46) 
+0000   emplacement : 64584  (0xfc48) 
+0000   emplacement : 64586  (0xfc4a) 
+0000   emplacement : 64588  (0xfc4c) 
+0000   emplacement : 64590  (0xfc4e) 
+0000   emplacement : 64592  (0xfc50) 
+0000   emplacement : 64594  (0xfc52) 
+0000   emplacement : 64596  (0xfc54) 
+0000   emplacement : 64598  (0xfc56) 
+0000   emplacement : 64600  (0xfc58) 
+0000   emplacement : 64602  (0xfc5a) 
+0000   emplacement : 64604  (0xfc5c) 
+0000   emplacement : 64606  (0xfc5e) 
+0000   emplacement : 64608  (0xfc60) 
+0000   emplacement : 64610  (0xfc62) 
+0000   emplacement : 64612  (0xfc64) 
+0000   emplacement : 64614  (0xfc66) 
+0000   emplacement : 64616  (0xfc68) 
+0000   emplacement : 64618  (0xfc6a) 
+0000   emplacement : 64620  (0xfc6c) 
+0000   emplacement : 64622  (0xfc6e) 
+0000   emplacement : 64624  (0xfc70) 
+0000   emplacement : 64626  (0xfc72) 
+0000   emplacement : 64628  (0xfc74) 
+0000   emplacement : 64630  (0xfc76) 
+0000   emplacement : 64632  (0xfc78) 
+0000   emplacement : 64634  (0xfc7a) 
+0000   emplacement : 64636  (0xfc7c) 
+0000   emplacement : 64638  (0xfc7e) 
+0000   emplacement : 64640  (0xfc80) 
+0000   emplacement : 64642  (0xfc82) 
+0000   emplacement : 64644  (0xfc84) 
+0000   emplacement : 64646  (0xfc86) 
+0000   emplacement : 64648  (0xfc88) 
+0000   emplacement : 64650  (0xfc8a) 
+0000   emplacement : 64652  (0xfc8c) 
+0000   emplacement : 64654  (0xfc8e) 
+0000   emplacement : 64656  (0xfc90) 
+0000   emplacement : 64658  (0xfc92) 
+0000   emplacement : 64660  (0xfc94) 
+0000   emplacement : 64662  (0xfc96) 
+2334   emplacement : 64664  (0xfc98)  ligne n° 580	LDQ STRING2, R3 //On charge l'adresse dans R0
+280a   emplacement : 64666  (0xfc9a)  ligne n° 582	LDQ 10, R8  
+4f68   emplacement : 64668  (0xfc9c)  ligne n° 583	CMP R6, R8  
+130c   emplacement : 64670  (0xfc9e)  ligne n° 584	BNE NOSIGN-$-2 //Si b==10, on calcule le signe
+2700   emplacement : 64672  (0xfca0)  ligne n° 585	LDQ 0, R7 //R7 contiendra le symbole de la conversion
+0c15   emplacement : 64674  (0xfca2)  ligne n° 586	TST R5
+1404   emplacement : 64676  (0xfca4)  ligne n° 587	BGE POSIT-$-2 //On saute si (R5) >= 0
+4755   emplacement : 64678  (0xfca6)  ligne n° 588	NEG R5, R5
+272d   emplacement : 64680  (0xfca8)  ligne n° 589	LDQ ASCII_MINUS, R7
+0000   emplacement : 64682  (0xfcaa)  ligne n° 590	POSIT NOP
+6895   emplacement : 64684  (0xfcac)  ligne n° 592	NOSIGN  LDW R8, R5 //R8 <- entier } convertir
+6598   emplacement : 64686  (0xfcae)  ligne n° 593	CNVLOOP ldw R5, R8
+4266   emplacement : 64688  (0xfcb0)  ligne n° 595	SRL R6, R6
+4c59   emplacement : 64690  (0xfcb2)  ligne n° 597	ANI R5, R9, #1 //ANd Imm}diate entre r0 et 00...01 vers r4
+0001   emplacement : 64692  (0xfcb4) 
+4255   emplacement : 64694  (0xfcb6)  ligne n° 598	SRL R5, R5 //on divise l'entier par 2
+a568   emplacement : 64696  (0xfcb8)  ligne n° 599	DIV R5, R6, R8
+4655   emplacement : 64698  (0xfcba)  ligne n° 600	SHL R5, R5
+e595   emplacement : 64700  (0xfcbc)  ligne n° 601	ADD R5, R9, R5
+4666   emplacement : 64702  (0xfcbe)  ligne n° 602	SHL R6, R6
+35f6   emplacement : 64704  (0xfcc0)  ligne n° 604	ADQ -10, R5 //entier -10 -> R5
+1404   emplacement : 64706  (0xfcc2)  ligne n° 605	BGE LETTER-$-2
+353a   emplacement : 64708  (0xfcc4)  ligne n° 606	ADQ 10+ASCII_0, R5
+1102   emplacement : 64710  (0xfcc6)  ligne n° 608	BMP STKCHR-$-2
+3541   emplacement : 64712  (0xfcc8)  ligne n° 610	LETTER ADQ ASCII_A, R5
+654f   emplacement : 64714  (0xfcca)  ligne n° 612	STKCHR STW R5, -(SP)
+0c18   emplacement : 64716  (0xfccc)  ligne n° 613	TST R8
+13de   emplacement : 64718  (0xfcce)  ligne n° 614	BNE CNVLOOP-$-2
+6293   emplacement : 64720  (0xfcd0)  ligne n° 618	LDW R2, R3
+2a00   emplacement : 64722  (0xfcd2)  ligne n° 619	LDQ 0, R10
+4f7a   emplacement : 64724  (0xfcd4)  ligne n° 620	CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
+1202   emplacement : 64726  (0xfcd6)  ligne n° 621	BEQ CPYLOOP-$-2
+5732   emplacement : 64728  (0xfcd8)  ligne n° 622	STB R7, (R2)+ //On copie le signe dans le tampon
+65bf   emplacement : 64730  (0xfcda)  ligne n° 623	CPYLOOP LDW R5, (SP)+//On d}pile le chiffre
+5532   emplacement : 64732  (0xfcdc)  ligne n° 624	STB R5, (R2)+
+4ffd   emplacement : 64734  (0xfcde)  ligne n° 625	CMP SP, BP
+13f8   emplacement : 64736  (0xfce0)  ligne n° 626	BNE CPYLOOP-$-2
+2500   emplacement : 64738  (0xfce2)  ligne n° 627	LDQ NUL, R5
+5532   emplacement : 64740  (0xfce4)  ligne n° 628	STB R5, (R2)+//On termine la chaine par NUL
+6f9d   emplacement : 64742  (0xfce6)  ligne n° 630	LDW SP, BP //On r}intialise le sommet de la pile } la base courante
+6dbf   emplacement : 64744  (0xfce8)  ligne n° 631	LDW BP, (SP)+ //On d}pile l'ancienne base
+6cbf   emplacement : 64746  (0xfcea)  ligne n° 632	LDW STAT, (SP)+//On d}pile le chainage statique
+6ebf   emplacement : 64748  (0xfcec)  ligne n° 634	LDW R14, (SP)+
+6cbf   emplacement : 64750  (0xfcee)  ligne n° 635	LDW R12, (SP)+
+6bbf   emplacement : 64752  (0xfcf0)  ligne n° 636	LDW R11, (SP)+
+6abf   emplacement : 64754  (0xfcf2)  ligne n° 637	LDW R10, (SP)+
+69bf   emplacement : 64756  (0xfcf4)  ligne n° 638	LDW R9, (SP)+
+68bf   emplacement : 64758  (0xfcf6)  ligne n° 639	LDW R8, (SP)+
+67bf   emplacement : 64760  (0xfcf8)  ligne n° 640	LDW R7, (SP)+
+66bf   emplacement : 64762  (0xfcfa)  ligne n° 641	LDW R6, (SP)+
+65bf   emplacement : 64764  (0xfcfc)  ligne n° 642	LDW R5, (SP)+
+64bf   emplacement : 64766  (0xfcfe)  ligne n° 643	LDW R4, (SP)+
+62bf   emplacement : 64768  (0xfd00)  ligne n° 644	LDW R2, (SP)+
+61bf   emplacement : 64770  (0xfd02)  ligne n° 645	LDW R1, (SP)+
+60bf   emplacement : 64772  (0xfd04)  ligne n° 646	LDW R0, (SP)+
+0200   emplacement : 64774  (0xfd06)  ligne n° 647	RTS

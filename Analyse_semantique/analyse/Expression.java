@@ -87,6 +87,7 @@ public class Expression {
 		}
 		
 		//Si le fils est un operateur, ce n'est pas une unitï¿½
+		System.out.println(exp.getChildCount());
 		if(ops.contains(exp.getChild(0).getText())){
 			//On rï¿½cupï¿½re le type du fils gauche (rï¿½cursivitï¿½)
 			left = recursiveComputeType(pile, (CommonTree) exp.getChild(0));
@@ -205,15 +206,15 @@ public class Expression {
 			String type_left = left.computeType(pile);
 			String type_right = right.computeType(pile);
 						
-			//On vérifie que les deux fils soient du même type et qu'ils sont primitifs
+			//On vï¿½rifie que les deux fils soient du mï¿½me type et qu'ils sont primitifs
 			if(!(type_left.equals(type_right) && (type_left.equals("int") || type_left.equals("string")))){
-				throw new ErreurSemantique(unit.getLine(), "Les deux elements compares ne sont pas du même type");
+				throw new ErreurSemantique(unit.getLine(), "Les deux elements compares ne sont pas du mï¿½me type");
 			}
 			
 			return "int";
 		}
 		
-		//Si jamais c'est un appel de fonction, on récupère le fils droit (nom de la fonction)
+		//Si jamais c'est un appel de fonction, on rï¿½cupï¿½re le fils droit (nom de la fonction)
 		if(unit.getText().equals("FUNC_CALL"))
 			unit = (CommonTree) unit.getChild(0);
 		
@@ -222,12 +223,12 @@ public class Expression {
 			return computeTypeIf(pile, unit);
 		}
 		
-		//Si c'est une affectation, on renvoie le type de la variable. Concordance déjà checkée.
+		//Si c'est une affectation, on renvoie le type de la variable. Concordance dï¿½jï¿½ checkï¿½e.
 		if(unit.getText().equals(":=")){
 			return findUnitType(pile, (CommonTree) unit.getChild(0));
 		}
 		
-		//Si c'est un let, on appelle une fonction de calcul spécifique
+		//Si c'est un let, on appelle une fonction de calcul spï¿½cifique
 		if(unit.getText().equals("let")){
 			return computeTypeLet(pile, unit);
 		}
@@ -253,9 +254,9 @@ public class Expression {
 	public String computeTypeLet(ArrayList<TDS> pile, CommonTree lettree) throws ErreurSemantique{
 		String type="UNDEFINED";
 		
-		//On vérifie que let ait le fils 'in'
+		//On vï¿½rifie que let ait le fils 'in'
 		if(lettree.getChildCount() == 2){
-			//On récupère la dernière expression du 'in'
+			//On rï¿½cupï¿½re la derniï¿½re expression du 'in'
 			CommonTree last = (CommonTree) lettree.getChild(1).getChild(lettree.getChild(1).getChildCount()-1);
 			
 			//On analyse le type du let
@@ -276,7 +277,7 @@ public class Expression {
 		//On calcule le type du then
 		CommonTree then_tree = (CommonTree) iftree.getChild(1).getChild(iftree.getChild(1).getChildCount()-1);
 		
-		//Le type est donné par la dernière expression
+		//Le type est donnï¿½ par la derniï¿½re expression
 		String then_type = findUnitType(pile, then_tree);
 		
 		//On calcule le type du else s'il y en a un
@@ -284,14 +285,14 @@ public class Expression {
 			
 			CommonTree else_tree = (CommonTree) iftree.getChild(2).getChild(iftree.getChild(2).getChildCount()-1);
 			
-			//Le type est donné par la dernière expression
+			//Le type est donnï¿½ par la derniï¿½re expression
 			String else_type = findUnitType(pile, else_tree);
 			
 			//On calcule la correspondance des deux : s'ils sont identiques, alors on renvoie ce type
 			type=concatType(pile, then_type, else_type);
 			
 		}else{
-			//S'il n'y a pas de else, le type est UNDEFINED => pas sûr d'avoir un retour
+			//S'il n'y a pas de else, le type est UNDEFINED => pas sï¿½r d'avoir un retour
 		}
 		
 		return type;
@@ -317,7 +318,7 @@ public class Expression {
 			throw new ErreurSemantique(unit.getLine(), "Acces a une case d'un type primitif");
 		}
 		
-		//On regarde si l'unité a des fils
+		//On regarde si l'unitï¿½ a des fils
 		if(unit.getChildCount() != 0){
 
 			//On regarde si c'est un tableau ou une structure
@@ -332,7 +333,7 @@ public class Expression {
 				//On rï¿½cupï¿½re le type des ï¿½lï¿½ments du tableau
 				return computetypeTableau(pile, unit, ((FieldTypeDefTableau)typedef));
 			}else if(typedef.getFieldType().equals(FieldType.FieldTypeDefSimple)){
-				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+				throw new ErreurSemantique(unit.getLine(), "Accï¿½s ï¿½ une case d'une variable qui n'est pas un tableau");
 			}
 		
 		//Si l'unitï¿½ n'a pas de fils, on renvoie le type rï¿½cupï¿½rï¿½.
@@ -355,7 +356,7 @@ public class Expression {
 			unit = (CommonTree) unit.getChild(1);
 		}
 
-		//Si on reçoit "CELL", on erécupère le parent
+		//Si on reï¿½oit "CELL", on erï¿½cupï¿½re le parent
 		if(unit==null)return "UNDEFINED";
 				
 		//On regarde le nombre de fils. S'il n'y en a qu'un, il n'y a qu'un simple accï¿½s ï¿½ une case et on renvoie le type du tableau
@@ -378,7 +379,7 @@ public class Expression {
 				//Si le type n'a pas ï¿½tï¿½ trouvï¿½, on renvoie UNDEF
 				
 				if(typedef_elem == null)
-					throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+					throw new ErreurSemantique(unit.getLine(), "Accï¿½s ï¿½ une case d'une variable qui n'est pas un tableau");
 				
 				if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefStructure)){
 					return computeTypeChamp(pile, unit, (FieldTypeDefStructure) typedef_elem);
@@ -386,7 +387,7 @@ public class Expression {
 				
 				//On vï¿½rifie que c'est bien une dï¿½finition de tableau. Sinon, on ne pourrait pas y accï¿½der par []
 				if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau))
-					throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+					throw new ErreurSemantique(unit.getLine(), "Accï¿½s ï¿½ une case d'une variable qui n'est pas un tableau");
 				
 				
 				//Maintenant, on va vï¿½rifier la mï¿½me chose pour le type des ï¿½lï¿½ments du tableau suivant.
@@ -394,17 +395,17 @@ public class Expression {
 			}
 			
 			if(typedef_elem == null){
-				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+				throw new ErreurSemantique(unit.getLine(), "Accï¿½s ï¿½ une case d'une variable qui n'est pas un tableau");
 			}
 			
-			//On vérifie si c'est une structure
+			//On vï¿½rifie si c'est une structure
 			if(typedef_elem.getFieldType().equals(FieldType.FieldTypeDefStructure)){
 				return type= computeTypeChamp(pile, (CommonTree) unit.getChild(i+1), (FieldTypeDefStructure) typedef_elem);
 			}
 			
 			//On vï¿½rifie que c'est bien une dï¿½finition de tableau. Sinon, on ne pourrait pas y accï¿½der par []
 			if(!typedef_elem.getFieldType().equals(FieldType.FieldTypeDefTableau)){
-				throw new ErreurSemantique(unit.getLine(), "Accès à une case d'une variable qui n'est pas un tableau");
+				throw new ErreurSemantique(unit.getLine(), "Accï¿½s ï¿½ une case d'une variable qui n'est pas un tableau");
 			}
 			
 			//Pour le dernier fils, si celui-ci est un tableau, on renvoi son type.
@@ -424,7 +425,7 @@ public class Expression {
 		//On regarde s'il a un frï¿½re (accï¿½s ï¿½ struct ou tab)
 		CommonTree cursor = null;
 		
-		//On vérifie si on a un field ou son fils
+		//On vï¿½rifie si on a un field ou son fils
 		if(unit.getChild(0).getText().equals("FIELD")){
 			cursor = (CommonTree) unit.getChild(0);
 		}else{
@@ -435,14 +436,14 @@ public class Expression {
 		//on boucle tant que le curseur a un fils droit
 		while(cursor.getChild(1) != null){
 			type_champ = ((FieldTypeDefStructure) ftd).getChampType(cursor.getChild(0).getText());
-			//On récupère le champ à droite
+			//On rï¿½cupï¿½re le champ ï¿½ droite
 			ftd = (FieldTypeDef) TDS.findIn(pile, type_champ, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
 			
 			if(ftd == null){
-				throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
+				throw new ErreurSemantique(unit.getLine(), "Accï¿½s au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
 			}
 				
-			//On vérifie si on a un tableau
+			//On vï¿½rifie si on a un tableau
 			if(ftd.getFieldType().equals(FieldType.FieldTypeDefTableau)){
 				CommonTree ct = (CommonTree) cursor.getChild(1);
 				if(unit.getChild(0).getText().equals("FIELD")) ct = (CommonTree) cursor.getChild(1);
@@ -456,7 +457,7 @@ public class Expression {
 		else if(ftd != null) type = ((FieldTypeDefStructure) ftd).getChampType(cursor.getText());
 				
 		if(type.equals("UNDEFINED"))
-			throw new ErreurSemantique(unit.getLine(), "Accès au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
+			throw new ErreurSemantique(unit.getLine(), "Accï¿½s au champ inexistant : '"+cursor.getChild(0).getText()+"' de la structure "+unit.getText());
 				
 		return type;
 	}
