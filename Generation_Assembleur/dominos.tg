@@ -1,0 +1,13 @@
+let
+	type domino = {g:int, d:int, c:int}
+	type dominosPizza = array of domino
+	var unDomino := domino{g:=4,d:=1, c:=42}
+	var tousLesDominos := dominosPizza [49] of unDomino
+in
+	printiln(tousLesDominos[0].g);
+	printiln(tousLesDominos[0].d);
+	printiln(tousLesDominos[5].c);
+	tousLesDominos[2].g := tousLesDominos[4].c;
+	printiln(tousLesDominos[2].g)
+
+end

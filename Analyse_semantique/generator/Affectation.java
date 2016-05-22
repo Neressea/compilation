@@ -8,6 +8,8 @@ import analyse.Field;
 import analyse.FieldStructure;
 import analyse.FieldTableau;
 import analyse.FieldType;
+import analyse.FieldTypeDefStructure;
+import analyse.FieldTypeDefTableau;
 import analyse.FieldVariable;
 import analyse.TDS;
 
@@ -59,6 +61,23 @@ public class Affectation extends Instruction{
 			
 			//On modifie l'adresse de R1 par le saut
 			ca.append("ADD R1, R3, R1");
+			
+			if (node.getChildCount()==2 && node.getChild(0).getChild(1).getText().equals("FIELD")) {
+				FieldTableau ft = (FieldTableau) TDS.findIn(pile, node.getChild(0).getText(), FieldType.FieldTableau);
+				FieldTypeDefTableau ftdf = (FieldTypeDefTableau) TDS.findIn(pile, ft.getType(), FieldType.FieldTypeDefTableau);
+				String type_e = ftdf.getTypeElements();
+				FieldTypeDefStructure ftds = (FieldTypeDefStructure) TDS.findIn(pile, type_e, FieldType.FieldTypeDefStructure);
+				int num = 0;
+				
+				for (Couple<String, String> c : ftds.getNomsChampsEtTypes()) {
+					if(c.getLeft().equals(node.getChild(0).getChild(1).getChild(0).getText())){
+						break;
+					}else
+						num++;
+				}
+				
+				ca.append("ADQ "+(num * 2)+", R1");
+			}
 			
 			//On restaure R3
 			ca.append("LDW R3, R4");

@@ -143,7 +143,8 @@ STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #1
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -154,7 +155,8 @@ JSR @println
 //Dibut de l'acchs au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -164,7 +166,8 @@ LDW R0, R3
 JSR @println
 //Dibut de l'acchs au tableau
 LDW R3, #9
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -182,7 +185,8 @@ LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mimoire
 //Dibut de l'acchs au tableau
 LDW R3, #15
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -196,7 +200,8 @@ JSR @printiln
 //Dibut de l'acchs au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -262,7 +267,8 @@ STW R3, -(R15) //On empile le resultat de l'operande droite
 LDW R3, #1
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -276,7 +282,8 @@ JSR @printiln
 //Dibut de l'acchs au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -394,7 +401,8 @@ STW R3, -(R15) //On empile le paramhtre
 //Dibut de l'acchs au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
@@ -465,7 +473,8 @@ LDW R3, R4
 STW R3, (R1) //On stocke le resultat dans la mimoire
 //Dibut de l'acchs au tableau
 LDW R3, #0
-ADD R3, R3, R3
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff0 //On charge l'adresse de l'idf dans R1
 LDW R1, (R1)
 ADD R1, R3, R1
