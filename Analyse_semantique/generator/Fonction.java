@@ -24,13 +24,13 @@ public class Fonction extends Instruction{
 		CommonTree params_effectifs = (node.getChildCount() == 1) ? null : (CommonTree) node.getChild(1);
 		
 		if(function_name.equals("print") || function_name.equals("println")){
-			//On récupère le paramètre que veut afficher le programmeur
+			//On rï¿½cupï¿½re le paramï¿½tre que veut afficher le programmeur
 			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
-			//Le résultat est foutu dans R3 : adresse de la chaine
+			//Le rï¿½sultat est foutu dans R3 : adresse de la chaine
 			ea.genererCode(pile);
 						
-			//On le transfère dans R0
+			//On le transfï¿½re dans R0
 			ca.append("LDW R0, R3");
 			
 			//On charge la trappe WRITE dans WR
@@ -38,25 +38,25 @@ public class Fonction extends Instruction{
 			
 		}else if(function_name.equals("printi") || function_name.equals("printiln")){
 			
-			//On récupère le paramètre que veut afficher le programmeur
+			//On rï¿½cupï¿½re le paramï¿½tre que veut afficher le programmeur
 			ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
-			//Le résultat est foutu dans R3
+			//Le rï¿½sultat est foutu dans R3
 			ea.genererCode(pile);
 			
-			//On le déplace dans R5
+			//On le dï¿½place dans R5
 			ca.append("LDW R5, R3");
 			
-			//On considère que c'est de la base 10
+			//On considï¿½re que c'est de la base 10
 			ca.append("LDQ 10, R6");
 			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
 			ca.append("JSR @itoa");
 			
-			//Puis on met le résultat dans R0
+			//Puis on met le rï¿½sultat dans R0
 			ca.append("LDW R0, R3");
 			
-			//On se branche sur le sous-programme d'écriture
+			//On se branche sur le sous-programme d'ï¿½criture
 			ca.append("JSR @"+function_name);
 			
 		}else if(function_name.equals("read")){
@@ -69,22 +69,22 @@ public class Fonction extends Instruction{
 			
 		}else if(function_name.equals("itoa")){
 			
-			//On récupère le paramètre que veut convertir le programmeur
+			//On rï¿½cupï¿½re le paramï¿½tre que veut convertir le programmeur
 			ExpressionArithmetique entier = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
-			//Le résultat est foutu dans R3
+			//Le rï¿½sultat est foutu dans R3
 			entier.genererCode(pile);
 			
-			//On le déplace dans R5
+			//On le dï¿½place dans R5
 			ca.append("LDW R5, R3");
 			
 			//On charge la base que l'utilisateur veut utiliser
 			ExpressionArithmetique base_op = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(1), this.generator);
 			
-			//Résultat dans R3
+			//Rï¿½sultat dans R3
 			base_op.genererCode(pile);
 			
-			//On le déplace dans R6
+			//On le dï¿½place dans R6
 			ca.append("LDW R6, R3");
 			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
@@ -94,13 +94,13 @@ public class Fonction extends Instruction{
 			
 			//atoi prend une chaine et la convertit en int base 10
 			
-			//On récupère le paramètre que veut convertir le programmeur
+			//On rï¿½cupï¿½re le paramï¿½tre que veut convertir le programmeur
 			ExpressionArithmetique chaine = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(0), this.generator);
 			
-			//Le résultat est foutu dans R3
+			//Le rï¿½sultat est foutu dans R3
 			chaine.genererCode(pile);
 			
-			//On le déplace dans R5
+			//On le dï¿½place dans R5
 			ca.append("LDW R5, R3");
 			
 			//On appelle itoa pour obtenir une chaine (@ de la chaine dans R3)
@@ -110,24 +110,25 @@ public class Fonction extends Instruction{
 			//Autrement, c'est une fonction du programmeur
 			ca.append("//CALL : "+function_name);
 			
-			//On empile les paramètres s'il y en a 
+			//On empile les paramï¿½tres s'il y en a 
 			if(params_effectifs != null){
 				for (int i = params_effectifs.getChildCount() - 1; i >= 0 ; i--) {
 					ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i), this.generator);
 					ea.genererCode(pile);
-					//On empile le paramètre
-					ca.append("STW R3, -(R15) //On empile le paramètre");
+					//On empile le paramï¿½tre
+					if (params_effectifs.getChildCount()%2 != 1)
+					ca.append("STW R3, -(R15) //On empile le paramï¿½tre");
 				}
 			}
 			
 			//On appelle la fonction
 			ca.append("JSR @"+function_name);
 			
-			//On dépile les paramètres s'il y en a 
+			//On dï¿½pile les paramï¿½tres s'il y en a 
 			if(params_effectifs != null){
 				for (int i = 0; i < params_effectifs.getChildCount(); i++) {
-					//On dépile le paramètre
-					ca.append("ADQ 2, R15 //On dépile le paramètre");
+					//On dï¿½pile le paramï¿½tre
+					ca.append("ADQ 2, R15 //On dï¿½pile le paramï¿½tre");
 				}
 			}
 		}
@@ -153,9 +154,9 @@ public class Fonction extends Instruction{
 	 */
 	public static String closeEnv(){		
 		String code = "//On ferme l'environnement courant\n";
-		code += "LDW SP, BP //On réintialise le sommet de la pile à la base courante\n";
-		code += "LDW BP, (SP)+ //On dépile l'ancienne base\n";
-		code += "LDW STAT, (SP)+//On dépile le chainage statique\n";
+		code += "LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante\n";
+		code += "LDW BP, (SP)+ //On dï¿½pile l'ancienne base\n";
+		code += "LDW STAT, (SP)+//On dï¿½pile le chainage statique\n";
 		
 		return code;
 	}
@@ -167,7 +168,7 @@ public class Fonction extends Instruction{
 		
 		String code = "//On sauvegarde les registres\n";
 		for (int i = 0; i < 15; i++) {
-			if( i != 3 && i!= 13 ) //Le registre 3 est utilisé pour les retours
+			if( i != 3 && i!= 13 ) //Le registre 3 est utilisï¿½ pour les retours
 				code += "STW R"+i+", -(SP)\n";
 		}
 		
@@ -175,13 +176,13 @@ public class Fonction extends Instruction{
 	}
 	
 	/**
-	 * Recharge les registres après la sortie dela fonction
+	 * Recharge les registres aprï¿½s la sortie dela fonction
 	 */
 	public static String reloadRegisters(){
 		
 		String code = "//On recharge les registres\n";
 		for (int i = 14; i>=0; i--) {
-			if( i != 3 && i != 13 ) //Le registre 3 est utilisé pour les retours
+			if( i != 3 && i != 13 ) //Le registre 3 est utilisï¿½ pour les retours
 				code += "LDW R"+i+", (SP)+\n";
 		}
 		

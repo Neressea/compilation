@@ -54,7 +54,7 @@ in
 	print("Entrez une nouvelle chaine : ");
 	what_did_I_just_read := read();
 	x := "a" = "a";
-	double_print(row[x], what_did_I_just_read);
+	double_print(x, what_did_I_just_read);
 
 	println(get_string());
 	printiln(atoi(faux_entier));
