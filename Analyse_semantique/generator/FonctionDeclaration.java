@@ -16,7 +16,7 @@ public class FonctionDeclaration extends Instruction{
 	public void genererCode(ArrayList<TDS> pile) {
 		
 		CodeAss ca = CodeAss.getCodeSingleton();
-		//On écrit une fonction
+		//On ï¿½crit une fonction
 		ca.setWritingFunc(true);
 		
 		String func_name = node.getChild(0).getText();
@@ -24,7 +24,13 @@ public class FonctionDeclaration extends Instruction{
 		ca.append(Fonction.saveRegisters());
 		ca.append(Fonction.openEnv());
 		
+		if(node.getChildCount() == 3)
+		
 		generator.genererChild((CommonTree) node.getChild(2));
+		
+		else
+			
+			generator.genererChild((CommonTree) node.getChild(1));
 		
 		ca.append(Fonction.closeEnv());
 		ca.append(Fonction.reloadRegisters());

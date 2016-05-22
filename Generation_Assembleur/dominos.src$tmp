@@ -165,9 +165,9 @@ JSR @itoa
 LDW R0, R3
 JSR @printiln
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 
 //*** On exit le programme principal ***//
 TRP #EXIT_TRP //On quitte l'exicution
@@ -203,9 +203,9 @@ TRP #WRITE_TRP //On lhve la trappe
 LDQ SAUT_DE_LIGNE, R0
 TRP #WRITE_TRP
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -244,9 +244,9 @@ STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 TRP #WRITE_TRP //On lhve la trappe
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -287,9 +287,9 @@ TRP #WRITE_TRP //On lhve la trappe
 LDQ SAUT_DE_LIGNE, R0
 TRP #WRITE_TRP
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -328,9 +328,9 @@ STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 TRP #WRITE_TRP //On lhve la trappe
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -372,9 +372,9 @@ LDQ STRING0, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lhve la trappe
 LDW R3, R0 //On met le risultat dans R3
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -418,9 +418,9 @@ TRP #READ_TRP //On lhve la trappe
 LDW R5, R0 //On met le risultat dans R5
 JSR @atoi //On convertit en entier. Risultat dans R3
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -474,9 +474,9 @@ ADQ 1, R5//On se diplace dans la chaine
 BMP LOOP_ATOI-$-2
 END_LOOP_ATOI
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+
@@ -563,9 +563,9 @@ BNE CPYLOOP-$-2
 LDQ NUL, R5
 STB R5, (R2)+//On termine la chaine par NUL
 //On ferme l'environnement courant
-LDW SP, BP //On riintialise le sommet de la pile ` la base courante
-LDW BP, (SP)+ //On dipile l'ancienne base
-LDW STAT, (SP)+//On dipile le chainage statique
+LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
+LDW BP, (SP)+ //On do?=pile l'ancienne base
+LDW STAT, (SP)+//On do?=pile le chainage statique
 //On recharge les registres
 LDW R14, (SP)+
 LDW R12, (SP)+

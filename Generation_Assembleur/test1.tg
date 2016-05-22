@@ -1,0 +1,34 @@
+let
+
+	var N :int := 8
+	type intArray = array of int
+	var row := intArray [ 8 ] of 0
+	var col := intArray [ 8 ] of 0
+	var diag1 := intArray [ 15 ] of 0
+	var diag2 := intArray [ 15 ] of 0
+
+	function printboard() = 
+		(for i := 0 to N-1
+		  do (for j := 0 to N-1
+			do print(if col[i]=j then " 0" else " ." );
+			   println(" "));
+			   println(" ")
+		)
+
+	function try(c:int,s : string, e : int) = 
+		(c := c+1;
+printiln(c);
+		if c=N then printboard()
+		else for r := 0 to N-1
+			do if row[r]=0 & 
+				diag1[r+c]=0 & diag2[r+7-c]=0
+			   then (row[r]:=0 ; diag1[r+c]:=1;
+			   	     diag2[r+7-c] := 1; col[c]:=r;
+			   	     try(c,"coucou", 0);
+			   	     row[r]:=0; diag1[r+c]:=0;
+			   	     diag2[r+7-c]:=0)
+		)
+	
+
+
+in try(row[0],"coucou", 0) end
