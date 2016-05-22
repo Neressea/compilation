@@ -39,7 +39,7 @@ public class TableauDeclaration extends Instruction{
 			
 			String t = f_type.getTypeElements();
 			Field ffXIV = TDS.findIn(pile, t, FieldType.FieldTypeDefSimple, FieldType.FieldTypeDefStructure, FieldType.FieldTypeDefTableau);
-			if (ffXIV.getFieldType().equals(FieldType.FieldTypeDefStructure)) {
+			if (ffXIV != null && ffXIV.getFieldType().equals(FieldType.FieldTypeDefStructure)) {
 				FieldTypeDefStructure ffXV = (FieldTypeDefStructure) ffXIV;
 				int size = Integer.parseInt(node.getChild(1).getChild(0).getChild(0).getText());
 				int taille = size * ffXV.getNomsChampsEtTypes().size();

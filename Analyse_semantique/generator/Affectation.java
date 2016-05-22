@@ -62,7 +62,7 @@ public class Affectation extends Instruction{
 			//On modifie l'adresse de R1 par le saut
 			ca.append("ADD R1, R3, R1");
 			
-			if (node.getChildCount()==2 && node.getChild(0).getChild(1).getText().equals("FIELD")) {
+			if (node.getChild(0).getChildCount()==2 && node.getChild(0).getChild(1).getText().equals("FIELD")) {
 				FieldTableau ft = (FieldTableau) TDS.findIn(pile, node.getChild(0).getText(), FieldType.FieldTableau);
 				FieldTypeDefTableau ftdf = (FieldTypeDefTableau) TDS.findIn(pile, ft.getType(), FieldType.FieldTypeDefTableau);
 				String type_e = ftdf.getTypeElements();
