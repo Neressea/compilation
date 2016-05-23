@@ -46,29 +46,14 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R3, #3
-STW R3, -(R15) //On empile la valeur diclarie
 LDW R3, #1
 STW R3, -(R15) //On empile la valeur diclarie
-LDW R3, #1
-STW R3, -(R15) //On empile la valeur diclarie
-LDW R3, #1
+LDW R3, #2
 STW R3, -(R15) //On empile la valeur diclarie
 JSR @readi
 STW R3, -(R15) //On empile la valeur diclarie
-//CALL : fibo
-<<<<<<< HEAD
-=======
-LDW R3, #0
-STW R3, -(R15) //On empile le paramo?=tre
-<<<<<<< HEAD
-LDW R3, #4
-=======
-LDW R3, #23
->>>>>>> bf7ed161669851531f89ef9437cf064fb8afe7a7
-STW R3, -(R15) //On empile le paramo?=tre
->>>>>>> b0de3bddcdef81bcb6a57d679e88c99f2d99a4bf
-JSR @fibo
+//CALL : facto
+JSR @facto
 //On ferme l'environnement courant
 LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
 LDW BP, (SP)+ //On do?=pile l'ancienne base
@@ -82,7 +67,7 @@ TRP #EXIT_TRP //On quitte l'exicution
 
 /////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
 
-fibo
+facto
 //On sauvegarde les registres
 STW R0, -(SP)
 STW R1, -(SP)
@@ -103,77 +88,35 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, R3
-LDW R3, #0
-CMP R2, R3
-BEQ 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, R3
-LDW R3, #1
-CMP R2, R3
-BEQ 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
-LDW R2, (R15)+
-LDW R3, (R15)+
-TST R2
-BNE 4
-TST R3
-BEQ 2
-LDQ 1, R3
-JMP #4
-LDQ 0, R3
-STW R3, -(R15)
-LDW R3, (R15)+
-
-TST R3
-BEQ else0-$-2
-then0 //etiquette then
-LDW R3, #1
-LDW R5, R3
-LDQ 10, R6
-JSR @itoa
-LDW R0, R3
-JSR @printiln
-BMP endif0-$-2
-else0 //etiquette else
 LDW R3, #2
 STW R3, -(R15) //On empile valeur initiale du compteur de boucle
 boucle0 //Etiquette de la boucle
 LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
+LDW R2, (R15)+ //On depile l'operande droite
+MUL R2, R3, R3
+LDW R5, R1
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mimoire
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #1
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
 LDW R5, R1
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mimoire
 LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R5, R1
+STW R3, (R1) //On stocke le resultat dans la mimoire
 LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mimoire
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R5, R1
-LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mimoire
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #1
+LDW R2, (R15)+ //On depile l'operande droite
+ADD R2, R3, R3
+LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
 LDW R2, (R1) //On charge le compteur dans R2
 SUB R3, R2, R3
 BEQ sortie_boucle0-$-2
@@ -182,8 +125,7 @@ STW R2, (R1) //On met a jour le compteur en memoire
 BMP boucle0-$-2
 sortie_boucle0
 LDW R3, (R15)+ //on dipile le compteur
-endif0 //etiquette fin de if
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R5, R3
 LDQ 10, R6
