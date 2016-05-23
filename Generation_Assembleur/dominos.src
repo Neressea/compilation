@@ -128,7 +128,7 @@ JSR @itoa
 LDW R0, R3
 JSR @printiln
 //Début de l'accès au tableau
-LDW R3, #4
+LDW R3, #5
 LDQ 2, R9
 MUL R3, R9, R3
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
@@ -141,10 +141,14 @@ LDW R5, R1
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R4, R3
 LDW R5, R1
-LDW R3, #2
+LDW R3, #3
 LDW R1, R5
 ADD R3, R3, R3
 LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 3, R7
+MUL R3, R7, R3
 ADD R1, R3, R1
 ADQ 0, R1
 LDW R3, R4

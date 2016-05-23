@@ -116,7 +116,7 @@ public class Fonction extends Instruction{
 					ExpressionArithmetique ea = new ExpressionArithmetique((CommonTree) params_effectifs.getChild(i), this.generator);
 					ea.genererCode(pile);
 					//On empile le param�tre
-					if (params_effectifs.getChildCount()%2 != 1)
+					//if (params_effectifs.getChildCount()%2 != 1)
 					ca.append("STW R3, -(R15) //On empile le param�tre");
 				}
 			}
