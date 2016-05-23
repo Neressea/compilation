@@ -1037,8 +1037,13 @@ f01a   emplacement : 63482  (0xf7fa)
 6380   emplacement : 63502  (0xf80e)  ligne n° 67	LDW R3, #0
 0000   emplacement : 63504  (0xf810) 
 634f   emplacement : 63506  (0xf812)  ligne n° 68	STW R3, -(R15) //On empile le paramo?=tre
+<<<<<<< HEAD
 6380   emplacement : 63508  (0xf814)  ligne n° 69	LDW R3, #4
 0004   emplacement : 63510  (0xf816) 
+=======
+6380   emplacement : 63508  (0xf814)  ligne n° 69	LDW R3, #23
+0017   emplacement : 63510  (0xf816) 
+>>>>>>> bf7ed161669851531f89ef9437cf064fb8afe7a7
 634f   emplacement : 63512  (0xf818)  ligne n° 70	STW R3, -(R15) //On empile le paramo?=tre
 0a50   emplacement : 63514  (0xf81a)  ligne n° 71	JSR @fibo
 f82c   emplacement : 63516  (0xf81c) 
