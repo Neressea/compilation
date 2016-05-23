@@ -1,0 +1,8 @@
+Field
+- ID
+- nature (tableau, struct, fct, var, type)
+- type (ID)
+- List <Couple<ID,type>> (f,Os
+- borne-sup (tab)
+- valeur du saut
+- taille minime

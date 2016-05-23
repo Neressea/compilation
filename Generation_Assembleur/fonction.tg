@@ -12,6 +12,9 @@ let
 	type structure = {i:int, s:string, j:int}
 	var test_affect := structure{i:=54, s:="eh ouais", j:=10}
 
+	var test_struct := structure{i:=1+2, s:="78", j:=5}
+	var another_struct := structure{i:=0, s:="0", j:=0}
+
 	function double_print(a : int, b : string) = (
 		println(b);
 		printiln(a)
@@ -25,10 +28,10 @@ let
 		"I like kebabs."
 	)
 
-	function get_tab() : string = strs[5]
+	function get_tab() : int = row[5]
 
 in
-	println(get_tab());
+	printiln(get_tab());
 	strs[x] := "pacheau.";
 	println(strs[x+1]);
 	println(strs[x]);
@@ -64,16 +67,19 @@ in
 	print("Entrez un entier : ");
 	printiln(readi());
 
+	another_struct := test_struct;
+	printiln(test_struct.j);
+
 	x := let
-			var test_struct := structure{i:=1+2, s:="78", j:=5}
-			var another_struct := structure{i:=0, s:="0", j:=0}
+			var test_struct_let := structure{i:=1+2, s:="78", j:=5}
+			var another_struct_let := structure{i:=0, s:="0", j:=0}
 
 			function retour_struct() : structure = (
-				test_struct
+				test_struct_let
 			)
 		 in 
-		 	another_struct := retour_struct();
-		 	test_struct.j
+		 	another_struct_let := retour_struct();
+		 	another_struct_let.j
 		 end;
 
 	printiln(x);

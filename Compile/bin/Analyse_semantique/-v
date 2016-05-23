@@ -1,0 +1,384 @@
+/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+
+//*** On définit les adresses utiles ***//
+RESETA 	equ 0xEFFA 	// adresse de lancement du programme
+LOADA  	equ 0xEFFA      // adresse de chargement du programme
+STACKA equ 4096 //Adresse de base de la pile
+
+//*** On définit les registres usuels ***//
+SP equ R15 //Reigstre de sommet de pile
+WR equ R14 //Registre pour lever les traps
+BP equ R13 //Registre de base de l'environnement courant
+
+//*** On définit les trappes usuelles ***//
+EXIT_TRP equ 64 //Trappe pour quitter le programme
+READ_TRP equ 65 //Trappe de lecture sur l'entrée standard
+WRITE_TRP equ 66 //Trappe d'écriture sur la sortie standard
+
+NIL equ 0 //Base initiale
+NUL equ 0 //Caractère de fin de chaine
+
+ORG   LOADA	// chargement en LOADA
+START main	// demarre à main
+
+/////// ------------------------------  En-tete du programme  ------------------------------ ///////
+
+main LDW SP, #STACKA //On charge la base de la pile
+LDW BP, #NIL //Base initiale nulle
+
+//*** Saut de ligne ***//
+SAUT_DE_LIGNE string ""
+LDQ SAUT_DE_LIGNE, R2
+LDQ 10, R3 //Saut de ligne
+LDQ NUL, R4 //Fin de chaine
+STB R3, (R2)+
+STB R4, (R2)
+STRING2 string "ceci est une string"
+LDW R3, #STRING2
+STW R3, -(R15) //On empile la valeur déclarée
+STRING3 string "ceci en est une autre"
+LDW R3, #STRING3
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #0
+STW R3, -(R15) //On empile la valeur déclarée
+STRING4 string "COUCOU1"
+LDW R3, #STRING4
+LDW R0, R3
+JSR @print
+STRING5 string "COUCOU2"
+LDW R3, #STRING5
+LDW R0, R3
+JSR @print
+LDW R3, #7689
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #9999
+LDW R2, (R15)+ //On depile l'operande droite
+SUB R2, R3, R3
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @print
+LDW R3, #100
+STW R3, -(R15) //On empile le resultat de l'operande droite
+LDW R3, #10
+LDW R2, (R15)+ //On depile l'operande droite
+DIV R2, R3, R3
+LDW R5, R3
+LDW R3, #16
+LDW R6, R3
+JSR @itoa
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+JSR @read
+LDW R0, R3
+JSR @print
+LDW R1, #0x0ffe //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @print
+JSR @read
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R3, #5
+LDW R2, R3
+LDW R3, #5
+CMP R2, R3
+BEQ 4
+LDQ 0, R3
+JMP #4
+LDQ 1, R3
+STW R3, -(R15)
+
+LDW R3, (R15)+
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//CALL : do_print
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le paramètre
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+STW R3, -(R15) //On empile le paramètre
+JSR @do_print
+LDW R5, (R15)+ //On empile le paramètre
+LDW R5, (R15)+ //On empile le paramètre
+//*** On exit le programme principal ***//
+TRP #EXIT_TRP //On quitte l'exécution
+
+/////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
+
+do_print
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+
+LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R0, R3
+JSR @print
+LDW R1, #0x0ffc //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printi
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+
+RTS
+/////// ------------------------------  Fonctions du langage  ------------------------------ ///////
+
+//*** print(string) : affiche le texte passé en paramètre ***//
+print 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On réintiialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+//*** printi(int) : affiche l'entier passé en paramètre ***//
+printi 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+TRP #WRITE_TRP //On lève la trappe
+LDQ SAUT_DE_LIGNE, R0
+TRP #WRITE_TRP
+//On ferme l'environnement courant
+LDW SP, BP //On réintiialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans la suite de l'exécution
+//*** int read() : lit un entier sur l'entrée standard ***//
+read 
+//On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+STRING0 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING0, R0 //On met cette adresse en lecture
+TRP #READ_TRP //On lève la trappe
+LDW R3, R0 //On met le résultat dans R3
+//On ferme l'environnement courant
+LDW SP, BP //On réintiialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS //On retourne dans le programme
+//*** string itoa(int number, int base) : Cast un entier en une chaine selon la base passée en paramètre ***//
+itoa //On sauvegarde les registres
+STW R0, -(SP)
+STW R1, -(SP)
+STW R2, -(SP)
+STW R4, -(SP)
+STW R5, -(SP)
+STW R6, -(SP)
+STW R7, -(SP)
+STW R8, -(SP)
+STW R9, -(SP)
+STW R10, -(SP)
+STW R11, -(SP)
+STW R12, -(SP)
+STW R13, -(SP)
+STW R14, -(SP)
+//On ouvre un nouvel environnement dans la pile
+STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
+LDW BP, SP //Le sommet de la pile devient la nouvelle base
+STRING1 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING1, R3 //On charge l'adresse dans R0
+//R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
+ASCII_MINUS equ 45
+ASCII_PLUS  equ 43
+ASCII_SP    equ 32 
+ASCII_0     equ 48 
+ASCII_A     equ 65 
+
+LDQ 10, R8  
+CMP R6, R8  
+BNE NOSIGN-$-2 //Si b==10, on calcule le signe
+LDQ ASCII_PLUS, R7 //R7 contiendra le symbole de la conversion
+TST R5
+BGE POSIT-$-2 //On saute si (R5) >= 0
+NEG R5, R5
+LDQ ASCII_MINUS, R7
+POSIT NOP
+
+NOSIGN  LDW R8, R5 //R8 <- entier à convertir
+CNVLOOP ldw R5, R8
+
+SRL R6, R6
+//On divise la base par 2
+ANI R5, R9, #1 //ANd Immédiate entre r0 et 00...01 vers r4
+SRL R5, R5 //on divise l'entier par 2
+DIV R5, R6, R8
+SHL R5, R5
+ADD R5, R9, R5
+SHL R6, R6
+
+ADQ -10, R5 //entier -10 -> R5
+BGE LETTER-$-2
+ADQ 10+ASCII_0, R5
+
+BMP STKCHR-$-2
+
+LETTER ADQ ASCII_A, R5
+
+STKCHR STW R5, -(SP)
+TST R8
+BNE CNVLOOP-$-2
+ //Boucle si quotient non nul
+
+//On empile maintenant les caractères dans le bon ordre
+LDW R2, R3
+LDQ 0, R10
+CMP R7, R10 //Si R7 = 0, on l'ajoute pas a la chaine
+BEQ CPYLOOP-$-2
+STB R7, (R2)+ //On copie le signe dans le tampon
+CPYLOOP LDW R5, (SP)+//On dépile le chiffre
+STB R5, (R2)+
+CMP SP, BP
+BNE CPYLOOP-$-2
+LDQ NUL, R5
+STB R5, (R2)+//On termine la chaine par NUL
+//On ferme l'environnement courant
+LDW SP, BP //On réintiialise le sommet de la pile à la base courante
+LDW BP, (SP)+ //On dépile l'ancienne base
+//On recharge les registres
+LDW R14, (SP)+
+LDW R13, (SP)+
+LDW R12, (SP)+
+LDW R11, (SP)+
+LDW R10, (SP)+
+LDW R9, (SP)+
+LDW R8, (SP)+
+LDW R7, (SP)+
+LDW R6, (SP)+
+LDW R5, (SP)+
+LDW R4, (SP)+
+LDW R2, (SP)+
+LDW R1, (SP)+
+LDW R0, (SP)+
+RTS
+
