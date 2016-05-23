@@ -70,8 +70,6 @@ public class Affectation extends Instruction{
 				int num = 0;
 				
 				for (Couple<String, String> c : ftds.getNomsChampsEtTypes()) {
-					System.out.println(c.getLeft());
-					System.out.println(node.getChild(0).getChild(1).getChild(0).getText());
 					if(c.getLeft().equals(node.getChild(0).getChild(1).getChild(0).getText())){
 						break;
 					}else
