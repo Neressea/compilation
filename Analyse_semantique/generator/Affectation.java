@@ -75,7 +75,11 @@ public class Affectation extends Instruction{
 					}else
 						num++;
 				}
-				
+				ca.append("SUB R1, R3, R1");
+				ca.append("LDQ " + ftds.getNomsChampsEtTypes().size() +", R7");
+				ca.append("MUL R3, R7, R3");
+				ca.append("ADD R1, R3, R1");
+				//System.out.println(ftds.getNomsChampsEtTypes().size());
 				ca.append("ADQ "+(num * 2)+", R1");
 			}
 			

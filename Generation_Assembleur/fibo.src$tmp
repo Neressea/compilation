@@ -57,6 +57,17 @@ STW R3, -(R15) //On empile la valeur diclarie
 JSR @readi
 STW R3, -(R15) //On empile la valeur diclarie
 //CALL : fibo
+<<<<<<< HEAD
+=======
+LDW R3, #0
+STW R3, -(R15) //On empile le paramo?=tre
+<<<<<<< HEAD
+LDW R3, #4
+=======
+LDW R3, #23
+>>>>>>> bf7ed161669851531f89ef9437cf064fb8afe7a7
+STW R3, -(R15) //On empile le paramo?=tre
+>>>>>>> b0de3bddcdef81bcb6a57d679e88c99f2d99a4bf
 JSR @fibo
 //On ferme l'environnement courant
 LDW SP, BP //On ro?=intialise le sommet de la pile o?= la base courante
