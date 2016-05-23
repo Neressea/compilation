@@ -1,8 +1,51 @@
 let
+	type intArray = array of int
 	type domino = {g:int, d:int, c:int}
 	type dominosPizza = array of domino
 	var unDomino := domino{g:=4,d:=1, c:=42}
 	var tousLesDominos := dominosPizza [49] of unDomino
+	var a : int := 0
+	var b:= 0
+	var joueur1 := intArray [7] of 0
+	var joueur2 := intArray [7] of 0
+	var i : int:= 0
+	
+	var tampon : int := 0
+	function modulo(k:int, m:int) = 
+		(
+			tampon := k / m;
+			a := k - m*tampon		
+		)
+		
+	function affectT1(indx:int, val:int) = 
+		(
+			joueur1[indx] := val
+			//printiln(joueur1[indx])
+		)
+		
+	function affectT2(indx:int, val:int) = 
+		(
+			joueur2[indx] := val
+			//printiln(joueur2[indx])
+		)
 in
+	println("Veuillez rentrer un nombre entier (pour l'aleatoire) : ");
+	a := 7;
+	
+	while (i<7) do (
+		printiln(i);
+		a:= (7*a+4) - 49*((7*a+4)/49);
+		affectT1(i, a); //joueur1[i] := a;
+		i := i+1
+	);
+	
+	i := 0;
+	
+	while (i<7) do (
+		printiln(i);
+		a:= (7*a+4) - 49*((7*a+4)/49); 
+		affectT2(i, a); //joueur1[i] := a;
+		i := i+1
+	)
 	
 end

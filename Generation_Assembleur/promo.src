@@ -46,21 +46,27 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R3, #4
+STRING0 string "Farnier "
+LDQ 0, R3
+LDW R3, #STRING0
 STW R3, -(R15)
-LDW R3, #1
+STRING1 string "Alexandre "
+LDQ 0, R3
+LDW R3, #STRING1
 STW R3, -(R15)
-LDW R3, #42
+LDW R3, #23
 STW R3, -(R15)
-tousLesDominos RSB 147
-LDW R7, #tousLesDominos
+LDW R3, #185
+STW R3, -(R15)
+objectif2017 RSB 16
+LDW R7, #objectif2017
 STW R7, -(R15)
-LDW R7, #147
+LDW R7, #16
 LDW R8, #0
-LDW R5, #tousLesDominos
+LDW R5, #objectif2017
 LDW R1, #0x0ffa //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDQ 2, R9
+LDQ 3, R9
 LDQ 0, R10
 LDW R6, R3
 LOOPTAB0 STW R6, (R5)
@@ -82,213 +88,306 @@ CMP R7, R8
 BEQ ENDTAB0-$-2
 BMP LOOPTAB0-$-2
 ENDTAB0
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
-joueur1 RSB 14
-LDW R7, #joueur1
-STW R7, -(R15)
-LDW R7, #7
-LDW R8, #0
-LDW R5, #joueur1
-LDW R3, #0
-LDW R6, R3
-LOOPTAB1 STW R6, (R5)
-ADQ 2, R5
-ADQ 1, R8
-CMP R7, R8
-BEQ ENDTAB1-$-2
-BMP LOOPTAB1-$-2
-ENDTAB1
-joueur2 RSB 14
-LDW R7, #joueur2
-STW R7, -(R15)
-LDW R7, #7
-LDW R8, #0
-LDW R5, #joueur2
-LDW R3, #0
-LDW R6, R3
-LOOPTAB2 STW R6, (R5)
-ADQ 2, R5
-ADQ 1, R8
-CMP R7, R8
-BEQ ENDTAB2-$-2
-BMP LOOPTAB2-$-2
-ENDTAB2
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
-LDW R3, #0
-STW R3, -(R15) //On empile la valeur déclarée
-STRING0 string "Veuillez rentrer un nombre entier (pour l'aleatoire) :  "
+STRING2 string "Albert"
 LDQ 0, R3
-LDW R3, #STRING0
+LDW R3, #STRING2
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #1
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 0, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+STRING3 string "Vincent "
+LDQ 0, R3
+LDW R3, #STRING3
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #1
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 2, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R3, #22
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #1
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 4, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R3, #187
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #1
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 6, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//Début de l'accès au tableau
+LDW R3, #1
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 0, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
 LDW R0, R3
 JSR @println
-LDW R3, #7
-LDW R5, R1
+//Début de l'accès au tableau
+LDW R3, #1
+LDQ 2, R9
+MUL R3, R9, R3
 LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-boucleW1 // etiquette debut while
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 2, R1
 LDW R3, (R1)
-LDW R2, R3
-LDW R3, #7
-CMP R2, R3
-BLW 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
-LDW R3, (R15)+
-
-TST R3
-BEQ endWhile1-$-2
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+//Fin de l'accès au tableau
+LDW R0, R3
+JSR @println
+//Début de l'accès au tableau
+LDW R3, #1
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 4, R1
 LDW R3, (R1)
+//Fin de l'accès au tableau
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-LDW R3, #7
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #4
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #49
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #7
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #4
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #49
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDW R5, R1
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//CALL : affectT1
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramï¿½tre
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramï¿½tre
-JSR @affectT1
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
+//Début de l'accès au tableau
 LDW R3, #1
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-LDW R5, R1
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-BMP boucleW1-$-2
-endWhile1 //etiquette fin while
-LDW R3, #0
-LDW R5, R1
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-boucleW2 // etiquette debut while
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 6, R1
 LDW R3, (R1)
-LDW R2, R3
-LDW R3, #7
-CMP R2, R3
-BLW 4
-LDQ 0, R3
-JMP #4
-LDQ 1, R3
-STW R3, -(R15)
-
-LDW R3, (R15)+
-
-TST R3
-BEQ endWhile2-$-2
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
+//Fin de l'accès au tableau
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
 LDW R0, R3
 JSR @printiln
-LDW R3, #7
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #4
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #49
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #7
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #4
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #49
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
+STRING4 string "Entrez un nom : "
+LDQ 0, R3
+LDW R3, #STRING4
+LDW R0, R3
+JSR @print
+JSR @read
 LDW R5, R1
 LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//CALL : affectT2
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramï¿½tre
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le paramï¿½tre
-JSR @affectT2
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #1
-LDW R2, (R15)+ //On depile l'operande droite
-ADD R2, R3, R3
+LDW R4, R3
 LDW R5, R1
-LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
+LDW R3, #3
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 0, R1
+LDW R3, R4
 STW R3, (R1) //On stocke le resultat dans la mémoire
-BMP boucleW2-$-2
-endWhile2 //etiquette fin while
+STRING5 string "Entrez un prenom :  "
+LDQ 0, R3
+LDW R3, #STRING5
+LDW R0, R3
+JSR @print
+JSR @read
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #3
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 2, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+STRING6 string "Entrez un age : "
+LDQ 0, R3
+LDW R3, #STRING6
+LDW R0, R3
+JSR @print
+JSR @readi
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #3
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 4, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+STRING7 string "Entrez une taille : "
+LDQ 0, R3
+LDW R3, #STRING7
+LDW R0, R3
+JSR @print
+JSR @readi
+LDW R5, R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R4, R3
+LDW R5, R1
+LDW R3, #3
+LDW R1, R5
+ADD R3, R3, R3
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 6, R1
+LDW R3, R4
+STW R3, (R1) //On stocke le resultat dans la mémoire
+//Début de l'accès au tableau
+LDW R3, #3
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 0, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R0, R3
+JSR @println
+//Début de l'accès au tableau
+LDW R3, #3
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 2, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R0, R3
+JSR @println
+//Début de l'accès au tableau
+LDW R3, #3
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 4, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
+//Début de l'accès au tableau
+LDW R3, #3
+LDQ 2, R9
+MUL R3, R9, R3
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R1, (R1)
+ADD R1, R3, R1
+SUB R1, R3, R1
+LDQ 4, R7
+MUL R3, R7, R3
+ADD R1, R3, R1
+ADQ 6, R1
+LDW R3, (R1)
+//Fin de l'accès au tableau
+LDW R5, R3
+LDQ 10, R6
+JSR @itoa
+LDW R0, R3
+JSR @printiln
 //On ferme l'environnement courant
 LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante
 LDW BP, (SP)+ //On dï¿½pile l'ancienne base
@@ -302,185 +401,6 @@ TRP #EXIT_TRP //On quitte l'exécution
 
 /////// ------------------------------  Fonctions utilisateurs  ------------------------------ ///////
 
-modulo
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R14, -(SP)
-
-//On ouvre un nouvel environnement dans la pile
-STW STAT, -(SP) //On empile le chainage statique
-STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-LDW BP, SP //Le sommet de la pile devient la nouvelle base
-
-LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-DIV R2, R3, R3
-LDW R5, R1
-LDW R1, #0x0fe8 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R1, #0x0fe8 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R2, (R15)+ //On depile l'operande droite
-MUL R2, R3, R3
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDW R5, R1
-LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//On ferme l'environnement courant
-LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante
-LDW BP, (SP)+ //On dï¿½pile l'ancienne base
-LDW STAT, (SP)+//On dï¿½pile le chainage statique
-
-//On recharge les registres
-LDW R14, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
-affectT1
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R14, -(SP)
-
-//On ouvre un nouvel environnement dans la pile
-STW STAT, -(SP) //On empile le chainage statique
-STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-LDW BP, SP //Le sommet de la pile devient la nouvelle base
-
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R5, R1
-LDW R1, #0x0fee //On charge l'adresse de l'idf dans R1
-LDW R4, R3
-LDW R5, R1
-LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R1, R5
-ADD R3, R3, R3
-LDW R1, (R1)
-ADD R1, R3, R1
-LDW R3, R4
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//On ferme l'environnement courant
-LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante
-LDW BP, (SP)+ //On dï¿½pile l'ancienne base
-LDW STAT, (SP)+//On dï¿½pile le chainage statique
-
-//On recharge les registres
-LDW R14, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
-affectT2
-//On sauvegarde les registres
-STW R0, -(SP)
-STW R1, -(SP)
-STW R2, -(SP)
-STW R4, -(SP)
-STW R5, -(SP)
-STW R6, -(SP)
-STW R7, -(SP)
-STW R8, -(SP)
-STW R9, -(SP)
-STW R10, -(SP)
-STW R11, -(SP)
-STW R12, -(SP)
-STW R14, -(SP)
-
-//On ouvre un nouvel environnement dans la pile
-STW STAT, -(SP) //On empile le chainage statique
-STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
-LDW BP, SP //Le sommet de la pile devient la nouvelle base
-
-LDW R1, #0x0fe6 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R5, R1
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
-LDW R4, R3
-LDW R5, R1
-LDW R1, #0x0fe4 //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-LDW R1, R5
-ADD R3, R3, R3
-LDW R1, (R1)
-ADD R1, R3, R1
-LDW R3, R4
-STW R3, (R1) //On stocke le resultat dans la mémoire
-//On ferme l'environnement courant
-LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante
-LDW BP, (SP)+ //On dï¿½pile l'ancienne base
-LDW STAT, (SP)+//On dï¿½pile le chainage statique
-
-//On recharge les registres
-LDW R14, (SP)+
-LDW R12, (SP)+
-LDW R11, (SP)+
-LDW R10, (SP)+
-LDW R9, (SP)+
-LDW R8, (SP)+
-LDW R7, (SP)+
-LDW R6, (SP)+
-LDW R5, (SP)+
-LDW R4, (SP)+
-LDW R2, (SP)+
-LDW R1, (SP)+
-LDW R0, (SP)+
-
-RTS
 /////// ------------------------------  Fonctions du langage  ------------------------------ ///////
 
 //*** println(string) : affiche le texte passé en paramètre et fait un saut de ligne ***//
@@ -671,8 +591,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING1 RSB 50 //On crée la chaine de retour (100 caractères max)
-LDQ STRING1, R0 //On met cette adresse en lecture
+STRING8 RSB 50 //On crée la chaine de retour (100 caractères max)
+LDQ STRING8, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R3, R0 //On met le résultat dans R3
 //On ferme l'environnement courant
@@ -716,8 +636,8 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 //On commence par lire la chaine
-STRING2 RSB 100 //On crée la chaine de retour (100 caractères max)
-LDQ STRING2, R0 //On met cette adresse en lecture
+STRING9 RSB 100 //On crée la chaine de retour (100 caractères max)
+LDQ STRING9, R0 //On met cette adresse en lecture
 TRP #READ_TRP //On lève la trappe
 LDW R5, R0 //On met le résultat dans R5
 JSR @atoi //On convertit en entier. Résultat dans R3
@@ -816,8 +736,8 @@ STW R14, -(SP)
 STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
-STRING3 RSB 100 //On crée la chaine de retour (100 octets max)
-LDQ STRING3, R3 //On charge l'adresse dans R0
+STRING10 RSB 100 //On crée la chaine de retour (100 octets max)
+LDQ STRING10, R3 //On charge l'adresse dans R0
 //R5 -> entier à convertir, R6 -> base de conversion, R3 -> adresse de la chaine résultat
 LDQ 10, R8  
 CMP R6, R8  

@@ -1,0 +1,32 @@
+let 
+	type Personne = {nom:string, prenom:string, age:int, taille:int}
+	type Promo = array of Personne
+	var etudiant := Personne{nom:="Farnier", prenom:="Alexandre", age:=23, taille:=185}
+	var objectif2017 := Promo [4] of etudiant
+	
+in
+	objectif2017[1].nom := "Albert";
+	objectif2017[1].prenom := "Vincent";
+	objectif2017[1].age := 22;
+	objectif2017[1].taille := 187;
+	
+	println(objectif2017[1].nom);
+	println(objectif2017[1].prenom);
+	printiln(objectif2017[1].age);
+	printiln(objectif2017[1].taille);
+	
+	print("Entrez un nom : ");
+	objectif2017[3].nom := read();
+	print("Entrez un prenom : ");
+	objectif2017[3].prenom := read();
+	print("Entrez un age : ");
+	objectif2017[3].age := readi();
+	print("Entrez une taille : ");
+	objectif2017[3].taille := readi();
+	
+	println(objectif2017[3].nom);
+	println(objectif2017[3].prenom);
+	printiln(objectif2017[3].age);
+	printiln(objectif2017[3].taille)	
+
+end
