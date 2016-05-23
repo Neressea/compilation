@@ -46,31 +46,18 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R3, #1000
+LDW R3, #3
 STW R3, -(R15) //On empile la valeur déclarée
-tab RSB 2000
-LDW R7, #tab
-STW R7, -(R15)
-LDW R7, #1000
-LDW R8, #0
-LDW R5, #tab
 LDW R3, #1
-LDW R6, R3
-LOOPTAB0 STW R6, (R5)
-ADQ 2, R5
-ADQ 1, R8
-CMP R7, R8
-BEQ ENDTAB0-$-2
-BMP LOOPTAB0-$-2
-ENDTAB0
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #1
+STW R3, -(R15) //On empile la valeur déclarée
+LDW R3, #1
+STW R3, -(R15) //On empile la valeur déclarée
+JSR @readi
+STW R3, -(R15) //On empile la valeur déclarée
 //CALL : fibo
-LDW R3, #0
-STW R3, -(R15) //On empile le paramï¿½tre
-LDW R3, #23
-STW R3, -(R15) //On empile le paramï¿½tre
 JSR @fibo
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
-ADQ 2, R15 //On dï¿½pile le paramï¿½tre
 //On ferme l'environnement courant
 LDW SP, BP //On rï¿½intialise le sommet de la pile ï¿½ la base courante
 LDW BP, (SP)+ //On dï¿½pile l'ancienne base
@@ -105,7 +92,7 @@ STW STAT, -(SP) //On empile le chainage statique
 STW BP, -(SP) //On sauvegarde l'ancienne base sur le sommet de la pile
 LDW BP, SP //Le sommet de la pile devient la nouvelle base
 
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R2, R3
 LDW R3, #0
@@ -116,7 +103,7 @@ JMP #4
 LDQ 1, R3
 STW R3, -(R15)
 
-LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 LDW R2, R3
 LDW R3, #1
@@ -153,52 +140,29 @@ else0 //etiquette else
 LDW R3, #2
 STW R3, -(R15) //On empile valeur initiale du compteur de boucle
 boucle0 //Etiquette de la boucle
-//Début de l'accès au tableau
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
-LDW R3, (R1)
-STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #1
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDQ 2, R9
-MUL R3, R9, R3
 LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-LDW R1, (R1)
-ADD R1, R3, R1
-LDW R3, (R1)
-//Fin de l'accès au tableau
-STW R3, -(R15) //On empile le resultat de l'operande droite
-//Début de l'accès au tableau
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
 STW R3, -(R15) //On empile le resultat de l'operande droite
-LDW R3, #2
-LDW R2, (R15)+ //On depile l'operande droite
-SUB R2, R3, R3
-LDQ 2, R9
-MUL R3, R9, R3
-LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-LDW R1, (R1)
-ADD R1, R3, R1
+LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-//Fin de l'accès au tableau
 LDW R2, (R15)+ //On depile l'operande droite
 ADD R2, R3, R3
 LDW R5, R1
+LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-LDW R4, R3
-LDW R5, R1
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R1, R5
-ADD R3, R3, R3
-LDW R1, (R1)
-ADD R1, R3, R1
-LDW R3, R4
+LDW R5, R1
+LDW R1, #0x0ff6 //On charge l'adresse de l'idf dans R1
 STW R3, (R1) //On stocke le resultat dans la mémoire
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDW R1, #0x0fec //On charge l'adresse de l'idf dans R1
+LDW R5, R1
+LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
+STW R3, (R1) //On stocke le resultat dans la mémoire
+LDW R1, #0x0ff2 //On charge l'adresse de l'idf dans R1
+LDW R3, (R1)
+LDW R1, #0x0fea //On charge l'adresse de l'idf dans R1
 LDW R2, (R1) //On charge le compteur dans R2
 SUB R3, R2, R3
 BEQ sortie_boucle0-$-2
@@ -208,16 +172,8 @@ BMP boucle0-$-2
 sortie_boucle0
 LDW R3, (R15)+ //on dépile le compteur
 endif0 //etiquette fin de if
-//Début de l'accès au tableau
 LDW R1, #0x0ff4 //On charge l'adresse de l'idf dans R1
 LDW R3, (R1)
-LDQ 2, R9
-MUL R3, R9, R3
-LDW R1, #0x0ff8 //On charge l'adresse de l'idf dans R1
-LDW R1, (R1)
-ADD R1, R3, R1
-LDW R3, (R1)
-//Fin de l'accès au tableau
 LDW R5, R3
 LDQ 10, R6
 JSR @itoa
